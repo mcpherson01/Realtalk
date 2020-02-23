@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+
+	<title>Realtalk - YouTube</title>
+	<subtitle>http://realtalk.digital
+
+https://www.facebook.com/realtalkgames
+
+https://aboutme.google.com/u/0/b/104653303965561549236/?referer=gplus
+
+https://twitter.com/7GiveMeTheWorld
+
+https://www.linkedin.com/company/36096660
+
+-----------------
+epic games
+free games
+game of thrones
+unblocked gamer
+adult gamer
+aarp games
+explanations
+free
+seo
+easy
+tutorial
+gaming
+walkthrough
+story
+saga
+history
+creepypasta
+realtalk games
+realtalk
+gaming
+real gaming
+realtalk digital
+realtalkgames official - YouTube</subtitle>
+	<link href="http://fetchrss.com/rss/5e4015818a93f88f7e8b45685e40156a8a93f82c7d8b4567.atom" rel="self" />
+	<id>http://fetchrss.com/rss/5e4015818a93f88f7e8b45685e40156a8a93f82c7d8b4567.xml</id>
+	<updated>2020-02-23T05:53:15+00:00</updated>
+	<generator uri="http://fetchrss.com" version="1.0">FetchRSS</generator>
+	<icon>https://res.cloudinary.com/dh2eofcns/provider/youtube.png</icon>
+
+		<entry>
+			<title>Half-Life Alyx (2020)TRAILER Explanation Video Promo HL3 RealtalkGames</title>
+			<link href="https://www.youtube.com/watch?v=0AP6TKa4FYU" rel="self" />
+			<content type="html">&lt;iframe id="player" type="text/html" width="640" height="360" src="http://www.youtube.com/embed/0AP6TKa4FYU" frameborder="0" allowFullScreen="allowfullscreen"&gt;&lt;/iframe&gt;
+
+&lt;br/&gt;&lt;br/&gt;&lt;span style="font-size:12px; color: gray;"&gt;(Feed generated with &lt;a href="http://fetchrss.com" target="_blank"&gt;FetchRSS&lt;/a&gt;)&lt;/span&gt;</content>
+			<updated>2020-02-17T10:30:25+00:00</updated>
+			<media:content url="https://i1.ytimg.com/vi/0AP6TKa4FYU/hqdefault.jpg" medium="image" width="480" height="360" />
+			<id>https://www.youtube.com/watch?v=0AP6TKa4FYU</id>
+		</entry>
+
+		<entry>
+			<title>Half-Life 3</title>
+			<link href="https://www.youtube.com/watch?v=ZPRqnKIzfoc" rel="self" />
+			<content type="html">&lt;iframe id="player" type="text/html" width="640" height="360" src="http://www.youtube.com/embed/ZPRqnKIzfoc" frameborder="0" allowFullScreen="allowfullscreen"&gt;&lt;/iframe&gt;
+
+&lt;br/&gt;&lt;br/&gt;&lt;span style="font-size:12px; color: gray;"&gt;(Feed generated with &lt;a href="http://fetchrss.com" target="_blank"&gt;FetchRSS&lt;/a&gt;)&lt;/span&gt;</content>
+			<updated>2020-02-10T06:43:10+00:00</updated>
+			<media:content url="https://i3.ytimg.com/vi/ZPRqnKIzfoc/hqdefault.jpg" medium="image" width="480" height="360" />
+			<id>https://www.youtube.com/watch?v=ZPRqnKIzfoc</id>
+		</entry>
+
+		<entry>
+			<title>The Modern Day Sisyphus</title>
+			<link href="https://www.youtube.com/watch?v=2RbN6QJexRc" rel="self" />
+			<content type="html">&lt;iframe id="player" type="text/html" width="640" height="360" src="http://www.youtube.com/embed/2RbN6QJexRc" frameborder="0" allowFullScreen="allowfullscreen"&gt;&lt;/iframe&gt;
+
+&lt;br/&gt;&lt;br/&gt;&lt;span style="font-size:12px; color: gray;"&gt;(Feed generated with &lt;a href="http://fetchrss.com" target="_blank"&gt;FetchRSS&lt;/a&gt;)&lt;/span&gt;</content>
+			<updated>2019-05-30T20:10:48+00:00</updated>
+			<media:content url="https://i3.ytimg.com/vi/2RbN6QJexRc/hqdefault.jpg" medium="image" width="480" height="360" />
+			<id>https://www.youtube.com/watch?v=2RbN6QJexRc</id>
+		</entry>
+
+		<entry>
+			<title>Fallout 4: The Brotherhood of Steel Explained</title>
+			<link href="https://www.youtube.com/watch?v=RST0fFcKnWQ" rel="self" />
+			<content type="html">&lt;iframe id="player" type="text/html" width="640" height="360" src="http://www.youtube.com/embed/RST0fFcKnWQ" frameborder="0" allowFullScreen="allowfullscreen"&gt;&lt;/iframe&gt;
+
+&lt;br/&gt;&lt;br/&gt;&lt;span style="font-size:12px; color: gray;"&gt;(Feed generated with &lt;a href="http://fetchrss.com" target="_blank"&gt;FetchRSS&lt;/a&gt;)&lt;/span&gt;</content>
+			<updated>2015-12-10T16:28:36+00:00</updated>
+			<media:content url="https://i3.ytimg.com/vi/RST0fFcKnWQ/hqdefault.jpg" medium="image" width="480" height="360" />
+			<id>https://www.youtube.com/watch?v=RST0fFcKnWQ</id>
+		</entry>
+
+		<entry>
+			<title>Fallout 4: The Institute Explained</title>
+			<link href="https://www.youtube.com/watch?v=O1hv9OvgVmk" rel="self" />
+			<content type="html">&lt;iframe id="player" type="text/html" width="640" height="360" src="http://www.youtube.com/embed/O1hv9OvgVmk" frameborder="0" allowFullScreen="allowfullscreen"&gt;&lt;/iframe&gt;
+
+&lt;br/&gt;&lt;br/&gt;&lt;span style="font-size:12px; color: gray;"&gt;(Feed generated with &lt;a href="http://fetchrss.com" target="_blank"&gt;FetchRSS&lt;/a&gt;)&lt;/span&gt;</content>
+			<updated>2015-12-09T18:13:56+00:00</updated>
+			<media:content url="https://i4.ytimg.com/vi/O1hv9OvgVmk/hqdefault.jpg" medium="image" width="480" height="360" />
+			<id>https://www.youtube.com/watch?v=O1hv9OvgVmk</id>
+		</entry>
+
+
+</feed>
