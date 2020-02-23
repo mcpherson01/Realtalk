@@ -5,6 +5,10 @@ define( 'WP_ROCKET_ADVANCED_CACHE', true );
 $rocket_cache_path  = 'C:\xampp\htdocs\wp\wordpress/wp-content/cache/wp-rocket/';
 $rocket_config_path = 'C:\xampp\htdocs\wp\wordpress/wp-content/wp-rocket-config/';
 
+if ( file_exists( 'C:\xampp\htdocs\wp\wordpress\wp-content\plugins\wp-rocket\inc\vendors/classes/class-rocket-mobile-detect.php' ) && ! class_exists( 'Rocket_Mobile_Detect' ) ) {
+	include_once 'C:\xampp\htdocs\wp\wordpress\wp-content\plugins\wp-rocket\inc\vendors/classes/class-rocket-mobile-detect.php';
+}
+
 if ( file_exists( 'C:\xampp\htdocs\wp\wordpress\wp-content\plugins\wp-rocket\inc\front/process.php' ) && version_compare( phpversion(), '5.4' ) >= 0 ) {
 
 	spl_autoload_register( function( $class ) {
