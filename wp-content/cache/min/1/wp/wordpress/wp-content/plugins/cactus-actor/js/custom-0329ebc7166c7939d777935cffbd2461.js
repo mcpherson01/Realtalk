@@ -1,0 +1,2 @@
+var themeElements={submitButton:'.submit-button',};jQuery(document).ready(function($){$(themeElements.submitButton).not('.disabled').click(function(){var form=$($(this).attr('href'));if(!form.length||!form.is('form')){form=$(this).parent();while(!form.is('form')){form=form.parent()}}
+form.submit();return!1})})
