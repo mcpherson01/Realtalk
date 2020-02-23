@@ -1,0 +1,16 @@
+<wpml-config>
+	<custom-types>
+		<custom-type translate="1">note</custom-type>
+		<custom-type translate="1">video</custom-type>
+		<custom-type translate="1">quote</custom-type>
+		<custom-type translate="1">photo</custom-type>
+		<custom-type translate="1">customlink</custom-type>
+		<custom-type translate="1">audio</custom-type>
+	</custom-types>
+	<admin-texts>
+		<key name="lightbright_date_format"/>
+		<key name="lightbright_seo_home_titletext"/>
+		<key name="lightbright_seo_home_descriptiontext"/>
+		<key name="lightbright_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

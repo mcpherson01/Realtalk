@@ -1,0 +1,8 @@
+<wpml-config>
+	<admin-texts>
+		<key name="whoswho_date_format"/>
+		<key name="whoswho_seo_home_titletext"/>
+		<key name="whoswho_seo_home_descriptiontext"/>
+		<key name="whoswho_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

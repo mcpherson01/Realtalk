@@ -1,0 +1,4 @@
+body { background: url("images/wooden/bg.jpg"); }
+.center-highlight { background:url("images/wooden/light-overlay.png") repeat-y center top; }
+#intro { background:url("images/wooden/intro-bg.png"); }
+p.post-meta { border-bottom:1px solid #af8f70; border-right:1px solid #af8f70; }

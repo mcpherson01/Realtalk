@@ -1,0 +1,15 @@
+ul.nav li a:hover, ul.nav li a:hover strong, ul.nav li a:hover span, ul.nav > li.current-cat > a strong, ul.nav > li.current-cat > a span, ul.nav > li.current_page_item > a strong, ul.nav > li.current_page_item > a span, ul.nav > li.current-menu-item > a span, ul.nav > li.current-menu-item > a strong, ul.nav ul li a:hover { color:#95108d; }
+
+	ul.nav ul li a { background: url(images/purple/nav-bullet.png) no-repeat 19px 16px; }
+
+.entry p.date { background:url("images/purple/date-bg.png") no-repeat scroll 0 0 transparent; }
+	.entry p.date span { text-shadow:-1px -1px 1px #791052; }
+
+a.readmore, .reply-container { background:url("images/purple/readmore.png") no-repeat scroll right top transparent; text-shadow:-1px -1px 1px #420f05; }
+	a.readmore span, .reply-container a { background:url("images/purple/readmore.png") no-repeat scroll 0 0 transparent; }
+
+#sidebar .widget ul li { background:url("images/purple/bullet.png") no-repeat scroll 0 9px transparent; }
+
+.wp-pagenavi span.current, .wp-pagenavi span.extend, .wp-pagenavi a:active, .wp-pagenavi a:hover { background:url("images/purple/pagenavi-current-bg.png") no-repeat scroll 0 0 transparent !important; text-shadow: 1px 1px 1px #56102d; }
+
+span.fn, span.fn a { color:#851095; }

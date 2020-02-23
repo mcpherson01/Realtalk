@@ -1,0 +1,13 @@
+#pages { background-color: #346838 !important; background-image: none !important; }
+#pages ul li a:hover, .nav li li a:hover, .nav li li { background-image: none !important; background-color: #346838 !important; }
+.home-box, .home-box2, .home-box3 { width: 270px; height: 305px; overflow: hidden; margin: 0px; float: left; }
+.home-box-container, .home-box-container2, .home-box-container3 { float: left; width: 270px; margin-left: 20px !important; }
+.home-box-container .next, .home-box-container2 .next, .home-box-container3 .next { background-repeat: no-repeat; margin: 15px 0px 5px 60px !important; }
+.home-box-container .prev, .home-box-container2 .prev, .home-box-container3 .prev { background-repeat: no-repeat; margin: 15px 0px 5px 60px !important; }
+.next { margin: 70px 5px 0px 5px !important; }
+.prev { margin: 70px 5px 0px 5px !important; }
+#sidebar { margin-right: -6px; width: 300px !important; overflow: hidden; }
+#left-div { width: 624px !important; }
+#left-inside { padding: 0px 0px 0px 9px !important; }
+.commentlist { width: 560px !important; overflow: hidden; }
+.commentlist .children li { width: 85% !important; }

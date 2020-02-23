@@ -1,0 +1,1 @@
+<a href="http://www.elegantthemes.com/gallery/evolution/readme.html" target="_blank"><?php esc_html_e( 'Read Evolution Documentation', $themename ); ?></a>

@@ -1,0 +1,11 @@
+<wpml-config>
+	<admin-texts>
+		<key name="feather_date_format"/>
+		<key name="feather_quote_one"/>
+		<key name="feather_homeblog_desc"/>
+		<key name="feather_homework_desc"/>
+		<key name="feather_seo_home_titletext"/>
+		<key name="feather_seo_home_descriptiontext"/>
+		<key name="feather_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

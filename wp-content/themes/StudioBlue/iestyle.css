@@ -1,0 +1,18 @@
+body {
+	margin-left: 2px !important;
+}
+.sidebar-box h3 {
+	margin: 0px 0px 0px 14px !important;
+}
+.topbanner {
+	float: right;
+	margin-top: -10px !important;
+	margin-bottom: -5px !important;
+}
+.post-wrapper {
+	margin-bottom: 15px;
+	float: left;
+}
+#left-inside {
+	padding-bottom: 15px !important;
+}

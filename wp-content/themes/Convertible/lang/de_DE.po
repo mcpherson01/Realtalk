@@ -1,0 +1,853 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Convertible 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-01 15:15+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Ann <anochka1985@gmail.com>\n"
+"Language-Team: Ann <anochka1985@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../functions.php:71
+msgid "Example Colors"
+msgstr ""
+
+#: ../functions.php:81
+#: ../functions.php:92
+msgid "or define your own in ePanel"
+msgstr ""
+
+#: ../functions.php:83
+msgid "Texture Overlays"
+msgstr ""
+
+#: ../functions.php:102
+msgid "Fonts"
+msgstr ""
+
+#: ../functions.php:105
+msgid "Header"
+msgstr ""
+
+#: ../functions.php:116
+msgid "Body"
+msgstr ""
+
+#: ../functions.php:751
+msgid "Add a Module"
+msgstr ""
+
+#: ../functions.php:752
+msgid "Add a Column"
+msgstr ""
+
+#: ../functions.php:753
+msgid "Sample Layout"
+msgstr ""
+
+#: ../functions.php:754
+msgid "Landing Page Builder"
+msgstr ""
+
+#: ../functions.php:792
+msgid "Drag a Module Onto Your Canvas"
+msgstr ""
+
+#: ../functions.php:805
+#: ../epanel/core_functions.php:26
+#: ../epanel/core_functions.php:389
+msgid "Saving..."
+msgstr ""
+
+#: ../functions.php:890
+msgid "Description"
+msgstr ""
+
+#: ../functions.php:891
+#: ../epanel/shortcodes/shortcodes.php:1009
+msgid "Link"
+msgstr ""
+
+#: ../functions.php:893
+msgid "Delete this slide"
+msgstr ""
+
+#: ../functions.php:894
+msgid "Change image"
+msgstr ""
+
+#: ../functions.php:921
+msgid "Tab Title"
+msgstr ""
+
+#: ../functions.php:923
+#: ../functions.php:938
+msgid "Delete this tab"
+msgstr ""
+
+#: ../functions.php:952
+msgid "This is the first column in the row"
+msgstr ""
+
+#: ../functions.php:954
+msgid "Column width (%)"
+msgstr ""
+
+#: ../functions.php:995
+msgid "Select"
+msgstr ""
+
+#: ../functions.php:1006
+msgid "Upload"
+msgstr ""
+
+#: ../functions.php:1009
+msgid "Add Slider Image"
+msgstr ""
+
+#: ../functions.php:1012
+msgid "Add Tab"
+msgstr ""
+
+#: ../functions.php:1015
+msgid "Add Slide"
+msgstr ""
+
+#: ../epanel/core_functions.php:27
+msgid "Options Saved."
+msgstr ""
+
+#: ../epanel/core_functions.php:73
+msgid "Options"
+msgstr ""
+
+#: ../epanel/core_functions.php:73
+msgid "Theme Options"
+msgstr ""
+
+#: ../epanel/core_functions.php:90
+msgid "settings saved."
+msgstr ""
+
+#: ../epanel/core_functions.php:93
+msgid "settings reset."
+msgstr ""
+
+#: ../epanel/core_functions.php:111
+msgid "General Settings"
+msgstr ""
+
+#: ../epanel/core_functions.php:114
+msgid "Navigation"
+msgstr ""
+
+#: ../epanel/core_functions.php:117
+msgid "Layout Settings"
+msgstr ""
+
+#: ../epanel/core_functions.php:120
+msgid "Ad Management"
+msgstr ""
+
+#: ../epanel/core_functions.php:123
+msgid "Colorization"
+msgstr ""
+
+#: ../epanel/core_functions.php:126
+msgid "SEO"
+msgstr ""
+
+#: ../epanel/core_functions.php:129
+msgid "Integration"
+msgstr ""
+
+#: ../epanel/core_functions.php:132
+msgid "Support Docs"
+msgstr ""
+
+#: ../epanel/core_functions.php:203
+#: ../epanel/core_functions.php:377
+msgid "Reset"
+msgstr ""
+
+#: ../epanel/core_functions.php:204
+msgid "Upload Image"
+msgstr ""
+
+#: ../epanel/core_functions.php:229
+msgid "You don't have pages"
+msgstr ""
+
+#: ../epanel/core_functions.php:362
+msgid "Save changes"
+msgstr ""
+
+#: ../epanel/import_settings.php:12
+msgid "Import epanel settings"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Thin Vertical Lines"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Small Squares"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Thick Diagonal Lines"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Thin Diagonal Lines"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Diamonds"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Small Circles"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Thick Vertical Lines"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Thin Flourish"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Thick Flourish"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Pocodot"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Checkerboard"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Squares"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Noise"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Wooden"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Stone"
+msgstr ""
+
+#: ../epanel/options_convertible.php:27
+msgid "Canvas"
+msgstr ""
+
+#: ../epanel/options_convertible.php:44
+msgid "General"
+msgstr ""
+
+#: ../epanel/options_convertible.php:51
+msgid "Favicon"
+msgstr ""
+
+#: ../epanel/options_convertible.php:55
+msgid "If you would like to use your own custom favicon image click the Upload Image button."
+msgstr ""
+
+#: ../epanel/options_convertible.php:58
+msgid "Background Color"
+msgstr ""
+
+#: ../epanel/options_convertible.php:62
+msgid "This will enable a custom background color. Selecting the field will bring up the color picker which will allow you to choose a custom color."
+msgstr ""
+
+#: ../epanel/options_convertible.php:65
+msgid "Background Texture"
+msgstr ""
+
+#: ../epanel/options_convertible.php:70
+msgid "Choose a background texture from the drop down menu."
+msgstr ""
+
+#: ../epanel/options_convertible.php:73
+msgid "Background Image"
+msgstr ""
+
+#: ../epanel/options_convertible.php:77
+msgid "If you would like to upload your own background image click the Upload Image button."
+msgstr ""
+
+#: ../epanel/options_convertible.php:80
+msgid "Header Font"
+msgstr ""
+
+#: ../epanel/options_convertible.php:85
+#: ../epanel/options_convertible.php:100
+msgid "Choose a font from the drop down menu."
+msgstr ""
+
+#: ../epanel/options_convertible.php:88
+msgid "Header Font Color"
+msgstr ""
+
+#: ../epanel/options_convertible.php:92
+msgid "This will enable a custom header font color. Selecting the field will bring up the color picker which will allow you to choose a custom color."
+msgstr ""
+
+#: ../epanel/options_convertible.php:95
+msgid "Body Font"
+msgstr ""
+
+#: ../epanel/options_convertible.php:103
+msgid "Body Font Color"
+msgstr ""
+
+#: ../epanel/options_convertible.php:107
+msgid "This will enable a custom body font color. Selecting the field will bring up the color picker which will allow you to choose a custom color."
+msgstr ""
+
+#: ../epanel/options_convertible.php:110
+msgid "Show Control Panel"
+msgstr ""
+
+#: ../epanel/options_convertible.php:114
+msgid "Here you can choose to show the CSS Control Panel on your homepage. It will only be visible to Administrators that are logged into your Wordpress Dashboard."
+msgstr ""
+
+#: ../epanel/options_convertible.php:134
+msgid "Homepage SEO"
+msgstr ""
+
+#: ../epanel/options_convertible.php:142
+msgid " Enable custom title "
+msgstr ""
+
+#: ../epanel/options_convertible.php:146
+msgid "By default the theme uses a combination of your blog name and your blog description, as defined when you created your blog, to create your homepage titles. However if you want to create a custom title then simply enable this option and fill in the custom title field below. "
+msgstr ""
+
+#: ../epanel/options_convertible.php:149
+msgid " Enable meta description"
+msgstr ""
+
+#: ../epanel/options_convertible.php:153
+msgid "By default the theme uses your blog description, as defined when you created your blog, to fill in the meta description field. If you would like to use a different description then enable this option and fill in the custom description field below. "
+msgstr ""
+
+#: ../epanel/options_convertible.php:156
+msgid " Enable meta keywords"
+msgstr ""
+
+#: ../epanel/options_convertible.php:160
+msgid "By default the theme does not add keywords to your header. Most search engines don't use keywords to rank your site anymore, but some people define them anyway just in case. If you want to add meta keywords to your header then enable this option and fill in the custom keywords field below. "
+msgstr ""
+
+#: ../epanel/options_convertible.php:163
+msgid " Enable canonical URL's"
+msgstr ""
+
+#: ../epanel/options_convertible.php:167
+msgid "Canonicalization helps to prevent the indexing of duplicate content by search engines, and as a result, may help avoid duplicate content penalties and pagerank degradation. Some pages may have different URLs all leading to the same place. For example domain.com, domain.com/index.html, and www.domain.com are all different URLs leading to your homepage. From a search engine's perspective these duplicate URLs, which also occur often due to custom permalinks, may be treaded individually instead of as a single destination. Defining a canonical URL tells the search engine which URL you would like to use officially. The theme bases its canonical URLs off your permalinks and the domain name defined in the settings tab of wp-admin."
+msgstr ""
+
+#: ../epanel/options_convertible.php:172
+msgid "Homepage custom title (if enabled)"
+msgstr ""
+
+#: ../epanel/options_convertible.php:176
+msgid "If you have enabled custom titles you can add your custom title here. Whatever you type here will be placed between the < title >< /title > tags in header.php"
+msgstr ""
+
+#: ../epanel/options_convertible.php:179
+msgid "Homepage meta description (if enabled)"
+msgstr ""
+
+#: ../epanel/options_convertible.php:183
+msgid "If you have enabled meta descriptions you can add your custom description here."
+msgstr ""
+
+#: ../epanel/options_convertible.php:186
+msgid "Homepage meta keywords (if enabled)"
+msgstr ""
+
+#: ../epanel/options_convertible.php:190
+msgid "If you have enabled meta keywords you can add your custom keywords here. Keywords should be separated by comas. For example: wordpress,themes,templates,elegant"
+msgstr ""
+
+#: ../epanel/options_convertible.php:193
+msgid "If custom titles are disabled, choose autogeneration method"
+msgstr ""
+
+#: ../epanel/options_convertible.php:198
+msgid "If you are not using cutsom post titles you can still have control over how your titles are generated. Here you can choose which order you would like your post title and blog name to be displayed, or you can remove the blog name from the title completely."
+msgstr ""
+
+#: ../epanel/options_convertible.php:201
+msgid "Define a character to separate BlogName and Post title"
+msgstr ""
+
+#: ../epanel/options_convertible.php:205
+msgid "Here you can change which character separates your blog title and post name when using autogenerated post titles. Common values are | or -"
+msgstr ""
+
+#: ../epanel/options_convertible.php:223
+msgid "Code Integration"
+msgstr ""
+
+#: ../epanel/options_convertible.php:231
+msgid "Enable header code"
+msgstr ""
+
+#: ../epanel/options_convertible.php:235
+msgid "Disabling this option will remove the header code below from your blog. This allows you to remove the code while saving it for later use."
+msgstr ""
+
+#: ../epanel/options_convertible.php:238
+msgid "Enable body code"
+msgstr ""
+
+#: ../epanel/options_convertible.php:242
+msgid "Disabling this option will remove the body code below from your blog. This allows you to remove the code while saving it for later use."
+msgstr ""
+
+#: ../epanel/options_convertible.php:247
+msgid "Enable single top code"
+msgstr ""
+
+#: ../epanel/options_convertible.php:251
+msgid "Disabling this option will remove the single top code below from your blog. This allows you to remove the code while saving it for later use."
+msgstr ""
+
+#: ../epanel/options_convertible.php:254
+msgid "Enable single bottom code"
+msgstr ""
+
+#: ../epanel/options_convertible.php:258
+msgid "Disabling this option will remove the single bottom code below from your blog. This allows you to remove the code while saving it for later use."
+msgstr ""
+
+#: ../epanel/options_convertible.php:263
+msgid "Add code to the < head > of your blog"
+msgstr ""
+
+#: ../epanel/options_convertible.php:267
+msgid "Any code you place here will appear in the head section of every page of your blog. This is useful when you need to add javascript or css to all pages."
+msgstr ""
+
+#: ../epanel/options_convertible.php:270
+msgid "Add code to the < body > (good for tracking codes such as google analytics)"
+msgstr ""
+
+#: ../epanel/options_convertible.php:274
+msgid "Any code you place here will appear in body section of all pages of your blog. This is usefull if you need to input a tracking pixel for a state counter such as Google Analytics."
+msgstr ""
+
+#: ../epanel/options_convertible.php:292
+msgid "Documentation"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Captcha"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Fill"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "field"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Invalid email"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:37
+msgid "ET Page Template Settings"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:64
+msgid "Additional settings appear here, when one of ET page templates is selected ( Page Attributes -> Template )"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:69
+msgid "Full Width Page"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:74
+msgid "Regenerate captcha numbers"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:78
+msgid "Email To:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:84
+msgid "Blog Style mode"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:89
+msgid "Hide Auto Thumbnail"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:94
+msgid "Show Titles"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:99
+msgid "Show Descriptions"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:104
+msgid "Detect Portrait Images"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:108
+msgid "Thumbnail Size:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:109
+msgid "Small"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:110
+msgid "Medium"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:111
+msgid "Large"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:115
+#: ../epanel/page_templates/page_templates.php:120
+msgid "Number of posts per page:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:125
+msgid "Select blog categories:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:144
+msgid "Select gallery categories:"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:300
+msgid "Member Login"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:303
+msgid "Username: "
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:304
+msgid "Password: "
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:305
+msgid "Login"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:341
+msgid "Add a Tooltip Text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:971
+msgid "Caption"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:972
+msgid "Caption goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:973
+msgid "Caption title goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:977
+msgid "State"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:979
+msgid "Select between expanded and closed state"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:984
+#: ../epanel/shortcodes/shortcodes.php:1000
+#: ../epanel/shortcodes/shortcodes.php:1029
+#: ../epanel/shortcodes/shortcodes.php:1109
+msgid "Content"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:985
+#: ../epanel/shortcodes/shortcodes.php:1001
+#: ../epanel/shortcodes/shortcodes.php:1087
+#: ../epanel/shortcodes/shortcodes.php:1110
+msgid "Content goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:986
+#: ../epanel/shortcodes/shortcodes.php:1002
+#: ../epanel/shortcodes/shortcodes.php:1031
+msgid "Content text or html"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:993
+#: ../epanel/shortcodes/shortcodes.php:1015
+msgid "Type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:995
+msgid "Type of the box"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1011
+msgid "URL"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1017
+msgid "Choose button type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1022
+msgid "Color"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1024
+msgid "Choose button color"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1030
+msgid "Link text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1035
+msgid "Icon"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1037
+msgid "Used for icon button type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1042
+msgid "Open link in new window"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1044
+msgid "Select yes if the link should be opened in a new window"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1052
+msgid "Slider Type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1054
+msgid "Select Slider Type here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1059
+msgid "Effect"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1061
+msgid "Select Animation Effect"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1066
+msgid "Auto"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1068
+msgid "Choose yes if you want for automatic slider animation"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1073
+msgid "Auto Speed"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1075
+msgid "Automattic slider speed (works only if Auto is set to yes)"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1079
+msgid "Tab Text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1086
+msgid "Tab Content"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1088
+msgid "Paste image url here, if you chose \"images\" slider type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1096
+msgid "Image Url"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1098
+msgid "Author Image URL"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1102
+msgid "Use resizing"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1179
+msgid "+ Add One More Tab"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1329
+msgid "Image Height"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1330
+msgid "Image Width"
+msgstr ""
+
+#: ../includes/additional_functions.php:22
+msgid "Video Post Format Settings: "
+msgstr ""
+
+#: ../includes/additional_functions.php:25
+msgid "Video url:"
+msgstr ""
+
+#: ../includes/additional_functions.php:28
+msgid "You can put Youtube or Vimeo link here."
+msgstr ""
+
+#: ../includes/additional_functions.php:31
+msgid "Audio Post Format Settings: "
+msgstr ""
+
+#: ../includes/additional_functions.php:34
+msgid "Audio Mp3 Url:"
+msgstr ""
+
+#: ../includes/additional_functions.php:41
+msgid "Audio Ogg Url:"
+msgstr ""
+
+#: ../includes/breadcrumbs.php:4
+msgid "Home"
+msgstr ""
+
+#: ../includes/breadcrumbs.php:7
+msgid "Posts Tagged "
+msgstr ""
+
+#: ../includes/breadcrumbs.php:9
+#: ../includes/breadcrumbs.php:11
+#: ../includes/breadcrumbs.php:13
+msgid "Posts made in"
+msgstr ""
+
+#: ../includes/breadcrumbs.php:15
+msgid "Search results for"
+msgstr ""
+
+#: ../includes/breadcrumbs.php:24
+msgid "Posts by "
+msgstr ""
+
+#: ../includes/navigation.php:2
+msgid "&laquo; Older Entries"
+msgstr ""
+
+#: ../includes/navigation.php:3
+msgid "Next Entries &raquo;"
+msgstr ""
+
+#: ../includes/no-results.php:3
+msgid "No Results Found"
+msgstr ""
+
+#: ../includes/no-results.php:4
+msgid "The page you requested could not be found. Try refining your search, or use the navigation above to locate the post."
+msgstr ""
+
+#: ../includes/postinfo.php:3
+#: ../includes/postinfo.php:10
+msgid "0 comments"
+msgstr ""
+
+#: ../includes/postinfo.php:3
+#: ../includes/postinfo.php:10
+msgid "1 comment"
+msgstr ""
+
+#: ../includes/postinfo.php:3
+#: ../includes/postinfo.php:10
+msgid "comments"
+msgstr ""
+
+#: ../includes/top_info.php:6
+msgid "Posts Tagged &quot;"
+msgstr ""
+
+#: ../includes/functions/comments.php:17
+msgid "(Edit)"
+msgstr ""
+
+#: ../includes/functions/comments.php:23
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ../includes/functions/comments.php:29
+msgid "Reply"
+msgstr ""
+
+#: ../includes/functions/installation.php:1
+msgid "Read Convertible Documentation"
+msgstr ""
+
+#: ../includes/functions/troubleshooting.php:1
+msgid "1. First, have you read the readme documentation that came with your theme?"
+msgstr ""
+
+#: ../includes/functions/troubleshooting.php:31
+msgid "2. Have you watched the video tutorials?"
+msgstr ""
+
+#: ../includes/functions/troubleshooting.php:35
+msgid "3. Do you have plugins active that did not come with the theme?"
+msgstr ""
+
+#: ../includes/functions/troubleshooting.php:38
+msgid "4. Have you uploaded the correct theme folder to the correct theme directory?"
+msgstr ""
+
+#: ../includes/functions/troubleshooting.php:43
+msgid "5. Are you using the latest version of Wordpress?"
+msgstr ""
+
+#: ../includes/functions/troubleshooting.php:46
+msgid "6. Have you made any customizations to the theme?"
+msgstr ""
+
+#: ../includes/functions/troubleshooting.php:49
+msgid "7. Are you having trouble getting your thumbnails to appear?"
+msgstr ""
+
+#: ../includes/functions/tutorials.php:1
+msgid "Watch video tutorials"
+msgstr ""
+

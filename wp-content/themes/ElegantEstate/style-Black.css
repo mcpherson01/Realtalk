@@ -1,0 +1,20 @@
+#featured { background:url(images/black/featured-bg.png) no-repeat; }
+
+ul#secondary > li { background:url("images/black/secondary-menu-linkbg.png") no-repeat left bottom; }
+ul#secondary > li.sf-ul.sfHover { background:url("images/black/secondary-menu-linkbg.png") no-repeat right bottom transparent; }
+	ul#secondary > li.sf-ul.sfHover > a { background:url("images/black/secondary-menu-linkbg.png") no-repeat left top; }
+	ul#secondary > li.sf-ul.sfHover > a, ul#secondary li a { text-shadow:1px 1px 1px #2a2a2a; }
+	ul#secondary ul li a:hover { color:#808080; text-shadow:1px 1px 1px #232323; }
+
+	ul#secondary ul { background:url("images/black/secondary-dropdown-bg.png") no-repeat left bottom; }
+		ul#secondary ul li a { background:url("images/black/secondary-dropdown-bullet.png") no-repeat 0 12px; }
+
+	#featured .description span.price { background:url("images/black/price.png") no-repeat; }
+		#featured span.price span { background:url("images/black/price.png") no-repeat right bottom; }
+	span.price2 { background:url("images/black/price-small-bg.png") no-repeat; }
+		span.price2 span { background:url("images/black/price-small-bg.png") no-repeat right bottom; }
+	#featured .description span.price, span.price2 { text-shadow:1px 1px 1px #4c4c4c; }
+
+.wp-pagenavi span.current, .wp-pagenavi span.extend, .wp-pagenavi a:active, .wp-pagenavi a:hover { background:url("images/black/pagenavi-current-bg.png") no-repeat !important; }
+
+#menu-bg { background:url("images/black/menu-bg-index.png") no-repeat; }

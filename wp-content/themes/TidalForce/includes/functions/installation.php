@@ -1,0 +1,1 @@
+<a href="http://www.elegantthemes.com/gallery/tidalforce/readme.html" target="_blank"><?php esc_html_e( 'Read TidalForce Documentation', $themename ); ?></a>

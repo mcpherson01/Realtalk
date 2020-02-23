@@ -1,0 +1,1 @@
+<a href="http://www.elegantthemes.com/gallery/bold/readme.html" target="_blank"><?php esc_html_e( 'Read Bold Documentation', $themename ); ?></a>

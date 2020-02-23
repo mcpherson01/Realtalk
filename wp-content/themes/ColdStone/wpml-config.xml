@@ -1,0 +1,8 @@
+<wpml-config>
+	<admin-texts>
+		<key name="coldstone_date_format"/>
+		<key name="coldstone_seo_home_titletext"/>
+		<key name="coldstone_seo_home_descriptiontext"/>
+		<key name="coldstone_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

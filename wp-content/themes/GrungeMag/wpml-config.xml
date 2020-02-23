@@ -1,0 +1,9 @@
+<wpml-config>
+	<admin-texts>
+		<key name="grungemag_abouttext"/>
+		<key name="grungemag_date_format"/>
+		<key name="grungemag_seo_home_titletext"/>
+		<key name="grungemag_seo_home_descriptiontext"/>
+		<key name="grungemag_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

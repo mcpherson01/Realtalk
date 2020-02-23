@@ -1,0 +1,15 @@
+#navigation { margin-top: -16px !important; }
+.post { z-index: 200; margin-top: 10px;}
+.ie6float { z-index: 200; position: absolute; }
+.ie6float2 { margin-left: -61px !important; }
+.homepost-right { margin-top: 100px; }
+.homepost-left { margin-top: 90px; }
+#sidebar-wrapper { width: 300px !important; margin-right: -42px; }
+#sidebar { width: 275px !important; }
+#content-wrapper { width: 550px !important; }
+.iehack { width: 530px !important; }
+.post-wrapper { width: 500px !important; }
+.homepost-right { width: 360px !important; }
+#footer { height: 10px !important; padding-bottom: 10px !important; margin: 0px !important; }
+.commentlist { width: 550px !important; overflow: hidden; margin-left: -5px !important; }
+.commentlist .children li { width: 85% !important; }

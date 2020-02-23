@@ -1,0 +1,19 @@
+#sidebar-wrapper { width: 300px !important; margin-right: -42px; }
+#sidebar { width: 275px !important; }
+#content-wrapper { width: 550px !important; }
+.iehack { width: 530px !important; }
+.post-wrapper { width: 500px !important; }
+.homepost-right { width: 360px !important; }
+#footer { height: 10px !important; padding-bottom: 0px !important; }
+#recent-left { width: 400px !important; }
+#recent-right { width: 400px !important; }
+#aboutus { width: 400px !important; }
+#featured { margin-left: -15px; }
+#header-top { background-repeat: no-repeat; height: 9px; margin-bottom: -4px; }
+.nav-image { margin-top: 15px !important; }
+#recent { margin-left: 6px !important; overflow: visible; }
+#header-left { margin-left: 10px !important; }
+#navigation { margin-top: 15px !important; }
+.idTabs { z-index: 100 !important; position: relative !important; margin-bottom: 2px !important; }
+.commentlist { width: 550px !important; overflow: hidden; margin-left: -5px !important; }
+.commentlist .children li { width: 85% !important; }

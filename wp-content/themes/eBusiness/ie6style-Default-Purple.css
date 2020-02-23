@@ -1,0 +1,12 @@
+.post-info-wrap { position: relative; margin-left: -19px; z-index: 1; }
+.post-info-wrap-home { position: relative; margin-left: -15px; z-index: 1; }
+#home-container { overflow: hidden; }
+.vcard { position: relative; margin-left: -11px !important; }
+.children .vcard { margin-left: -46px !important; }
+.slider-right { margin-right: 21px; }
+#categories { position: relative; z-index: 2; }
+#pages { background-image: url(images/default-purple/header-bg.gif); }
+.iehack { margin-bottom: -3px; }
+.sidebar-box-title { margin: -15px 0px 0px -15px; position: relative; }
+.sidebar-box-inside { overflow: hidden; margin: 7px 0px 10px 5px; }
+#pages-inside ul li a:hover { background-image: none; color: #fff; }

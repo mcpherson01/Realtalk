@@ -1,0 +1,6 @@
+div#header { z-index: 2; position: relative; }
+div#featured-slider { z-index: 1; position: relative; }
+
+div.thumb a:hover, a.readmore:hover { cursor: pointer; }
+
+ul.nav li a strong { line-height: 30px; }

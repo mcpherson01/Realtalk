@@ -1,0 +1,11 @@
+html { width:100%; overflow-x: hidden; }
+.new-post { width: 578px; }
+.new-post h2 a { color: #252525 !important; }
+#footer-widgets-inside div.widget ul { list-style-position: outside; }
+.mainpost-wrap div.info { position: relative !important; height: 1%; margin-top: -15px; padding-bottom: 36px; }
+ul#cats-menu { margin-top: -6px; }
+span.sf-sub-indicator {margin-left: 3px;}
+h1.post-title { letter-spacing: -1px; }
+.post-meta { padding-top: 5px; }
+.post-meta-bottom p { padding: 4px 15px 15px 35px; background: url('images/post-meta-arrow.jpg') no-repeat 0% 32%; }
+.featured-overlay { display: none; }

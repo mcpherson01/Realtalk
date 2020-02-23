@@ -1,0 +1,946 @@
+<!-- Elfsight © elfsight.com -->
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Elfsight YouTube Gallery Documentation</title>
+
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic-ext,cyrillic" rel="stylesheet">
+	<link rel="stylesheet" href="assets/vendor/css/normalize.css">
+	<link rel="stylesheet" href="assets/vendor/lib/foundation/foundation.min.css">
+	<link rel="stylesheet" href="assets/vendor/lib/highlight/default.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+
+	<script src="assets/vendor/js/modernizr.js"></script>
+	<script src="assets/vendor/js/jquery-1.11.2.min.js"></script>
+	<script src="assets/vendor/lib/highlight/highlight.pack.js"></script>
+	<script src="assets/vendor/lib/foundation/foundation.min.js"></script>
+	<script src="assets/js/main.js"></script>
+</head>
+
+<body>
+<header class="header container">
+	<div class="row">
+		<div class="medium-12 columns">
+			<h1>Get started with Elfsight YouTube Gallery 3.2.0</h1>
+
+			<div class="header-social">
+				<a class="icon-facebook icon" href="http://facebook.com/elfsight" target="_blank"></a>
+				<a class="icon-twitter icon" href="http://twitter.com/elfsight" target="_blank"></a>
+				<a class="icon-google-plus icon" href="https://plus.google.com/+Elfsight/" target="_blank"></a>
+				<a class="icon-instagram icon" href="http://instagram.com/elfsight" target="_blank"></a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<section class="install container">
+	<div class="row">
+		<div class="medium-12 columns">
+			<h2>Installation</h2>
+		</div>
+	</div>
+
+	<div class="install-step row">
+		<div class="medium-12 columns">
+			<p>1. Install Elfsight YouTube Gallery WordPress Plugin <code>elfsight-youtube-gallery-cc.zip</code> to your website. Don't know how? <a href="https://codex.wordpress.org/Managing_Plugins" target="_blank">Please learn here</a>.</p>
+		</div>
+	</div>
+
+	<div class="install-step row">
+		<div class="medium-12 columns">
+			<p>2. Go to YouTube Gallery page in WordPress admin menu.</p>
+		</div>
+	</div>
+
+	<div class="install-step row">
+		<div class="medium-12 columns">
+			<p>3. Create a new widget, adjust all settings and get a ready-made shortcode.</p>
+		</div>
+	</div>
+</section>
+
+<section class="wordpress-shortcode container">
+	<div class="row">
+		<div class="medium-4 columns">
+			<h3>Use YouTube Gallery as a <strong>WordPress Shortcode</strong></h3>
+
+			<br><br>
+			<h4>1. Create a new widget</h4>
+			<p>You can use Elfsight YouTube Gallery as a WordPress shortcode. To do this, you have to create a new widget, set all options in the Elfsight editor and save it.</p>
+		</div>
+
+		<div class="medium-8 columns">
+			<figure>
+				<img src="assets/img/edit-widget.jpg" width="556" height="782">
+			</figure>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-4 columns">
+			<h4>2. Copy-paste the shortcode</h4>
+			<p>You will see the new widget's shortcode in the widgets list. You can copy-paste it into the required place of your website.</p>
+
+			<p>Example of the Elfsight YouTube Gallery shortcode:<br>
+			<pre><code class="html hljs xml">[elfsight_youtube_gallery id="1"]</code></pre>
+		</div>
+
+		<div class="medium-8 columns">
+			<figure>
+				<img src="assets/img/widgets-list.jpg" width="556" height="314">
+			</figure>
+		</div>
+	</div>
+</section>
+
+<section class="wordpress-block container">
+	<div class="row">
+		<div class="medium-4 columns">
+			<h3>Use YouTube Gallery as a<br> <strong>Gutenberg Block</strong></h3>
+
+			<p>You can use Elfsight YouTube Gallery as a block for Gutenberg editor. Just add it to your page during page building and select one of the available YouTube Gallery widgets from the list.</p>
+		</div>
+
+		<div class="medium-8 columns">
+			<figure>
+				<img src="assets/img/wordpress-block.jpg" width="556" height="365">
+			</figure>
+		</div>
+	</div>
+</section>
+
+<section class="wordpress-widget container">
+	<div class="row">
+		<div class="medium-4 columns">
+			<h3>Use YouTube Gallery as a<br> <strong>WordPress Widget</strong></h3>
+
+			<p>To use Elfsight YouTube Gallery as a WordPress widget, go to Appearance&nbsp;->&nbsp;Widgets, and drag Elfsight YouTube Gallery WordPress widget to any widget section. Next, select one of available YouTube Gallery widgets from the list.</p>
+		</div>
+
+		<div class="medium-8 columns">
+			<figure>
+				<img src="assets/img/wordpress-widget.jpg" width="556" height="365">
+			</figure>
+		</div>
+	</div>
+</section>
+
+<section class="wordpress-vc container">
+	<div class="row">
+		<div class="medium-4 columns" style="margin-top:60px;">
+			<h3>Use YouTube Gallery as a<br> <strong>Visual Composer Element</strong></h3>
+
+			<p>You can use Elfsight YouTube Gallery as a Visual Composer element. Just add it to your page during page building and select one of the available YouTube Gallery widgets from the list.</p>
+		</div>
+
+		<div class="medium-8 columns">
+			<figure>
+				<img src="assets/img/visual-composer.jpg" width="556" height="409">
+			</figure>
+		</div>
+	</div>
+</section>
+
+<section class="options container">
+	<div class="row">
+		<div class="medium-12 columns">
+			<h2>Options</h2>
+
+			<table class="options-table">
+				<thead>
+				<tr>
+					<th>Option</th>
+					<th>Shortcode Param</th>
+					<th>Default Value</th>
+					<th>Description</th>
+				</tr>
+				</thead>
+
+				<tbody>
+				<tr>
+					<td class="options-category-title" colspan="4">Source</td>
+				</tr>
+
+				<tr>
+					<td>Сhannel</td>
+					<td>channel</td>
+					<td>null</td>
+					<td>Insert URL of a YouTube channel to display its information (Logo, banner, channel name, channel description, videos counter, subscribers counter and views counter) and videos from Uploads playlist in the plugin.</td>
+				</tr>
+
+				<tr>
+					<td>Source groups</td>
+					<td>source_groups</td>
+					<td>null</td>
+					<td>Create custom groups of videos from any YouTube source (channels, playlists, videos). Name each group and specify unlimited number of YouTube sources in it. <b>Please note:</b> these sources will be displayed instead of videos from the specified channel above and will be presented in tabs. Use this option if you want to organize videos in your channel or create custom playlists of any videos.</td>
+				</tr>
+
+				<tr>
+					<td>Order</td>
+					<td>order</td>
+					<td>null</td>
+					<td>It defines sort order of videos in the gallery. By default, videos are presented in the order they appeared on YouTube or set in the source list. There are 6 available fields to sort videos: date, views, likes, dislikes, position in a playlist, comments. If you would like to set the order, specify the sort field and set desc (descending) or asc (ascending) order separated by '#'. For example: views#desc. Also a random order is available. Set 'random' to randomize the video order.</td>
+				</tr>
+
+				<tr>
+					<td>Cache time</td>
+					<td>cache_time</td>
+					<td>3600</td>
+					<td>It defines how long in seconds a data from YouTube will be cached in a client side database IndexedDB. Set "0" to turn the cache off.</td>
+				</tr>
+
+				<tr>
+					<td>Privacy-Enhanced Mode</td>
+					<td>no_cookies</td>
+					<td>false</td>
+					<td>This option enables Privacy-Enhanced Mode, which uses youtube-nocookie.com domain upon watching videos. This mode improves privacy and YouTube won't store information about visitors on your website unless visitors play YouTube videos in the plugin. This mode also disables Subscribe Button in the header and popup, since this button uses cookie. It was added in attempt to achieve more compliance with the European Union's GDRP, the General Data Protection Regulation, on May 25, 2018.</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Sizes</td>
+				</tr>
+
+				<tr>
+					<td>Width</td>
+					<td>width</td>
+					<td>auto</td>
+					<td>Plugin width (any CSS valid value: px, %, em, etc.). Set "auto" to make the plugin responsive.</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Language</td>
+				</tr>
+
+				<tr>
+					<td>Lang</td>
+					<td>lang</td>
+					<td>en</td>
+					<td>Plugin’s UI language. 18 languages support: cs, de, en, es, fr, hr, it, nl, no, pl, pt-BR, sk, sv, tr, ru, hi, zh-HK, ja.</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Header</td>
+				</tr>
+
+				<tr>
+					<td>Header visible</td>
+					<td>header_visible</td>
+					<td>true</td>
+					<td>Turn on/off the header in the plugin.</td>
+				</tr>
+
+				<tr>
+					<td>Header layout</td>
+					<td>header_layout</td>
+					<td>classic</td>
+					<td>Choose one of three header layouts: classic (like in YouTube), accent (pay more attention to your channel), minimal (attract more attention to your playlist).</td>
+				</tr>
+
+				<tr>
+					<td>Header info</td>
+					<td>header_info</td>
+					<td>logo, banner, channelName, channelDescription, videosCounter, subscribersCounter, viewsCounter, subscribeButton</td>
+					<td>List info types of your channel which should be displayed in the header: logo, banner, channelName, channelDescription, videosCounter, subscribersCounter, viewsCounter, subscribeButton.</td>
+				</tr>
+
+				<tr>
+					<td>Header channel name</td>
+					<td>header_channel_name</td>
+					<td>null</td>
+					<td>Specify custom channel name instead of your channel name in YouTube.</td>
+				</tr>
+
+				<tr>
+					<td>Header channel description</td>
+					<td>header_channel_description</td>
+					<td>null</td>
+					<td>Specify custom channel description instead of your channel description in YouTube.</td>
+				</tr>
+
+				<tr>
+					<td>Header channel logo</td>
+					<td>header_channel_logo</td>
+					<td>null</td>
+					<td>Specify custom channel logo url instead of your channel logo in YouTube. The required image size is 100x100.</td>
+				</tr>
+
+				<tr>
+					<td>Header channel banner</td>
+					<td>header_channel_banner</td>
+					<td>null</td>
+					<td>Specify custom channel banner url instead of your channel banner in YouTube. The required image size is 2120x352.</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Groups</td>
+				</tr>
+
+				<tr>
+					<td>Groups visible</td>
+					<td>groups_visible</td>
+					<td>true</td>
+					<td>Turn on/off tabs of source groups in the plugin.</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Content</td>
+				</tr>
+
+				<tr>
+					<td>Content columns</td>
+					<td>content_columns</td>
+					<td>3</td>
+					<td>Number of columns in the grid.</td>
+				</tr>
+
+				<tr>
+					<td>Content rows</td>
+					<td>content_rows</td>
+					<td>1</td>
+					<td>Number of rows in the grid.</td>
+				</tr>
+
+				<tr>
+					<td>Content gutter</td>
+					<td>content_gutter</td>
+					<td>20</td>
+					<td>Interval between videos in the grid in pixels.</td>
+				</tr>
+
+				<tr>
+					<td>Content arrows control</td>
+					<td>content_arrows_control</td>
+					<td>true</td>
+					<td>Activate arrows in the video gallery.</td>
+				</tr>
+
+				<tr>
+					<td>Content scroll control</td>
+					<td>content_scroll_control</td>
+					<td>false</td>
+					<td>Activate scroll in the video gallery.</td>
+				</tr>
+
+				<tr>
+					<td>Content drag control</td>
+					<td>content_drag_control</td>
+					<td>true</td>
+					<td>Activate drag in the video gallery.</td>
+				</tr>
+
+				<tr>
+					<td>Content pagination control</td>
+					<td>content_pagination_control</td>
+					<td>true</td>
+					<td>Activate pagination in source group.</td>
+				</tr>
+
+				<tr>
+					<td>Content search</td>
+					<td>content_search</td>
+					<td>true</td>
+					<td>Turn on/off search by title and description in source group.</td>
+				</tr>
+
+				<tr>
+					<td>Content direction</td>
+					<td>content_direction</td>
+					<td>horizontal</td>
+					<td>Moving direction of video gallery’s slides (horizontal or vertical).</td>
+				</tr>
+
+				<tr>
+					<td>Content free mode</td>
+					<td>content_free_mode</td>
+					<td>false</td>
+					<td>Switch the video gallery in free scroll mode.</td>
+				</tr>
+
+				<tr>
+					<td>Content scrollbar</td>
+					<td>content_scrollbar</td>
+					<td>true</td>
+					<td>Show scrollbar in the video gallery.</td>
+				</tr>
+
+				<tr>
+					<td>Content transition effect</td>
+					<td>content_transition_effect</td>
+					<td>slide</td>
+					<td>Slide, fade, coverflow, cube and flip animation of slide switching.</td>
+				</tr>
+
+				<tr>
+					<td>Content transition speed</td>
+					<td>content_transition_speed</td>
+					<td>600</td>
+					<td>Animation speed of slide switching (in ms).</td>
+				</tr>
+
+				<tr>
+					<td>Content auto</td>
+					<td>content_auto</td>
+					<td>0</td>
+					<td>Autorotation of slide (in ms). Set "0" to turn it off.</td>
+				</tr>
+
+				<tr>
+					<td>Content auto pause on hover</td>
+					<td>content_auto_pause_on_hover</td>
+					<td>true</td>
+					<td>Disable auto slide switching by hovering on the video slider.</td>
+				</tr>
+
+				<tr>
+					<td>Content responsive</td>
+					<td>content_responsive</td>
+					<td>null</td>
+					<td>Accepts JSON string. It overwrites the grid view settings of the video gallery depending on different window sizes. Use the following format: { "600": { "columns": 2, "rows": 2, "gutter": 10 }}. It means when a window width would be less than or equal to 600px then the number of columns would be set to 2, the number of rows - to 2 and gutter - to 10px. <b>Note:</b> please use single quote ' with this option ([yottie responsive='{ "600": { "columns": 2, "rows": 2, "gutter": 10 }}'])</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Video</td>
+				</tr>
+
+				<tr>
+					<td>Video layout</td>
+					<td>video_layout</td>
+					<td>classic</td>
+					<td>Choose one of three video layouts: classic (video card with full information), cinema (pay more attention to video preview. Info displays on hover), horizontal (appropriate layout for displaying videos in 1-2 columns as a list).</td>
+				</tr>
+
+				<tr>
+					<td>Video info</td>
+					<td>video_info</td>
+					<td>playIcon, duration, title, date, description, viewsCounter, likesCounter, commentsCounter</td>
+					<td>List info types of each video which should be displayed in the video gallery: playIcon, duration, title, date, description, viewsCounter, likesCounter, commentsCounter.</td>
+				</tr>
+
+				<tr>
+					<td>Video play mode</td>
+					<td>video_play_mode</td>
+					<td>popup</td>
+					<td>Choose the mode of watching videos: in popup ("popup"), directly in the video gallery ("inline"), or in a new browser tab right in YouTube ("youtube").</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Popup</td>
+				</tr>
+
+				<tr>
+					<td>Popup info</td>
+					<td>popup_info</td>
+					<td>title, channelLogo, channelName, subscribeButton, viewsCounter, likesCounter, dislikesCounter, likesRatio, share, date, description, descriptionMoreButton, comments</td>
+					<td>List info types of video which should be displayed in the popup: title, channelLogo, channelName, subscribeButton, viewsCounter, likesCounter, dislikesCounter, likesRatio, share, date, description, descriptionMoreButton, comments.</td>
+				</tr>
+
+				<tr>
+					<td>Popup autoplay</td>
+					<td>popup_autoplay</td>
+					<td>true</td>
+					<td>Turn on/off autoplay while openning a video in the popup.</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Colors</td>
+				</tr>
+
+				<tr>
+					<td>Color scheme</td>
+					<td>color_scheme</td>
+					<td>default</td>
+					<td>Choose default, dark, red or deep blue color scheme of plugin's UI.</td>
+				</tr>
+
+				<tr>
+					<td>Color header bg</td>
+					<td>color_header_bg</td>
+					<td>null</td>
+					<td>Header background color. It supports any css valid color (hex code, rgb, rgba etc). It redefines the related color in a color scheme.</td>
+				</tr>
+
+				<tr>
+					<td>Color header banner overlay</td>
+					<td>color_header_banner_overlay</td>
+					<td>null</td>
+					<td>Header banner overlay color. It lays on the header banner for contrast with text. Available in "accent" and "minimal" header layouts.</td>
+				</tr>
+
+				<tr>
+					<td>Color header channel name</td>
+					<td>color_header_channel_name</td>
+					<td>null</td>
+					<td>Header channel name color.</td>
+				</tr>
+
+				<tr>
+					<td>Color header channel name hover</td>
+					<td>color_header_channel_name_hover</td>
+					<td>null</td>
+					<td>Header channel name color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color header channel description</td>
+					<td>color_header_channel_description</td>
+					<td>null</td>
+					<td>Header channel description color.</td>
+				</tr>
+
+				<tr>
+					<td>Color header anchor</td>
+					<td>color_header_anchor</td>
+					<td>null</td>
+					<td>Header channel description anchors color.</td>
+				</tr>
+
+				<tr>
+					<td>Color header anchor on hover</td>
+					<td>color_header_anchor_hover</td>
+					<td>null</td>
+					<td>Header channel description anchors on hover color.</td>
+				</tr>
+
+				<tr>
+					<td>Color header counters</td>
+					<td>color_header_counters</td>
+					<td>null</td>
+					<td>Header counters color.</td>
+				</tr>
+
+				<tr>
+					<td>Color groups bg</td>
+					<td>color_groups_bg</td>
+					<td>null</td>
+					<td>Groups background color.</td>
+				</tr>
+
+				<tr>
+					<td>Color groups link</td>
+					<td>color_groups_link</td>
+					<td>null</td>
+					<td>Groups link color.</td>
+				</tr>
+
+				<tr>
+					<td>Color groups link hover</td>
+					<td>color_groups_link_hover</td>
+					<td>null</td>
+					<td>Groups link color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color groups link active</td>
+					<td>color_groups_link_active</td>
+					<td>null</td>
+					<td>Groups active link color.</td>
+				</tr>
+
+				<tr>
+					<td>Color groups highlight</td>
+					<td>color_groups_highlight</td>
+					<td>null</td>
+					<td>Groups highlight color.</td>
+				</tr>
+
+				<tr>
+					<td>Color groups highlight hover</td>
+					<td>color_groups_highlight_hover</td>
+					<td>null</td>
+					<td>Groups highlight color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color groups highlight active</td>
+					<td>color_groups_highlight_active</td>
+					<td>null</td>
+					<td>Groups active highlight color.</td>
+				</tr>
+
+				<tr>
+					<td>Color content bg</td>
+					<td>color_content_bg</td>
+					<td>null</td>
+					<td>Content background color.</td>
+				</tr>
+
+				<tr>
+					<td>Color content arrows</td>
+					<td>color_content_arrows</td>
+					<td>null</td>
+					<td>Content arrows color.</td>
+				</tr>
+
+				<tr>
+					<td>Color content arrows hover</td>
+					<td>color_content_arrows_hover</td>
+					<td>null</td>
+					<td>Content arrows color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color content arrows bg</td>
+					<td>color_content_arrows_bg</td>
+					<td>null</td>
+					<td>Content arrows background color.</td>
+				</tr>
+
+				<tr>
+					<td>Color content arrows bg hover</td>
+					<td>color_content_arrows_bg_hover</td>
+					<td>null</td>
+					<td>Content arrows background color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color content scrollbar bg</td>
+					<td>color_content_scrollbar_bg</td>
+					<td>null</td>
+					<td>Content scrollbar background color.</td>
+				</tr>
+
+				<tr>
+					<td>Color content scrollbar slider bg</td>
+					<td>color_content_scrollbar_slider_bg</td>
+					<td>null</td>
+					<td>Content scrollbar slider background color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video bg</td>
+					<td>color_video_bg</td>
+					<td>null</td>
+					<td>Video background color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video overlay</td>
+					<td>color_video_overlay</td>
+					<td>null</td>
+					<td>Video overlay color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video play icon</td>
+					<td>color_video_play_icon</td>
+					<td>null</td>
+					<td>Video play icon color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video play icon hover</td>
+					<td>color_video_play_icon_hover</td>
+					<td>null</td>
+					<td>Video play icon color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color video duration</td>
+					<td>color_video_duration</td>
+					<td>null</td>
+					<td>Video duration color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video duration bg</td>
+					<td>color_video_duration_bg</td>
+					<td>null</td>
+					<td>Video duration background color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video title</td>
+					<td>color_video_title</td>
+					<td>null</td>
+					<td>Video title color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video title hover</td>
+					<td>color_video_title_hover</td>
+					<td>null</td>
+					<td>Video title color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color video date</td>
+					<td>color_video_date</td>
+					<td>null</td>
+					<td>Video date color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video description</td>
+					<td>color_video_description</td>
+					<td>null</td>
+					<td>Video description color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video anchor</td>
+					<td>color_video_anchor</td>
+					<td>null</td>
+					<td>Video description anchor color.</td>
+				</tr>
+
+				<tr>
+					<td>Color video anchor hover</td>
+					<td>color_video_anchor_hover</td>
+					<td>null</td>
+					<td>Video description anchor color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color video counters</td>
+					<td>color_video_counters</td>
+					<td>null</td>
+					<td>Video counters color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup bg</td>
+					<td>color_popup_bg</td>
+					<td>null</td>
+					<td>Popup background color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup overlay</td>
+					<td>color_popup_overlay</td>
+					<td>null</td>
+					<td>Popup overlay color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup title</td>
+					<td>color_popup_title</td>
+					<td>null</td>
+					<td>Popup title color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup channel name</td>
+					<td>color_popup_channel_name</td>
+					<td>null</td>
+					<td>Popup channel name color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup channel name hover</td>
+					<td>color_popup_channel_name_hover</td>
+					<td>null</td>
+					<td>Popup channel name color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup views counter</td>
+					<td>color_popup_views_counter</td>
+					<td>null</td>
+					<td>Popup views counter color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup likes ratio</td>
+					<td>color_popup_likes_ratio</td>
+					<td>null</td>
+					<td>Popup likes ratio color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup dislikes ratio</td>
+					<td>color_popup_dislikes_ratio</td>
+					<td>null</td>
+					<td>Popup dislikes ratio color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup likes counter</td>
+					<td>color_popup_likes_counter</td>
+					<td>null</td>
+					<td>Popup likes counter color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup dislikes counter</td>
+					<td>color_popup_dislikes_counter</td>
+					<td>null</td>
+					<td>Popup dislikes counter color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup date</td>
+					<td>color_popup_date</td>
+					<td>null</td>
+					<td>Popup date color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup description</td>
+					<td>color_popup_description</td>
+					<td>null</td>
+					<td>Popup description color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup anchor</td>
+					<td>color_popup_anchor</td>
+					<td>null</td>
+					<td>Popup anchor color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup anchor hover</td>
+					<td>color_popup_anchor_hover</td>
+					<td>null</td>
+					<td>Popup anchor color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup description more button</td>
+					<td>color_popup_description_more_button</td>
+					<td>null</td>
+					<td>Popup description more button color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup description more button hover</td>
+					<td>color_popup_description_more_button_hover</td>
+					<td>null</td>
+					<td>Popup description more button color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup comments username</td>
+					<td>color_popup_comments_username</td>
+					<td>null</td>
+					<td>Popup comments username color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup comments username hover</td>
+					<td>color_popup_comments_username_hover</td>
+					<td>null</td>
+					<td>Popup comments username color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup comments passed time</td>
+					<td>color_popup_comments_passed_time</td>
+					<td>null</td>
+					<td>Popup comments passed time color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup comments likes</td>
+					<td>color_popup_comments_likes</td>
+					<td>null</td>
+					<td>Popup comments likes color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup comments text</td>
+					<td>color_popup_comments_text</td>
+					<td>null</td>
+					<td>Popup comments text color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup controls</td>
+					<td>color_popup_controls</td>
+					<td>null</td>
+					<td>Popup controls color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup controls hover</td>
+					<td>color_popup_controls_hover</td>
+					<td>null</td>
+					<td>Popup controls color on hover.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup controls mobile</td>
+					<td>color_popup_controls_mobile</td>
+					<td>null</td>
+					<td>Popup mobile controls color.</td>
+				</tr>
+
+				<tr>
+					<td>Color popup controls mobile bg</td>
+					<td>color_popup_controls_mobile_bg</td>
+					<td>null</td>
+					<td>Popup mobile controls background color.</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">AdSense</td>
+				</tr>
+
+				<tr>
+					<td>Ads client</td>
+					<td>ads_client</td>
+					<td>null</td>
+					<td>Yottie supports AdSense Advertisement platform. Specify AdSense client (pubId) to turn it on.</td>
+				</tr>
+
+				<tr>
+					<td>Ads slots content</td>
+					<td>ads_slots_content</td>
+					<td>null</td>
+					<td>Slot identifier for adv block in content (video gallery).</td>
+				</tr>
+
+				<tr>
+					<td>Ads slots popup</td>
+					<td>ads_slots_popup</td>
+					<td>null</td>
+					<td>Slot identifier for adv block in popup.</td>
+				</tr>
+
+				<tr>
+					<td class="options-category-title" colspan="4">Debug</td>
+				</tr>
+
+				<tr>
+					<td>debug</td>
+					<td>debug</td>
+					<td>false</td>
+					<td>Set "true" to display error messages.</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<section class="support container">
+	<div class="row">
+		<div class="medium-12 columns">
+			<h2>Support, questions and offers</h2>
+
+			<p>Your questions and issue reports are processed on the first-come, first-served basis. Expect an answer from 10 a.m. to 7 p.m. CET, Monday through Friday.</p>
+
+			<a href="https://elfsight.ticksy.com/submit/#product100003623" target="_blank">
+				<span>Visit Support Center</span>
+			</a>
+
+			<br><br>
+		</div>
+	</div>
+</section>
+
+<footer class="footer container">
+	<div class="row">
+		<div class="medium-12 columns">
+			<h2>Keep in Touch</h2>
+			<a class="icon-facebook icon" href="http://facebook.com/elfsight" target="_blank"></a>
+			<a class="icon-twitter icon" href="http://twitter.com/elfsight" target="_blank"></a>
+			<a class="icon-google-plus icon" href="https://plus.google.com/+Elfsight/" target="_blank"></a>
+			<a class="icon-instagram icon" href="http://instagram.com/elfsight" target="_blank"></a>
+		</div>
+	</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<wpml-config>
+	<admin-texts>
+		<key name="myapptheme_date_format"/>
+		<key name="myapptheme_header_description"/>
+		<key name="myapptheme_buynow_text"/>
+		<key name="myapptheme_seo_home_titletext"/>
+		<key name="myapptheme_seo_home_descriptiontext"/>
+		<key name="myapptheme_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

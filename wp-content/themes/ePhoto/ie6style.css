@@ -1,0 +1,16 @@
+.thumbnail-shadow { background-image: none; }
+#sidebar { margin-right: -20px; float: right; }
+.iefix { margin-right: -55px !important; }
+.thumbnail-wrap { float: left; margin: 0px 10px 0px 0px; width: 151px; height: 169px; }
+.readmore { background-image: none; background-color: #000; }
+.thumbnail-category { margin-right: 5px !important; }
+.current-category { width: 615px; }
+.thumbnail-div { float: left; padding: 5px 0px 0px 5px; width: 151px; height: 151px; background-image: url(images/thumbnail-bg.gif); }
+.thumbnail-bottom { margin: 5px 0px -5px -5px; }
+.categories-inside ul { margin-left: -8px; margin-top: 10px; margin-bottom: 10px; }
+.categories-inside ul li ul { margin-left: 0px; margin-top: 0px; margin-bottom: 0px; }
+.categories-inside ul li a:link, .categories-inside ul li a:visited { height: 20px !important; }
+.thumbnail-div .sections-overlay { background-image: url(images/thumbnail-overlay-2.gif); }
+.sections-overlay { background-image: url(images/readmore-bg-2.gif); background-position: 269px 120px; background-repeat: no-repeat; }
+.readmore { background-image: none; background-color: #000; }
+#logobg { height: 1%; }

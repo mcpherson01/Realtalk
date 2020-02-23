@@ -1,0 +1,29 @@
+body { background: #637658; }
+#header-top  { background:url("images/green/header-top-bg.png") repeat-x scroll left bottom #202020; }
+	ul.nav > li.current_page_item > a, ul.nav > li.current-menu-ancestor > a, ul.superfish.nav > li > a:hover {
+color:#849577; }
+	ul.nav li a { color:#4d5c48; }
+		.nav ul li a:hover { color: #849577; }
+				#description p { color:#849577; text-shadow:1px 1px 1px #010c14;}
+
+	#buy-image a#buy-now { background:url("images/green/belt.png") no-repeat scroll 0 0 transparent; text-shadow:1px 1px 1px #d2ffa8; color: #41562f;}
+
+		#side-tabs ul { background:url("images/green/arrow.png") no-repeat scroll 0 0 transparent; }
+				#main-area a.readmore { background:url("images/green/readmore-left.png") no-repeat scroll right top transparent; text-shadow:1px 1px 1px #34402d;}
+					#main-area a.readmore span { background: url(images/green/readmore-right.png) no-repeat;}
+
+		#sidebar h3.widget-title { background:url("images/green/sidebar-bg.png") no-repeat scroll 0 0 transparent; text-shadow: 1px 1px 1px #35412e;}
+#footer {background: #637658 url(images/green/footer-bg.png) repeat-x; }
+		p#copyright {color: #adca9c; text-shadow: 1px 1px 1px #2c3527;}
+		p#copyright a {text-shadow: 1px 1px 1px #2c3527;}
+				ul.bottom-nav li a {color: #adca9c; text-shadow: 1px 1px 1px #2c3527; }
+				ul.bottom-nav li.current_page_item a, ul.bottom-nav > li.current-menu-ancestor > a, ul.bottom-nav li a:hover {text-shadow: 1px 1px 1px #2c3527; color: #fff;}
+
+	#buy-image2 a#get-our-app { background:url("images/green/belt2.png") no-repeat scroll 0 0 transparent; color: #41562f; text-shadow: 1px 1px 1px #b6d590; }
+
+	#breadcrumbs { background:url("images/green/breadcrumbs-bg.png") repeat-x scroll 0 0 transparent; }
+		#breadcrumbs-nav span.separator { background:url("images/green/bc-separator.png") no-repeat scroll 0 0 transparent; }
+		#breadcrumbs-nav, #breadcrumbs-nav a { text-shadow:-1px 1px 1px #709768; }
+
+		.reply-container { background:url("images/green/readmore-left.png") no-repeat scroll right top transparent; }
+			.reply-container a { background:url("images/green/readmore-right.png") no-repeat scroll 0 0 transparent; }

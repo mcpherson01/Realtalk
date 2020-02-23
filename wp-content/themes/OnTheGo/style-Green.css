@@ -1,0 +1,33 @@
+html { background: #2d4030 url(images/green/bg.jpg) repeat scroll 0 0; }
+	body { background: url(images/green/top-bg.jpg) repeat-x scroll left top; }
+		#header { background: url(images/green/menu-bg.jpg) no-repeat scroll left top; }
+			ul#top-menu > li.current_page_item, ul#top-menu > li:hover, ul#top-menu > li.current-cat { background:url(images/green/menu-active-sprite.jpg) no-repeat scroll right bottom; }
+				ul#top-menu > li.current_page_item > a, ul#top-menu > li:hover > a, ul#top-menu > li.current-cat > a { background: url(images/green/menu-active-sprite.jpg) no-repeat scroll left top; }
+		#contentwrap { background: url(images/green/content-mainbg.jpg) repeat-y scroll 0 0; }
+			#content { background: url(images/green/top-background.jpg) no-repeat scroll left top; }
+
+				.featitem a.readmore { background: url(images/green/more-featured-bg.png) no-repeat scroll 0 0; }
+					.featitem a.readmore span { background: url(images/green/more-featured-bg.png) no-repeat scroll right top; }
+
+				a.readmore { background: url(images/green/readmore-bg.png) no-repeat scroll 0 0; }
+					a.readmore span { background: url(images/green/readmore-bg.png) no-repeat scroll right top; }
+
+				.wp-pagenavi span.current, .wp-pagenavi span.extend, .wp-pagenavi a:active, .wp-pagenavi a:hover {
+background-color: #77a67a !important; border: 1px solid #619164 !important; }
+
+			div.reply-container { background: url(images/green/readmore-bg.png) no-repeat scroll 0 0; }
+				div.reply-container a { background: url(images/green/readmore-bg.png) no-repeat scroll right top; }
+
+			#footer-widgets-wrap { background: url(images/green/footer-mainbg.jpg) repeat-y scroll 0 0; }
+				#footer-widgets { background: url(images/green/footer-top.jpg) no-repeat scroll 0 0; }
+					#footer-widgets .widget { background: url(images/green/footer-widget-mainbg.png) repeat-y scroll 0 0; }
+						#footer-widgets .widget .widgettop { background: url(images/green/footer-widget-top.png) no-repeat scroll 0 0; }
+						#footer-widgets .widget h4 { background: url(images/green/fwidget-separator.png) repeat-x scroll left bottom; }
+							#footer-widgets .widget h4 span { background: url(images/green/footer-arrow.png) no-repeat scroll 0 0; }
+
+							#footer-widgets .widget-content ul li { background: url(images/green/fwidget-li-separator.jpg) no-repeat scroll left bottom; }
+
+								#footer-widgets .widget-content ul li a { background: url(images/green/footer-bullet.png) no-repeat scroll 18px center; }
+								.widgetbottom { background: url(images/green/fwidget-bottom.png) no-repeat scroll 0 0; }
+
+			#footer { background: url(images/green/footer-bottom.jpg) no-repeat scroll 0 0; }

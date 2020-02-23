@@ -1,0 +1,34 @@
+body { background-image: url(images/blue/body-bg.png); color: #577a81; }
+	#content { background-image: url(images/blue/content-bg.png); }
+		#content:after, #content:before { background-image: url(images/blue/top-content-bg.png); }
+
+		.note-block:after { background-image: url(images/blue/note-left-bg.png); }
+			.note { border-color: #d8dfe0; }
+				.note-inner { background-image: url(images/blue/note-inner-bg.png); }
+					.note-content:after { background-image: url(images/blue/note-content-bg.png); }
+						.post-title { background-image: url(images/blue/note-inner-top-bg.png); }
+						.post-meta, .comment_date { color: #6c8488; }
+							.post-meta:before { background-image: url(images/blue/post-meta-left-bg.png); }
+							.post-meta:after { background-image: url(images/blue/post-meta-right-bg.png); }
+			.note-bottom-left { background-image: url(images/blue/note-bottom-left.png); }
+				.note-bottom-right { background-image: url(images/blue/note-bottom-right.png); }
+					.note-bottom-center { background-image: url(images/blue/note-bottom-center.png); }
+
+	#recent-posts > h1, h1#comments, h3#trackbacks-title, h3#reply-title { color: #78959b; }
+	a.readmore, a.comment-reply-link { background-color: #707070; }
+	.widget h3.title { color: #aa402b; }
+	#main-menu > ul > li > a, .nav li ul, #commentform input#submit, #mobile_nav, #main-menu.mobile_nav > ul { border: 1px solid #415f62;
+	background: rgb(103,129,133); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(103,129,133,1) 0%, rgba(86,110,113,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(103,129,133,1)), color-stop(100%,rgba(86,110,113,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(103,129,133,1) 0%,rgba(86,110,113,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(103,129,133,1) 0%,rgba(86,110,113,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(103,129,133,1) 0%,rgba(86,110,113,1) 100%); /* IE10+ */
+background: linear-gradient(top,  rgba(103,129,133,1) 0%,rgba(86,110,113,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#678185', endColorstr='#566e71',GradientType=0 ); /* IE6-9 */
+ }
+	#main-menu.mobile_nav > ul { background: #556d70; }
+		#main-menu > ul > li.current_page_item > a:after { background-image: url(images/blue/current-item.png); }
+		.nav li ul::before { background-image: url(images/blue/current-item-dropdown.png); }
+
+	#main-menu.mobile_nav a { border-bottom: 1px solid #4a6162; border-top: 1px solid #5d797a; }

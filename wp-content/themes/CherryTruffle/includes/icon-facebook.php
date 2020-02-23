@@ -1,0 +1,1 @@
+<a href="<?php echo esc_url(get_option('cherrytruffle_facebook_url')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-facebook.png" alt="rss" class="icon" /></a>

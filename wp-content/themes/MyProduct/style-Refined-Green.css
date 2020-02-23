@@ -1,0 +1,25 @@
+#header { background:url("images/green/top-bg.jpg") no-repeat scroll center top; }
+#header-wrapper { background:url("images/green/bg.png") repeat; }
+
+ul.nav > li.current_page_item > a, ul.nav > li.current-cat > a, ul.nav > li.current_page_item > a#homelink > span { background:url("images/green/active-arrow.png") no-repeat scroll center bottom transparent; }
+
+#top-box h2, #pagetop h1 { color:#3e6d07; text-shadow:1px 1px 1px #99c170; }
+#top-box p, #pagetop p.tagline, #pagetop p.tagline a { text-shadow:1px 1px 1px #4e7f13; }
+
+#topmenu-leftbg { background:url("images/green/menu-leftbg.png") no-repeat scroll 0 0 transparent; }
+#topmenu { background:url("images/green/menu-bg.png") repeat-x scroll 0 0 transparent; }
+#topmenu-rightbg { background:url("images/green/menu-rightbg.png") no-repeat scroll 0 0 transparent; }
+
+
+
+#top-box a.featured-button { background:url("images/green/button_bg.png") no-repeat scroll right bottom transparent; }
+	#top-box a.featured-button span { background:url("images/green/button_bg.png") no-repeat scroll left top transparent; }
+
+ul#featured-control li.active { background:url("images/green/active-bg-sprite.png") repeat scroll right bottom transparent; }
+ul#featured-control li.active a { background:url("images/green/active-bg-sprite.png") no-repeat scroll 0 0 transparent; }
+ul#featured-control li { background:url("images/green/featured-li.png") repeat scroll right bottom transparent; }
+ul#featured-control li a { background:url("images/green/featured-li.png") no-repeat scroll 0 0 transparent; }
+
+#breadcrumbs-left  { background:url("images/green/breadcrumbs-left.png") no-repeat scroll 0 0 transparent; }
+#breadcrumbs-content { background:url("images/green/breadcrumbs-bg.png") repeat scroll 0 0 transparent; }
+#breadcrumbs-right { background:url("images/green/breadcrumbs-right.png") no-repeat scroll 0 0 transparent; }

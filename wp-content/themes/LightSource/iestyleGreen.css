@@ -1,0 +1,2 @@
+#pages, #pages ul li a:hover, .nav li li a:hover { background-image: none !important; background-color: #183312 !important; filter:alpha(opacity=50); -moz-opacity:.50; opacity:.50; }
+.nav li li { background-image: none !important; background-color: #183312 !important; filter:alpha(opacity=70); -moz-opacity:.70; opacity:.70; }

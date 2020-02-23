@@ -1,0 +1,1 @@
+<a href="http://www.elegantthemes.com/gallery/feather/readme.html" target="_blank"><?php esc_html_e( 'Read Feather Documentation', $themename ); ?></a>

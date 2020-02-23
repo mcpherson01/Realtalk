@@ -1,0 +1,15 @@
+ul.nav li a:hover, ul.nav li a:hover strong, ul.nav li a:hover span, ul.nav > li.current-cat > a strong, ul.nav > li.current-cat > a span, ul.nav > li.current_page_item > a strong, ul.nav > li.current_page_item > a span, ul.nav > li.current-menu-item > a span, ul.nav > li.current-menu-item > a strong, ul.nav ul li a:hover { color:#01389d; }
+
+	ul.nav ul li a { background: url(images/cobalt/nav-bullet.png) no-repeat 19px 16px; }
+
+.entry p.date { background:url("images/cobalt/date-bg.png") no-repeat scroll 0 0 transparent; }
+	.entry p.date span { text-shadow:-1px -1px 1px #0c1190; }
+
+a.readmore, .reply-container { background:url("images/cobalt/readmore.png") no-repeat scroll right top transparent; text-shadow:-1px -1px 1px #00052c; }
+	a.readmore span, .reply-container a { background:url("images/cobalt/readmore.png") no-repeat scroll 0 0 transparent; }
+
+#sidebar .widget ul li { background:url("images/cobalt/bullet.png") no-repeat scroll 0 9px transparent; }
+
+.wp-pagenavi span.current, .wp-pagenavi span.extend, .wp-pagenavi a:active, .wp-pagenavi a:hover { background:url("images/cobalt/pagenavi-current-bg.png") no-repeat scroll 0 0 transparent !important; text-shadow: 1px 1px 1px #050a4a; }
+
+span.fn, span.fn a { color:#101795; }

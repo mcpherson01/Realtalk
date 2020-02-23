@@ -1,0 +1,51 @@
+#home-right {
+	width: 167px !important;
+}
+#home-right ul {
+	margin-left: 10px !important;
+}
+#sidebar-wrapper {
+	width: 290px !important;
+}
+#sidebar {
+	width: 277px !important;
+}
+.adwrap {
+	margin-left: 10px !important;
+}
+#left-div {
+	width: 634px !important;
+}
+#left-inside {
+	float: left;
+	padding: 0px 0px 0px 9px !important;
+}
+.home-categories {
+	margin-right: 9px !important;
+}
+#featured-div {
+	width: 930px !important;
+	padding: 10px !important;
+}
+#categories ul li a:link, #categories ul li a:visited, #categories ul li a:active {
+	border-left: 1px solid #176FB3 !important;
+	border-right: 1px solid #24D4FA !important;
+}
+div.items {
+	margin-top: -20px !important;
+	height: 80px !important;
+}
+#featured-div {
+	margin-top: -22px !important;
+}
+.nav ul {
+	background-image: none !important;
+}
+.commentlist {
+	width: 560px !important;
+	overflow: hidden;
+	margin-left: 8px !important;
+}
+.commentlist .children li {
+	width: 85% !important;
+}

@@ -1,0 +1,9 @@
+<wpml-config>
+	<admin-texts>
+		<key name="influx_abouttext"/>
+		<key name="influx_date_format"/>
+		<key name="influx_seo_home_titletext"/>
+		<key name="influx_seo_home_descriptiontext"/>
+		<key name="influx_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

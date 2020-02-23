@@ -1,0 +1,36 @@
+#sidebar-wrapper {
+	width: 290px !important;
+	margin-right: -15px !important;
+}
+#sidebar {
+	width: 277px !important;
+	margin-right: -10px !important;
+}
+.adwrap {
+	margin-left: 0px !important;
+}
+body {
+	margin-left: 3px !important;
+}
+#pages {
+	height: 56px !important;
+	width: 720px !important;
+	float: right !important;
+}
+#pages ul li a:hover {
+background-image: none !important:
+}
+.nav ul {
+	background-image: none;
+	padding-bottom: 0px;
+	width: 240px !important;
+}
+.thumbnail-div {
+	padding: 0px;
+	height: 85px !important;
+}
+.commentlist {
+	margin-left: 10px !important;
+	width: 556px !important;
+	overflow: hidden;
+}

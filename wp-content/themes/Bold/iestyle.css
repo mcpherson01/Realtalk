@@ -1,0 +1,6 @@
+.featured-date { margin: -149px 0px 0px -163px; }
+.sidebar-box ul { list-style-image: url(images/bullet.gif); clear: both; margin-left: 10px; }
+.comment { width: 570px; }
+#sidebar { float: left; }
+.sidebar-box ul li a:link, .sidebar-box ul li a:visited { float: left; clear: both; display: block;}
+.sidebar-box ul li { float: left; display: block; clear: both; width: 100%; }

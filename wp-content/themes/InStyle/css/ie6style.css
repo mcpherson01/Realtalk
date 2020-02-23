@@ -1,0 +1,8 @@
+span.drop-caps { line-height: 37px; }
+#search-form { float: left; }
+body { background: #111 url(../images/clouds.png) no-repeat top center fixed; }
+#backgrounds, .comment-arrow { display: none; }
+a.readmore, .reply-container { background: #666; color: #fff; }
+a.readmore span, .reply-container a { display: inline; background: none; }
+#content-area, #sidebar { display: inline; }
+#content-area { width: 695px; }

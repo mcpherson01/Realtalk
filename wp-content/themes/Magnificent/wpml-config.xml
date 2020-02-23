@@ -1,0 +1,9 @@
+<wpml-config>
+	<admin-texts>
+		<key name="magnificent_quote"/>
+		<key name="magnificent_date_format"/>
+		<key name="magnificent_seo_home_titletext"/>
+		<key name="magnificent_seo_home_descriptiontext"/>
+		<key name="magnificent_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

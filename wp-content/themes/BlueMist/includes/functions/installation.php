@@ -1,0 +1,1 @@
+<a href="http://www.elegantthemes.com/gallery/bluemist/readme.html" target="_blank"><?php esc_html_e( 'Read BlueMist Documentation', $themename ); ?></a>

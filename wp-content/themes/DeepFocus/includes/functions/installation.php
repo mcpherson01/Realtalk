@@ -1,0 +1,1 @@
+<a href="http://www.elegantthemes.com/gallery/deepfocus/readme.html" target="_blank"><?php esc_html_e( 'Read DeepFocus Documentation', $themename ); ?></a>

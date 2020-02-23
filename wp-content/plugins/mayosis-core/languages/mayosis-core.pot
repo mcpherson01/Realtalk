@@ -1,0 +1,4128 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Mayosis Core\n"
+"POT-Creation-Date: 2018-09-17 03:27+0600\n"
+"PO-Revision-Date: 2018-09-17 03:26+0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: mayosis-core.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: elementor/widgets/client-logo.php:13
+msgid "Mayosis Client Logo"
+msgstr ""
+
+#: elementor/widgets/client-logo.php:27 vc-elements/mayosis_clients.php:131
+msgid "Client Logo"
+msgstr ""
+
+#: elementor/widgets/client-logo.php:35
+msgid "Add Images"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:13
+msgid "Mayosis Contact Infobox"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:27
+msgid "Contact Infobox Settings"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:35 vc-elements/mayosis_contact.php:70
+msgid "Address Widget Title"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:45 vc-elements/mayosis_contact.php:77
+msgid "Address Details"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:54 elementor/widgets/counter.php:72
+#: elementor/widgets/edd-hero.php:92 elementor/widgets/icon-box.php:109
+#: elementor/widgets/pricing-table.php:125
+#: elementor/widgets/single-button.php:95 elementor/widgets/subscribe.php:57
+#: elementor/widgets/team-member.php:72 elementor/widgets/theme-hero.php:92
+#: elementor/widgets/theme-testimonial.php:88 vc-elements/mayosis-modal.php:101
+msgid "Style"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:62 elementor/widgets/counter.php:95
+#: elementor/widgets/subscribe.php:64 elementor/widgets/team-member.php:95
+msgid "Color of Title"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:65 elementor/widgets/counter.php:98
+#: elementor/widgets/icon-box.php:142 elementor/widgets/pricing-table.php:147
+#: elementor/widgets/subscribe.php:67 elementor/widgets/team-member.php:98
+msgid "Select Title Color"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:73 elementor/widgets/edd-hero.php:135
+#: elementor/widgets/subscribe.php:90 elementor/widgets/team-member.php:116
+#: elementor/widgets/theme-hero.php:177
+msgid "Color of Content"
+msgstr ""
+
+#: elementor/widgets/contact-infobox.php:76 elementor/widgets/edd-hero.php:138
+#: elementor/widgets/icon-box.php:153 elementor/widgets/subscribe.php:93
+#: elementor/widgets/team-member.php:119 elementor/widgets/theme-hero.php:180
+msgid "Select Content Color"
+msgstr ""
+
+#: elementor/widgets/counter.php:13 widgets/counter.php:13
+msgid "Mayosis Counter"
+msgstr ""
+
+#: elementor/widgets/counter.php:27
+msgid "Counter Settings"
+msgstr ""
+
+#: elementor/widgets/counter.php:35 vc-elements/mayosis_counter.php:119
+msgid "Counter Title"
+msgstr ""
+
+#: elementor/widgets/counter.php:45 elementor/widgets/edd-hero.php:44
+#: elementor/widgets/theme-hero.php:44
+msgid "Counter Type"
+msgstr ""
+
+#: elementor/widgets/counter.php:48 elementor/widgets/edd-hero.php:47
+#: elementor/widgets/theme-hero.php:47
+msgid "Select Counter Type"
+msgstr ""
+
+#: elementor/widgets/counter.php:51 elementor/widgets/theme-hero.php:51
+msgid "Total User"
+msgstr ""
+
+#: elementor/widgets/counter.php:52
+msgid "Total Products"
+msgstr ""
+
+#: elementor/widgets/counter.php:53 elementor/widgets/edd-hero.php:50
+msgid "Total Download"
+msgstr ""
+
+#: elementor/widgets/counter.php:54 elementor/widgets/dual-button.php:144
+#: elementor/widgets/dual-button.php:284
+#: elementor/widgets/single-button.php:141
+msgid "Custom"
+msgstr ""
+
+#: elementor/widgets/counter.php:62 elementor/widgets/edd-hero.php:52
+#: elementor/widgets/edd-hero.php:59 elementor/widgets/theme-hero.php:52
+#: elementor/widgets/theme-hero.php:59 vc-elements/edd_hero.php:104
+#: vc-elements/mayosis_counter.php:138 vc-elements/mayosis_theme_hero.php:104
+msgid "Custom Count"
+msgstr ""
+
+#: elementor/widgets/counter.php:79 elementor/widgets/edd-hero.php:99
+#: elementor/widgets/subscribe.php:74 elementor/widgets/team-member.php:79
+#: elementor/widgets/theme-hero.php:141
+msgid "Text Alignment"
+msgstr ""
+
+#: elementor/widgets/counter.php:82 elementor/widgets/edd-hero.php:102
+#: elementor/widgets/subscribe.php:77 elementor/widgets/team-member.php:82
+#: elementor/widgets/theme-hero.php:103 elementor/widgets/theme-hero.php:144
+msgid "Select Text Alignment"
+msgstr ""
+
+#: elementor/widgets/counter.php:85 elementor/widgets/dual-button.php:62
+#: elementor/widgets/edd-hero.php:105 elementor/widgets/icon-box.php:167
+#: elementor/widgets/icon-box.php:183 elementor/widgets/icon-box.php:198
+#: elementor/widgets/icon-box.php:214 elementor/widgets/object.php:312
+#: elementor/widgets/pricing-table.php:182
+#: elementor/widgets/pricing-table.php:197
+#: elementor/widgets/single-button.php:121 elementor/widgets/subscribe.php:80
+#: elementor/widgets/team-member.php:85 elementor/widgets/theme-hero.php:147
+#: kirki/controls/php/class-kirki-control-dimensions.php:132
+#: kirki/controls/php/class-kirki-control-typography.php:149
+#: kirki/field/class-kirki-field-spacing.php:35
+#: vc-elements/mayosis_vc_extend.php:108 vc-elements/mayosis_vc_extend.php:247
+msgid "Left"
+msgstr ""
+
+#: elementor/widgets/counter.php:86 elementor/widgets/dual-button.php:63
+#: elementor/widgets/edd-hero.php:106 elementor/widgets/icon-box.php:168
+#: elementor/widgets/icon-box.php:184 elementor/widgets/icon-box.php:199
+#: elementor/widgets/icon-box.php:215 elementor/widgets/object.php:313
+#: elementor/widgets/pricing-table.php:183
+#: elementor/widgets/pricing-table.php:198
+#: elementor/widgets/single-button.php:122 elementor/widgets/subscribe.php:81
+#: elementor/widgets/team-member.php:86 elementor/widgets/theme-hero.php:148
+#: kirki/controls/php/class-kirki-control-dimensions.php:134
+#: kirki/controls/php/class-kirki-control-typography.php:155
+#: vc-elements/mayosis_vc_extend.php:109
+msgid "Center"
+msgstr ""
+
+#: elementor/widgets/counter.php:87 elementor/widgets/dual-button.php:64
+#: elementor/widgets/edd-hero.php:107 elementor/widgets/icon-box.php:169
+#: elementor/widgets/icon-box.php:185 elementor/widgets/icon-box.php:200
+#: elementor/widgets/icon-box.php:216 elementor/widgets/object.php:314
+#: elementor/widgets/pricing-table.php:184
+#: elementor/widgets/pricing-table.php:199
+#: elementor/widgets/single-button.php:123 elementor/widgets/subscribe.php:82
+#: elementor/widgets/team-member.php:87 elementor/widgets/theme-hero.php:149
+#: kirki/controls/php/class-kirki-control-dimensions.php:133
+#: kirki/controls/php/class-kirki-control-typography.php:161
+#: kirki/field/class-kirki-field-spacing.php:36
+#: vc-elements/mayosis_vc_extend.php:110 vc-elements/mayosis_vc_extend.php:248
+msgid "Right"
+msgstr ""
+
+#: elementor/widgets/counter.php:106 elementor/widgets/edd-hero.php:125
+#: elementor/widgets/theme-hero.php:167
+msgid "Color of Count"
+msgstr ""
+
+#: elementor/widgets/counter.php:109 elementor/widgets/edd-hero.php:128
+#: elementor/widgets/theme-hero.php:170
+msgid "Select Count Color"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:13
+msgid "Mayosis Dual Button"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:27 elementor/widgets/object.php:27
+msgid "General"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:34
+msgid "Show Separator"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:37 elementor/widgets/icon-box.php:59
+#: elementor/widgets/pricing-table.php:220
+#: elementor/widgets/pricing-table.php:256
+msgid "Show"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:38 elementor/widgets/icon-box.php:60
+#: elementor/widgets/pricing-table.php:221
+#: elementor/widgets/pricing-table.php:257
+msgid "Hide"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:46
+msgid "Button Separator Text"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:49
+msgid "Enter Button Separator Text"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:56 elementor/widgets/single-button.php:115
+msgid "Button Align"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:59 elementor/widgets/single-button.php:118
+msgid "Select Button Align"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:72 vc-elements/mayosis_slider.php:265
+#: vc-elements/mayosis_theme_dual_button.php:388
+msgid "Separator Color"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:75
+msgid "Select Separator Color"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:83
+msgid "Button A"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:91 elementor/widgets/dual-button.php:231
+#: elementor/widgets/edd-category.php:35 elementor/widgets/icon-box.php:35
+#: elementor/widgets/pricing-table.php:34
+#: elementor/widgets/pricing-table.php:78 elementor/widgets/search-terms.php:35
+#: elementor/widgets/single-button.php:35 vc-elements/mayosis_icon_box.php:121
+#: vc-elements/mayosis_pricing_table.php:98 widgets/blog_tag.php:56
+#: widgets/downloads-author.php:101 widgets/mayosis-instagram-widget.php:113
+#: widgets/product_tag.php:57 widgets/subscribe.php:56
+msgid "Title"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:94 elementor/widgets/dual-button.php:234
+#: elementor/widgets/single-button.php:38
+msgid "Enter Button Title"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:101 elementor/widgets/dual-button.php:241
+#: elementor/widgets/pricing-table.php:114
+#: elementor/widgets/single-button.php:45
+#: vc-elements/mayosis_pricing_table.php:207
+msgid "Button Url"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:104 elementor/widgets/dual-button.php:244
+#: elementor/widgets/pricing-table.php:117
+#: elementor/widgets/single-button.php:48
+msgid "Enter Button Url"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:111 elementor/widgets/dual-button.php:251
+#: elementor/widgets/single-button.php:55
+msgid "Button Target"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:114 elementor/widgets/dual-button.php:254
+#: elementor/widgets/single-button.php:58
+msgid "Select Button Target"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:117 elementor/widgets/dual-button.php:257
+#: elementor/widgets/single-button.php:61
+msgid "Blank"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:118 elementor/widgets/dual-button.php:258
+#: elementor/widgets/single-button.php:62
+msgid "Self"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:125 elementor/widgets/dual-button.php:265
+#: elementor/widgets/icon-box.php:46 elementor/widgets/pricing-table.php:56
+#: elementor/widgets/pricing-table.php:86
+#: elementor/widgets/single-button.php:69 vc-elements/mayosis_icon_box.php:130
+#: vc-elements/mayosis_pricing_table.php:114
+#: vc-elements/mayosis_theme_button.php:160
+msgid "Icon"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:128 elementor/widgets/dual-button.php:268
+#: elementor/widgets/icon-box.php:49 elementor/widgets/single-button.php:72
+msgid "Select Icon"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:135 elementor/widgets/dual-button.php:275
+#: elementor/widgets/single-button.php:132
+msgid "Button Style"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:138 elementor/widgets/dual-button.php:278
+#: elementor/widgets/single-button.php:135
+msgid "Select Button Style"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:141 elementor/widgets/dual-button.php:281
+#: elementor/widgets/single-button.php:138
+msgid "Style One"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:142 elementor/widgets/dual-button.php:282
+#: elementor/widgets/single-button.php:139
+msgid "Style Two"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:143 elementor/widgets/dual-button.php:283
+#: elementor/widgets/single-button.php:140
+msgid "Transparent"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:152
+msgid "Video Popup For Button A"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:155 elementor/widgets/dual-button.php:295
+#: elementor/widgets/single-button.php:83
+msgid "Select Popup"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:158 elementor/widgets/dual-button.php:298
+#: elementor/widgets/icon-box.php:231 elementor/widgets/icon-box.php:266
+#: elementor/widgets/single-button.php:86
+msgid "No"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:159 elementor/widgets/dual-button.php:299
+#: elementor/widgets/icon-box.php:230 elementor/widgets/icon-box.php:265
+#: elementor/widgets/single-button.php:87
+msgid "Yes"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:167
+msgid "Button One Background"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:170
+msgid "Select Button One Background"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:181
+msgid "Button One Border"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:184
+msgid "Select Button One Border"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:197
+msgid "Button One Text"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:200
+msgid "Select Button One Text"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:213
+msgid "Button a Custom Class"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:223
+msgid "Button B"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:292
+msgid "Video Popup For Button B"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:307
+msgid "Button Two Background"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:310
+msgid "Select Button Two Background"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:321
+msgid "Button Two Border"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:324
+msgid "Select Button Two Border"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:337
+msgid "Button Two Text"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:340
+msgid "Select Button Two Text"
+msgstr ""
+
+#: elementor/widgets/dual-button.php:353
+msgid "Button B Custom Class"
+msgstr ""
+
+#: elementor/widgets/edd-category.php:13 elementor/widgets/edd-category.php:27
+msgid "Mayosis EDD Category Grid"
+msgstr ""
+
+#: elementor/widgets/edd-category.php:38 elementor/widgets/search-terms.php:38
+msgid "Enter Title"
+msgstr ""
+
+#: elementor/widgets/edd-category.php:48
+#: elementor/widgets/edd-justified.php:116
+#: elementor/widgets/edd-masonary.php:135 elementor/widgets/search-terms.php:66
+msgid "Custom CSS"
+msgstr ""
+
+#: elementor/widgets/edd-category.php:51
+#: elementor/widgets/edd-justified.php:119
+#: elementor/widgets/edd-masonary.php:138 elementor/widgets/search-terms.php:69
+msgid "Enter Custom CSS name"
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:13
+msgid "Mayosis EDD Featured"
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:27
+msgid "mayosis EDD Featured"
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:35 elementor/widgets/edd-grid.php:35
+#: elementor/widgets/edd-popular.php:35 elementor/widgets/edd-recent.php:35
+#: vc-elements/edd_category_grid.php:54 vc-elements/edd_featured.php:161
+#: vc-elements/edd_popular.php:155 vc-elements/edd_recent.php:38
+#: vc-elements/edd_recent_grid.php:99 vc-elements/mayosis_post.php:149
+#: vc-elements/search_term.php:79
+msgid "Section Title"
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:38 elementor/widgets/edd-grid.php:38
+#: elementor/widgets/edd-popular.php:38 elementor/widgets/edd-recent.php:38
+msgid "Enter Section Title"
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:46 elementor/widgets/edd-grid.php:46
+#: elementor/widgets/edd-justified.php:37 elementor/widgets/edd-masonary.php:37
+#: elementor/widgets/edd-popular.php:46 elementor/widgets/edd-recent.php:46
+#: elementor/widgets/license.php:36 elementor/widgets/recent-post.php:64
+msgctxt "Admin Panel"
+msgid "Amount of item to display"
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:55 elementor/widgets/edd-masonary.php:46
+#: elementor/widgets/edd-popular.php:55 elementor/widgets/edd-recent.php:55
+#: elementor/widgets/recent-post.php:45
+msgctxt "Admin Panel"
+msgid "Layout"
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:56 elementor/widgets/edd-masonary.php:47
+#: elementor/widgets/edd-popular.php:56 elementor/widgets/edd-recent.php:56
+#: elementor/widgets/recent-post.php:46 elementor/widgets/search-terms.php:47
+msgctxt "mayosis"
+msgid "Column layout for the list\""
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:78 elementor/widgets/edd-grid.php:84
+#: elementor/widgets/edd-justified.php:90
+#: elementor/widgets/edd-masonary.php:109 elementor/widgets/edd-popular.php:89
+#: elementor/widgets/edd-recent.php:196 elementor/widgets/license.php:47
+#: elementor/widgets/recent-post.php:85
+#: elementor/widgets/theme-testimonial.php:44
+msgid "Order"
+msgstr ""
+
+#: elementor/widgets/edd-featured.php:148 elementor/widgets/edd-popular.php:153
+#: elementor/widgets/edd-recent.php:296 vc-elements/edd_featured.php:102
+#: vc-elements/edd_popular.php:96 vc-elements/edd_recent.php:336
+msgid "View Details"
+msgstr ""
+
+#: elementor/widgets/edd-grid.php:13
+msgid "Mayosis EDD Grid"
+msgstr ""
+
+#: elementor/widgets/edd-grid.php:27
+msgid "mayosis EDD Grid"
+msgstr ""
+
+#: elementor/widgets/edd-grid.php:56 elementor/widgets/edd-justified.php:47
+#: elementor/widgets/edd-masonary.php:66 elementor/widgets/edd-recent.php:74
+msgctxt "Admin Panel"
+msgid "Filter Category Wise"
+msgstr ""
+
+#: elementor/widgets/edd-grid.php:57 elementor/widgets/edd-justified.php:48
+#: elementor/widgets/edd-masonary.php:67 elementor/widgets/edd-recent.php:75
+msgctxt "mayosis"
+msgid "Select if want to show product by category"
+msgstr ""
+
+#: elementor/widgets/edd-grid.php:73 elementor/widgets/recent-post.php:74
+msgid "Category Name"
+msgstr ""
+
+#: elementor/widgets/edd-grid.php:74 elementor/widgets/edd-justified.php:66
+#: elementor/widgets/edd-masonary.php:85 elementor/widgets/edd-recent.php:93
+#: elementor/widgets/edd-recent.php:104
+msgid "Add one category slug"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:13
+msgid "Mayosis EDD Hero"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:27 elementor/widgets/theme-hero.php:27
+msgid "Hero Content"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:34 elementor/widgets/theme-hero.php:34
+#: vc-elements/edd_hero.php:90 vc-elements/mayosis_theme_hero.php:90
+msgid "Section Title Prefix"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:37 elementor/widgets/theme-hero.php:37
+msgid "Enter Section Title Prefix"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:51
+msgid "Total Product"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:62 elementor/widgets/theme-hero.php:62
+msgid "Enter Custom Count"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:70 elementor/widgets/theme-hero.php:70
+#: vc-elements/edd_hero.php:112 vc-elements/mayosis_theme_hero.php:112
+msgid "Section Title Suffix"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:73 elementor/widgets/theme-hero.php:73
+msgid "Enter Section Title Suffix"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:81 elementor/widgets/theme-hero.php:81
+msgid "Section Content"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:85 elementor/widgets/theme-hero.php:85
+msgid "Enter Section Description"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:114 elementor/widgets/theme-hero.php:156
+msgid "Color of Suffix & Prefix"
+msgstr ""
+
+#: elementor/widgets/edd-hero.php:117 elementor/widgets/theme-hero.php:159
+msgid "Select Suffix & Prefix Color"
+msgstr ""
+
+#: elementor/widgets/edd-justified.php:13
+#: elementor/widgets/edd-justified.php:27
+msgid "Mayosis EDD Justified"
+msgstr ""
+
+#: elementor/widgets/edd-justified.php:65 elementor/widgets/edd-masonary.php:84
+#: elementor/widgets/edd-recent.php:92
+msgid "Category Slug"
+msgstr ""
+
+#: elementor/widgets/edd-justified.php:75 elementor/widgets/edd-masonary.php:94
+#: vc-elements/edd_justified_grid.php:64 vc-elements/edd_masonary_grid.php:64
+msgid "Show Product Filter"
+msgstr ""
+
+#: elementor/widgets/edd-justified.php:104
+#: elementor/widgets/edd-masonary.php:123 vc-elements/edd_justified_grid.php:80
+#: vc-elements/edd_masonary_grid.php:87
+msgid "Grid Gap"
+msgstr ""
+
+#: elementor/widgets/edd-justified.php:107
+#: elementor/widgets/edd-masonary.php:126
+msgid "Enter Grid gap Without PX"
+msgstr ""
+
+#: elementor/widgets/edd-justified.php:146
+#: elementor/widgets/edd-masonary.php:177
+#: vc-elements/edd_justified_grid.php:169 vc-elements/edd_masonary_grid.php:190
+msgid "All Categories"
+msgstr ""
+
+#: elementor/widgets/edd-login.php:13
+msgid "Mayosis EDD Login"
+msgstr ""
+
+#: elementor/widgets/edd-login.php:27
+msgid "mayosis EDD Login"
+msgstr ""
+
+#: elementor/widgets/edd-login.php:34 vc-elements/edd_login.php:71
+msgid "Login Logo"
+msgstr ""
+
+#: elementor/widgets/edd-login.php:42 vc-elements/edd_login.php:77
+msgid "After Login Redirect Url"
+msgstr ""
+
+#: elementor/widgets/edd-login.php:45
+msgid "Enter After Login Redirect Url"
+msgstr ""
+
+#: elementor/widgets/edd-login.php:53 vc-elements/edd_login.php:84
+msgid "Registration Url"
+msgstr ""
+
+#: elementor/widgets/edd-login.php:56
+msgid "Enter After Registration Url"
+msgstr ""
+
+#: elementor/widgets/edd-login.php:88 vc-elements/edd_login.php:39
+msgid "New here? Create an account!"
+msgstr ""
+
+#: elementor/widgets/edd-masonary.php:13
+msgid "Mayosis EDD Masonry"
+msgstr ""
+
+#: elementor/widgets/edd-masonary.php:27
+msgid "mayosis EDD Masonry"
+msgstr ""
+
+#: elementor/widgets/edd-popular.php:13
+msgid "Mayosis EDD Popular"
+msgstr ""
+
+#: elementor/widgets/edd-popular.php:27
+msgid "mayosis EDD Popular"
+msgstr ""
+
+#: elementor/widgets/edd-popular.php:74 vc-elements/edd_popular.php:178
+msgid "Ribbon Text"
+msgstr ""
+
+#: elementor/widgets/edd-popular.php:77
+msgid "Enter Ribbon Text"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:13
+msgid "Mayosis EDD Recent"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:27
+msgid "mayosis EDD Recent"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:103
+msgid "Exclude Category"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:114
+msgid "Meta Option"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:129 vc-elements/edd_recent.php:77
+msgid "Meta Option Type"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:149 vc-elements/edd_recent.php:98
+msgid "Pricing Option"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:166 vc-elements/edd_recent.php:116
+msgid "Free Pricing Option"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:183
+msgid "Custom Text"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:186
+msgid "Enter Free Custom Title"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:329 vc-elements/edd_recent.php:370
+msgctxt ""
+msgid " , "
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:355 elementor/widgets/recent-post.php:158
+#: vc-elements/edd_recent.php:396 vc-elements/mayosis_post.php:96
+msgid "by"
+msgstr ""
+
+#: elementor/widgets/edd-recent.php:357 elementor/widgets/recent-post.php:160
+#: vc-elements/edd_recent.php:398 vc-elements/mayosis_post.php:98
+msgid "in"
+msgstr ""
+
+#: elementor/widgets/edd-register.php:13
+msgid "Mayosis EDD Register"
+msgstr ""
+
+#: elementor/widgets/edd-register.php:27
+msgid "mayosis EDD Resiter"
+msgstr ""
+
+#: elementor/widgets/edd-register.php:34 vc-elements/edd_register.php:71
+msgid "Register Logo"
+msgstr ""
+
+#: elementor/widgets/edd-register.php:42 vc-elements/edd_register.php:77
+msgid "After Registration Redirect Url"
+msgstr ""
+
+#: elementor/widgets/edd-register.php:45
+msgid "Enter After Regeistration Redirect Url"
+msgstr ""
+
+#: elementor/widgets/edd-register.php:53 vc-elements/edd_register.php:84
+msgid "Login Url"
+msgstr ""
+
+#: elementor/widgets/edd-register.php:56
+msgid "Enter After Login Url"
+msgstr ""
+
+#: elementor/widgets/edd-register.php:88 vc-elements/edd_register.php:39
+msgid "Already Registered ! Login"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:13
+msgid "Mayosis Icon Box"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:27
+msgid "Box Content"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:38
+msgid "Enter Icon Box Title"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:56
+msgid "Show Custom Icon"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:68
+msgid "Custom Icon"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:76 elementor/widgets/icon-box.php:87
+#: vc-elements/mayosis_icon_box.php:145
+msgid "Custom Icon Width"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:78 elementor/widgets/icon-box.php:89
+msgid "25"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:79 elementor/widgets/icon-box.php:90
+msgid "Input only integear value"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:98 vc-elements/mayosis_icon_box.php:259
+#: vc-elements/mayosis_pricing_table.php:182
+msgid "Content"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:101
+msgid "Add Content"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:117 elementor/widgets/pricing-table.php:133
+#: elementor/widgets/single-button.php:103 vc-elements/mayosis_icon_box.php:161
+#: vc-elements/mayosis_pricing_table.php:131
+msgid "Icon Color"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:120 elementor/widgets/pricing-table.php:136
+#: elementor/widgets/single-button.php:106
+msgid "Select Icon Color"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:128
+msgid "Icon Bg Color"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:131
+msgid "Select Icon Bg Color"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:139 elementor/widgets/pricing-table.php:144
+#: vc-elements/mayosis_icon_box.php:169
+#: vc-elements/mayosis_pricing_table.php:139
+#: vc-elements/mayosis_subscribe.php:88
+msgid "Title Color"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:150 vc-elements/mayosis_icon_box.php:186
+msgid "Content Color"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:161
+msgid "Icon Align"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:164
+msgid "Select Icon Align"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:177
+msgid "Custom Icon Align"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:180
+msgid "Select Custom Icon Align"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:192
+msgid "Title Align"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:195
+msgid "Select Title Align"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:208
+msgid "Content Align"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:211
+msgid "Select Content Align"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:224
+msgid "Icon Gradient"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:227
+msgid "Add Icon Gradient"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:239
+msgid "Gradient Color One"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:242
+msgid "Select Gradient Color One"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:250
+msgid "Gradient Color Two"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:253
+msgid "Select Gradient Color Two"
+msgstr ""
+
+#: elementor/widgets/icon-box.php:262 vc-elements/mayosis_icon_box.php:230
+msgid "Icon Beside Title"
+msgstr ""
+
+#: elementor/widgets/license.php:13
+msgid "Mayosis License"
+msgstr ""
+
+#: elementor/widgets/license.php:27
+msgid "mayosis License"
+msgstr ""
+
+#: elementor/widgets/object.php:13
+msgid "Mayosis Shape"
+msgstr ""
+
+#: elementor/widgets/object.php:34 vc-elements/mayosis_object_parallax.php:351
+msgid "Type of Shape"
+msgstr ""
+
+#: elementor/widgets/object.php:37 elementor/widgets/object.php:60
+#: elementor/widgets/object.php:234
+msgid "Select Shape Type"
+msgstr ""
+
+#: elementor/widgets/object.php:40 elementor/widgets/object.php:63
+#: elementor/widgets/object.php:129 elementor/widgets/theme-hero.php:50
+#: kirki/controls/php/class-kirki-control-typography.php:180
+#: kirki/controls/php/class-kirki-control-typography.php:196
+#: vc-elements/mayosis_vc_extend.php:168
+msgid "None"
+msgstr ""
+
+#: elementor/widgets/object.php:41 vc-elements/mayosis_vc_extend.php:129
+#: vc-elements/mayosis_vc_extend.php:152
+msgid "Circle"
+msgstr ""
+
+#: elementor/widgets/object.php:42
+msgid "Square"
+msgstr ""
+
+#: elementor/widgets/object.php:43
+msgid "Square Stroke"
+msgstr ""
+
+#: elementor/widgets/object.php:44
+msgid "Triangle"
+msgstr ""
+
+#: elementor/widgets/object.php:45
+msgid "Hexagon"
+msgstr ""
+
+#: elementor/widgets/object.php:46
+msgid "Stroke Hexagon"
+msgstr ""
+
+#: elementor/widgets/object.php:47
+msgid "Pentagon"
+msgstr ""
+
+#: elementor/widgets/object.php:48
+msgid "Round Plus"
+msgstr ""
+
+#: elementor/widgets/object.php:57
+msgid "Fill Type"
+msgstr ""
+
+#: elementor/widgets/object.php:64 elementor/widgets/object.php:130
+msgid "Single"
+msgstr ""
+
+#: elementor/widgets/object.php:65 elementor/widgets/object.php:131
+#: vc-elements/mayosis_vc_extend.php:170
+msgid "Gradient"
+msgstr ""
+
+#: elementor/widgets/object.php:78
+msgid "Shape Fill color"
+msgstr ""
+
+#: elementor/widgets/object.php:81
+msgid "Select Fill Color"
+msgstr ""
+
+#: elementor/widgets/object.php:93
+msgid "Shape Gradient color A"
+msgstr ""
+
+#: elementor/widgets/object.php:96 elementor/widgets/object.php:162
+msgid "Select gradient Color A"
+msgstr ""
+
+#: elementor/widgets/object.php:108
+msgid "Shape Gradient color B"
+msgstr ""
+
+#: elementor/widgets/object.php:111 elementor/widgets/object.php:177
+msgid "Select gradient Color B"
+msgstr ""
+
+#: elementor/widgets/object.php:123
+msgid "Stroke Type"
+msgstr ""
+
+#: elementor/widgets/object.php:126
+msgid "Select Stroke Type"
+msgstr ""
+
+#: elementor/widgets/object.php:144
+msgid "Stroke color"
+msgstr ""
+
+#: elementor/widgets/object.php:147
+msgid "Select Stroke Color"
+msgstr ""
+
+#: elementor/widgets/object.php:159
+msgid "Stroke Gradient color A"
+msgstr ""
+
+#: elementor/widgets/object.php:174
+msgid "Stroke Gradient color B"
+msgstr ""
+
+#: elementor/widgets/object.php:189
+msgid "Shape width"
+msgstr ""
+
+#: elementor/widgets/object.php:191 elementor/widgets/object.php:289
+msgid "300"
+msgstr ""
+
+#: elementor/widgets/object.php:200 vc-elements/mayosis_object_parallax.php:476
+msgid "Shape Stroke Thikness"
+msgstr ""
+
+#: elementor/widgets/object.php:202
+msgid "30"
+msgstr ""
+
+#: elementor/widgets/object.php:210 vc-elements/mayosis_object_parallax.php:484
+msgid "Circle Scaling"
+msgstr ""
+
+#: elementor/widgets/object.php:212
+msgid "20"
+msgstr ""
+
+#: elementor/widgets/object.php:223 elementor/widgets/object.php:237
+#: vc-elements/mayosis_vc_extend.php:225
+msgid "Parallax"
+msgstr ""
+
+#: elementor/widgets/object.php:231 vc-elements/mayosis_object_parallax.php:494
+msgid "Element Type"
+msgstr ""
+
+#: elementor/widgets/object.php:238
+msgid "Normal"
+msgstr ""
+
+#: elementor/widgets/object.php:248
+msgid "X Axis Translation"
+msgstr ""
+
+#: elementor/widgets/object.php:250
+msgid "100"
+msgstr ""
+
+#: elementor/widgets/object.php:258
+msgid "Y Axis Translation"
+msgstr ""
+
+#: elementor/widgets/object.php:260
+msgid "-50"
+msgstr ""
+
+#: elementor/widgets/object.php:268 vc-elements/mayosis_object_parallax.php:523
+msgid "Parallax Interaction"
+msgstr ""
+
+#: elementor/widgets/object.php:271 vc-elements/mayosis_object_parallax.php:525
+msgid "Choose Interaction"
+msgstr ""
+
+#: elementor/widgets/object.php:274
+msgid "Rotate X"
+msgstr ""
+
+#: elementor/widgets/object.php:275
+msgid "Rotate Y"
+msgstr ""
+
+#: elementor/widgets/object.php:276
+msgid "Smoothness"
+msgstr ""
+
+#: elementor/widgets/object.php:277
+msgid "Perspective"
+msgstr ""
+
+#: elementor/widgets/object.php:287
+msgid "Value of Interaction"
+msgstr ""
+
+#: elementor/widgets/object.php:297
+msgid "Position"
+msgstr ""
+
+#: elementor/widgets/object.php:306 vc-elements/mayosis_object_parallax.php:548
+msgid "Element Align"
+msgstr ""
+
+#: elementor/widgets/object.php:309
+msgid "Choose Element Align"
+msgstr ""
+
+#: elementor/widgets/object.php:325 vc-elements/mayosis_object_parallax.php:561
+msgid "Shape Top Position"
+msgstr ""
+
+#: elementor/widgets/object.php:327 elementor/widgets/object.php:337
+#: elementor/widgets/object.php:347 elementor/widgets/object.php:357
+msgid "-80"
+msgstr ""
+
+#: elementor/widgets/object.php:335 vc-elements/mayosis_object_parallax.php:569
+msgid "Shape Right Position"
+msgstr ""
+
+#: elementor/widgets/object.php:345 vc-elements/mayosis_object_parallax.php:578
+msgid "Shape Bottom Position"
+msgstr ""
+
+#: elementor/widgets/object.php:355 vc-elements/mayosis_object_parallax.php:586
+msgid "Shape Left Position"
+msgstr ""
+
+#: elementor/widgets/object.php:365 vc-elements/mayosis_object_parallax.php:595
+msgid "Shape Rotate"
+msgstr ""
+
+#: elementor/widgets/object.php:367
+msgid "0"
+msgstr ""
+
+#: elementor/widgets/object.php:375 vc-elements/mayosis_object_parallax.php:604
+msgid "Z Index"
+msgstr ""
+
+#: elementor/widgets/object.php:377
+msgid "1"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:13
+msgid "Mayosis Pricing Table"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:27
+msgid "Pricing Content"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:37
+msgid "Enter Table Title"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:45
+#: vc-elements/mayosis_pricing_table.php:106
+msgid "Price"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:48
+msgid "Enter Table Price Value"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:59
+msgid "Enter Table Title Icon"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:67
+msgid "Table Option List"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:72
+msgid "Title #1"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:80
+msgid "List Title"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:90
+msgid "Correct"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:91
+msgid "Wrong"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:103
+#: vc-elements/mayosis_pricing_table.php:198
+#: vc-elements/mayosis_theme_button.php:69
+msgid "Button Text"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:106
+msgid "Enter Button Text"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:155
+#: vc-elements/mayosis_pricing_table.php:147
+msgid "Pricing Amount Color"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:158
+msgid "Select Pricing Amount Color"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:166
+#: vc-elements/mayosis_pricing_table.php:155
+msgid "Button Background Color"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:169
+msgid "Select Button Background Color"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:176 vc-elements/mayosis_icon_box.php:203
+#: vc-elements/mayosis_pricing_table.php:163
+#: vc-elements/mayosis_subscribe.php:98
+msgid "Alignment of Title"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:179
+msgid "Select Alignment of Title"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:191 vc-elements/mayosis_icon_box.php:212
+#: vc-elements/mayosis_pricing_table.php:172
+msgid "Alignment of Content"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:194
+msgid "Select Alignment of Content"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:207
+#: elementor/widgets/pricing-table.php:215
+msgid "Label"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:229
+#: vc-elements/mayosis_pricing_table.php:223
+msgid "Label Text"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:232
+msgid "Enter Label Text"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:240
+msgid "Label Background"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:251
+msgid "Save"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:264
+#: vc-elements/mayosis_pricing_table.php:249
+msgid "Save Label Text"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:267
+msgid "Enter Save Label Text"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:274
+msgid "Save Amount"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:277
+msgid "Enter Save Amount"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:285
+msgid "Save Label Background"
+msgstr ""
+
+#: elementor/widgets/pricing-table.php:288
+msgid "Enter Save Label Background"
+msgstr ""
+
+#: elementor/widgets/recent-post.php:13
+msgid "Mayosis Recent Post"
+msgstr ""
+
+#: elementor/widgets/recent-post.php:27
+msgid "mayosis Blog Posts"
+msgstr ""
+
+#: elementor/widgets/recent-post.php:35
+msgid "Heading"
+msgstr ""
+
+#: elementor/widgets/recent-post.php:38
+msgid "Enter Section Headings"
+msgstr ""
+
+#: elementor/widgets/recent-post.php:75
+msgid "Comma separated list of category Name"
+msgstr ""
+
+#: elementor/widgets/search-terms.php:13
+msgid "Mayosis Search Term"
+msgstr ""
+
+#: elementor/widgets/search-terms.php:27
+msgid "Mayosis Search Terms"
+msgstr ""
+
+#: elementor/widgets/search-terms.php:46
+msgctxt "Admin Panel"
+msgid "Style"
+msgstr ""
+
+#: elementor/widgets/search.php:13 widgets/search_widget.php:11
+msgid "Mayosis Search"
+msgstr ""
+
+#: elementor/widgets/search.php:27
+msgid "Search Content"
+msgstr ""
+
+#: elementor/widgets/search.php:35
+msgid "Placeholder text"
+msgstr ""
+
+#: elementor/widgets/single-button.php:13
+msgid "Mayosis Single Button"
+msgstr ""
+
+#: elementor/widgets/single-button.php:27
+msgid "Button Content"
+msgstr ""
+
+#: elementor/widgets/single-button.php:80
+msgid "Video Popup For Button"
+msgstr ""
+
+#: elementor/widgets/subscribe.php:13
+msgid "Mayosis Subscribe"
+msgstr ""
+
+#: elementor/widgets/subscribe.php:27 vc-elements/mayosis_subscribe.php:58
+#: widgets/subscribe.php:50
+msgid "Subscribe"
+msgstr ""
+
+#: elementor/widgets/subscribe.php:34 vc-elements/mayosis_subscribe.php:67
+msgid "Subscribe Title"
+msgstr ""
+
+#: elementor/widgets/subscribe.php:37
+msgid "Enter Subscribe Title"
+msgstr ""
+
+#: elementor/widgets/subscribe.php:46
+msgid "Subscribe Content"
+msgstr ""
+
+#: elementor/widgets/subscribe.php:50
+msgid "Enter Subtitle Description & Any Shortcode"
+msgstr ""
+
+#: elementor/widgets/team-member.php:13
+msgid "Mayosis Team Member"
+msgstr ""
+
+#: elementor/widgets/team-member.php:27
+msgid "Team Member Settings"
+msgstr ""
+
+#: elementor/widgets/team-member.php:35 vc-elements/mayosis_team.php:76
+msgid "Team Member Name"
+msgstr ""
+
+#: elementor/widgets/team-member.php:45 vc-elements/mayosis_team.php:84
+msgid "Team Member Designation"
+msgstr ""
+
+#: elementor/widgets/team-member.php:55
+msgid "Team Member Photo"
+msgstr ""
+
+#: elementor/widgets/team-member.php:63 vc-elements/mayosis_team.php:100
+msgid "Details About Member"
+msgstr ""
+
+#: elementor/widgets/team-member.php:106
+#: elementor/widgets/theme-testimonial.php:144
+#: vc-elements/mayosis_testimonial.php:294
+msgid "Color of Designation"
+msgstr ""
+
+#: elementor/widgets/team-member.php:109
+msgid "Select Designation Color"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:13
+msgid "Mayosis Theme Hero"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:100 vc-elements/mayosis_theme_hero.php:128
+msgid "Heading Type"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:106
+msgid "H1"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:107
+msgid "H2"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:108
+msgid "H3"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:109
+msgid "H4"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:110
+msgid "H5"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:111
+msgid "H6"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:119
+msgid "Title Font Size"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:122
+msgid "Enter Section Title Font Size"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:130
+msgid "Title Line Height"
+msgstr ""
+
+#: elementor/widgets/theme-hero.php:133
+msgid "Enter Section Title Line Height"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:13
+msgid "Mayosis Testimonial"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:27
+msgid "Testimonial Content"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:34
+#: vc-elements/mayosis_testimonial.php:212
+msgid "Amount of Testimonial to display:"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:37
+msgid "Enter Amount of Testimonial to display"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:59
+#: vc-elements/mayosis_testimonial.php:227
+msgid "Display Type"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:74
+#: vc-elements/mayosis_vc_extend.php:128 vc-elements/mayosis_vc_extend.php:151
+msgid "Arrow"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:95
+#: vc-elements/mayosis_testimonial.php:250
+msgid "Color of Pre Title Unit"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:105
+#: vc-elements/mayosis_slider.php:248 vc-elements/mayosis_testimonial.php:259
+msgid "Color of Main Title"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:115
+#: vc-elements/mayosis_testimonial.php:267
+msgid "Color of Author Title"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:125
+#: vc-elements/mayosis_testimonial.php:275
+msgid "Color of Span"
+msgstr ""
+
+#: elementor/widgets/theme-testimonial.php:135
+#: vc-elements/mayosis_testimonial.php:284
+msgid "Color of Grid Description"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:48
+#: vc-elements/mayosis-modal.php:95
+msgid "Background Color"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:54
+#: vc-elements/mayosis_vc_extend.php:235
+msgid "Background Image"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:59
+#: kirki/controls/php/class-kirki-control-base.php:131
+#: kirki/controls/php/class-kirki-control-repeater.php:409
+#: kirki/controls/php/class-kirki-control-repeater.php:414
+msgid "No File Selected"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:62
+#: kirki/controls/php/class-kirki-control-base.php:132
+#: kirki/controls/php/class-kirki-control-image.php:52
+#: kirki/controls/php/class-kirki-control-repeater.php:387
+#: kirki/controls/php/class-kirki-control-repeater.php:444
+#: kirki/field/class-kirki-field-image.php:44
+msgid "Remove"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:63
+#: kirki/controls/php/class-kirki-control-base.php:134
+msgid "Select File"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:70
+msgid "Background Repeat"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:72
+#: vc-elements/mayosis_vc_extend.php:260
+msgid "No Repeat"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:73
+msgid "Repeat All"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:74
+msgid "Repeat Horizontally"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:75
+msgid "Repeat Vertically"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:81
+msgid "Background Position"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:83
+#: kirki/controls/php/class-kirki-control-dimensions.php:115
+msgid "Left Top"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:84
+#: kirki/controls/php/class-kirki-control-dimensions.php:116
+msgid "Left Center"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:85
+#: kirki/controls/php/class-kirki-control-dimensions.php:117
+msgid "Left Bottom"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:86
+#: kirki/controls/php/class-kirki-control-dimensions.php:118
+msgid "Right Top"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:87
+#: kirki/controls/php/class-kirki-control-dimensions.php:119
+msgid "Right Center"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:88
+#: kirki/controls/php/class-kirki-control-dimensions.php:120
+msgid "Right Bottom"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:89
+#: kirki/controls/php/class-kirki-control-dimensions.php:121
+msgid "Center Top"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:90
+#: kirki/controls/php/class-kirki-control-dimensions.php:122
+msgid "Center Center"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:91
+#: kirki/controls/php/class-kirki-control-dimensions.php:123
+msgid "Center Bottom"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:97
+msgid "Background Size"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:100
+msgid "Cover"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:103
+msgid "Contain"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:106
+msgid "Auto"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:113
+msgid "Background Attachment"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:116
+msgid "Scroll"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-background.php:119
+msgid "Fixed"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-base.php:133
+#: kirki/controls/php/class-kirki-control-image.php:51
+#: kirki/field/class-kirki-field-image.php:43
+msgid "Default"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-base.php:135
+msgid "Standard Fonts"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-base.php:136
+msgid "Google Fonts"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-base.php:137
+msgid "CSS Defaults"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-base.php:138
+msgid "Default Browser Font-Family"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-code.php:37
+msgid ""
+"Please update your WordPress installation to a version newer than 4.9 to "
+"access the code control."
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimension.php:39
+#: kirki/controls/php/class-kirki-control-dimensions.php:140
+msgid "Invalid Value"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:124
+#: kirki/controls/php/class-kirki-control-typography.php:106
+#: vc-elements/mayosis_theme_button.php:104
+msgid "Font Size"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:125
+msgid "Font Weight"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:126
+#: kirki/controls/php/class-kirki-control-typography.php:114
+msgid "Line Height"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:127
+msgid "Font Style"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:128
+#: kirki/controls/php/class-kirki-control-typography.php:122
+msgid "Letter Spacing"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:129
+#: kirki/controls/php/class-kirki-control-typography.php:130
+msgid "Word Spacing"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:130
+#: kirki/field/class-kirki-field-spacing.php:33
+msgid "Top"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:131
+#: kirki/field/class-kirki-field-spacing.php:34
+msgid "Bottom"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:135
+msgid "Size"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:136
+#: kirki/controls/php/class-kirki-control-dimensions.php:139
+msgid "Height"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:137
+msgid "Spacing"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-dimensions.php:138
+msgid "Width"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-image.php:49
+#: kirki/controls/php/class-kirki-control-image.php:54
+#: kirki/field/class-kirki-field-image.php:41
+#: kirki/field/class-kirki-field-image.php:46
+msgid "Select image"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-image.php:50
+#: kirki/field/class-kirki-field-image.php:42
+msgid "Change image"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-image.php:53
+#: kirki/field/class-kirki-field-image.php:45
+msgid "No image selected"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-image.php:55
+#: kirki/field/class-kirki-field-image.php:47
+msgid "Choose image"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-repeater.php:78
+msgid "row"
+msgstr ""
+
+#. translators: %s represents the label of the row.
+#: kirki/controls/php/class-kirki-control-repeater.php:87
+#, php-format
+msgid "Add new %s"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-repeater.php:122
+msgid "Select a Page"
+msgstr ""
+
+#. translators: %s represents the number of rows we're limiting the repeater to allow.
+#: kirki/controls/php/class-kirki-control-repeater.php:228
+#, php-format
+msgid "Limit: %s rows"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-repeater.php:362
+msgid "Hex Value"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-repeater.php:377
+#: kirki/controls/php/class-kirki-control-repeater.php:382
+msgid "No Image Selected"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-repeater.php:388
+#: kirki/controls/php/class-kirki-control-repeater.php:392
+msgid "Add Image"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-repeater.php:388
+#: kirki/controls/php/class-kirki-control-repeater.php:390
+msgid "Change Image"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-repeater.php:420
+#: kirki/controls/php/class-kirki-control-repeater.php:424
+msgid "Add File"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-repeater.php:420
+#: kirki/controls/php/class-kirki-control-repeater.php:422
+msgid "Change File"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-slider.php:65
+msgid "Reset"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-switch.php:52
+#: kirki/field/class-kirki-field-switch.php:42
+msgid "On"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-switch.php:56
+#: kirki/field/class-kirki-field-switch.php:43
+msgid "Off"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:80
+msgid "Font Family"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:81
+#: kirki/controls/php/class-kirki-control-typography.php:86
+msgid "Select Font Family"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:85
+msgid "Backup Font"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:91
+msgid "Variant"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:98
+msgid "Download font-family to server instead of using the Google CDN."
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:138
+msgid "Text Align"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:143
+#: kirki/controls/php/class-kirki-control-typography.php:185
+#: kirki/controls/php/class-kirki-control-typography.php:201
+msgid "Inherit"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:167
+msgid "Justify"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:177
+msgid "Text Transform"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:181
+msgid "Capitalize"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:182
+msgid "Uppercase"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:183
+msgid "Lowercase"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:184
+#: kirki/controls/php/class-kirki-control-typography.php:200
+msgid "Initial"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:193
+msgid "Text Decoration"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:197
+msgid "Underline"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:198
+msgid "Overline"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:199
+msgid "Line-Through"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:209
+#: vc-elements/mayosis_theme_button.php:87
+#: vc-elements/mayosis_theme_dual_button.php:350
+msgid "Margin Top"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:217
+#: vc-elements/mayosis_theme_button.php:96
+#: vc-elements/mayosis_theme_dual_button.php:358
+msgid "Margin Bottom"
+msgstr ""
+
+#: kirki/controls/php/class-kirki-control-typography.php:225
+msgid "Color"
+msgstr ""
+
+#. translators: %s represents the field ID where the error occurs.
+#: kirki/core/class-kirki-field.php:248
+#, php-format
+msgid "Typo found in field %s - setting instead of settings."
+msgstr ""
+
+#. translators: %1$s represents the field ID where the error occurs. %2$s is the URL in the documentation site.
+#: kirki/core/class-kirki-field.php:257 kirki/core/class-kirki-field.php:267
+#, php-format
+msgid ""
+"Config not defined for field %1$s - See %2$s for details on how to properly "
+"add fields."
+msgstr ""
+
+#. translators: %1$s represents the field ID where the error occurs.
+#: kirki/core/class-kirki-field.php:407
+#, php-format
+msgid "Typo found in field %s - \"theme_mods\" vs \"theme_mod\""
+msgstr ""
+
+#. translators: %1$s represents the field ID where the error occurs.
+#: kirki/core/class-kirki-field.php:425
+#, php-format
+msgid "\"partial_refresh\" invalid entry in field %s"
+msgstr ""
+
+#. translators: The field ID where the error occurs.
+#: kirki/core/class-kirki-field.php:554 kirki/core/class-kirki-field.php:564
+#, php-format
+msgid ""
+"\"output\" invalid format in field %s. The \"output\" argument should be "
+"defined as an array of arrays."
+msgstr ""
+
+#: kirki/core/class-kirki-init.php:282
+msgid ""
+"We detected you're using Kirki_Init::get_variables(). Please use Kirki_Util::"
+"get_variables() instead."
+msgstr ""
+
+#: kirki/core/class-kirki.php:228
+msgid ""
+"Kirki fields should not be added on customize_register. Please add them "
+"directly, or on init."
+msgstr ""
+
+#: kirki/deprecated/functions.php:19
+#, php-format
+msgid "%1$s or %2$s"
+msgstr ""
+
+#: kirki/field/class-kirki-field-color.php:55
+msgid ""
+"Do not use \"alpha\" as an argument in color controls. Use "
+"\"choices[alpha]\" instead."
+msgstr ""
+
+#. translators: %1$s represents the field ID where the error occurs. %2%s is buttonset/image.
+#: kirki/field/class-kirki-field-radio.php:37
+#, php-format
+msgid ""
+"Error in field %1$s. The \"mode\" argument has been deprecated since Kirki "
+"v0.8. Use the \"radio-%2$s\" type instead."
+msgstr ""
+
+#: kirki/modules/custom-sections/sections/class-kirki-sections-nested-section.php:59
+msgid "Customizing"
+msgstr ""
+
+#. translators: The title.
+#: kirki/modules/custom-sections/sections/class-kirki-sections-nested-section.php:62
+#, php-format
+msgid "Customizing &#9656; %s"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:210
+#: kirki/modules/webfonts/class-kirki-fonts.php:211
+msgid "Ultra-Light 100"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:212
+msgid "Ultra-Light 100 Italic"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:213
+msgid "Light 200"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:214
+msgid "Light 200 Italic"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:215
+msgid "Book 300"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:216
+msgid "Book 300 Italic"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:217
+#: kirki/modules/webfonts/class-kirki-fonts.php:218
+msgid "Normal 400"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:219
+msgid "Normal 400 Italic"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:220
+msgid "Medium 500"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:221
+msgid "Medium 500 Italic"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:222
+#: kirki/modules/webfonts/class-kirki-fonts.php:223
+msgid "Semi-Bold 600"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:224
+msgid "Semi-Bold 600 Italic"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:225
+msgid "Bold 700"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:226
+msgid "Bold 700 Italic"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:227
+#: kirki/modules/webfonts/class-kirki-fonts.php:228
+msgid "Extra-Bold 800"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:229
+msgid "Extra-Bold 800 Italic"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:230
+#: kirki/modules/webfonts/class-kirki-fonts.php:231
+msgid "Ultra-Bold 900"
+msgstr ""
+
+#: kirki/modules/webfonts/class-kirki-fonts.php:232
+msgid "Ultra-Bold 900 Italic"
+msgstr ""
+
+#: kirki/upgrade-notifications.php:30
+msgid "Important Upgrade Notice:"
+msgstr ""
+
+#: library/edd-management.php:7
+msgid "Product"
+msgstr ""
+
+#: library/edd-management.php:8 vc-elements/mayosis_counter.php:121
+msgid "Products"
+msgstr ""
+
+#: library/edd-management.php:18
+msgid "Item"
+msgstr ""
+
+#: library/edd-management.php:19
+msgid "Items"
+msgstr ""
+
+#: library/edd-management.php:29
+msgid "Music"
+msgstr ""
+
+#: library/edd-management.php:30
+msgid "Musics"
+msgstr ""
+
+#: library/edd-management.php:41
+msgid "Video"
+msgstr ""
+
+#: library/edd-management.php:42
+msgid "Videos"
+msgstr ""
+
+#: library/edd-management.php:53
+msgid "Photo"
+msgstr ""
+
+#: library/edd-management.php:54
+msgid "Photos"
+msgstr ""
+
+#: mayosis-core.php:80
+msgid "Mayosis Digital Marketplace Theme Developed by"
+msgstr ""
+
+#: mayosis-core.php:80
+msgid "Teconce"
+msgstr ""
+
+#: mayosis-core.php:80
+msgid " For Digital Marketplace by wordpress"
+msgstr ""
+
+#: mayosis-core.php:248 mayosis-core.php:249
+#: vc-elements/mayosis_licence.php:119
+msgid "License"
+msgstr ""
+
+#: mayosis-core.php:250
+msgid "Add New"
+msgstr ""
+
+#: mayosis-core.php:251
+msgid "Add New License"
+msgstr ""
+
+#: mayosis-core.php:252
+msgid "Edit"
+msgstr ""
+
+#: mayosis-core.php:253
+msgid "Edit License"
+msgstr ""
+
+#: mayosis-core.php:254
+msgid "New License"
+msgstr ""
+
+#: mayosis-core.php:255 mayosis-core.php:256
+msgid "View License"
+msgstr ""
+
+#: mayosis-core.php:257
+msgid "Search Licenses"
+msgstr ""
+
+#: mayosis-core.php:258
+msgid "No Licenses found"
+msgstr ""
+
+#: mayosis-core.php:259
+msgid "No Licenses found in Trash"
+msgstr ""
+
+#: mayosis-core.php:260
+msgid "Parent License"
+msgstr ""
+
+#: mayosis-core.php:279
+msgctxt "taxonomy general name"
+msgid "License Group"
+msgstr ""
+
+#: mayosis-core.php:280
+msgctxt "taxonomy singular name"
+msgid "License Groups"
+msgstr ""
+
+#: mayosis-core.php:281
+msgid "Search Group"
+msgstr ""
+
+#: mayosis-core.php:282
+msgid "Popular Group"
+msgstr ""
+
+#: mayosis-core.php:283
+msgid "All License Group"
+msgstr ""
+
+#: mayosis-core.php:284
+msgid "Parent License Group"
+msgstr ""
+
+#: mayosis-core.php:285
+msgid "Parent License Group:"
+msgstr ""
+
+#: mayosis-core.php:286
+msgid "Edit License Group"
+msgstr ""
+
+#: mayosis-core.php:287
+msgid "Update License Group"
+msgstr ""
+
+#: mayosis-core.php:288
+msgid "Add New License Group"
+msgstr ""
+
+#: mayosis-core.php:289
+msgid "New Recording License Group"
+msgstr ""
+
+#: mayosis-core.php:583
+msgid "Views"
+msgstr ""
+
+#: mayosis-core.php:749
+msgid "Aperture"
+msgstr ""
+
+#: mayosis-core.php:757
+msgid "Camera"
+msgstr ""
+
+#: mayosis-core.php:765
+msgid "Created"
+msgstr ""
+
+#: mayosis-core.php:773
+msgid "Focal length"
+msgstr ""
+
+#: mayosis-core.php:780
+msgid "ISO"
+msgstr ""
+
+#: mayosis-core.php:787
+msgid "Shutter speed"
+msgstr ""
+
+#: mayosis-core.php:845
+msgid "Sort By:"
+msgstr ""
+
+#: mayosis-core.php:847 widgets/download-filters.php:66
+msgid "Newest First"
+msgstr ""
+
+#: mayosis-core.php:849 widgets/download-filters.php:68
+msgid "Oldest First"
+msgstr ""
+
+#: mayosis-core.php:851 widgets/download-filters.php:70
+msgid "Lowest to Hightest"
+msgstr ""
+
+#: mayosis-core.php:853 widgets/download-filters.php:72
+msgid "Hightest to Lowest"
+msgstr ""
+
+#: mayosis-core.php:855 widgets/download-filters.php:74
+msgid "Best Selling"
+msgstr ""
+
+#: mayosis-core.php:857 widgets/download-filters.php:76
+msgid "Title (A - Z)"
+msgstr ""
+
+#: mayosis-core.php:859 widgets/download-filters.php:78
+msgid "Title (Z - A)"
+msgstr ""
+
+#: metabox/edd.php:40
+msgid "Product Options"
+msgstr ""
+
+#: metabox/edd.php:138
+msgid "Custom Button"
+msgstr ""
+
+#: metabox/page-color.php:26
+msgid "Page Colors"
+msgstr ""
+
+#: metabox/page-color.php:58
+msgid "Breadcrumb Background"
+msgstr ""
+
+#: metabox/page-color.php:61
+msgid "Select primary color"
+msgstr ""
+
+#: metabox/page-color.php:66
+msgid "Page Background Color"
+msgstr ""
+
+#: metabox/page-color.php:69
+msgid "Select secondary color"
+msgstr ""
+
+#: metabox/page-color.php:74
+msgid "Breadcrumb Gradient Start Color"
+msgstr ""
+
+#: metabox/page-color.php:77
+msgid "Select gradient color A"
+msgstr ""
+
+#: metabox/page-color.php:82
+msgid "Breadcrumb Gradient End Color"
+msgstr ""
+
+#: metabox/page-color.php:85
+msgid "Select gradient color B"
+msgstr ""
+
+#: metabox/page.php:69
+msgid "Page Options"
+msgstr ""
+
+#: vc-elements/edd_category_grid.php:46
+msgid "EDD Category grid"
+msgstr ""
+
+#: vc-elements/edd_category_grid.php:47
+msgid "mayosis Easy Digital Download Category Grid"
+msgstr ""
+
+#: vc-elements/edd_category_grid.php:50 vc-elements/edd_featured.php:157
+#: vc-elements/edd_hero.php:86 vc-elements/edd_justified_grid.php:34
+#: vc-elements/edd_login.php:66 vc-elements/edd_masonary_grid.php:34
+#: vc-elements/edd_popular.php:151 vc-elements/edd_recent.php:34
+#: vc-elements/edd_recent_grid.php:95 vc-elements/edd_register.php:66
+#: vc-elements/mayosis-modal.php:58 vc-elements/mayosis_clients.php:112
+#: vc-elements/mayosis_contact.php:66 vc-elements/mayosis_counter.php:115
+#: vc-elements/mayosis_icon_box.php:116 vc-elements/mayosis_licence.php:123
+#: vc-elements/mayosis_object_parallax.php:337 vc-elements/mayosis_post.php:145
+#: vc-elements/mayosis_pricing_table.php:93 vc-elements/mayosis_search.php:67
+#: vc-elements/mayosis_slider.php:208 vc-elements/mayosis_subscribe.php:62
+#: vc-elements/mayosis_team.php:72 vc-elements/mayosis_testimonial.php:207
+#: vc-elements/mayosis_theme_button.php:64
+#: vc-elements/mayosis_theme_dual_button.php:116
+#: vc-elements/mayosis_theme_hero.php:86 vc-elements/search_term.php:75
+msgid "Mayosis Elements"
+msgstr ""
+
+#: vc-elements/edd_category_grid.php:56 vc-elements/edd_recent.php:40
+#: vc-elements/edd_recent_grid.php:101 vc-elements/search_term.php:81
+msgid "Recent Edd"
+msgstr ""
+
+#: vc-elements/edd_category_grid.php:57 vc-elements/edd_recent.php:41
+#: vc-elements/edd_recent_grid.php:102 vc-elements/search_term.php:82
+msgid "Title for Recent Section"
+msgstr ""
+
+#: vc-elements/edd_category_grid.php:62 vc-elements/edd_featured.php:209
+#: vc-elements/edd_hero.php:164 vc-elements/edd_login.php:91
+#: vc-elements/edd_popular.php:209 vc-elements/edd_recent_grid.php:124
+#: vc-elements/edd_register.php:91 vc-elements/mayosis-modal.php:105
+#: vc-elements/mayosis_clients.php:122 vc-elements/mayosis_contact.php:104
+#: vc-elements/mayosis_counter.php:186 vc-elements/mayosis_icon_box.php:274
+#: vc-elements/mayosis_licence.php:153
+#: vc-elements/mayosis_object_parallax.php:612 vc-elements/mayosis_post.php:189
+#: vc-elements/mayosis_pricing_table.php:275 vc-elements/mayosis_search.php:80
+#: vc-elements/mayosis_slider.php:368 vc-elements/mayosis_subscribe.php:124
+#: vc-elements/mayosis_team.php:144 vc-elements/mayosis_theme_button.php:197
+#: vc-elements/mayosis_theme_dual_button.php:435
+#: vc-elements/mayosis_theme_hero.php:199 vc-elements/search_term.php:102
+msgid "Css"
+msgstr ""
+
+#: vc-elements/edd_category_grid.php:64 vc-elements/edd_featured.php:211
+#: vc-elements/edd_hero.php:166 vc-elements/edd_login.php:93
+#: vc-elements/edd_popular.php:211 vc-elements/edd_recent_grid.php:126
+#: vc-elements/edd_register.php:93 vc-elements/mayosis-modal.php:107
+#: vc-elements/mayosis_clients.php:124 vc-elements/mayosis_contact.php:106
+#: vc-elements/mayosis_counter.php:188 vc-elements/mayosis_icon_box.php:276
+#: vc-elements/mayosis_licence.php:155
+#: vc-elements/mayosis_object_parallax.php:614 vc-elements/mayosis_post.php:191
+#: vc-elements/mayosis_pricing_table.php:277 vc-elements/mayosis_search.php:82
+#: vc-elements/mayosis_slider.php:370 vc-elements/mayosis_subscribe.php:126
+#: vc-elements/mayosis_team.php:146 vc-elements/mayosis_theme_button.php:199
+#: vc-elements/mayosis_theme_dual_button.php:437
+#: vc-elements/mayosis_theme_hero.php:201 vc-elements/search_term.php:104
+msgid "Design options"
+msgstr ""
+
+#: vc-elements/edd_featured.php:153
+msgid "EDD Featured"
+msgstr ""
+
+#: vc-elements/edd_featured.php:154
+msgid "mayosis Easy Digital Download Featured"
+msgstr ""
+
+#: vc-elements/edd_featured.php:163
+msgid "Featured Edd"
+msgstr ""
+
+#: vc-elements/edd_featured.php:164
+msgid "Title for Featured Section"
+msgstr ""
+
+#: vc-elements/edd_featured.php:169 vc-elements/edd_popular.php:163
+msgid "Amount of Edd Featured to display:"
+msgstr ""
+
+#: vc-elements/edd_featured.php:171 vc-elements/edd_featured.php:179
+#: vc-elements/edd_justified_grid.php:40 vc-elements/edd_masonary_grid.php:40
+#: vc-elements/edd_popular.php:165 vc-elements/edd_popular.php:173
+#: vc-elements/edd_recent.php:47 vc-elements/edd_recent.php:54
+#: vc-elements/edd_recent_grid.php:109 vc-elements/mayosis_licence.php:130
+#: vc-elements/mayosis_post.php:159 vc-elements/mayosis_post.php:167
+#: vc-elements/mayosis_testimonial.php:214
+msgid "Choose how many news posts you would like to display."
+msgstr ""
+
+#: vc-elements/edd_featured.php:172 vc-elements/edd_justified_grid.php:41
+#: vc-elements/edd_masonary_grid.php:41 vc-elements/edd_popular.php:166
+#: vc-elements/edd_recent.php:48 vc-elements/edd_recent_grid.php:110
+#: vc-elements/mayosis_licence.php:131
+msgid "3"
+msgstr ""
+
+#: vc-elements/edd_featured.php:177 vc-elements/edd_popular.php:171
+msgid "Amount of Edd Featured Column:"
+msgstr ""
+
+#: vc-elements/edd_featured.php:185 vc-elements/edd_popular.php:185
+msgid "Free Product Label(Download Count/ Free Label):"
+msgstr ""
+
+#: vc-elements/edd_featured.php:187 vc-elements/edd_popular.php:187
+msgid "Choose How You want to show Free Product Label"
+msgstr ""
+
+#: vc-elements/edd_featured.php:192 vc-elements/edd_popular.php:192
+#: vc-elements/edd_recent.php:134
+msgid "Custom text"
+msgstr ""
+
+#: vc-elements/edd_featured.php:195 vc-elements/edd_popular.php:195
+#: vc-elements/edd_recent.php:137
+msgid "Set Custom text i.e. FREE"
+msgstr ""
+
+#: vc-elements/edd_featured.php:200 vc-elements/edd_justified_grid.php:46
+#: vc-elements/edd_masonary_grid.php:46 vc-elements/edd_popular.php:200
+#: vc-elements/edd_recent.php:147 vc-elements/edd_recent_grid.php:115
+#: vc-elements/mayosis_licence.php:137 vc-elements/mayosis_post.php:173
+msgid "Post Order"
+msgstr ""
+
+#: vc-elements/edd_featured.php:202 vc-elements/edd_justified_grid.php:48
+#: vc-elements/edd_masonary_grid.php:48 vc-elements/edd_popular.php:202
+#: vc-elements/edd_recent.php:149 vc-elements/edd_recent_grid.php:117
+#: vc-elements/mayosis_licence.php:139 vc-elements/mayosis_post.php:175
+#: vc-elements/mayosis_testimonial.php:222
+msgid "Set the order in which news posts will be displayed."
+msgstr ""
+
+#: vc-elements/edd_hero.php:82
+msgid "EDD Hero Section"
+msgstr ""
+
+#: vc-elements/edd_hero.php:83
+msgid "mayosis Easy Digital Download Hero"
+msgstr ""
+
+#: vc-elements/edd_hero.php:92
+msgid "We Are The Secret Behind"
+msgstr ""
+
+#: vc-elements/edd_hero.php:93 vc-elements/mayosis_theme_hero.php:93
+msgid "Title Prefix Of Count"
+msgstr ""
+
+#: vc-elements/edd_hero.php:97 vc-elements/mayosis_counter.php:126
+#: vc-elements/mayosis_theme_hero.php:97
+msgid "Counter Type:"
+msgstr ""
+
+#: vc-elements/edd_hero.php:99 vc-elements/mayosis_counter.php:128
+#: vc-elements/mayosis_theme_hero.php:99
+msgid "Type of Counter"
+msgstr ""
+
+#: vc-elements/edd_hero.php:106 vc-elements/mayosis_counter.php:140
+#: vc-elements/mayosis_theme_hero.php:106
+msgid "2532"
+msgstr ""
+
+#: vc-elements/edd_hero.php:107 vc-elements/mayosis_counter.php:141
+#: vc-elements/mayosis_theme_hero.php:107
+msgid "Input Integear Value"
+msgstr ""
+
+#: vc-elements/edd_hero.php:114
+msgid "Graphic Designers"
+msgstr ""
+
+#: vc-elements/edd_hero.php:115 vc-elements/mayosis_theme_hero.php:115
+msgid "Title Suffix Of Count"
+msgstr ""
+
+#: vc-elements/edd_hero.php:120 vc-elements/mayosis_theme_hero.php:120
+msgid "Section Description"
+msgstr ""
+
+#: vc-elements/edd_hero.php:122
+msgid ""
+"High End Graphic Templates &amp; Resources such as Graphic Objects, Add Ons, "
+"PSD Templates, Photo Packs, Backgrounds, UI Kits and so on...\n"
+"    Browse, Download &amp; Use Our Resources To Design Faster &amp; Get Your "
+"Payment Quicker!"
+msgstr ""
+
+#: vc-elements/edd_hero.php:124 vc-elements/mayosis_theme_hero.php:124
+msgid "Description of the Section"
+msgstr ""
+
+#: vc-elements/edd_hero.php:128 vc-elements/mayosis_counter.php:145
+#: vc-elements/mayosis_team.php:108 vc-elements/mayosis_theme_hero.php:157
+msgid "Alignment of Text"
+msgstr ""
+
+#: vc-elements/edd_hero.php:130 vc-elements/mayosis_counter.php:147
+#: vc-elements/mayosis_team.php:110 vc-elements/mayosis_theme_hero.php:159
+msgid "Choose Alignement Of Text"
+msgstr ""
+
+#: vc-elements/edd_hero.php:138 vc-elements/mayosis_theme_hero.php:166
+msgid "Color Of Prefix & Suffix"
+msgstr ""
+
+#: vc-elements/edd_hero.php:147 vc-elements/mayosis_counter.php:167
+#: vc-elements/mayosis_theme_hero.php:175
+msgid "Color Of Count"
+msgstr ""
+
+#: vc-elements/edd_hero.php:156 vc-elements/mayosis_contact.php:94
+#: vc-elements/mayosis_slider.php:239 vc-elements/mayosis_subscribe.php:116
+#: vc-elements/mayosis_team.php:136 vc-elements/mayosis_theme_hero.php:183
+msgid "Color Of Content"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:16 vc-elements/edd_masonary_grid.php:16
+#: vc-elements/edd_recent.php:16
+msgid "Select Category"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:21 vc-elements/edd_masonary_grid.php:21
+#: vc-elements/edd_recent.php:21
+msgid " (ID: "
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:22 vc-elements/edd_masonary_grid.php:22
+#: vc-elements/edd_recent.php:22
+msgid ")"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:30
+msgid "EDD Justified Grid"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:31
+msgid "mayosis easy digital download justified product grid"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:38 vc-elements/edd_masonary_grid.php:38
+#: vc-elements/edd_recent.php:45 vc-elements/edd_recent_grid.php:107
+msgid "Amount of Edd Recent to display:"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:54 vc-elements/edd_masonary_grid.php:54
+#: vc-elements/edd_recent.php:158
+msgid "Show Product Category"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:56 vc-elements/edd_masonary_grid.php:56
+#: vc-elements/edd_recent.php:160
+msgid "Show Product By Category"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:62 vc-elements/edd_masonary_grid.php:62
+msgid "Show Product Category Filter"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:70 vc-elements/edd_masonary_grid.php:70
+#: vc-elements/edd_recent.php:167 vc-elements/mayosis_post.php:181
+msgid "Category"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:72 vc-elements/edd_masonary_grid.php:72
+#: vc-elements/edd_recent.php:169
+msgid "Select a category"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:82
+msgid "2.5"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:83
+msgid "Input integer value without px (ie. 5)"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:87 vc-elements/edd_masonary_grid.php:94
+#: vc-elements/edd_recent.php:176
+msgid "Custom Css"
+msgstr ""
+
+#: vc-elements/edd_justified_grid.php:89 vc-elements/edd_masonary_grid.php:96
+#: vc-elements/edd_recent.php:178
+msgid "Custom Css Name"
+msgstr ""
+
+#: vc-elements/edd_login.php:62
+msgid "EDD Login"
+msgstr ""
+
+#: vc-elements/edd_login.php:63
+msgid "mayosis Edd Login"
+msgstr ""
+
+#: vc-elements/edd_login.php:73 vc-elements/edd_register.php:73
+msgid "Upload Login Logo"
+msgstr ""
+
+#: vc-elements/edd_login.php:80
+msgid "Input After Login Redirect Url"
+msgstr ""
+
+#: vc-elements/edd_login.php:87
+msgid "Input Registration Url"
+msgstr ""
+
+#: vc-elements/edd_masonary_grid.php:30
+msgid "EDD Masonry Grid"
+msgstr ""
+
+#: vc-elements/edd_masonary_grid.php:31
+msgid "Mayosis easy digital download masonary product grid"
+msgstr ""
+
+#: vc-elements/edd_masonary_grid.php:80
+msgid "Product Column (Desktop Only)"
+msgstr ""
+
+#: vc-elements/edd_masonary_grid.php:82
+msgid "Choose Product Column"
+msgstr ""
+
+#: vc-elements/edd_masonary_grid.php:89
+msgid "Add Grid Gap Without Px"
+msgstr ""
+
+#: vc-elements/edd_popular.php:147
+msgid "EDD Popular"
+msgstr ""
+
+#: vc-elements/edd_popular.php:148
+msgid "mayosis Easy Digital Download Popular"
+msgstr ""
+
+#: vc-elements/edd_popular.php:157
+msgid "Popular Edd"
+msgstr ""
+
+#: vc-elements/edd_popular.php:158
+msgid "Title for Popular Section"
+msgstr ""
+
+#: vc-elements/edd_popular.php:180
+msgid "Add Ribbon Text"
+msgstr ""
+
+#: vc-elements/edd_recent.php:30
+msgid "EDD Recent"
+msgstr ""
+
+#: vc-elements/edd_recent.php:31
+msgid "mayosis easy digital download recent product grid"
+msgstr ""
+
+#: vc-elements/edd_recent.php:52
+msgid "Amount of Edd Recent Column:"
+msgstr ""
+
+#: vc-elements/edd_recent.php:66
+msgid "Choose Meta Option"
+msgstr ""
+
+#: vc-elements/edd_recent.php:68
+msgid "Product Meta Option"
+msgstr ""
+
+#: vc-elements/edd_recent.php:79
+msgid "Product Meta Option Type"
+msgstr ""
+
+#: vc-elements/edd_recent.php:100
+msgid "Product Pricing Option"
+msgstr ""
+
+#: vc-elements/edd_recent.php:118
+msgid "Free Product Pricing Option"
+msgstr ""
+
+#: vc-elements/edd_recent_grid.php:91
+msgid "EDD Recent Small Grid"
+msgstr ""
+
+#: vc-elements/edd_recent_grid.php:92
+msgid "mayosis Easy Digital Download Recent Product Grid"
+msgstr ""
+
+#: vc-elements/edd_register.php:62
+msgid "EDD Register"
+msgstr ""
+
+#: vc-elements/edd_register.php:63
+msgid "mayosis Edd Resgister"
+msgstr ""
+
+#: vc-elements/edd_register.php:80
+msgid "Input After Registration Redirect Url"
+msgstr ""
+
+#: vc-elements/edd_register.php:87
+msgid "Input Login Url"
+msgstr ""
+
+#: vc-elements/mayosis-modal.php:54
+msgid "Modal"
+msgstr ""
+
+#: vc-elements/mayosis-modal.php:55
+msgid "mayosis Modal"
+msgstr ""
+
+#: vc-elements/mayosis-modal.php:62
+msgid "Modal Id"
+msgstr ""
+
+#: vc-elements/mayosis-modal.php:73
+msgid "Modal Title"
+msgstr ""
+
+#: vc-elements/mayosis-modal.php:85
+msgid "Modal Content"
+msgstr ""
+
+#: vc-elements/mayosis_clients.php:110
+msgid "Client Logo Grid"
+msgstr ""
+
+#: vc-elements/mayosis_clients.php:113
+msgid "mayosis Client Logo Grid"
+msgstr ""
+
+#: vc-elements/mayosis_clients.php:133
+msgid "Digital Elements"
+msgstr ""
+
+#: vc-elements/mayosis_clients.php:142
+msgid "Alt attribute"
+msgstr ""
+
+#: vc-elements/mayosis_clients.php:144
+msgid "Enter a descriptive alt attribute - this is used for SEO purposes."
+msgstr ""
+
+#: vc-elements/mayosis_clients.php:150 vc-elements/mayosis_vc_extend.php:171
+msgid "Image"
+msgstr ""
+
+#: vc-elements/mayosis_clients.php:152
+msgid "Upload an image for your slide."
+msgstr ""
+
+#: vc-elements/mayosis_contact.php:62
+msgid "Contact Infobox"
+msgstr ""
+
+#: vc-elements/mayosis_contact.php:63
+msgid "mayosis Contact Box"
+msgstr ""
+
+#: vc-elements/mayosis_contact.php:72
+msgid "Address"
+msgstr ""
+
+#: vc-elements/mayosis_contact.php:73
+msgid "Input Address Widget Title"
+msgstr ""
+
+#: vc-elements/mayosis_contact.php:79
+msgid "37/5, Joarshahara,<br />Baridhara, <br />Dhaka-1229,Bangladesh"
+msgstr ""
+
+#: vc-elements/mayosis_contact.php:84
+msgid "Color Of Titles"
+msgstr ""
+
+#: vc-elements/mayosis_counter.php:111
+msgid "Counter"
+msgstr ""
+
+#: vc-elements/mayosis_counter.php:112
+msgid "mayosis Jquery Counter"
+msgstr ""
+
+#: vc-elements/mayosis_counter.php:122
+msgid "Title of Counter"
+msgstr ""
+
+#: vc-elements/mayosis_counter.php:157 vc-elements/mayosis_team.php:118
+msgid "Color Of title"
+msgstr ""
+
+#: vc-elements/mayosis_counter.php:177 vc-elements/mayosis_icon_box.php:266
+#: vc-elements/mayosis_theme_hero.php:191
+msgid "Custom Class"
+msgstr ""
+
+#: vc-elements/mayosis_counter.php:179 vc-elements/mayosis_icon_box.php:268
+#: vc-elements/mayosis_theme_hero.php:193
+msgid "Add a custom Class."
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:112
+msgid "Icon Box"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:113
+msgid "mayosis Text with icon"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:132
+#: vc-elements/mayosis_pricing_table.php:116
+#: vc-elements/mayosis_theme_button.php:162
+msgid "Select Your Icon"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:138
+msgid "Custom Image"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:141
+msgid "Upload Custom Icon"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:147 vc-elements/mayosis_icon_box.php:155
+#: vc-elements/mayosis_object_parallax.php:465
+#: vc-elements/mayosis_object_parallax.php:478
+#: vc-elements/mayosis_object_parallax.php:508
+#: vc-elements/mayosis_object_parallax.php:517
+#: vc-elements/mayosis_object_parallax.php:588
+msgid "Input without px"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:153
+msgid "Custom Icon Height"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:177
+msgid "Icon Background Color"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:194
+msgid "Alignment of Icon"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:196
+msgid "Choose Icon Align"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:205
+#: vc-elements/mayosis_pricing_table.php:165
+#: vc-elements/mayosis_subscribe.php:100
+msgid "Choose Title Align"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:214
+#: vc-elements/mayosis_pricing_table.php:174
+msgid "Choose Content Align"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:221
+msgid "Gradient Icon"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:223
+#: vc-elements/mayosis_theme_dual_button.php:122
+msgid "Choose Gradient or Not"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:232
+msgid "Choose Icon Position"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:240
+msgid "Icon Color Gradient One"
+msgstr ""
+
+#: vc-elements/mayosis_icon_box.php:250
+msgid "Icon Color Gradient Two"
+msgstr ""
+
+#: vc-elements/mayosis_licence.php:120
+msgid "mayosis License Block"
+msgstr ""
+
+#: vc-elements/mayosis_licence.php:128
+msgid "Amount of License Block to display:"
+msgstr ""
+
+#: vc-elements/mayosis_licence.php:144
+msgid "License Group"
+msgstr ""
+
+#: vc-elements/mayosis_licence.php:147
+msgid "Enter a comma separated list of License Group IDs / names"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:333
+msgid "Shape"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:334
+msgid "Mayosis Shape!"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:341
+msgid "Unique Id"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:343
+msgid "Input Unique Id(ex: circlex)"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:353
+msgid "Choose Shape Type"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:370
+msgid "Fill"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:372
+msgid "Choose Fill Color Type"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:383
+msgid "Shape Color"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:392
+#: vc-elements/mayosis_object_parallax.php:434
+msgid "Shape Gradient Color A"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:402
+#: vc-elements/mayosis_object_parallax.php:444
+msgid "Shape Gradient Color B"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:412
+msgid "Stroke"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:414
+msgid "Choose Stroke Color Type"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:425
+msgid "Stroke Color"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:453
+#: vc-elements/mayosis_object_parallax.php:455
+msgid "Gradient Angle"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:463
+msgid "Shape Width"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:486
+#: vc-elements/mayosis_object_parallax.php:542
+msgid "Input without Unit"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:496
+msgid "Choose Element Type"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:506
+msgid "X Axis Translation "
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:515
+msgid "Y Axis Translation "
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:540
+msgid "Value of Interaction "
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:550
+msgid "Choose Align"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:563
+#: vc-elements/mayosis_object_parallax.php:571
+#: vc-elements/mayosis_object_parallax.php:580
+msgid "Input with px"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:597
+msgid "Input without deg"
+msgstr ""
+
+#: vc-elements/mayosis_object_parallax.php:606
+msgid "Input inteager"
+msgstr ""
+
+#: vc-elements/mayosis_post.php:141 vc-elements/mayosis_post.php:151
+msgid "Recent Post"
+msgstr ""
+
+#: vc-elements/mayosis_post.php:142
+msgid "mayosis Recent Blog Post"
+msgstr ""
+
+#: vc-elements/mayosis_post.php:152
+msgid "Title for Recent Post Section"
+msgstr ""
+
+#: vc-elements/mayosis_post.php:157
+msgid "Amount of Recent Post to display:"
+msgstr ""
+
+#: vc-elements/mayosis_post.php:165
+msgid "Amount of Recent Post Column:"
+msgstr ""
+
+#: vc-elements/mayosis_post.php:184
+msgid "Enter a comma separated list of category IDs / names"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:89
+msgid "Pricing Table"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:90
+msgid "mayosis Pricing Table"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:185
+msgid ""
+"<ul>\n"
+"\t\t\t<li><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i>List "
+"Item</li>\n"
+"\t\t\t<li><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i>List "
+"Item</li>\n"
+"\t\t\t<li><i class=\"fa fa-check-circle\" aria-hidden=\"true\"></i>List "
+"Item</li>\n"
+"\t\t\t<li><i class=\"fa fa-times-circle\" aria-hidden=\"true\"></i>List "
+"Item</li>\n"
+"\t\t\t<li><i class=\"fa fa-times-circle\" aria-hidden=\"true\"></i>List "
+"Item</li>\n"
+"\t\t\t<li><i class=\"fa fa-times-circle\" aria-hidden=\"true\"></i>List "
+"Item</li>\n"
+"\t\t\t</ul>"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:215
+msgid "Label Show/Hide"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:217
+msgid "Show or Hide Label"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:231
+msgid "Label Bg Color"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:241
+msgid "Show/Hide Save Label"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:243
+msgid "Show Hide Save Label"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:257
+msgid "Save Perchantage/Ammount"
+msgstr ""
+
+#: vc-elements/mayosis_pricing_table.php:265
+msgid "Save Label Bg Color"
+msgstr ""
+
+#: vc-elements/mayosis_search.php:63
+msgid "Search Box"
+msgstr ""
+
+#: vc-elements/mayosis_search.php:64
+msgid "mayosis Search Box"
+msgstr ""
+
+#: vc-elements/mayosis_search.php:72
+msgid "Search Placeholder Text"
+msgstr ""
+
+#: vc-elements/mayosis_search.php:74
+msgid "Search Now"
+msgstr ""
+
+#: vc-elements/mayosis_search.php:75
+msgid "The Search Placeholder Text"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:204
+msgid "Slider"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:205
+msgid "mayosis Slider"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:214
+msgid "Amount of Slider to display:"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:216
+msgid "Choose how many news slider you would like to display."
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:222
+msgid "Slider Order"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:224
+msgid "Set the order in which slider will be displayed."
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:230 vc-elements/mayosis_testimonial.php:235
+msgid "Carousel Arrow"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:232 vc-elements/mayosis_testimonial.php:237
+msgid "Set Carousel Arrow Display or Not."
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:256
+msgid "Font A Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:274
+msgid "Font B Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:282
+msgid "Font A Hover Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:291
+msgid "Font B Hover Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:299
+msgid "Button A Background Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:308
+msgid "Button B Background Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:316
+msgid "Button A Border Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:325
+msgid "Button B Border Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:333
+msgid "Button A Hover Background Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:342
+msgid "Button B Hover Background Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:351
+msgid "Button A Hover Border Color"
+msgstr ""
+
+#: vc-elements/mayosis_slider.php:360
+msgid "Button B Hover Border Color"
+msgstr ""
+
+#: vc-elements/mayosis_subscribe.php:59
+msgid "mayosis Subscribe"
+msgstr ""
+
+#: vc-elements/mayosis_subscribe.php:109
+msgid "Subscribe Description & Shortcode"
+msgstr ""
+
+#: vc-elements/mayosis_subscribe.php:111
+msgid "Subscribe Description With any types od Shortcode"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:68
+msgid "Team Member"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:69
+msgid "mayosis Team Member"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:78
+msgid "S.R Shemul"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:79
+msgid "Name of team member"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:86
+msgid "Founder, CEO & Lead Designer"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:87
+msgid "Designation of team member"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:92
+msgid "Member Image"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:94
+msgid "Upload member Photo"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:102
+msgid ""
+"The laziest person of the team. But loves to travel. When he sees in nature, "
+"he starts photoshopping in his head. Lives & breathes in Pixelll"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:103
+msgid "Member Short Details"
+msgstr ""
+
+#: vc-elements/mayosis_team.php:127
+msgid "Color Of Designation"
+msgstr ""
+
+#: vc-elements/mayosis_testimonial.php:180
+msgid "No Testimonial were found."
+msgstr ""
+
+#: vc-elements/mayosis_testimonial.php:203
+msgid "Testimonial"
+msgstr ""
+
+#: vc-elements/mayosis_testimonial.php:204
+msgid "mayosis Testimonial"
+msgstr ""
+
+#: vc-elements/mayosis_testimonial.php:220
+msgid "Testimonial Order"
+msgstr ""
+
+#: vc-elements/mayosis_testimonial.php:229
+msgid "Set how testimonial will be displayed."
+msgstr ""
+
+#: vc-elements/mayosis_testimonial.php:243
+msgid "Thumbnail Show/Hide"
+msgstr ""
+
+#: vc-elements/mayosis_testimonial.php:245
+msgid "Set Carousel Thumbnail Display Type."
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:60
+msgid "Single Button"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:61
+msgid "mayosis Single Button"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:78
+msgid "Link"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:89
+#: vc-elements/mayosis_theme_button.php:98
+#: vc-elements/mayosis_theme_button.php:106
+#: vc-elements/mayosis_theme_button.php:115
+#: vc-elements/mayosis_theme_button.php:133
+#: vc-elements/mayosis_theme_dual_button.php:352
+#: vc-elements/mayosis_theme_dual_button.php:360
+msgid "Enter a positive integer value."
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:113
+msgid "Border Width"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:121
+msgid "Style Of Button "
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:123
+msgid "Choose Button Color Style(Custom Color Set From Theme Option)"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:131
+msgid "Border Radius"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:140
+msgid "Target Window"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:142
+msgid "Set the target window for the button."
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:149
+msgid "Show Video Popup Button"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:151
+msgid "Show Video Popup On"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:178
+#: vc-elements/mayosis_theme_dual_button.php:407
+msgid "Alignment of Button"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:180
+#: vc-elements/mayosis_theme_dual_button.php:409
+msgid "Choose Button Align"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:189
+msgid "Class"
+msgstr ""
+
+#: vc-elements/mayosis_theme_button.php:191
+#: vc-elements/mayosis_theme_dual_button.php:421
+#: vc-elements/mayosis_theme_dual_button.php:429
+msgid "Apply a custom CSS class if required."
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:112
+msgid "Dual Button"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:113
+msgid "mayosis Dual Button"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:120
+msgid "Show Button Separator"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:133
+msgid "Button Separator"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:149
+msgid "Button A Text"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:159
+msgid "Button A Link"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:169
+msgid "Btn A Icon"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:171
+msgid "Accepts a FontAwesome for Btn A value. (Ex. fa fa-angle-right)"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:177
+msgid "Style Of Button A "
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:179
+msgid "Choose Button A Color Style"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:190
+msgid "Show Video Popup Button One"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:192
+msgid "Show Video Popup On Button A"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:201
+#: vc-elements/mayosis_theme_dual_button.php:302
+msgid "Custom Background Color"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:217
+#: vc-elements/mayosis_theme_dual_button.php:318
+msgid "Custom Border Color"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:233
+#: vc-elements/mayosis_theme_dual_button.php:334
+msgid "Custom Text Color"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:249
+msgid "Button B Text"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:259
+msgid "Button B Link"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:269
+msgid "Btn B Icon"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:271
+msgid "Accepts a FontAwesome for Btn B value. (Ex. fa fa-angle-right)"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:277
+msgid "Style Of Button B "
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:279
+msgid "Choose Button B Color Style"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:290
+msgid "Show Video Popup Button Two"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:292
+msgid "Show Video Popup On Button B"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:366
+msgid "Btn A Target Window"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:368
+msgid "Set the Btn A window for the button."
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:377
+msgid "Btn B Target Window"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:379
+msgid "Set the Btn B window for the button."
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:419
+msgid "Class of Button A"
+msgstr ""
+
+#: vc-elements/mayosis_theme_dual_button.php:427
+msgid "Class of Button B"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:82
+msgid "Theme Hero Section"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:83
+msgid "mayosis Theme Title Section"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:92
+msgid "Sell Your Arts, Templates, Ebooks,"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:114
+msgid "Courses or Any Digital Downloads"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:122
+msgid ""
+"Sell & manage your digital products with Beautiful, Feature Rich mayosis "
+"Theme.\n"
+"Build and Earn with your online store with lots of cool and exclusive "
+"features bundled with mayosis!"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:130
+msgid "Choose Heading Type"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:139
+msgid "Heading Font Size"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:141
+msgid "Add Heading Font Size ie(34px)"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:148
+msgid "Heading Line Height"
+msgstr ""
+
+#: vc-elements/mayosis_theme_hero.php:150
+msgid "Add Heading Line Height ie(44px)"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:80
+msgid "Section Layout"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:83
+msgid "Boxed"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:84
+msgid "Full width"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:85
+msgid "Post/Product Grid"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:87
+msgid "Choose the type of layout. In most of case you should use boxed layout."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:94
+msgid "Equal height columns"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:96
+msgid "Equal Height"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:97
+msgid ""
+"Check this option if you want to have all children columns at the same height"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:104
+msgid "Text alignment"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:107
+msgid "Choose Alignment"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:112
+msgid "Choose the text alignment"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:118
+msgid "Top Section Decoration"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:122 vc-elements/mayosis_vc_extend.php:145
+msgid "Slope Left"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:123 vc-elements/mayosis_vc_extend.php:146
+msgid "Slope Right"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:124 vc-elements/mayosis_vc_extend.php:147
+msgid "Rounded Outer"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:125 vc-elements/mayosis_vc_extend.php:148
+msgid "Rounded Inner"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:126 vc-elements/mayosis_vc_extend.php:149
+msgid "Triangle Outer"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:127 vc-elements/mayosis_vc_extend.php:150
+msgid "Triangle Inner"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:130 vc-elements/mayosis_vc_extend.php:153
+msgid "Clouds"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:131 vc-elements/mayosis_vc_extend.php:154
+msgid "circle"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:132 vc-elements/mayosis_vc_extend.php:155
+msgid "Triangle Pattern"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:133 vc-elements/mayosis_vc_extend.php:156
+msgid "Half Circle Pattern"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:135
+msgid ""
+"If you want to style the section separator instead of a straight line, "
+"choose a decoration for the top section."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:141
+msgid "Bottom Section Decoration"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:158
+msgid ""
+"If you want to style the section separator instead of a straight line, "
+"choose a decoration for the bottom section."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:164 vc-elements/mayosis_vc_extend.php:180
+#: vc-elements/mayosis_vc_extend.php:190 vc-elements/mayosis_vc_extend.php:201
+#: vc-elements/mayosis_vc_extend.php:214 vc-elements/mayosis_vc_extend.php:224
+#: vc-elements/mayosis_vc_extend.php:234 vc-elements/mayosis_vc_extend.php:256
+#: vc-elements/mayosis_vc_extend.php:269 vc-elements/mayosis_vc_extend.php:279
+#: vc-elements/mayosis_vc_extend.php:290 vc-elements/mayosis_vc_extend.php:301
+#: vc-elements/mayosis_vc_extend.php:311 vc-elements/mayosis_vc_extend.php:321
+#: vc-elements/mayosis_vc_extend.php:332
+msgid "mayosis options"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:165
+msgid "Background Style"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:169
+msgid "Single Color"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:172
+msgid "Side Image"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:173
+msgid "YouTube Video"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:175
+msgid "Select what kind of background would you like to set for this row."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:181
+msgid "Single background Color"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:184
+msgid "Select Single Color."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:191
+msgid "Gradient background Color A"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:194
+msgid "Select Gradient Color A."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:202
+msgid "Gradient background Color B"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:205
+msgid "Select Gradient Color B."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:227
+msgid "parallax"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:228
+msgid "Check this box "
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:237
+msgid "Upload or select background image from media gallery."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:243
+msgid "Layout options"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:244
+msgid "Side Image Position"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:250
+msgid "Choose the image position in the row (left or right position)"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:257
+msgid "Background Image Repeat"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:261
+msgid "Repeat"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:263
+msgid "Options to control repeatation of the background image."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:270
+msgid "Background Blur"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:272
+msgid "blur"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:273
+msgid "Check this option if you want to apply a blur effect on your image."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:280
+msgid "Placehoder Image for the video"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:283
+msgid ""
+"Select the placehoder image that will be display while video is loading."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:291
+msgid "Youtube URL"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:294
+msgid ""
+"Enter YouTube url. Example - YouTube (https://www.youtube.com/watch?v=LjCzPp-"
+"MK48) "
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:302
+msgid "Background Overlay"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:304
+msgid "overlay"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:305
+msgid "Hide or Show overlay on background images."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:312
+msgid "Overlay Background Pattern"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:315
+msgid "Upload or select background pattern overlay from media gallery."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:322
+msgid "Overlay Color"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:325
+msgid "Select color for background overlay."
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:333
+msgid "Overlay Opacity"
+msgstr ""
+
+#: vc-elements/mayosis_vc_extend.php:335
+msgid "Set an opacity to the background overlay."
+msgstr ""
+
+#: vc-elements/search_term.php:71
+msgid "Search Terms"
+msgstr ""
+
+#: vc-elements/search_term.php:72
+msgid "mayosis Search Terms"
+msgstr ""
+
+#: vc-elements/search_term.php:87
+msgid "Search Term Style"
+msgstr ""
+
+#: vc-elements/search_term.php:89
+msgid "Set search term style"
+msgstr ""
+
+#: widgets/about-us.php:11
+msgid "Mayosis About"
+msgstr ""
+
+#: widgets/about-us.php:14
+msgid "Your site&#8217;s About."
+msgstr ""
+
+#: widgets/about-us.php:92
+msgid "About logo:"
+msgstr ""
+
+#: widgets/about-us.php:104
+msgid "About:"
+msgstr ""
+
+#: widgets/blog_tag.php:15 widgets/product_tag.php:15 widgets/subscribe.php:15
+msgid "Displays download item features. Used in Single Download Sidebar"
+msgstr ""
+
+#: widgets/blog_tag.php:17
+msgid "Mayosis Blog Post Tags"
+msgstr ""
+
+#: widgets/blog_tag.php:51
+msgid "Blog Tags"
+msgstr ""
+
+#: widgets/counter.php:14
+msgid "Display Counter about Product,Total Download, Custom Etc"
+msgstr ""
+
+#: widgets/counter.php:126 widgets/digital-recent-product.php:124
+#: widgets/post-categories.php:100 widgets/product-details.php:126
+#: widgets/product-features.php:49 widgets/product-release-info.php:54
+#: widgets/recent-searches-widget.php:144 widgets/recent_post.php:45
+#: widgets/search_widget.php:53 widgets/social_widget.php:160
+msgid "Title:"
+msgstr ""
+
+#: widgets/digital-recent-product.php:11
+msgid "Mayosis Recent Products"
+msgstr ""
+
+#: widgets/digital-recent-product.php:14
+msgid "Your site&#8217;s most recent Products."
+msgstr ""
+
+#: widgets/digital-recent-product.php:25
+msgid "Digital Recent Products"
+msgstr ""
+
+#: widgets/digital-recent-product.php:127
+msgid "Number of posts to show:"
+msgstr ""
+
+#: widgets/download-filters.php:13
+msgid "Displays download item filters. Used in Download Category Sidebar"
+msgstr ""
+
+#: widgets/download-filters.php:15
+msgid "Mayosis download Filters"
+msgstr ""
+
+#: widgets/downloads-author.php:15
+msgid "Display Donwload Author Information"
+msgstr ""
+
+#: widgets/downloads-author.php:17
+msgid "Mayosis Download Author widget"
+msgstr ""
+
+#: widgets/downloads-author.php:48
+msgid "Network"
+msgstr ""
+
+#: widgets/downloads-author.php:98
+msgid "Download Author"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:13
+msgid "Mayosis Instagram"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:16
+msgid "Displays your latest Instagram photos"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:99
+msgid "Instagram"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:102
+msgid "Follow Me!"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:114
+msgid "@username or #tag"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:115
+msgid "Number of photos"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:116
+msgid "Photo size"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:118
+msgid "Thumbnail"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:119
+msgid "Small"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:120
+msgid "Large"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:124
+msgid "Open links in"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:126
+msgid "Current window (_self)"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:127
+msgid "New window (_blank)"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:130
+msgid "Link text"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:166
+msgid "Unable to communicate with Instagram."
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:170
+msgid "Instagram did not return a 200."
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:178
+#: widgets/mayosis-instagram-widget.php:186
+#: widgets/mayosis-instagram-widget.php:190
+msgid "Instagram has returned invalid data."
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:206
+#: widgets/mayosis-instagram-widget.php:231
+msgid "Instagram Image"
+msgstr ""
+
+#: widgets/mayosis-instagram-widget.php:266
+msgid ""
+"Instagram did not return any images.(May be its a Private Profile, Disable "
+"Private Option)"
+msgstr ""
+
+#: widgets/post-categories.php:11
+msgid "Mayosis Post Category"
+msgstr ""
+
+#: widgets/post-categories.php:14
+msgid "Your site&#8217;s Post Category."
+msgstr ""
+
+#: widgets/post-categories.php:24
+msgid "Categories"
+msgstr ""
+
+#: widgets/post-categories.php:106
+msgid "Show post counts"
+msgstr ""
+
+#: widgets/post-tab.php:21
+msgid "Popular"
+msgstr ""
+
+#: widgets/post-tab.php:22
+msgid "Recent"
+msgstr ""
+
+#: widgets/post-tab.php:53 widgets/recent_post.php:48
+msgid "Number of items to show :"
+msgstr ""
+
+#: widgets/post-tab.php:57
+msgid "Popular order :"
+msgstr ""
+
+#: widgets/product-details.php:20
+#, php-format
+msgid "Mayosis %s Details"
+msgstr ""
+
+#: widgets/product-details.php:22
+#, php-format
+msgid "Display the details of a specific %s"
+msgstr ""
+
+#: widgets/product-details.php:115
+#, php-format
+msgid "%s Details"
+msgstr ""
+
+#: widgets/product-details.php:139
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: widgets/product-details.php:141
+msgid "Use current"
+msgstr ""
+
+#: widgets/product-details.php:151
+msgid "Show Add to Cart Button"
+msgstr ""
+
+#: widgets/product-details.php:156
+msgid "Show Cart Button on Free Products"
+msgstr ""
+
+#: widgets/product-details.php:159
+msgid "Add Custom Text (when the price is 0) (leave blank to show 0 price) :"
+msgstr ""
+
+#: widgets/product-release-info.php:25
+msgid "Released"
+msgstr ""
+
+#: widgets/product-release-info.php:30
+msgid "Last Updated"
+msgstr ""
+
+#: widgets/product-release-info.php:37
+msgid "Version"
+msgstr ""
+
+#: widgets/product_tag.php:17
+msgid "Mayosis Product Tag Widget"
+msgstr ""
+
+#: widgets/product_tag.php:33
+msgctxt ""
+msgid " "
+msgstr ""
+
+#: widgets/product_tag.php:52
+msgid "Product Tags"
+msgstr ""
+
+#: widgets/recent-searches-widget.php:68
+msgid "Shows recent searches"
+msgstr ""
+
+#: widgets/recent-searches-widget.php:70 widgets/recent-searches-widget.php:72
+msgid "Mayosis Recent Searches"
+msgstr ""
+
+#: widgets/recent-searches-widget.php:121
+msgid "No searches yet"
+msgstr ""
+
+#: widgets/recent-searches-widget.php:145
+msgid "Max searches:"
+msgstr ""
+
+#: widgets/recent-searches-widget.php:146
+msgid "Add <code>rel=\"nofollow\"</code> to links:"
+msgstr ""
+
+#: widgets/recent_post.php:14
+msgid "Recent Posts"
+msgstr ""
+
+#: widgets/search_widget.php:14
+msgid "Your site&#8217;s Search."
+msgstr ""
+
+#: widgets/social_widget.php:11
+msgid "Mayosis Social"
+msgstr ""
+
+#: widgets/social_widget.php:14
+msgid "Your site&#8217;s Social Profiles."
+msgstr ""
+
+#: widgets/social_widget.php:163
+msgid "Facebook:"
+msgstr ""
+
+#: widgets/social_widget.php:166
+msgid "Twitter:"
+msgstr ""
+
+#: widgets/social_widget.php:169
+msgid "Google:"
+msgstr ""
+
+#: widgets/social_widget.php:172
+msgid "Pinterest:"
+msgstr ""
+
+#: widgets/social_widget.php:175
+msgid "Behance:"
+msgstr ""
+
+#: widgets/social_widget.php:178
+msgid "Youtube:"
+msgstr ""
+
+#: widgets/social_widget.php:181
+msgid "Target(Input self or blank):"
+msgstr ""
+
+#: widgets/social_widget.php:184
+msgid "Align(Input left,right or center):"
+msgstr ""
+
+#: widgets/social_widget.php:188
+msgid "Show Icon Without Background"
+msgstr ""
+
+#: widgets/subscribe.php:17
+msgid "Mayosis Subscribe  widget"
+msgstr ""
+
+#: widgets/subscribe.php:60
+msgid "Add Any Type Subscribe Shortcode"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Mayosis Core"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://teconce.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "This is core plugin for mayosis digital marketplace theme"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Teconce Team"
+msgstr ""

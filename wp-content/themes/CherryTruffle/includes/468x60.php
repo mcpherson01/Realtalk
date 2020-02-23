@@ -1,0 +1,1 @@
+<a href="<?php echo esc_url(get_option('cherrytruffle_468_url')); ?>"><img src="<?php echo esc_attr(get_option('cherrytruffle_468_image')); ?>" alt="banner ad" class="foursix" /></a>

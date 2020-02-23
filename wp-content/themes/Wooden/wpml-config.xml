@@ -1,0 +1,9 @@
+<wpml-config>
+	<admin-texts>
+		<key name="wooden_date_format"/>
+		<key name="wooden_about_us"/>
+		<key name="wooden_seo_home_titletext"/>
+		<key name="wooden_seo_home_descriptiontext"/>
+		<key name="wooden_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

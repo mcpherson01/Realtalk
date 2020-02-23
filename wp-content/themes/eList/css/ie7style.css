@@ -1,0 +1,5 @@
+a { cursor: pointer; }
+.l-category { margin-right: 20px; }
+p#copyright { float: none; text-align: right; }
+#controllers { padding-left: 100px; width: 219px; }
+	#controllers a { float: left; }

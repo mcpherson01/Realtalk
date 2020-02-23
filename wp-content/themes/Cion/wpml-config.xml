@@ -1,0 +1,9 @@
+<wpml-config>
+	<admin-texts>
+		<key name="cion_date_format"/>
+		<key name="cion_about"/>
+		<key name="cion_seo_home_titletext"/>
+		<key name="cion_seo_home_descriptiontext"/>
+		<key name="cion_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

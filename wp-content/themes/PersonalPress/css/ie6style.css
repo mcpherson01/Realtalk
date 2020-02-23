@@ -1,0 +1,10 @@
+span.sf-sub-indicator { padding-left: 2px; }
+div#header { z-index: 2; position: relative; }
+div#featured-slider { z-index: 1; position: relative; }
+
+span.top-arrow { display: none; }
+a.readmore span { display: inline-block; }
+
+div.thumb a:hover, a.readmore:hover { cursor: pointer; }
+span.right-sep { padding-bottom: 20px; }
+.post-meta-top { margin-bottom: -6px; }

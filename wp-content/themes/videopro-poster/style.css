@@ -1,0 +1,8 @@
+/*
+Theme Name: videopro-poster
+Template: videopro
+Author: CactusThemes
+Description: VideoPro Child Theme - Poster-size thumbnail
+Version: 1.0.1
+*/
+.slider-toolbar-carousel .cactus-listing-config.style-2 .cactus-post-item .picture-content > a {padding-top:151%;}

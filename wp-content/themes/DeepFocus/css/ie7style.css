@@ -1,0 +1,14 @@
+span.sf-sub-indicator {padding-left: 2px;}
+
+#featured span#left-shadow, #featured span#right-shadow { z-index: 5; }
+#slides .description .outer-content  { position: relative; z-index: 100; }
+#blog-content, #blog-wrapper { position: relative; }
+
+#top { z-index: 5;  position: relative; }
+#content-full { z-index: 4; position: relative; }
+
+#home-top, #featured span#left-shadow, #featured span#right-shadow   { display: none; }
+
+.item-image { height: 142px; }
+
+p.post-meta { background: url(../images/postinfo-bg.png) !important; }

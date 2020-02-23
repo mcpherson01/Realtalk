@@ -1,0 +1,1 @@
+<a href="http://www.elegantthemes.com/gallery/puretype/readme.html" target="_blank"><?php esc_html_e( 'Read PureType Documentation', $themename ); ?></a>

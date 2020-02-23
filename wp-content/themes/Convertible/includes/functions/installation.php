@@ -1,0 +1,1 @@
+<a href="http://www.elegantthemes.com/gallery/convertible/readme.html" target="_blank"><?php esc_html_e( 'Read Convertible Documentation', $themename ); ?></a>

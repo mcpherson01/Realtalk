@@ -1,0 +1,10 @@
+<wpml-config>
+	<admin-texts>
+		<key name="evolution_date_format"/>
+		<key name="evolution_quote_one"/>
+		<key name="evolution_homework_desc"/>
+		<key name="evolution_seo_home_titletext"/>
+		<key name="evolution_seo_home_descriptiontext"/>
+		<key name="evolution_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

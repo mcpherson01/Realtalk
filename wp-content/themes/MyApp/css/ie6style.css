@@ -1,0 +1,17 @@
+span.sf-sub-indicator { padding-left: 2px; }
+#top-shadow, #bottom-shadow, span.image-overlay, span.image-overlay2 { display: none; }
+
+div#header-top { z-index: 2; position: relative; }
+div#header { z-index: 1; position: relative; }
+
+#side-tabs ul li a:hover { cursor: pointer; }
+#breadcrumbs #search-form #searchinput { padding-top: 8px; }
+
+#main-area a.readmore span, .reply-container a { display: inline-block; cursor: pointer; }
+body#home #content .container { background: none; }
+
+#main-area a.readmore, #main-area a.readmore span { background: none; color: #000000; }
+#main-area a.readmore span { padding-right: 10px; }
+
+.pagination .alignleft, .pagination .alignright { float: none; margin: 0px; }
+.reply-container { padding-right: 16px; margin-right:-10px; }

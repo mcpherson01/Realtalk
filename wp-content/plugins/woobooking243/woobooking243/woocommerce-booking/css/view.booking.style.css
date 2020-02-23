@@ -1,0 +1,8 @@
+/* Decrease the width of the customer name column*/
+table.wp-list-table .column-name {
+	width:12%;
+}
+/* Increase the width of the product name column */
+table.wp-list-table .column-product_name {
+	width:22%;
+}

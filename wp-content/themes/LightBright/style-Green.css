@@ -1,0 +1,41 @@
+body { background: #0b411a url("images/green/bg.png") no-repeat center top; }
+	p#slogan { color:#072e0c; text-shadow:1px 1px 1px #187133; }
+	ul.nav li { background:url("images/green/menu-link-bg.png") no-repeat scroll right bottom transparent; }
+		ul.nav li a { background:url("images/green/menu-link-bg.png") no-repeat scroll 0 0 transparent; }
+			ul.nav li a:hover, ul.nav > li.current_page_item > a { color:#d3af32; }
+			ul.nav ul { background:url("images/green/dropdown-bg.png") repeat-y scroll 0 0 transparent; border:1px solid #05290f; }
+				ul.nav ul li { background:url("images/green/menu-link-separator.png") no-repeat scroll left bottom transparent; }
+					ul.nav ul li a { background:url("images/green/menu-bullet.png") no-repeat scroll left 16px transparent; }
+
+			span.top-arrow { background:url("images/green/top-arrow.png") no-repeat scroll 0 0 transparent; }
+
+	.share .share_button { background:url("images/green/share-top-bg.png") no-repeat scroll 0 0 transparent; }
+	.share a.arrow { background:url("images/green/share-down-button.png") no-repeat scroll 0 0 transparent; }
+	.share .open a.arrow { background:url("images/green/share-up-button.png") no-repeat scroll 0 0 transparent; }
+	.share .buttons { background:url("images/green/share-bg.png") repeat-y scroll 0 0 transparent; }
+		.share .buttons a span.tooltip { border:1px solid #175128; background: rgba(3, 42, 14, 0.7); }
+			.share .buttons a span.tooltip span.left-arrow { background:url("images/green/tooltip-left-arrow.png") no-repeat scroll 0 0 transparent; }
+
+	#sidebar .search { background:url("images/green/search-bg.png") no-repeat scroll 0 0 transparent; }
+		#sidebar .search input#searchinput { color:#1f5123; }
+		.widget-content { background:url("images/green/widget-bg.png") no-repeat scroll 0 0 transparent; }
+		#sidebar ul li { background:url("images/green/sidebar-separator.png") no-repeat scroll left bottom transparent; }
+			#sidebar ul li a, #sidebar a { color: #468146; background:url("images/green/bullet.png") no-repeat scroll 11px 14px transparent; }
+			#sidebar ul li a:hover { background-color:#0e481f; color:#4ca14c; }
+
+	.wp-pagenavi span.current, .wp-pagenavi span.extend, .wp-pagenavi a:active, .wp-pagenavi a:hover, .wp-pagenavi a, .wp-pagenavi a:link, .wp-pagenavi a:visited { background: url(images/green/pagenavi-bg.png) no-repeat !important;	}
+	.wp-pagenavi span.current, .wp-pagenavi span.extend, .wp-pagenavi a:active, .wp-pagenavi a:hover { color:#d3af32 !important; }
+	.wp-pagenavi a.nextpostslink, .wp-pagenavi a.previouspostslink, .wp-pagenavi a.first { background: none !important; }
+
+	#footer, #footer a { color:#061902; text-shadow:1px 1px 1px #10591b; }
+
+
+	/*------------------------------------------------*/
+.no_sidebar {width:765px !important;}
+.no_sidebar .entry-top{width: 764px; background-image:url("images/entry-top-transparent-full.png") !important;}
+.no_sidebar .post{background-image:url("images/entry-bg-transparent-full.png") !important;}
+.no_sidebar .entry-meta {width:762px;}
+.no_sidebar .entry-bottom-top{width:762px; background-image:url("images/bottom-top-full.png") !important;}
+.no_sidebar p.meta {width:640px !important;}
+.no_sidebar .entry-bottom {background-image:url("images/entry-bottom-transparent-full.png") !important;}
+.no_sidebar  h1.title {width: 716px;}

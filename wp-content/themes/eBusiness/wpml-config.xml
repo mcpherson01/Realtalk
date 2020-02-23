@@ -1,0 +1,17 @@
+<wpml-config>
+	<admin-texts>
+		<key name="ebusiness_date_format"/>
+		<key name="ebusiness_slider_1_button"/>
+		<key name="ebusiness_slider_1_title"/>
+		<key name="ebusiness_slider_1_content"/>
+		<key name="ebusiness_slider_2_button"/>
+		<key name="ebusiness_slider_2_title"/>
+		<key name="ebusiness_slider_2_content"/>
+		<key name="ebusiness_slider_3_button"/>
+		<key name="ebusiness_slider_3_title"/>
+		<key name="ebusiness_slider_3_content"/>
+		<key name="ebusiness_seo_home_titletext"/>
+		<key name="ebusiness_seo_home_descriptiontext"/>
+		<key name="ebusiness_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

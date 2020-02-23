@@ -1,0 +1,8 @@
+span.sf-sub-indicator {padding-left: 2px;}
+div#header-top { z-index: 3; position: relative; }
+div#bg, div#header { z-index: 2; position: relative; }
+div#featured { z-index: 1; position: relative; }
+
+p {
+  overflow: auto;
+}

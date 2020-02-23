@@ -1,0 +1,1069 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Boutique 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-01 13:13+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Ann <anochka1985@gmail.com>\n"
+"Language-Team: Ann <anochka1985@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;esc_attr__;esc_attr_e;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../comments.php:4
+msgid "Please do not load this page directly. Thanks!"
+msgstr "Uploaden Sie bitte diese Seite direkt nicht. Danke!"
+
+#: ../comments.php:8
+msgid "This post is password protected. Enter the password to view comments."
+msgstr "Dieser Artikel ist passwortgeschützt. Geben Sie Ihr Passwort ein um die Kommentare anzuzeigen."
+
+#: ../comments.php:19
+msgid "Recent Comments"
+msgstr "Neueste Kommentare"
+
+#: ../comments.php:19
+msgid "Consumer Reviews"
+msgstr "Kundenrezensionen"
+
+#: ../comments.php:23
+#: ../comments.php:36
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> ältere Kommentare"
+
+#: ../comments.php:24
+#: ../comments.php:37
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "neuere Kommentare <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../comments.php:43
+msgid "Trackbacks/Pingbacks"
+msgstr "Trackbacks/Pingbacks"
+
+#: ../comments.php:61
+msgid "Submit Comment"
+msgstr "Kommentar absenden"
+
+#: ../comments.php:61
+msgid "Submit a Comment"
+msgstr "Kommentar absenden"
+
+#: ../comments.php:61
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "Einen Kommentar schreiben zu %s"
+
+#: ../footer.php:27
+msgid "Designed by "
+msgstr "Designed by"
+
+#: ../footer.php:27
+msgid "Powered by "
+msgstr "Powered by"
+
+#: ../functions.php:126
+msgid "Primary Menu"
+msgstr ""
+
+#: ../functions.php:127
+msgid "Secondary Menu"
+msgstr ""
+
+#: ../functions.php:128
+msgid "Footer Menu"
+msgstr ""
+
+#: ../functions.php:313
+msgid "Related Products"
+msgstr "Ähnliche Produkte"
+
+#: ../functions.php:692
+msgid "Cart"
+msgstr "Warenkorb"
+
+#: ../functions.php:693
+msgid "Info"
+msgstr "Info"
+
+#: ../functions.php:733
+msgid "Read More"
+msgstr "Mehr"
+
+#: ../functions.php:819
+msgid "Rating"
+msgstr "Wertung"
+
+#: ../functions.php:964
+msgid "Author"
+msgstr "Autor"
+
+#: ../functions.php:975
+msgid "Users"
+msgstr "Benutzer"
+
+#: ../header.php:54
+msgid "Search..."
+msgstr "Suchen..."
+
+#: ../header.php:68
+#: ../header.php:90
+msgid "Home"
+msgstr "Startseite"
+
+#: ../home.php:49
+msgid "Add to cart"
+msgstr "In den Warenkorb legen"
+
+#: ../home.php:50
+msgid "More Info"
+msgstr "Mehr"
+
+#: ../loop-page.php:23
+#: ../loop-single.php:56
+#: ../page-search.php:33
+#: ../page-sitemap.php:27
+msgid "Pages"
+msgstr "Seiten"
+
+#: ../loop-page.php:24
+#: ../loop-single.php:57
+msgid "Edit this page"
+msgstr "Seite bearbeiten"
+
+#: ../loop-single.php:38
+msgid "Previous"
+msgstr "&Auml;ltere"
+
+#: ../loop-single.php:39
+msgid "Next"
+msgstr "Neuere"
+
+#: ../loop-single.php:48
+msgid "Add To Cart"
+msgstr "In den Warenkorb legen"
+
+#: ../page-blog.php:45
+msgid "Posted"
+msgstr "Gepostet"
+
+#: ../page-blog.php:45
+msgid "by"
+msgstr "von"
+
+#: ../page-blog.php:45
+msgid "on"
+msgstr "am"
+
+#: ../page-blog.php:45
+msgid "in"
+msgstr "in"
+
+#: ../page-blog.php:45
+msgid "0 comments"
+msgstr "Keine Kommentare"
+
+#: ../page-blog.php:45
+msgid "1 comment"
+msgstr "1 Kommentar"
+
+#: ../page-blog.php:45
+msgid "comments"
+msgstr "Kommentare"
+
+#: ../page-blog.php:65
+msgid "read more"
+msgstr "mehr"
+
+#: ../page-contact.php:20
+msgid "Make sure you entered the captcha. "
+msgstr ""
+
+#: ../page-contact.php:23
+msgid "Numbers regenerated."
+msgstr ""
+
+#: ../page-contact.php:24
+msgid "You entered the wrong number in captcha. "
+msgstr ""
+
+#: ../page-contact.php:33
+msgid "Make sure you fill all fields. "
+msgstr ""
+
+#: ../page-contact.php:38
+msgid "Invalid Email. "
+msgstr ""
+
+#: ../page-contact.php:66
+msgid "Thanks for contacting us"
+msgstr ""
+
+#: ../page-contact.php:88
+#: ../page-contact.php:89
+msgid "Name"
+msgstr ""
+
+#: ../page-contact.php:93
+#: ../page-contact.php:94
+msgid "Email Address"
+msgstr ""
+
+#: ../page-contact.php:98
+#: ../page-contact.php:99
+msgid "Subject"
+msgstr ""
+
+#: ../page-contact.php:106
+msgid "Captcha: "
+msgstr ""
+
+#: ../page-contact.php:117
+#: ../page-contact.php:118
+msgid "Message"
+msgstr ""
+
+#: ../page-contact.php:123
+msgid "Reset"
+msgstr ""
+
+#: ../page-contact.php:124
+#: ../page-search.php:61
+msgid "Submit"
+msgstr ""
+
+#: ../page-gallery.php:51
+#: ../page-template-portfolio.php:109
+msgid "Zoom in"
+msgstr ""
+
+#: ../page-gallery.php:52
+#: ../page-template-portfolio.php:110
+msgid "Read more"
+msgstr ""
+
+#: ../page-login.php:29
+msgid "Username"
+msgstr ""
+
+#: ../page-login.php:30
+msgid "Password"
+msgstr ""
+
+#: ../page-search.php:27
+msgid "search this website"
+msgstr ""
+
+#: ../page-search.php:30
+msgid "search this site..."
+msgstr ""
+
+#: ../page-search.php:32
+msgid "Posts"
+msgstr ""
+
+#: ../page-search.php:36
+msgid "Select a month"
+msgstr ""
+
+#: ../page-sitemap.php:32
+msgid "Categories"
+msgstr ""
+
+#: ../page-sitemap.php:37
+msgid "Tags"
+msgstr ""
+
+#: ../page-sitemap.php:53
+msgid "Authors"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:35
+msgid "More Details"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:73
+msgid "Personalize Your Product"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:74
+msgid "Complete this form to include a personalized message with your purchase."
+msgstr ""
+
+#: ../wpsc-boutique_index.php:82
+msgid "Upload a File"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:83
+msgid "Select a file from your computer to include with this purchase."
+msgstr ""
+
+#: ../wpsc-boutique_index.php:90
+#: ../wpsc-grid_view.php:110
+msgid "Product Options"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:110
+#: ../wpsc-list_view.php:109
+#: ../wpsc-shopping_cart_page.php:19
+msgid "Quantity"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:123
+#: ../wpsc-list_view.php:81
+msgid "Product in stock"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:125
+#: ../wpsc-list_view.php:83
+msgid "Product not in stock"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:130
+msgid "Donation"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:134
+#: ../wpsc-grid_view.php:89
+msgid "Old Price"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:137
+#: ../wpsc-cart_widget.php:14
+#: ../wpsc-grid_view.php:91
+#: ../wpsc-shopping_cart_page.php:20
+msgid "Price"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:140
+msgid "You save"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:149
+#: ../wpsc-grid_view.php:93
+msgid "Shipping"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:163
+#: ../wpsc-grid_view.php:139
+#: ../wpsc-list_view.php:129
+msgid "Updating cart..."
+msgstr ""
+
+#: ../wpsc-boutique_index.php:168
+#: ../wpsc-list_view.php:123
+msgid "Buy Now"
+msgstr ""
+
+#: ../wpsc-boutique_index.php:176
+#, fuzzy
+msgid "Edit"
+msgstr "(Bearbeiten)"
+
+#: ../wpsc-boutique_index.php:187
+#: ../wpsc-grid_view.php:79
+msgid "Sale"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:12
+#: ../wpsc-shopping_cart_page.php:18
+#, fuzzy
+msgid "Product"
+msgstr "Ähnliche Produkte"
+
+#: ../wpsc-cart_widget.php:13
+msgid "Qty"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:39
+#: ../wpsc-shopping_cart_page.php:21
+msgid "Total"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:40
+msgid "excluding shipping and tax"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:45
+msgid "Checkout"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:48
+msgid "Empty Your Cart"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:48
+msgid "Clear cart"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:57
+msgid "Your shopping cart is empty"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:58
+msgid "Visit Shop"
+msgstr ""
+
+#: ../wpsc-cart_widget.php:58
+msgid "Visit the shop"
+msgstr ""
+
+#: ../wpsc-grid_view.php:132
+msgid "Sorry, sold out!"
+msgstr ""
+
+#: ../wpsc-grid_view.php:160
+#: ../wpsc-list_view.php:146
+#: ../wpsc-products_page.php:76
+msgid "There are no products in this group."
+msgstr ""
+
+#: ../wpsc-list_view.php:133
+msgid "This product has sold out."
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:10
+#: ../wpsc-transaction_results.php:24
+msgid "Oops, there is nothing in your cart."
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:10
+#: ../wpsc-transaction_results.php:24
+msgid "Please visit our shop"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:15
+msgid "Please review your order"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:48
+msgid "No Image"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:67
+#: ../wpsc-shopping_cart_page.php:100
+msgid "Update"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:80
+msgid "Remove"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:93
+msgid "Coupon is not valid."
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:96
+msgid "Enter coupon code"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:105
+msgid "Cost before shipping:"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:131
+msgid "Calculate Shipping Price"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:135
+msgid "Please choose a country below to calculate your shipping costs"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:143
+msgid "Please provide a Zipcode and click Calculate in order to continue."
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:149
+msgid "Sorry, online ordering is unavailable to this destination and/or weight. Please double check your destination details."
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:167
+msgid " - Choose a Shipping Rate"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:229
+msgid "You must sign in or register with us to continue with your purchase"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:233
+msgid "Sign in"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:241
+msgid "If you have bought from us before please sign in here to purchase"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:260
+msgid "Join up now"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:268
+msgid "E-mail"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:271
+msgid "Signing up is free and easy! please fill out your details your registration will happen automatically as you checkout. Don't forget to use your details to login with next time!"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:318
+msgid "Same as billing address:"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:320
+msgid "Your order will be shipped to the billing address"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:363
+msgid "Enter your email address"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:401
+msgid "How did you find us"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:404
+msgid "Word of mouth"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:405
+msgid "Advertising"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:406
+msgid "Internet"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:407
+msgid "Existing Customer"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:418
+msgid "Payment Type"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:453
+#, php-format
+msgid "I agree to the <a class='thickbox' target='_blank' href='%s' class='termsandconds'>Terms and Conditions</a>"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:463
+msgid "Review and purchase"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:469
+msgid "Total Shipping"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:480
+msgid "Discount"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:492
+msgid "Total Price"
+msgstr ""
+
+#: ../wpsc-shopping_cart_page.php:507
+msgid "Purchase"
+msgstr ""
+
+#: ../wpsc-user-log.php:17
+msgid "Purchase History"
+msgstr ""
+
+#: ../wpsc-user-log.php:18
+msgid "Your Details"
+msgstr ""
+
+#: ../wpsc-user-log.php:19
+msgid "Your Downloads"
+msgstr ""
+
+#: ../wpsc-user-log.php:40
+msgid "Save Profile"
+msgstr ""
+
+#: ../wpsc-user-log.php:52
+msgid "File Names"
+msgstr ""
+
+#: ../wpsc-user-log.php:53
+msgid "Downloads Left"
+msgstr ""
+
+#: ../wpsc-user-log.php:54
+#: ../wpsc-user-log.php:106
+msgid "Date"
+msgstr ""
+
+#: ../wpsc-user-log.php:90
+msgid "You have not purchased any downloadable products yet."
+msgstr ""
+
+#: ../wpsc-user-log.php:105
+msgid "Status"
+msgstr ""
+
+#: ../wpsc-user-log.php:111
+msgid "Payment Method"
+msgstr ""
+
+#: ../wpsc-user-log.php:124
+msgid "No transactions for this month."
+msgstr ""
+
+#: ../wpsc-user-log.php:137
+msgid "There have not been any purchases yet."
+msgstr ""
+
+#: ../wpsc-user-log.php:145
+msgid "You must be logged in to use this page. Please use the form below to login to your account."
+msgstr ""
+
+#: ../wpsc-user-log.php:149
+msgid "Username:"
+msgstr ""
+
+#: ../wpsc-user-log.php:153
+msgid "Password:"
+msgstr ""
+
+#: ../wpsc-user-log.php:159
+msgid "Remember me"
+msgstr ""
+
+#: ../wpsc-user-log.php:164
+msgid "Login &raquo;"
+msgstr ""
+
+#: ../epanel/core_functions.php:26
+#: ../epanel/core_functions.php:389
+msgid "Saving..."
+msgstr ""
+
+#: ../epanel/core_functions.php:27
+msgid "Options Saved."
+msgstr ""
+
+#: ../epanel/core_functions.php:73
+msgid "Options"
+msgstr ""
+
+#: ../epanel/core_functions.php:73
+msgid "Theme Options"
+msgstr ""
+
+#: ../epanel/core_functions.php:90
+msgid "settings saved."
+msgstr ""
+
+#: ../epanel/core_functions.php:93
+msgid "settings reset."
+msgstr ""
+
+#: ../epanel/core_functions.php:111
+msgid "General Settings"
+msgstr ""
+
+#: ../epanel/core_functions.php:114
+msgid "Navigation"
+msgstr ""
+
+#: ../epanel/core_functions.php:117
+msgid "Layout Settings"
+msgstr ""
+
+#: ../epanel/core_functions.php:120
+msgid "Ad Management"
+msgstr ""
+
+#: ../epanel/core_functions.php:123
+msgid "Colorization"
+msgstr ""
+
+#: ../epanel/core_functions.php:126
+msgid "SEO"
+msgstr ""
+
+#: ../epanel/core_functions.php:129
+msgid "Integration"
+msgstr ""
+
+#: ../epanel/core_functions.php:132
+msgid "Support Docs"
+msgstr ""
+
+#: ../epanel/core_functions.php:204
+msgid "Upload Image"
+msgstr ""
+
+#: ../epanel/core_functions.php:229
+msgid "You don't have pages"
+msgstr ""
+
+#: ../epanel/core_functions.php:362
+msgid "Save changes"
+msgstr ""
+
+#: ../epanel/core_functions.php:373
+msgid "This will return all of the settings throughout the options page to their default values. <strong>Are you sure you want to do this?"
+msgstr ""
+
+#: ../epanel/custom_functions.php:786
+msgid "Image doesn't exist"
+msgstr ""
+
+#: ../epanel/custom_functions.php:975
+#, php-format
+msgid "<div class=\"updated\"><p>This is a fresh installation of %1$s theme. Don't forget to go to <a href=\"%2$s\">ePanel</a> to set it up. This message will disappear once you have clicked the Save button within the <a href=\"%2$s\">theme's options page</a>.</p></div>"
+msgstr ""
+
+#: ../epanel/custom_functions.php:987
+#, php-format
+msgid "There is a new version of %1$s available. <a href=\"%2$s\" class=\"thickbox\" title=\"%1$s\">View version %3$s details</a>. <em>Auto-updates are not available for this theme. If this is an Elegant Themes theme, then you must re-download the theme from the member's area and <a href=\"http://www.elegantthemes.com/members-area/documentation.html#update\" target=\"_blank\">re-install it</a> in order to update it to the latest version.</em>"
+msgstr ""
+
+#: ../epanel/custom_functions.php:991
+msgid "Auto-updates are not available for this theme. If this is an Elegant Themes theme, then you must re-download the theme from the member's area and <a href=\"http://www.elegantthemes.com/members-area/documentation.html#update\" target=\"_blank\">re-install it</a> in order to update it to the latest version."
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Captcha"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Fill"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "field"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Invalid email"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:37
+msgid "ET Page Template Settings"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:64
+msgid "Additional settings appear here, when one of ET page templates is selected ( Page Attributes -> Template )"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:69
+msgid "Full Width Page"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:74
+msgid "Regenerate captcha numbers"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:78
+msgid "Email To:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:84
+msgid "Blog Style mode"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:89
+msgid "Hide Auto Thumbnail"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:94
+msgid "Show Titles"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:99
+msgid "Show Descriptions"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:104
+msgid "Detect Portrait Images"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:108
+msgid "Thumbnail Size:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:109
+msgid "Small"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:110
+msgid "Medium"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:111
+#, fuzzy
+msgid "Large"
+msgstr "Seiten"
+
+#: ../epanel/page_templates/page_templates.php:115
+#: ../epanel/page_templates/page_templates.php:120
+msgid "Number of posts per page:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:125
+msgid "Select blog categories:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:144
+msgid "Select gallery categories:"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:300
+msgid "Member Login"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:303
+msgid "Username: "
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:304
+msgid "Password: "
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:305
+msgid "Login"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:341
+msgid "Add a Tooltip Text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:363
+msgid "Click here to learn more"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:971
+#, fuzzy
+msgid "Caption"
+msgstr "Wertung"
+
+#: ../epanel/shortcodes/shortcodes.php:972
+msgid "Caption goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:973
+msgid "Caption title goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:977
+msgid "State"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:979
+msgid "Select between expanded and closed state"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:984
+#: ../epanel/shortcodes/shortcodes.php:1000
+#: ../epanel/shortcodes/shortcodes.php:1029
+#: ../epanel/shortcodes/shortcodes.php:1109
+msgid "Content"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:985
+#: ../epanel/shortcodes/shortcodes.php:1001
+#: ../epanel/shortcodes/shortcodes.php:1087
+#: ../epanel/shortcodes/shortcodes.php:1110
+msgid "Content goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:986
+#: ../epanel/shortcodes/shortcodes.php:1002
+#: ../epanel/shortcodes/shortcodes.php:1031
+msgid "Content text or html"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:993
+#: ../epanel/shortcodes/shortcodes.php:1015
+msgid "Type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:995
+msgid "Type of the box"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1009
+#, fuzzy
+msgid "Link"
+msgstr "in"
+
+#: ../epanel/shortcodes/shortcodes.php:1011
+msgid "URL"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1017
+msgid "Choose button type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1022
+msgid "Color"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1024
+msgid "Choose button color"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1030
+msgid "Link text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1035
+#, fuzzy
+msgid "Icon"
+msgstr "am"
+
+#: ../epanel/shortcodes/shortcodes.php:1037
+msgid "Used for icon button type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1042
+msgid "Open link in new window"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1044
+msgid "Select yes if the link should be opened in a new window"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1052
+msgid "Slider Type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1054
+msgid "Select Slider Type here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1059
+msgid "Effect"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1061
+msgid "Select Animation Effect"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1066
+#, fuzzy
+msgid "Auto"
+msgstr "Autor"
+
+#: ../epanel/shortcodes/shortcodes.php:1068
+msgid "Choose yes if you want for automatic slider animation"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1073
+msgid "Auto Speed"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1075
+msgid "Automattic slider speed (works only if Auto is set to yes)"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1079
+msgid "Tab Text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1086
+msgid "Tab Content"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1088
+msgid "Paste image url here, if you chose \"images\" slider type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1096
+msgid "Image Url"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1098
+msgid "Author Image URL"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1102
+msgid "Use resizing"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1179
+msgid "+ Add One More Tab"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1329
+msgid "Image Height"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1330
+msgid "Image Width"
+msgstr ""
+
+#: ../includes/breadcrumbs.php:7
+msgid "Posts Tagged "
+msgstr "Artikel getaggt mit"
+
+#: ../includes/breadcrumbs.php:9
+#: ../includes/breadcrumbs.php:11
+#: ../includes/breadcrumbs.php:13
+#: ../includes/top_info.php:8
+#: ../includes/top_info.php:10
+#: ../includes/top_info.php:12
+msgid "Posts made in"
+msgstr "Gepostet im"
+
+#: ../includes/breadcrumbs.php:15
+#: ../includes/top_info.php:14
+msgid "Search results for"
+msgstr "Suchresultate"
+
+#: ../includes/breadcrumbs.php:47
+#: ../includes/top_info.php:21
+msgid "Posts by "
+msgstr "Gepostet von"
+
+#: ../includes/navigation.php:2
+msgid "&laquo; Older Entries"
+msgstr "&laquo; &Auml;ltere Eintr&auml;ge"
+
+#: ../includes/navigation.php:3
+msgid "Next Entries &raquo;"
+msgstr "Neuere Eintr&auml;ge &raquo;"
+
+#: ../includes/no-results.php:3
+msgid "No Results Found"
+msgstr "Nicht gefunden"
+
+#: ../includes/no-results.php:4
+msgid "The page you requested could not be found. Try refining your search, or use the navigation above to locate the post."
+msgstr "Keine Seite gefunden. Etwas anderes Suchen?"
+
+#: ../includes/top_info.php:6
+msgid "Posts Tagged &quot;"
+msgstr "Artikel getaggt mit &quot;"
+
+#: ../includes/functions/comments.php:19
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s in %2$s"
+
+#: ../includes/functions/comments.php:19
+msgid "(Edit)"
+msgstr "(Bearbeiten)"
+
+#: ../includes/functions/comments.php:27
+msgid "Your comment is awaiting moderation."
+msgstr "Dein Kommentar wartet auf die &Uuml;berpr&uuml;fung."
+
+#: ../includes/functions/comments.php:33
+msgid "Reply"
+msgstr "Beantworten"
+
+#: ../includes/functions/installation.php:1
+msgid "Read Boutique Documentation"
+msgstr ""
+

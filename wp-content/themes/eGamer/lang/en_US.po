@@ -1,0 +1,670 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: eGamer 3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-10 00:49+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Ann <anochka1985@gmail.com>\n"
+"Language-Team: Ann <anochka1985@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;esc_attr__;esc_attr_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../404.php:6
+msgid "Sorry, the page your requested could not be found, or no longer exists."
+msgstr ""
+
+#: ../comments.php:4
+msgid "Please do not load this page directly. Thanks!"
+msgstr ""
+
+#: ../comments.php:8
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: ../comments.php:15
+msgid "No Responses"
+msgstr ""
+
+#: ../comments.php:15
+msgid "One Response"
+msgstr ""
+
+#: ../comments.php:15
+msgid "% Responses"
+msgstr ""
+
+#: ../comments.php:15
+msgid "to &#8220;"
+msgstr ""
+
+#: ../comments.php:38
+msgid "Trackbacks/Pingbacks"
+msgstr ""
+
+#: ../comments.php:49
+msgid "Comments are closed."
+msgstr ""
+
+#: ../comments.php:53
+msgid "Submit Comment"
+msgstr ""
+
+#: ../comments.php:53
+msgid "Leave a Reply"
+msgstr ""
+
+#: ../comments.php:53
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: ../footer.php:5
+msgid "Powered by "
+msgstr ""
+
+#: ../footer.php:5
+msgid "Designed by "
+msgstr ""
+
+#: ../header.php:45
+#: ../header.php:82
+msgid "Home"
+msgstr ""
+
+#: ../page-blog.php:45
+#: ../page-blog.php:51
+#: ../page-contact.php:94
+#: ../page-contact.php:100
+#: ../page-full.php:33
+#: ../page-full.php:39
+#: ../page-gallery.php:41
+#: ../page-gallery.php:47
+#: ../page-login.php:38
+#: ../page-login.php:44
+#: ../page-search.php:38
+#: ../page-search.php:44
+#: ../page-sitemap.php:38
+#: ../page-sitemap.php:44
+#, php-format
+msgid "Permanent Link to %s"
+msgstr ""
+
+#: ../page-blog.php:71
+msgid "Posted"
+msgstr ""
+
+#: ../page-blog.php:71
+msgid "by"
+msgstr ""
+
+#: ../page-blog.php:71
+msgid "on"
+msgstr ""
+
+#: ../page-blog.php:71
+msgid "in"
+msgstr ""
+
+#: ../page-blog.php:71
+msgid "0 comments"
+msgstr ""
+
+#: ../page-blog.php:71
+msgid "1 comment"
+msgstr ""
+
+#: ../page-blog.php:71
+msgid "comments"
+msgstr ""
+
+#: ../page-blog.php:91
+msgid "read more"
+msgstr ""
+
+#: ../page-blog.php:120
+#: ../page-contact.php:167
+#: ../page-full.php:51
+#: ../page-gallery.php:101
+#: ../page-login.php:71
+#: ../page-search.php:102
+#: ../page-sitemap.php:89
+msgid "Play Video"
+msgstr ""
+
+#: ../page-contact.php:19
+msgid "Make sure you entered the captcha. "
+msgstr ""
+
+#: ../page-contact.php:22
+msgid "Numbers regenerated."
+msgstr ""
+
+#: ../page-contact.php:23
+msgid "You entered the wrong number in captcha. "
+msgstr ""
+
+#: ../page-contact.php:32
+msgid "Make sure you fill all fields. "
+msgstr ""
+
+#: ../page-contact.php:37
+msgid "Invalid Email. "
+msgstr ""
+
+#: ../page-contact.php:65
+msgid "Thanks for contacting us"
+msgstr ""
+
+#: ../page-contact.php:115
+#: ../page-contact.php:116
+msgid "Name"
+msgstr ""
+
+#: ../page-contact.php:120
+#: ../page-contact.php:121
+msgid "Email Address"
+msgstr ""
+
+#: ../page-contact.php:125
+#: ../page-contact.php:126
+msgid "Subject"
+msgstr ""
+
+#: ../page-contact.php:133
+msgid "Captcha: "
+msgstr ""
+
+#: ../page-contact.php:144
+msgid "Message"
+msgstr ""
+
+#: ../page-contact.php:150
+msgid "Reset"
+msgstr ""
+
+#: ../page-contact.php:151
+#: ../page-search.php:87
+msgid "Submit"
+msgstr ""
+
+#: ../page-full.php:57
+msgid "Post a Comment"
+msgstr ""
+
+#: ../page-full.php:67
+msgid "No Results Found"
+msgstr ""
+
+#: ../page-full.php:68
+msgid "The page you requested could not be found. Try refining your search, or use the navigation above to locate the post."
+msgstr ""
+
+#: ../page-gallery.php:76
+msgid "Zoom in"
+msgstr ""
+
+#: ../page-gallery.php:77
+msgid "Read more"
+msgstr ""
+
+#: ../page-login.php:55
+msgid "Username"
+msgstr ""
+
+#: ../page-login.php:56
+msgid "Password"
+msgstr ""
+
+#: ../page-search.php:53
+msgid "search this website"
+msgstr ""
+
+#: ../page-search.php:56
+msgid "search this site..."
+msgstr ""
+
+#: ../page-search.php:58
+msgid "Posts"
+msgstr ""
+
+#: ../page-search.php:59
+#: ../page-sitemap.php:53
+msgid "Pages"
+msgstr ""
+
+#: ../page-search.php:62
+msgid "Select a month"
+msgstr ""
+
+#: ../page-sitemap.php:58
+msgid "Categories"
+msgstr ""
+
+#: ../page-sitemap.php:63
+msgid "Tags"
+msgstr ""
+
+#: ../page-sitemap.php:75
+msgid "Authors"
+msgstr ""
+
+#: ../searchform.php:4
+msgid "Search"
+msgstr ""
+
+#: ../single.php:32
+msgid "Categories:"
+msgstr ""
+
+#: ../epanel/core_functions.php:26
+#: ../epanel/core_functions.php:389
+msgid "Saving..."
+msgstr ""
+
+#: ../epanel/core_functions.php:27
+msgid "Options Saved."
+msgstr ""
+
+#: ../epanel/core_functions.php:73
+msgid "Options"
+msgstr ""
+
+#: ../epanel/core_functions.php:73
+msgid "Theme Options"
+msgstr ""
+
+#: ../epanel/core_functions.php:90
+msgid "settings saved."
+msgstr ""
+
+#: ../epanel/core_functions.php:93
+msgid "settings reset."
+msgstr ""
+
+#: ../epanel/core_functions.php:111
+msgid "General Settings"
+msgstr ""
+
+#: ../epanel/core_functions.php:114
+msgid "Navigation"
+msgstr ""
+
+#: ../epanel/core_functions.php:117
+msgid "Layout Settings"
+msgstr ""
+
+#: ../epanel/core_functions.php:120
+msgid "Ad Management"
+msgstr ""
+
+#: ../epanel/core_functions.php:123
+msgid "Colorization"
+msgstr ""
+
+#: ../epanel/core_functions.php:126
+msgid "SEO"
+msgstr ""
+
+#: ../epanel/core_functions.php:129
+msgid "Integration"
+msgstr ""
+
+#: ../epanel/core_functions.php:132
+msgid "Support Docs"
+msgstr ""
+
+#: ../epanel/core_functions.php:204
+msgid "Upload Image"
+msgstr ""
+
+#: ../epanel/core_functions.php:229
+msgid "You don't have pages"
+msgstr ""
+
+#: ../epanel/core_functions.php:362
+msgid "Save changes"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Captcha"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Fill"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "field"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:22
+msgid "Invalid email"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:37
+msgid "ET Page Template Settings"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:64
+msgid "Additional settings appear here, when one of ET page templates is selected ( Page Attributes -> Template )"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:69
+msgid "Full Width Page"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:74
+msgid "Regenerate captcha numbers"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:78
+msgid "Email To:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:84
+msgid "Blog Style mode"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:89
+msgid "Hide Auto Thumbnail"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:94
+msgid "Show Titles"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:99
+msgid "Show Descriptions"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:104
+msgid "Detect Portrait Images"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:108
+msgid "Thumbnail Size:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:109
+msgid "Small"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:110
+msgid "Medium"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:111
+msgid "Large"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:115
+#: ../epanel/page_templates/page_templates.php:120
+msgid "Number of posts per page:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:125
+msgid "Select blog categories:"
+msgstr ""
+
+#: ../epanel/page_templates/page_templates.php:144
+msgid "Select gallery categories:"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:300
+msgid "Member Login"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:303
+msgid "Username: "
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:304
+msgid "Password: "
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:305
+msgid "Login"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:341
+msgid "Add a Tooltip Text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:971
+msgid "Caption"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:972
+msgid "Caption goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:973
+msgid "Caption title goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:977
+msgid "State"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:979
+msgid "Select between expanded and closed state"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:984
+#: ../epanel/shortcodes/shortcodes.php:1000
+#: ../epanel/shortcodes/shortcodes.php:1029
+#: ../epanel/shortcodes/shortcodes.php:1109
+msgid "Content"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:985
+#: ../epanel/shortcodes/shortcodes.php:1001
+#: ../epanel/shortcodes/shortcodes.php:1087
+#: ../epanel/shortcodes/shortcodes.php:1110
+msgid "Content goes here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:986
+#: ../epanel/shortcodes/shortcodes.php:1002
+#: ../epanel/shortcodes/shortcodes.php:1031
+msgid "Content text or html"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:993
+#: ../epanel/shortcodes/shortcodes.php:1015
+msgid "Type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:995
+msgid "Type of the box"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1009
+msgid "Link"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1011
+msgid "URL"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1017
+msgid "Choose button type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1022
+msgid "Color"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1024
+msgid "Choose button color"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1030
+msgid "Link text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1035
+msgid "Icon"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1037
+msgid "Used for icon button type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1042
+msgid "Open link in new window"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1044
+msgid "Select yes if the link should be opened in a new window"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1052
+msgid "Slider Type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1054
+msgid "Select Slider Type here"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1059
+msgid "Effect"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1061
+msgid "Select Animation Effect"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1066
+msgid "Auto"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1068
+msgid "Choose yes if you want for automatic slider animation"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1073
+msgid "Auto Speed"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1075
+msgid "Automattic slider speed (works only if Auto is set to yes)"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1079
+msgid "Tab Text"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1086
+msgid "Tab Content"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1088
+msgid "Paste image url here, if you chose \"images\" slider type"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1096
+msgid "Image Url"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1098
+msgid "Author Image URL"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1102
+msgid "Use resizing"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1179
+msgid "+ Add One More Tab"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1329
+msgid "Image Height"
+msgstr ""
+
+#: ../epanel/shortcodes/shortcodes.php:1330
+msgid "Image Width"
+msgstr ""
+
+#: ../includes/blogstyle.php:27
+#: ../includes/blogstylecat.php:31
+msgid "&laquo; Previous Entries"
+msgstr ""
+
+#: ../includes/blogstyle.php:28
+#: ../includes/blogstylecat.php:32
+msgid "Next Entries &raquo;"
+msgstr ""
+
+#: ../includes/blogstylecat.php:2
+msgid "Currently Browsing: "
+msgstr ""
+
+#: ../includes/blogstylehome.php:23
+#: ../includes/default.php:23
+#: ../includes/rating.php:46
+#: ../includes/video.php:24
+msgid "Posted by"
+msgstr ""
+
+#: ../includes/blogstylehome.php:28
+#: ../includes/default.php:28
+msgid "No Comments"
+msgstr ""
+
+#: ../includes/blogstylehome.php:28
+#: ../includes/default.php:28
+msgid "1 Comment"
+msgstr ""
+
+#: ../includes/default.php:28
+msgid "% Comments"
+msgstr ""
+
+#: ../includes/default.php:105
+msgid "Popular Articles"
+msgstr ""
+
+#: ../includes/default.php:125
+msgid "Random Articles"
+msgstr ""
+
+#: ../includes/rating.php:3
+msgid "Recent Reviews"
+msgstr ""
+
+#: ../includes/video.php:21
+msgid "Recent Videos"
+msgstr ""
+
+#: ../includes/functions/comments.php:13
+#, php-format
+msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">says:</span>"
+msgstr ""
+
+#: ../includes/functions/comments.php:14
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: ../includes/functions/comments.php:14
+msgid "(Edit)"
+msgstr ""
+
+#: ../includes/functions/comments.php:18
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ../includes/functions/installation.php:1
+msgid "Read eGamer Documentation"
+msgstr ""
+

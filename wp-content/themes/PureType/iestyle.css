@@ -1,0 +1,11 @@
+.redtitle, .redtitle a:link, .redtitle a:hover, .redtitle a:visited, .bluetitle, .bluetitle a:link, .bluetitle a:hover, .bluetitle a:visited { line-height: 90px; }
+.post-title { margin: 0px; line-height: 40px; }
+.logo { height: 100px; }
+.rule { margin: 15px 0px 0px 0px; }
+#wrapper2 { margin-top: 0px; }
+.featured-categories { left: -1px; top: 273px; }
+.home-sidebar-box { padding-bottom: 15px; }
+.titles a:link, .titles a:visited, .titles a:active { margin-top: 0px; margin-bottom: 1px; }
+.titles-orange a:link, .titles-orange a:visited, .titles-orange a:hover { margin-top: 0px; margin-bottom: 1px; }
+#respond h3 { margin-top: 30px; }
+.titles-featured a, .titles-featured a:hover, .titles-featured a:visited, .titles-featured, .post-title a:link, .post-title a:hover, .post-title a:visited { line-height: 35px; }

@@ -1,0 +1,8 @@
+<wpml-config>
+	<admin-texts>
+		<key name="leanbiz_date_format"/>
+		<key name="leanbiz_seo_home_titletext"/>
+		<key name="leanbiz_seo_home_descriptiontext"/>
+		<key name="leanbiz_seo_home_keywordstext"/>
+	</admin-texts>
+</wpml-config>

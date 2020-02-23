@@ -1,0 +1,1 @@
+﻿<li class="page_item home"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="title" title="home again woohoo"><?php esc_html_e('Home','CherryTruffle') ?></a></li>

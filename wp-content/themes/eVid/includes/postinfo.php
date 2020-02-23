@@ -1,0 +1,7 @@
+<?php if (!(is_single()) && get_option('evid_postinfo1') ) { ?>
+	<?php esc_html_e('Posted','eVid') ?> <?php if (in_array('author', get_option('evid_postinfo1'))) { ?> <?php esc_html_e('by','eVid') ?> <?php the_author_posts_link(); ?><?php }; ?><?php if (in_array('date', get_option('evid_postinfo1'))) { ?> <?php esc_html_e('on','eVid') ?> <?php the_time(get_option('evid_date_format')) ?><?php }; ?><?php if (in_array('categories', get_option('evid_postinfo1'))) { ?> <?php esc_html_e('in','eVid') ?> <?php the_category(', ') ?><?php }; ?><?php if (in_array('comments', get_option('evid_postinfo1'))) { ?> | <?php comments_popup_link(esc_html__('0 comments','eVid'), esc_html__('1 comment','eVid'), '% '.esc_html__('comments','eVid')); ?><?php }; ?>
+<?php } elseif (is_single() && get_option('evid_postinfo2') ) { ?>
+	<div class="post-info">
+		<?php esc_html_e('Posted','eVid') ?> <?php if (in_array('author', get_option('evid_postinfo2'))) { ?> <?php esc_html_e('by','eVid') ?> <?php the_author_posts_link(); ?><?php }; ?><?php if (in_array('date', get_option('evid_postinfo2'))) { ?> <?php esc_html_e('on','eVid') ?> <?php the_time(get_option('evid_date_format')) ?><?php }; ?><?php if (in_array('categories', get_option('evid_postinfo2'))) { ?> <?php esc_html_e('in','eVid') ?> <?php the_category(', ') ?><?php }; ?><?php if (in_array('comments', get_option('evid_postinfo2'))) { ?> | <?php comments_popup_link(esc_html__('0 comments','eVid'), esc_html__('1 comment','eVid'), '% '.esc_html__('comments','eVid')); ?><?php }; ?>
+	</div>
+<?php }; ?>

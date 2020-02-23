@@ -1,0 +1,8 @@
+span.sf-sub-indicator {padding-left: 2px;}
+div#header-top { z-index: 2; position: relative; }
+div#header { z-index: 1; position: relative; }
+
+#buy-image { margin-top: -4px; }
+#side-tabs ul li a:hover { cursor: pointer; }
+#breadcrumbs #search-form #searchinput { padding-top: 8px; }
+#bottom-shadow { display: none; }
