@@ -75,22 +75,22 @@ class WPTSLMClient {
         $this->registerIntervals();
         if(!wp_next_scheduled($this->getEventName())) $this->scheduleEvents();
 
-        //add_action($this->getEventName(), [$this, 'validate']);
-        //$this->maybeRun();
+        add_action($this->getEventName(), [$this, 'validate']);
+        $this->maybeRun();
 
         register_activation_hook($this->pluginFilePath, function() {
-            //$this->calledFromActivationHook = true;
-            //$this->validate();
-            //$this->calledFromActivationHook = false;
+            $this->calledFromActivationHook = true;
+            $this->validate();
+            $this->calledFromActivationHook = false;
         });
         register_deactivation_hook($this->pluginFilePath, [$this, 'deactivate']);
 
-        /*$valid = $this->getValid();
+        $valid = $this->getValid();
         if($valid !== '0' && $valid !== '1' && $valid !== null) {
             $dt = new DateTime($valid);
             $now = $this->getNowAsDateTime();
             if($dt <= $now) $this->setValid('0');
-        }*/
+        }
 
         // Add license menu
         add_action('admin_menu', function() {
@@ -256,7 +256,7 @@ class WPTSLMClient {
 
             $trialMessage = '';
             $trialCount = $this->getTrialCount();
-            if ($trialCount < 30 && $trialCount > 0) {
+            if ($trialCount < 3 && $trialCount > 0) {
                 $trialMessage = sprintf(__('Number of attempts left until the features are disabled: %s', $this->textDomain), '<b>' . $trialCount . '</b>');
             }
 
@@ -297,24 +297,24 @@ class WPTSLMClient {
     public function validate() {
         if (!$this->canMakeRequest()) return false;
 
-        //$this->updateLastRun();
+        $this->updateLastRun();
         $this->makeRequestProductInfo();
         $valid = $this->getValid();
-var_dump($valid);
+
         if($valid !== '0' && $valid !== '1' && $valid !== null) {
             $dt = new DateTime($valid);
             $now = $this->getNowAsDateTime();
 
             if($dt <= $now) {
                 $this->setValid('0');
-                $this->resetTrialCount();
+                $this->updateTrialCount(0);
             }
 
         } else if ($valid === null) {
             $this->initExpirationDoNotOverride();
         }
 
-        return true;
+        return null;
     }
 
     public function deactivate($network_wide) {
@@ -368,12 +368,12 @@ var_dump($valid);
         $valid = $this->getValid();
 
         if($valid === '1') return true;
-        if($valid === '0') return true;
+        if($valid === '0') return false;
         if($valid !== null) {
             $dt = new DateTime($valid);
             $now = $this->getNowAsDateTime();
             if($dt <= $now) {
-                return true;
+                return false;
             }
         }
 
@@ -432,14 +432,14 @@ var_dump($valid);
                     update_option($this->getLicenseKeyOptionName(), $data[$this->getLicenseKeyOptionName()], true);
                 }
 
-                /*$result = $this->validate();
+                $result = $this->validate();
                 if ($result === false) {
                     $success = false;
                     $msg = __('License validation failed.', $this->textDomain);
 
                 } else {
-                    //$this->scheduleEvents();
-                }*/
+                    $this->scheduleEvents();
+                }
             }
 
         }
@@ -583,7 +583,7 @@ var_dump($valid);
         $url .= '?' . http_build_query($params);
 
         $response = wp_remote_get($url);
-        //$this->updateLastRequestDateAsNow();
+        $this->updateLastRequestDateAsNow();
 
         if (is_wp_error($response)) {
             $this->handleLicenseError();
@@ -603,7 +603,7 @@ var_dump($valid);
 
         } else {
             $trialCount = $this->getTrialCount() - 1;
-            //$this->updateTrialCount($trialCount);
+            $this->updateTrialCount($trialCount);
         }
 
         if ($trialCount < 1) {
@@ -626,7 +626,7 @@ var_dump($valid);
             $legit = (isset($body->valid) && $body->valid) || !isset($body->error);
             if ($legit) {
                 $this->resetTrialCount();
-                $this->setValid('0');
+                $this->setValid('1');
                 $this->setErrorMessage(null);
                 return true;
             }
@@ -650,12 +650,12 @@ var_dump($valid);
             $this->resetTrialCount();
 
         } else if ($code === 403) {
-            $this->resetTrialCount();
+            $this->updateTrialCount(0);
             $this->setValid('0');
 
         } else {
             $this->setValid('0');
-            $this->resetTrialCount();
+            $this->updateTrialCount(0);
         }
 
         $this->setErrorMessage($body && isset($body->error) ? $body->error : false);
@@ -683,12 +683,10 @@ var_dump($valid);
     }
 
     private function getServerName() {
-        //$host = parse_url(get_home_url(), PHP_URL_HOST);
         $host = parse_url(get_home_url(), PHP_URL_HOST);
         if ($host) return $host;
 
-        //return $_SERVER['SERVER_NAME'] ?: '';
-        return 'localhost';
+        return $_SERVER['SERVER_NAME'] ?: '';
     }
 
     private function initExpirationDoNotOverride() {
@@ -734,10 +732,9 @@ var_dump($valid);
 
     private function getValid() {
         $valid = get_option($this->getValidOptionName(), null);
-        
         if ($valid !== null) {
             $val = base64_decode($valid);
-            
+
             if ($val !== '0' && $val !== '1') {
                 try {
                     new DateTime($val);
@@ -751,7 +748,7 @@ var_dump($valid);
         }
 
         $trialCount = $this->getTrialCount();
-        if ($trialCount > 1) {
+        if ($trialCount < 1) {
             $valid = '0';
             $this->setValid($valid);
 
