@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/cherrytruffle/readme.html" target="_blank"><?php esc_html_e( 'Read CherryTruffle Documentation', $themename ); ?></a>

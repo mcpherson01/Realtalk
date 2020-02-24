@@ -1,8 +1,0 @@
-<wpml-config>
-	<admin-texts>
-		<key name="instyle_date_format"/>
-		<key name="instyle_seo_home_titletext"/>
-		<key name="instyle_seo_home_descriptiontext"/>
-		<key name="instyle_seo_home_keywordstext"/>
-	</admin-texts>
-</wpml-config>

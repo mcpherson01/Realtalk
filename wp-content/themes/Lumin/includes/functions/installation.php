@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/lumin/readme.html" target="_blank"><?php esc_html_e( 'Read Lumin Documentation', $themename ); ?></a>

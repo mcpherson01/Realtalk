@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/onthego/readme.html" target="_blank"><?php esc_html_e( 'Read OnTheGo Documentation', $themename ); ?></a>

@@ -1,9 +1,0 @@
-<?php if (!(is_single()) && get_option('lightsource_postinfo1') ) { ?>
-	<span class="post-info">
-		<?php esc_html_e('Posted','LightSource') ?> <?php if (in_array('author', get_option('lightsource_postinfo1'))) { ?> <?php esc_html_e('by','LightSource') ?> <?php the_author_posts_link(); ?><?php }; ?><?php if (in_array('date', get_option('lightsource_postinfo1'))) { ?> <?php esc_html_e('on','LightSource') ?> <?php the_time(get_option('lightsource_date_format')) ?><?php }; ?><?php if (in_array('categories', get_option('lightsource_postinfo1'))) { ?> <?php esc_html_e('in','LightSource') ?> <?php the_category(', ') ?><?php }; ?><?php if (in_array('comments', get_option('lightsource_postinfo1'))) { ?> | <?php comments_popup_link(esc_html__('0 comments','LightSource'), esc_html__('1 comment','LightSource'), '% '.esc_html__('comments','LightSource')); ?><?php }; ?>
-	</span>
-<?php } elseif (is_single()) { ?>
-	<span class="post-info">
-		<?php esc_html_e('Posted','LightSource') ?> <?php if (in_array('author', get_option('lightsource_postinfo2'))) { ?> <?php esc_html_e('by','LightSource') ?> <?php the_author_posts_link(); ?><?php }; ?><?php if (in_array('date', get_option('lightsource_postinfo2'))) { ?> <?php esc_html_e('on','LightSource') ?> <?php the_time(get_option('lightsource_date_format')) ?><?php }; ?><?php if (in_array('categories', get_option('lightsource_postinfo2'))) { ?> <?php esc_html_e('in','LightSource') ?> <?php the_category(', ') ?><?php }; ?><?php if (in_array('comments', get_option('lightsource_postinfo2'))) { ?> | <?php comments_popup_link(esc_html__('0 comments','LightSource'), esc_html__('1 comment','LightSource'), '% '.esc_html__('comments','LightSource')); ?><?php }; ?>
-	</span>
-<?php }; ?>

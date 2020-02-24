@@ -1,8 +1,0 @@
-<wpml-config>
-	<admin-texts>
-		<key name="dailyjournal_date_format"/>
-		<key name="dailyjournal_seo_home_titletext"/>
-		<key name="dailyjournal_seo_home_descriptiontext"/>
-		<key name="dailyjournal_seo_home_keywordstext"/>
-	</admin-texts>
-</wpml-config>

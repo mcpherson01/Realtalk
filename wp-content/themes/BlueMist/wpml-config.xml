@@ -1,9 +1,0 @@
-<wpml-config>
-	<admin-texts>
-		<key name="bluemist_date_format"/>
-		<key name="bluemist_about_text"/>
-		<key name="bluemist_seo_home_titletext"/>
-		<key name="bluemist_seo_home_descriptiontext"/>
-		<key name="bluemist_seo_home_keywordstext"/>
-	</admin-texts>
-</wpml-config>

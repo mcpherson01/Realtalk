@@ -1,7 +1,0 @@
-#sidebar { margin-right: 0px !important; margin: 0px; float: left !important; }
-#sidebar-wrapper { width: 285px !important; bcakground-color: #000 !important; overflow: hidden; margin-right: 0px; float: left !important; margin-left: -15px !important; }
-.sidebar-box { margin-left: 25px; }
-#content-wrapper { width: 665px !important; margin-right: 0px !important; }
-.commentlist { width: 560px !important; overflow: hidden; margin-left: 8px !important; }
-.commentlist .children li { width: 85% !important; }
-#categories li a:hover, #categories li:hover a:link { background-color: #FFF !important; }

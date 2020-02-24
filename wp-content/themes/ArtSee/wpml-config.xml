@@ -1,9 +1,0 @@
-<wpml-config>
-	<admin-texts>
-		<key name="artsee_about_us"/>
-		<key name="artsee_date_format"/>
-		<key name="artsee_seo_home_titletext"/>
-		<key name="artsee_seo_home_descriptiontext"/>
-		<key name="artsee_seo_home_keywordstext"/>
-	</admin-texts>
-</wpml-config>

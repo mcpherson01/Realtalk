@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/trim/readme.html" target="_blank"><?php esc_html_e( 'Read Trim Documentation', $themename ); ?></a>

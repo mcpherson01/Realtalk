@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/minimal/readme.html" target="_blank"><?php esc_html_e( 'Read Minimal Documentation', $themename ); ?></a>

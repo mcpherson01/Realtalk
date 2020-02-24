@@ -1,1 +1,0 @@
-<span><?php the_time(get_option('date_format')); ?> <?php esc_html_e('in', 'stack'); ?> </span><span><?php the_category(', '); ?></span>

@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/chameleon/readme.html" target="_blank"><?php esc_html_e( 'Read Chameleon Documentation', $themename ); ?></a>
