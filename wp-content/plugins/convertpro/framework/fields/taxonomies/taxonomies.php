@@ -42,20 +42,21 @@ function cp_v2_taxonomies_settings_field( $name, $settings, $value ) {
 		<optgroup label="<?php echo ucwords( $taxonomy->label ); ?>">
 		<?php
 		$terms = get_terms(
-			$taxonomy->name, array(
+			$taxonomy->name,
+			array(
 				'orderby'    => 'count',
 				'hide_empty' => 0,
 			)
 		);
 
 		foreach ( $terms as $term ) {
-		?>
-		<?php
-		$val_arr  = explode( ',', $value );
-		$selected = ( in_array( $term->term_id, $val_arr ) ) ? 'selected="selected"' : '';
-		?>
+			?>
+			<?php
+			$val_arr  = explode( ',', $value );
+			$selected = ( in_array( $term->term_id, $val_arr ) ) ? 'selected="selected"' : '';
+			?>
 	<option <?php echo $selected; ?> value="<?php echo $term->term_id; ?>"><?php echo $term->name; ?></option>
-		<?php
+			<?php
 		}
 	}
 	?>

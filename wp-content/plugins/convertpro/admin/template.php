@@ -56,7 +56,7 @@ ksort( $templates );
 				if ( is_array( $template['popup_category'] ) ) {
 					$temp_popup_category = implode( ' ', $template['popup_category'] );
 				}
-		?>
+				?>
 		<div class="cp-col-4 cp-template-style" data-preview-url="<?php echo $template['screenshot_url']; ?>" data-template-name="<?php echo $template['post_title']; ?>" data-modal-type="<?php echo $type; ?>" data-id="<?php echo $template['ID']; ?>"  data-popup-category="<?php echo $temp_popup_category; ?>" data-loader="<?php echo CP_V2_BASE_URL . 'assets/admin/img/loadingAnimation.gif'; ?>">
 			<div class="cp-template-screenshot">
 				<?php if ( $template['ID'] > 0 ) { ?>
@@ -70,12 +70,13 @@ ksort( $templates );
 				<?php
 					$button_data = 'data-download="no"';
 					$button_text = '<span>' . __( 'Select', 'convertpro' ) . '</span>';
+					wp_nonce_field( 'cpro_download_cloud', 'cpro_download_cloud_nonce' );
 				?>
 				<?php
 				if ( isset( $template['download_status'] ) && 'success' == $template['download_status'] ) {
 					$button_data = 'data-download="yes"';
 				}
-?>
+				?>
 
 				<button class="cp-save-mdl cp-template-select cp-btn-primary cp-sm-btn cp-button-style" <?php echo $button_data; ?>>
 				<?php echo $button_text; ?>
@@ -110,6 +111,8 @@ ksort( $templates );
 						</div>
 						<div id="cp-btn-status" class="cp-create-template-popup cp-btn-primary cp-sm-btn cp-button-style cp-btn" data-type="<?php echo $type; ?>">
 							<span class="cp-create-popup-btn"><?php echo __( 'Create', 'convertpro' ); ?></span>
+
+							<?php wp_nonce_field( 'cpro_create_new', 'cpro_create_new_nonce' ); ?>
 						</div>
 					</span>
 				</div>

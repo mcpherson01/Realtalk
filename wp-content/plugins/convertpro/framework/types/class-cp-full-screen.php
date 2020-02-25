@@ -10,6 +10,8 @@
  */
 class CP_Full_Screen extends cp_Framework {
 
+
+
 	/**
 	 * Options
 	 *
@@ -39,11 +41,36 @@ class CP_Full_Screen extends cp_Framework {
 			'title'       => __( 'Full Screen Popup', 'convertpro' ),
 			'description' => __( 'A Light-box overlay that can be launched on any web page with a dedicated call to action.', 'convertpro' ),
 		);
+		add_filter( 'cp_configuration_option', array( $this, 'cp_remove_scrolling_option_in_fullscreen' ), 10, 1 );
+
 		parent::cp_add_popup_type( self::$slug, self::$settings );
 
 		add_filter( 'cp_button_flatbtn_options', array( $this, 'remove_field_actions' ) );
 		add_filter( 'cp_button_gradientbtn_options', array( $this, 'remove_field_actions' ) );
 		add_filter( 'cp_shapes_options', array( $this, 'remove_field_actions' ) );
+	}
+
+	/**
+	 * Function Name: cp_remove_scrolling_option_in_modal.
+	 * Function Description: Remove the scroll within range section in Modal popup.
+	 *
+	 * @param array $configure array parameter.
+	 * @return array $configure modified.
+	 * @since 1.3.8
+	 */
+	function cp_remove_scrolling_option_in_fullscreen( $configure ) {
+
+		$options_to_remove = array(
+			'autoload_on_scroll',
+			'load_after_scroll',
+		);
+		foreach ( $configure as $option_key => $option ) {
+			if ( in_array( $option['name'], $options_to_remove ) ) {
+				$configure[ $option_key ]['category'] = __( 'After Scroll', 'convertpro' );
+			}
+		}
+
+		return $configure;
 	}
 
 	/**
@@ -59,6 +86,8 @@ class CP_Full_Screen extends cp_Framework {
 				'enable_display_inline',
 				'inline_position',
 				'inline_shortcode',
+				'show_after_within_scroll_info',
+				'close_after_scroll',
 			),
 			$options
 		);
@@ -103,7 +132,7 @@ class CP_Full_Screen extends cp_Framework {
 				'cp_sub_heading',
 				'cp_paragraph',
 			),
-			array( 'back_color', 'back_color_hover', 'title', 'text_hover_color', 'field_box_shadow', 'failed_message', 'submit_message_text_color', 'submit_message_bg_color', 'submit_message_layout', 'btn_url', 'btn_url_target', 'btn_url_follow', 'btn_step', 'field_action', 'submit_message', 'label_box_shadow', 'submit_message_font_size', 'label_border', 'border_style', 'border_width', 'border_color', 'border_hover_color', 'border_radius', 'field_padding', 'count_as_conversion' ),
+			array( 'back_color', 'back_color_hover', 'title', 'text_hover_color', 'field_box_shadow', 'failed_message', 'submit_message_text_color', 'submit_message_bg_color', 'submit_message_layout', 'btn_url', 'btn_url_target', 'btn_url_follow', 'btn_step', 'field_action', 'submit_message', 'label_box_shadow', 'submit_message_font_size', 'label_border', 'border_style', 'border_width', 'border_color', 'border_hover_color', 'border_radius', 'field_padding', 'count_as_conversion', 'get_parameter' ),
 			$options
 		);
 
@@ -157,7 +186,7 @@ class CP_Full_Screen extends cp_Framework {
 				'cp_custom_html',
 				'cp_video',
 			),
-			array( 'text_hover_color', 'back_color', 'back_color_hover', 'title', 'label_action', 'text_hover_color', 'failed_message', 'submit_message_text_color', 'submit_message_bg_color', 'submit_message_layout', 'btn_url', 'btn_url_target', 'btn_url_follow', 'btn_step', 'field_action', 'submit_message', 'submit_message_font_size', 'field_padding' ),
+			array( 'text_hover_color', 'back_color', 'back_color_hover', 'title', 'label_action', 'text_hover_color', 'failed_message', 'submit_message_text_color', 'submit_message_bg_color', 'submit_message_layout', 'btn_url', 'btn_url_target', 'btn_url_follow', 'btn_step', 'field_action', 'submit_message', 'submit_message_font_size', 'field_padding', 'get_parameter' ),
 			$options
 		);
 
@@ -919,7 +948,7 @@ class CP_Full_Screen extends cp_Framework {
 								'id'             => 'respective_to',
 								'name'           => 'respective_to',
 								'type'           => 'switch',
-								'default_value'  => true,
+								'default_value'  => false,
 								'label'          => __( 'Field Respective To', 'convertpro' ),
 								'hide_on_mobile' => true,
 								'options'        => array(
@@ -1155,7 +1184,7 @@ class CP_Full_Screen extends cp_Framework {
 								'id'             => 'respective_to',
 								'name'           => 'respective_to',
 								'type'           => 'switch',
-								'default_value'  => true,
+								'default_value'  => false,
 								'label'          => __( 'Field Respective To', 'convertpro' ),
 								'hide_on_mobile' => true,
 								'options'        => array(
@@ -1226,6 +1255,12 @@ class CP_Full_Screen extends cp_Framework {
 			// Form - Hidden Input Field.
 			parent::$cp_form_hiddeninput_opts,
 
+			// Form - Google Recaptcha Input Field.
+			parent::$cp_form_google_recaptcha_opts,
+
+			// Form - Date Field.
+			parent::$cp_form_date_opts,
+
 			// Form - Typography Accordion.
 			array(
 				'type'         => 'font',
@@ -1240,6 +1275,26 @@ class CP_Full_Screen extends cp_Framework {
 						'parameter' => 'font-family',
 					),
 					'global'      => false,
+				),
+				'panel'        => 'Form',
+				'section'      => 'Design',
+				'section_icon' => 'cp-icon-field',
+				'has_params'   => false,
+				'category'     => 'Typography',
+			),
+			array(
+				'type'         => 'dropdown',
+				'class'        => '',
+				'name'         => 'form_field_text_transform',
+				'opts'         => array(
+					'title'     => __( 'Text Transform', 'convertpro' ),
+					'value'     => 'none',
+					'options'   => cp_Framework::$text_transform_options,
+					'tags'      => 'field font,font family, font weight',
+					'map_style' => array(
+						'parameter' => 'text-transform',
+					),
+					'global'    => false,
 				),
 				'panel'        => 'Form',
 				'section'      => 'Design',
@@ -1626,7 +1681,6 @@ class CP_Full_Screen extends cp_Framework {
 		$panel_design_options = array_merge( $design_field_options, $panel_design_options );
 
 		return $panel_design_options;
-
 	}
 
 	/**
@@ -1638,13 +1692,10 @@ class CP_Full_Screen extends cp_Framework {
 	function remove_field_actions( $fields ) {
 
 		foreach ( $fields['sections'] as $section_key => $section ) {
-
 			if ( 'Action' == $section['title'] ) {
-
 				$params = $section['params'];
 
 				foreach ( $params as $param_key => $param ) {
-
 					if ( 'field_action' == $param['id'] ) {
 						unset( $param['options']['submit_n_goto_step'] );
 						unset( $param['options']['goto_step'] );

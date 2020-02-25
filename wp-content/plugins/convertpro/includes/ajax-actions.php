@@ -13,6 +13,9 @@ add_action( 'wp_ajax_cp_update_style_settings', 'cp_update_style_settings' );
 add_action( 'wp_ajax_cp_update_style_status', 'cp_update_style_status' );
 add_action( 'wp_ajax_cpro_get_posts_by_query', 'cpro_get_posts_by_query' );
 add_action( 'wp_ajax_cp_refresh_html', 'cp_refresh_html' );
+add_action( 'wp_ajax_cpro_check_count_as_conversion', 'cpro_check_count_as_conversion' );
+
+
 
 /**
 * Function to accept ajax call for updating style settings
@@ -61,7 +64,6 @@ if ( ! function_exists( 'cp_update_style_settings' ) ) {
 		$is_template_live  = esc_attr( $_POST['is_template_live'] );
 
 		if ( 'false' != $template_category && is_array( $template_category ) ) {
-
 			$remove_key = array_search( 'all', $template_category );
 
 			if ( false !== $remove_key ) {
@@ -81,7 +83,7 @@ if ( ! function_exists( 'cp_update_style_settings' ) ) {
 			'message'        => 'Post created',
 			'post_action'    => $post_action,
 			'style_id'       => $post_id,
-			'post_edit_link' => admin_url( 'post.php?post=' . $post_id . '&action=edit&type=' . $module_type . '&popup_title=' . $style_name ),
+			'post_edit_link' => get_edit_post_link( $post_id, '' ) . '&type=' . $module_type . '&popup_title=' . $style_name,
 		);
 
 		if ( class_exists( 'CP_V2_AB_Test' ) ) {
@@ -119,7 +121,6 @@ if ( ! function_exists( 'cp_create_campaign' ) ) {
 		$term = term_exists( $cat_name, CP_CAMPAIGN_TAXONOMY );
 
 		if ( 0 !== $term && null !== $term ) {
-
 			$data = array(
 				'message' => __( 'You already have a campaign with the same name.', 'convertpro' ),
 			);
@@ -139,7 +140,6 @@ if ( ! function_exists( 'cp_create_campaign' ) ) {
 		);
 
 		return $category_id;
-
 	}
 }
 
@@ -163,9 +163,9 @@ function cp_v2_get_taxonomy_by_id( $tax_id ) {
 
 	if ( is_array( $taxonomies ) ) {
 		foreach ( $taxonomies as $taxonomy ) {
-
 			$terms = get_terms(
-				$taxonomy->name, array(
+				$taxonomy->name,
+				array(
 					'orderby'    => 'count',
 					'hide_empty' => 0,
 				)
@@ -190,9 +190,9 @@ function cp_v2_get_taxonomy_by_id( $tax_id ) {
 
 	if ( is_array( $taxonomies ) ) {
 		foreach ( $taxonomies as $taxonomy ) {
-
 			$terms = get_terms(
-				$taxonomy->name, array(
+				$taxonomy->name,
+				array(
 					'orderby'    => 'count',
 					'hide_empty' => 0,
 				)
@@ -242,12 +242,10 @@ if ( ! function_exists( 'cpro_get_posts_by_query' ) ) {
 		$post_types = get_post_types( $args, $output, $operator );
 
 		$post_types['Posts'] = 'post';
-		if ( ! $is_singular ) {
-			$post_types['Pages'] = 'page';
-		}
+
+		$post_types['Pages'] = 'page';
 
 		foreach ( $post_types as $key => $post_type ) {
-
 			$data = array();
 
 			// filter to search within post title only.
@@ -255,9 +253,10 @@ if ( ! function_exists( 'cpro_get_posts_by_query' ) ) {
 
 			$query = new WP_Query(
 				array(
-					's'              => $search_string,
-					'post_type'      => $post_type,
-					'posts_per_page' => -1,
+					's'                => $search_string,
+					'post_type'        => $post_type,
+					'posts_per_page'   => -1,
+					'suppress_filters' => false,
 				)
 			);
 
@@ -297,9 +296,9 @@ if ( ! function_exists( 'cpro_get_posts_by_query' ) ) {
 		$taxonomies = get_taxonomies( $args, $output, $operator );
 
 		foreach ( $taxonomies as $taxonomy ) {
-
 			$terms = get_terms(
-				$taxonomy->name, array(
+				$taxonomy->name,
+				array(
 					'orderby'    => 'count',
 					'hide_empty' => 0,
 					'name__like' => $search_string,
@@ -311,9 +310,7 @@ if ( ! function_exists( 'cpro_get_posts_by_query' ) ) {
 			$label = ucwords( $taxonomy->label );
 
 			if ( ! empty( $terms ) ) {
-
 				foreach ( $terms as $term ) {
-
 					$term_taxonomy_name = ucfirst( str_replace( '_', ' ', $taxonomy->name ) );
 
 					$data[] = array(
@@ -322,7 +319,6 @@ if ( ! function_exists( 'cpro_get_posts_by_query' ) ) {
 					);
 
 					if ( ! $is_singular ) {
-
 						$data[] = array(
 							'id'   => 'tax-' . $term->term_id . '-archive-' . $taxonomy->name,
 							'text' => $term->name . ' (' . $term_taxonomy_name . ') - Archive',
@@ -351,6 +347,7 @@ if ( ! function_exists( 'cpro_get_posts_by_query' ) ) {
  * @since 0.0.1
  */
 function cp_update_style_status() {
+	check_ajax_referer( 'cpro_publish', 'publish_nonce' );
 
 	if ( ! current_user_can( 'edit_cp_popup' ) ) {
 		$data = array(
@@ -366,7 +363,6 @@ function cp_update_style_status() {
 		$result = update_post_meta( (int) $style_id, 'live', $style_status );
 
 		wp_send_json_success();
-
 	}
 
 	wp_send_json_error();
@@ -377,7 +373,6 @@ function cp_update_style_status() {
  * Function Description: cp_migrate_meta_keys.
  */
 function cp_migrate_meta_keys() {
-
 	$query_args = array(
 		'post_type'      => CP_CUSTOM_POST_TYPE,
 		'posts_per_page' => -1,
@@ -391,7 +386,6 @@ function cp_migrate_meta_keys() {
 
 	if ( is_array( $designs ) && ! empty( $designs ) ) {
 		foreach ( $designs as $key => $design_id ) {
-
 			$combined_configuration_data = array();
 			$combined_design_data        = array();
 			$old_configure_meta_keys     = array(
@@ -408,7 +402,6 @@ function cp_migrate_meta_keys() {
 
 			// Combine all configruation meta keys.
 			foreach ( $old_configure_meta_keys as $value ) {
-
 				$meta_data = get_post_meta( $design_id, $value, true );
 				if ( '' !== $meta_data ) {
 					$combined_configuration_data = array_merge( $combined_configuration_data, $meta_data );
@@ -417,7 +410,6 @@ function cp_migrate_meta_keys() {
 
 			// Combine all design meta keys.
 			foreach ( $old_design_meta_keys as $value ) {
-
 				$meta_data = get_post_meta( $design_id, $value, true );
 				if ( '' !== $meta_data ) {
 					$combined_design_data = array_merge( $combined_design_data, $meta_data );
@@ -432,14 +424,12 @@ function cp_migrate_meta_keys() {
 
 			// Delete all old meta keys.
 			foreach ( $meta_keys as $meta_key ) {
-
 				delete_post_meta( $design_id, $meta_key );
 			}
 		}
 	}
 
 	wp_send_json_success();
-
 }
 
 /**
@@ -447,7 +437,6 @@ function cp_migrate_meta_keys() {
  * Function Description: cp_refresh_html.
  */
 function cp_refresh_html() {
-
 	if ( ! current_user_can( 'access_cp_pro' ) ) {
 		die( '-1' );
 	}
@@ -473,9 +462,7 @@ function cp_refresh_html() {
 	$cp_popup_obj = new CP_V2_Popups();
 
 	if ( is_array( $designs ) && ! empty( $designs ) ) {
-
 		foreach ( $designs as $design ) {
-
 			$module_type = get_post_meta( $design, 'cp_module_type', true );
 			$display     = '';
 
@@ -498,9 +485,7 @@ function cp_refresh_html() {
 		$data['styles'] = $styles_list;
 
 		wp_send_json_success( $data );
-
 	} else {
-
 		$data = array(
 			'message' => __( 'No styles found to refresh', 'convertpro' ),
 		);
@@ -508,11 +493,78 @@ function cp_refresh_html() {
 	}
 }
 
+
+/**
+* Function to accept ajax call to check count as conversion
+ *
+* @since 1.4.1
+*/
+if ( ! function_exists( 'cpro_check_count_as_conversion' ) ) {
+	/**
+	 * Function Name: cpro_check_count_as_conversion.
+	 * Function Description: Check if the Google Analytics is configured or not.
+	 */
+	function cpro_check_count_as_conversion() {
+
+		check_ajax_referer( 'cp-save-ajax-req-nonce', 'security' );
+
+		if ( ! current_user_can( 'edit_cp_popup' ) ) {
+			$data = array(
+				'message' => __( 'You are not authorized to perform this action.', 'convertpro' ),
+			);
+			wp_send_json_error( $data );
+		}
+
+		$url = ( get_option( 'cp_parent_page_url' ) );
+		if ( strpos( $url, 'action' ) ) {
+			$url = substr( $url, 0, strpos( $url, 'action' ) );
+			$url = $url . 'action=general-settings#addons';
+		} else {
+			$url = $url . '-general-settings#addons';
+		}
+
+		if ( ! class_exists( 'CP_Addon_Loader' ) ) {
+			$data = array(
+				/* translators: %s percentage */
+				'message' => sprintf( __( 'Oops!!! It seems like you have not installed/activated %1$s - Addon plugin. Click <a target="_blank" href="%2$s" >here</a> to activate.', 'convertpro' ), CPRO_BRANDING_NAME, $url ),
+			);
+			wp_send_json_error( $data );
+		}
+
+		$status                 = ( $_POST['status'] );
+		$get_addon_list         = CP_Addon_Admin_Helper::get_admin_settings_option( '_cp_addon_enabled_extensions' );
+		$check_analytics_status = empty( $get_addon_list['analytics'] );
+
+		if ( $status ) {
+
+			if ( $check_analytics_status ) {
+				$data = array(
+					/* translators: %s percentage */
+					'message' => sprintf( __( 'Please activate Analytics to use Count as a Conversion. Click <a target="_blank" href="%s" >here</a> to activate.', 'convertpro' ), $url ),
+				);
+				wp_send_json_error( $data );
+			} else {
+				$data = array(
+					'message' => __( 'Count as a conversion activated', 'convertpro' ),
+				);
+				wp_send_json_success( $data );
+			}
+		} else {
+			$data = array(
+				'message' => __( 'Something went wrong', 'convertpro' ),
+			);
+				wp_send_json_error( $data );
+		}
+
+	}
+}
+
+
 /**
  * Return search results only by post title.
  *
- * @param  (string)   $search   Search SQL for WHERE clause.
- * @param  (WP_Query) $wp_query The current WP_Query object.
+ * @param (string)   $search   Search SQL for WHERE clause.
+ * @param (WP_Query) $wp_query The current WP_Query object.
  *
  * @return (string) The Modified Search SQL for WHERE clause.
  */

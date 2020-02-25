@@ -27,6 +27,6 @@
 
 		echo bsf_license_activation_form( $args );
 
-	?>
+		?>
 
 </div> <!-- End Wrapper -->

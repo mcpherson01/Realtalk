@@ -135,7 +135,7 @@
 
 			// updated current step id here
 			step_id = step_count - 1;
-        	
+
         	$('.cp-switch-screen-loader').addClass('cp-show');
 			$(".cp_step_button").removeClass('cp-active-step');
 
@@ -170,12 +170,45 @@
 					var field_clone   = $("#"+ obj_index).clone();
 					var current_panel = $(".panel-wrapper #panel-" + step_count );
 					var regex         = new RegExp(obj_index, "gi");
+					var temp_clone = {};
 
 					// append field to new step panel
 					current_panel.find( '.panel-content-wrapper' ).append(field_clone);
 
 					// Modify id of field
 					current_panel.find("#" + obj_index).attr( "id", new_id );
+					
+					$.extend(true, temp_clone, obj_val);
+
+					var replace_name_option = 'input_text_name';
+
+					switch( field_type ) {
+						case "cp_text":
+							var input_name = 'textfield';
+						break;
+						case "cp_number":
+							var input_name = 'numberfield';
+						break;
+						case "cp_dropdown":
+							replace_name_option = 'dropdown_name';
+							var input_name = 'dropdownfield';
+						break;
+						case "cp_textarea":
+							var input_name = 'textarea';
+						break;
+						case "cp_radio":
+							replace_name_option = 'radio_name';
+							var input_name = 'radiofield';
+						break;
+						case "cp_checkbox":
+							replace_name_option = 'checkbox_name';
+							var input_name = 'checkboxfield';
+						break;
+						case "cp_date":
+							replace_name_option = 'date_name';
+							var input_name = 'datefield';
+						break;
+					}
 
 					var old_html      = current_panel.find("#" + new_id).html();
 
@@ -184,10 +217,19 @@
 						// Replace old element id with new element id 
 						var newhtml = old_html.replace( regex, new_id );
 
-						current_panel.find("#" + new_id).html(newhtml);					
+						current_panel.find("#" + new_id).html(newhtml);
+
+						if ( typeof input_name !== 'undefined') {
+							var new_input_name = input_name + '_' + Math.floor(1000 + Math.random() * 9000);
+							temp_clone[replace_name_option] = new_input_name;
+							if( typeof temp_clone[replace_name_option] !== 'undefined' ) {
+								temp_clone[replace_name_option] = new_input_name;
+								current_panel.find("#" + new_id + '-content').attr( "name", new_input_name );
+							}
+						}					
 
 						bmodel.setElementID( step_id, new_id );
-						bmodel.setElementModalData( new_id, obj_val );
+						bmodel.setElementModalData( new_id, temp_clone );
 					}
 
 				} else if( 'panel' == field_type ) {

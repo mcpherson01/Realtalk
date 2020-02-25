@@ -83,6 +83,9 @@ var CProVideo = '';
                 switch ( video_src ) {
 
                     case 'youtube':
+                        var src_autoplay = iframe_src.replace( 'autoplay=1', 'autoplay=0' );
+                        video_frame.attr( 'src', src_autoplay );
+                    break;
                     case 'vimeo': 
                         video_frame.prop( 'src', '' ).prop( 'src', iframe_src.replace( '?autoplay=1', '' ) );
                     break;

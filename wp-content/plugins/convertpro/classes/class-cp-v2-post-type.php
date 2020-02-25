@@ -55,7 +55,8 @@ if ( ! class_exists( 'Cp_V2_Post_Type' ) ) {
 			}
 
 			register_post_type(
-				CP_CUSTOM_POST_TYPE, array(
+				CP_CUSTOM_POST_TYPE,
+				array(
 					/* translators: %s CPRO_BRANDING_NAME */
 					'label'               => sprintf( __( '%s Popups', 'convertpro' ), CPRO_BRANDING_NAME ),
 					'labels'              => array(

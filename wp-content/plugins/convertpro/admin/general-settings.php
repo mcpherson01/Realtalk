@@ -27,6 +27,10 @@
 					'label' => __( 'Email Notification', 'convertpro' ),
 					'icon'  => 'email',
 				),
+				'recaptcha'      => array(
+					'label' => __( 'Recaptcha', 'convertpro' ),
+					'icon'  => 'update',
+				),
 				'advanced'       => array(
 					'label' => __( 'Advanced', 'convertpro' ),
 					'icon'  => 'admin-generic',
@@ -37,17 +41,23 @@
 				),
 			);
 
-			$hide_branding = get_option( 'cpro_hide_branding' );
+			$hide_branding = ( is_multisite() ) ? get_site_option( '_cpro_hide_branding' ) : get_option( 'cpro_hide_branding' );
 
 			if ( '1' == $hide_branding ) {
 				unset( $nav_menus['branding'] );
 			}
 
+			if ( defined( 'CP_HIDE_WHITE_LABEL' ) ) {
+				if ( CP_HIDE_WHITE_LABEL ) {
+					unset( $nav_menus['branding'] );
+				}
+			}
+
 			foreach ( $nav_menus as $slug => $nav_menu ) {
 				do_action( 'cp_before_' . $slug . '_nav_menu' );
-			?>
+				?>
 			<a href="#<?php echo $slug; ?>" class="cp-settings-nav selected"><span class="cp-gen-set-icon"><i class="dashicons dashicons-<?php echo $nav_menu['icon']; ?>"></i></span><?php echo $nav_menu['label']; ?></a>
-			<?php
+				<?php
 				do_action( 'cp_after_' . $slug . '_nav_menu' );
 			}
 			do_action( 'cp_general_set_navigation' );
@@ -61,6 +71,7 @@
 				$menu_position      = esc_attr( get_option( 'bsf_menu_position' ) );
 				$menu_position      = ( ! $menu_position ) ? self::$default_menu_position : $menu_position;
 				$dev_mode_option    = esc_attr( get_option( 'cp_dev_mode' ) );
+				$antispam_enabled   = esc_attr( get_option( 'cp_antispam_enabled' ) );
 				$beta_update_option = esc_attr( get_option( 'cpro_beta_updates' ) );
 				$user_inactivity    = esc_attr( get_option( 'cp_user_inactivity' ) );
 				$cp_access_roles    = get_option( 'cp_access_role' );
@@ -94,14 +105,16 @@
 						foreach ( $entries as $page => $entry ) {
 							$select_box .= '<option ' . selected( $page, $menu_position, false ) . ' value="' . $page . '">' . $entry . "</option>\n";
 						}
-						$select_box       .= "</select>\n";
-						$dmval             = ! $dev_mode_option ? 0 : 1;
-						$image_on_readyval = ! $image_on_ready ? 0 : 1;
-						$betaval           = ! $beta_update_option ? 0 : 1;
-						$uniq              = uniqid();
-						$is_checked        = ( $dmval ) ? ' checked="checked" ' : '';
-						$crval             = ( ! $cp_credit_option || 0 == $cp_credit_option ) ? 0 : 1;
-						$is_credit_checked = ( $crval ) ? ' checked="checked" ' : '';
+						$select_box         .= "</select>\n";
+						$dmval               = ! $dev_mode_option ? 0 : 1;
+						$antispam_val        = ! $antispam_enabled ? 1 : $antispam_enabled;
+						$image_on_readyval   = ! $image_on_ready ? 0 : 1;
+						$betaval             = ! $beta_update_option ? 0 : 1;
+						$uniq                = uniqid();
+						$is_checked          = ( $dmval ) ? ' checked="checked" ' : '';
+						$is_antispam_enabled = ( $antispam_val ) ? ' checked="checked" ' : '';
+						$crval               = ( ! $cp_credit_option || 0 == $cp_credit_option ) ? 0 : 1;
+						$is_credit_checked   = ( $crval ) ? ' checked="checked" ' : '';
 
 						if ( '' == $user_inactivity ) {
 							$user_inactivity = '60';
@@ -131,17 +144,17 @@
 												$inherit_key = array_search( 'Inherit', $font_weights );
 												unset( $font_weights[ $inherit_key ] );
 												$selected = $sel_font_family == $font_family ? 'selected=selected' : '';
-											?>
+												?>
 												<option value="<?php echo $font_family; ?>" <?php echo $selected; ?> data-weight="<?php echo implode( ',', $font_weights ); ?>"><?php echo ucfirst( $font_family ); ?></option>
-											<?php
-											if ( '' !== $selected ) {
-												$font_weights_arr = $font_weights;
+												<?php
+												if ( '' !== $selected ) {
+													$font_weights_arr = $font_weights;
+												}
 											}
-											}
-									?>
+											?>
 											</optgroup>
-								<?php
-}
+									<?php
+								}
 								?>
 										</select>
 										<select for="cp_global_font" class="cp-font-weights">
@@ -151,7 +164,7 @@
 										$selected = $sel_font_weight == $weight ? 'selected=selected' : '';
 										?>
 											<option value="<?php echo $weight; ?>" <?php echo $selected; ?>><?php echo $weight; ?></option>
-								<?php
+										<?php
 									}
 								}
 								?>
@@ -218,12 +231,17 @@
 
 		?>
 		<div class="cp-gen-set-content">
+			<?php require_once( CP_V2_BASE_DIR . 'admin/google-recaptcha.php' ); ?>
+		</div>
+		<div class="cp-gen-set-content">
 			<div class="cp-settings-container">
 				<?php
 				if ( current_user_can( 'manage_options' ) ) {
-
 					$display_adv_settings = true;
-				?>
+					$antispam_enabled     = sanitize_title( get_option( 'cp_antispam_enabled' ) );
+					$antispam_val         = ( '0' == $antispam_enabled ) ? 0 : 1;
+					$is_antispam_enabled  = ( $antispam_val ) ? ' checked="checked" ' : '';
+					?>
 				<h3 class="cp-gen-set-title"><?php _e( 'Advanced Settings', 'convertpro' ); ?></h3>
 				<form method="post" class="cp-settings-form">
 					<div class="debug-section cp-access-roles">
@@ -231,7 +249,7 @@
 							<tr>
 								<th scope="row">
 									<label for="option-admin-menu-parent-page"><?php _e( 'Admin Menu Position ', 'convertpro' ); ?>
-										<?php ;/* translators: %s: Convert Pro Name */ ?>
+										<?php /* translators: %s: Convert Pro Name */ ?>
 										<span class="cp-tooltip-icon has-tip" data-position="top" style="cursor: help;" title="<?php echo sprintf( __( '%s will be listed under the menu you select here.', 'convertpro' ), CPRO_BRANDING_NAME ); ?>"><i class="dashicons dashicons-editor-help"></i></span>
 									</label>
 								</th>
@@ -239,8 +257,8 @@
 							</tr>
 							<tr>
 								<th scope="row">
-									<?php ;/* translators: %s percentage */ ?>
-									<label for="cp-access-user-role"><strong><?php echo sprintf( __( 'Allow %s For', 'convertpro' ), CPRO_BRANDING_NAME ); ?></strong><?php ;/* translators: %s percentage */ ?>
+									<?php /* translators: %s percentage */ ?>
+									<label for="cp-access-user-role"><strong><?php echo sprintf( __( 'Allow %s For', 'convertpro' ), CPRO_BRANDING_NAME ); ?></strong><?php /* translators: %s percentage */ ?>
 										<span class="cp-tooltip-icon has-tip" data-position="top" style="cursor: help;" title="<?php echo sprintf( __( 'The site administrator has complete access to %s. Select the user roles you wish to grant access to.', 'convertpro' ), CPRO_BRANDING_NAME ); ?>"><i class="dashicons dashicons-editor-help"></i></span>
 									</label>
 								</th>
@@ -258,13 +276,27 @@
 
 									foreach ( $roles as $key => $role ) {
 										$checked = ( in_array( $key, $cp_access_roles ) ) ? 'checked="checked"' : '';
-									?>
+										?>
 										<li>
 											<input type="checkbox" name="cp_access_role[]" <?php echo $checked; ?> value="<?php echo $key; ?>" id="<?php echo $key; ?>" />
 											<label class="cp-role-label" for="<?php echo $key; ?>"><?php echo $role; ?></label>
 										</li>
 									<?php } ?>
 									</ul>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="option-admin-menu-developer-page"><?php _e( 'Add Antispam field to the form', 'convertpro' ); ?>
+										<span class="cp-tooltip-icon has-tip" data-position="top" style="cursor: help;" title="<?php _e( 'Enabling this will add an antispam field to all call-to-action forms. Convert Pro uses Honeypot field technique to fight spam.', 'convertpro' ); ?>"><i class="dashicons dashicons-editor-help"></i></span>
+									</label>
+								</th>
+								<td>
+									<div class="cp-switch-wrapper">
+										<input type="text"  id="cp_antispam_enabled" class="form-control cp-input cp-switch-input" name="cp_antispam_enabled" value="<?php echo $antispam_val; ?>" />
+										<input type="checkbox" <?php echo $is_antispam_enabled; ?> id="cp_antispam_enabled_btn_<?php echo $uniq; ?>"  class="ios-toggle cp-switch-input switch-checkbox" value="<?php echo $antispam_val; ?>" >
+										<label class="cp-switch-btn checkbox-label" data-on=<?php _e( 'ON', 'convertpro' ); ?>  data-off="<?php _e( 'OFF', 'convertpro' ); ?>" data-id="cp_antispam_enabled" for="cp_antispam_enabled_btn_<?php echo $uniq; ?>"></label>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -320,13 +352,14 @@
 					</p>
 					<?php
 				}
-					?>
+				?>
 				</form>
 				<div class="cp-cache-section cp-gen-set-content 
 				<?php
 				if ( $display_adv_settings ) {
-					echo 'cp-border-top'; }
-?>
+					echo 'cp-border-top';
+				}
+				?>
 ">
 					<h3 class="cp-gen-set-title"><?php _e( 'Cache', 'convertpro' ); ?></h3>
 					<p><?php _e( 'HTML data of your call-to-action is dynamically generated and cached each time you create or edit a call-to-action. There might be chances that cache needs to be refreshed when you update to the latest version or migrate your site. If you are facing any issues, please try clearing the cache by clicking the button below.', 'convertpro' ); ?></p>

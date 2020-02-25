@@ -10,6 +10,8 @@
  */
 class CP_Widget extends cp_Framework {
 
+
+
 	/**
 	 * Options
 	 *
@@ -40,6 +42,11 @@ class CP_Widget extends cp_Framework {
 			'description' => __( 'A banner or an opt-in form that can be displayed within the sidebar widget of your blog.', 'convertpro' ),
 		);
 		parent::cp_add_popup_type( self::$slug, self::$settings );
+
+		// Filter to remove unwanted actions.
+		add_filter( 'cp_button_flatbtn_options', array( $this, 'remove_field_actions' ) );
+		add_filter( 'cp_button_gradientbtn_options', array( $this, 'remove_field_actions' ) );
+		add_filter( 'cp_shapes_options', array( $this, 'remove_field_actions' ) );
 	}
 
 	/**
@@ -65,6 +72,10 @@ class CP_Widget extends cp_Framework {
 				'start_date',
 				'end_date',
 				'enable_adblock_detection',
+				'hide_custom_cookies',
+				'hide_cookies_class',
+				'off_cookie_txt',
+				'hide_cta_info',
 			),
 			$options
 		);
@@ -120,7 +131,7 @@ class CP_Widget extends cp_Framework {
 				'cp_shape',
 				'cp_dual_color_shape',
 			),
-			array( 'title', 'font_family', 'font_size', 'text_color', 'text_hover_color', 'back_color', 'back_color_hover', 'letter_spacing', 'btn_text_align', 'line_height', 'label_border', 'border_style', 'border_radius', 'border_color', 'border_hover_color', 'border_width', 'field_padding', 'respective_to', 'get_parameter' ),
+			array( 'title', 'font_family', 'font_size', 'text_color', 'text_hover_color', 'back_color', 'back_color_hover', 'letter_spacing', 'btn_text_align', 'line_height', 'label_border', 'border_style', 'border_radius', 'border_color', 'border_hover_color', 'border_width', 'field_padding', 'respective_to' ),
 			$options
 		);
 
@@ -157,7 +168,7 @@ class CP_Widget extends cp_Framework {
 				'cp_custom_html',
 				'cp_video',
 			),
-			array( 'text_hover_color', 'back_color', 'back_color_hover', 'title', 'label_action', 'text_hover_color', 'failed_message', 'submit_message_text_color', 'submit_message_bg_color', 'submit_message_layout', 'btn_url', 'btn_url_target', 'btn_url_follow', 'btn_step', 'field_action', 'submit_message', 'submit_message_font_size', 'field_padding', 'respective_to' ),
+			array( 'text_hover_color', 'back_color', 'back_color_hover', 'title', 'label_action', 'text_hover_color', 'failed_message', 'submit_message_text_color', 'submit_message_bg_color', 'submit_message_layout', 'btn_url', 'btn_url_target', 'btn_url_follow', 'btn_step', 'field_action', 'submit_message', 'submit_message_font_size', 'field_padding', 'respective_to', 'get_parameter' ),
 			$options
 		);
 
@@ -831,6 +842,12 @@ class CP_Widget extends cp_Framework {
 			// Form - Hidden Input Field.
 			parent::$cp_form_hiddeninput_opts,
 
+			// Form - Google Recaptcha Input Field.
+			parent::$cp_form_google_recaptcha_opts,
+
+			// Form - Date Field.
+			parent::$cp_form_date_opts,
+
 			// Form - Typography Accordion.
 			array(
 				'type'         => 'font',
@@ -845,6 +862,26 @@ class CP_Widget extends cp_Framework {
 						'parameter' => 'font-family',
 					),
 					'global'      => false,
+				),
+				'panel'        => 'Form',
+				'section'      => 'Design',
+				'section_icon' => 'cp-icon-field',
+				'has_params'   => false,
+				'category'     => 'Typography',
+			),
+			array(
+				'type'         => 'dropdown',
+				'class'        => '',
+				'name'         => 'form_field_text_transform',
+				'opts'         => array(
+					'title'     => __( 'Text Transform', 'convertpro' ),
+					'value'     => 'none',
+					'options'   => cp_Framework::$text_transform_options,
+					'tags'      => 'field font,font family, font weight',
+					'map_style' => array(
+						'parameter' => 'text-transform',
+					),
+					'global'    => false,
 				),
 				'panel'        => 'Form',
 				'section'      => 'Design',
@@ -1231,7 +1268,6 @@ class CP_Widget extends cp_Framework {
 		$panel_design_options = array_merge( $design_field_options, $panel_design_options );
 
 		return $panel_design_options;
-
 	}
 
 	/**
@@ -1243,16 +1279,15 @@ class CP_Widget extends cp_Framework {
 	function remove_field_actions( $fields ) {
 
 		foreach ( $fields['sections'] as $section_key => $section ) {
-
 			if ( 'Action' == $section['title'] ) {
-
 				$params = $section['params'];
 
 				foreach ( $params as $param_key => $param ) {
-
 					if ( 'field_action' == $param['id'] ) {
-						unset( $param['options']['submit_n_goto_step'] );
-						unset( $param['options']['goto_step'] );
+						unset( $param['options']['submit_n_close'] );
+						unset( $param['options']['close'] );
+						unset( $param['options']['close_tab'] );
+						unset( $param['options']['close_n_goto_url'] );
 					}
 
 					$params[ $param_key ] = $param;
@@ -1265,7 +1300,6 @@ class CP_Widget extends cp_Framework {
 
 		return $fields;
 	}
-
 }
 
 new CP_Widget;

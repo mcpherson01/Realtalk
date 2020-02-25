@@ -295,7 +295,9 @@ function cp_duplicate_popup( $popup_id = '', $title ) {
 
 				if ( CP_AB_TEST_TAXONOMY != $taxonomy ) {
 					$post_terms = wp_get_object_terms(
-						$post_id, $taxonomy, array(
+						$post_id,
+						$taxonomy,
+						array(
 							'fields' => 'slugs',
 						)
 					);
@@ -415,7 +417,7 @@ function cp_get_insights_row( $style ) {
 					if ( false != $has_active_ab_test['status'] ) {
 						$delete_url = false;
 					}
-?>
+					?>
 					<input class="cp-hidden-delete-style" type="hidden" value="<?php echo $delete_url; ?>">
 				</span>
 			</div>
@@ -430,15 +432,15 @@ function cp_get_insights_row( $style ) {
 						do_action( 'cp_get_' . $action_slug . '_row_value', $style );
 						?>
 					</div>				
-				<?php
-}
+					<?php
+				}
 
 				$edit_data = 'data-ab-test="false"';
 
-if ( $has_active_ab_test['status'] || $has_active_ab_test['completed_status'] ) {
-	$edit_data = 'data-ab-test="true"';
-}
-?>
+				if ( $has_active_ab_test['status'] || $has_active_ab_test['completed_status'] ) {
+					$edit_data = 'data-ab-test="true"';
+				}
+				?>
 				<div class="cp-edit-settings" <?php echo $edit_data; ?>></div>
 			</div>
 		</div>
@@ -570,3 +572,17 @@ function cpro_build_timezones( $selected_zone ) {
 
 	return join( "\n", $structure );
 }
+
+
+/**
+ * Function Name: cp_geolite2_database_notice.
+ * Function Description: Displays notice if PharData class is not installed in PHP.
+ */
+function cp_geolite2_database_notice() {
+	if ( ! class_exists( 'PharData' ) ) {
+		echo '<div class="notice notice-warning is-dismissible">
+             <p><b>GeoLocation Targeting</b> feature of Convert Pro might not work on your website. <b>Your PHP install does not have PharData class</b>. We highly recommend you to install PharData class in PHP to use GeoLocation Targeting feature. </p>
+         </div>';
+	}
+}
+add_action( 'admin_notices', 'cp_geolite2_database_notice' );

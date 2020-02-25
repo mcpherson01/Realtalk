@@ -1,3 +1,225 @@
+Version 1.4.2 January 22, 2020
+
+- Security Fix: Cross-site scripting (XSS) vulnerability.
+- Improvements: Re-structured and optimized the codebase to improve security.
+- Fix: WP CLI support added. (https://www.convertpro.net/docs/wp-cli-commands/) 
+- Fix: Ultimate Addons for Visual Composer JS conflict - unable to edit the integrated mailer.
+- Fix: Multiple info-bar overlapping on same position.
+- Fix: Slide-in CTA position issue for toggle button on mobile and desktop in Editor.
+- Fix: Slide-in CTA position issue with Multistep for toggle button on mobile and desktop in Editor.
+- Fix: Slide in CTA position 'bottom centre' issue with toggle button on desktop.
+- Fix: Slide-in CTA with sticky toggle not working on mobile.
+
+Version 1.4.1 January 06, 2020
+
+- Improvement: Conditionally load Geo Location files.
+- Improvement: Filter to change Countdown Timer label name.(https://www.convertpro.net/docs/how-to-change-the-labels-in-the-countdown-timer?/)
+- Fix: Removed unwanted actions for buttons and shapes for - In Content, Before/After and Widget type CTA.
+- Fix: Convert Pro not White-labeled in Google Recaptcha setting page.
+- Fix: Not able to translate the Convert Pro popup when WPML used with CPT.
+- Fix: Bridge Theme JS conflict - Required field not set for the form fields.
+- Fix: Evergenius Theme JS conflict with Convert Pro editor.
+- Fix: Savory theme JS conflict.
+- Fix: Modal popup not centered on the mobile.
+- Fix: String corrections.
+- Fix: Conflict with Astra Theme WooCommerce product plus minus quantity button.
+- Fix: Show Credit link displayed even when it is not set.
+- Fix: Count As Conversion option when Analytics is not set.
+- Fix: Multiple Info-Bar CTA toggle button issue.
+- Fix: Toggle button not showing in Info-bar CTA Editor.
+
+Version 1.4.0 September 10, 2019
+
+- Fix: No update notification for Convert Pro Addon plugin.
+
+Version 1.3.9 September 05, 2019
+
+- Fix: Support Request URL not redirected correctly.
+
+Version 1.3.8 August 01, 2019
+
+- New: Display the info-bar/slide-in CTA within the scroll range. (https://www.convertpro.net/docs/display-within-range-call-to-action-in-convert-pro/)
+- Improvement: Whitelabel – Allow white label for Switches to be updated using PHP constants. ( https://www.convertpro.net/docs/disable-white-label-settings-for-other-user-roles-on-website/)
+- Improvement: Version number added to the JS files that are loaded in front-end.
+- Fix: Vimeo video not auto-playing.
+- Fix: Lazyload images not appearing fix.
+
+Version 1.3.7 June 27, 2019
+- Fix: Multistep Slide-In CTA Form Fields not clickable when Toggle is on.
+- Fix: Full Screen and Welcome Mat CTA - "Field Respective To" option not working.
+- Fix: Schema and Structured data for WP Plugin JS conflict.
+- Fix: Civic Cookie Control 8 Plugin JS Conflict.
+- Fix: Woo Birthday discount vouchers plugin JS Conflict.
+- Fix: Custom Facebook Feed Pro - Extensions Plugin JS Conflict.
+- Fix: WooCommerce Table Rate Shipping Plugin JS Conflict.
+- Fix: Apply Online Plugin JS Conflict.
+- Fix: Bridge Theme JS Conflict.
+- Fix: Sliced Invoices Plugin JS Conflict.
+
+Version 1.3.6 May 15, 2019
+- Fix: Security update with cross-site scripting vulnerability issue.
+
+Version 1.3.5 April 25, 2019
+
+- New: Text Alignment for Countdown Timer.  
+- Improvement: AB Test if cookie is ON for CTA.
+- Fix: CTA translation issue with WPML after WPML update.
+- Fix: WooCommerce deprecated function notice.
+- Fix: Plugin name White label not working for PHP constant.
+- Fix: GeoIP warning for multiple IP addresses.
+- Fix: UAEL - Post Widget author name conflict when excerpt is ON.
+
+Version 1.3.4 April 10, 2019
+
+- New: Search option to Search mailer in Connect section.  
+- New: Whitelabel - Allow white label strings to be updated using PHP constants. - https://www.convertpro.net/docs/disable-white-label-settings-for-other-user-roles-on-website/
+- Improvement: Whitelabel - Permanently hide white label option using a constant. - https://www.convertpro.net/docs/how-to-disable-the-white-label-settings-permanently?/
+- Improvement: Whitelabel - Option to add image in White Label.
+- Improvement: Whitelabel - For multisite.
+- Improvement: Replace plugin strings on the updates page.
+- Improvement: Before/After CTA - Specific Page target option.
+- Improvement: Removed title tags from Shapes for better SEO.
+- Improvement: CP Geo Warning proper handling.
+- Fix: Google Tag Manager tracking not working when White Label.
+- Fix: Warning while fonts typecasting.
+- Fix: Panel Overlay & Background Image not working.
+- Fix: WooCommerce Store Exporter deluxe plugin JS Conflict.
+- Fix: Switching Product plugin JS Conflict.
+- Fix: Multi-rating plugin JS Conflict.
+- Fix: Showcase Pro(Child theme of Genesis Parent theme) theme JS Conflicts.
+- Fix: Google font Pipe for WpRocket.
+
+Version 1.3.3 March 04, 2019
+
+- New: Google reCAPTCHA field.                          
+- New: Google Fonts - 'Krub' font added.
+- New: Filter to add Custom Fonts.                
+- Improvement: Form field 'name' added to panel.        
+- Improvement: Date selector color.                     
+- Fix: Bullet list not appearing in editor.             
+- Fix: Convert Mat CTA - extra action tab removed.      
+- Fix: Full Screen CTA - extra action tab removed.      
+- Fix: Widget Box CTA - extra action tab removed.       
+- Fix: Exit Intent with Scroll - ruleset error.         
+- Fix: Conflict with WPBakery Page Builder.
+- Fix: Conflict with Spider Event Calendar.
+
+Version 1.3.2 January 22, 2019
+
+- New: Checkbox size option.
+- Improvement: A/B testing logic.
+- Improvement: Removed convert pro custom post types from crawling.
+- Fix: Honeypot Anti-spam field - by default enable.
+- Fix: Duplicate multi-step fields not working.
+- Fix: WPSSO plugin conflict.
+- Fix: WP to Buffer plugin conflict.
+- Fix: open_base() dir warning.
+
+Version 1.3.1 December 06, 2018
+
+- Fix: Hide/Show CTA strings were appearing in inline CTAs.
+- Improvement: Improvement in loading translation files.
+
+Version 1.3.0 December 05, 2018
+
+- New: Date Form field.
+- New: Set new cookie when popup is submitted/closed.
+- New: Hide call-to-action by Cookie Name.
+- New: Text Transform option for form fields.
+- Improvement: Show call-to-action by Cookie Name.
+- Improvement: WCAG standard for all form fields.
+- Fix: Convert Mat scrolling issue on mobile.
+- Fix: Bridge theme conflict.
+- Fix: Silverscreen theme conflict.
+- Fix: Pie Register plugin conflict.
+- Fix: All In One Schema Rich Snippets plugin conflict.
+- Fix: Helios Solutions WooCommerce Hide Price and Add to Cart button plugin conflict.
+
+Version 1.2.7 October 04, 2018
+
+- New: Close and Go to URL action.
+- New: Trigger call-to-action by cookie name.
+- Improvement: Geo Targetting miminum requirement notice.
+- Improvement: Empty tooltip when blank Successful Submission Message.
+- Improvement: In-Content Targeting.
+- Fix: Email notification template [SITE_URL].
+- Fix: Dashboard submenu position error.
+- Fix: WooCommerce shop page not appearing in Target Specific Page setting.
+- Fix: Conflict with Schema Creator by Raven plugin.
+- Fix: Add Antispam field to the form setting not working.
+- Fix: In-content call-to-action image cut issue.
+- Fix: Schedule Trigger not working.
+
+Version 1.2.6 September 03, 2018
+
+- Fix: Exit intent and After Scroll trigger conflict.
+- Fix: customizer not loading due to JSON parse error.
+
+Version 1.2.5 August 30, 2018
+
+- New: Exclude country GeoIP Targeting.
+- New: Filter to disable Google font on the front end.
+- New: Separate padding option for textarea.
+- New: Custom Typekit Fonts plugin support.
+- New: Custom Fonts plugin support.
+- Fix: Bottom right toggle popup transform issue.
+- Fix: Form field focus color.
+- Fix: Removed success message from inside the submit button.
+- Fix: GeoIP Targeting - log error issue.
+- Fix: Modal popup image overlay issue.
+
+Version 1.2.4 July 26, 2018
+- Fix: Conflict with Search Exclude plugin.
+
+Version 1.2.3 July 25, 2018
+
+- New: GeoIP Targeting by country.
+- Fix: Issue with Q2W3 Widget fixed position.
+- Fix: Pause YouTube video on closing popup.
+- Fix: Customizer field repetitive error.
+- Fix: Conflict with Search Exclude plugin.
+- Fix: Conflict with Molongui Authorship Premium plugin.
+- Fix: Slide In transform display issue.
+
+Version 1.2.2 June 29, 2018
+
+- New: Disable Call-to-actions for Subscribers using URL parameter cph.
+- New: Honeypot spam prevention.
+- Fix: Slide In call-to-action background color overlay extra opacity removed.
+- Fix: Connect - popup fields placeholder color lightened.
+- Fix: YouTube autoplay parameter updated.
+
+Version 1.2.1 May 25, 2018
+
+- New: Added pass through GET parameter on form submission option for shape field.
+- Fix: Page scroll not working with inline call-to-actions.
+- Fix: Conflict with Polylang plugin.
+
+Version 1.2.0.1 May 09, 2018
+- Fix: Template select not working.
+
+Version 1.2.0 May 09, 2018
+
+- New: WPML native compatibility
+- Improvement: Date format in an email notification.
+- Improvement: Saving assets to site media on importing template.
+- Improvement: PDF file will download instead of open in the browser.
+- Fix: Close image not visible for full-screen call-to-action.
+- Fix: Conflict with Advanced Contact form 7 DB plugin
+- Fix: full-screen popup issue on iOS devices.
+- Fix: White space issue for inline call-to-action
+- Fix: Issue with on click trigger on iOs devices
+- Fix: Tab index issue for form fields.	
+
+Version 1.1.6 April 17, 2018
+
+- New: Line height option for checkbox field.
+- Fix: Scroll issue for the Full-screen popup on mobile devices.
+- Fix: TinyMCE style issue due to the conflict with OptimizePress plugin.
+- Fix: HTML tags in checkbox option not working.
+- Fix: Shortcode copied in visual editor renders additional HTML.
+- Fix: Toggle position changes on resize.
+
 Version 1.1.5 March 20, 2018
 
 - New: Introduced filter cpro_enable_after_post to disable adding span after post content. 

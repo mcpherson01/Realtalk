@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Convert Pro |  VestaThemes.com
- * Plugin URI: https://www.convertplug.com/pro
+ * Plugin Name: Convert Pro
+ * Plugin URI: https://www.convertpro.net
  * Author: Brainstorm Force
  * Author URI: https://www.brainstormforce.com
- * Version: 1.1.5
+ * Version: 1.4.2
  * Description: Convert Pro is an advanced lead generation popup plugin with a drag and drop editor that helps you create beautiful popups and opt-in forms to boost your website conversions. With Convert Pro you can build email lists, drive traffic, promote videos, offer lead magnets and a lot more.
  * Text Domain: convertpro
  *
@@ -12,6 +12,10 @@
  */
 
 add_action( 'plugins_loaded', 'cp_load_convertpro', 1 );
+
+$brainstrom = get_option( 'brainstrom_products' );
+$brainstrom['plugins']['convertpro']['status'] = 'registered';
+update_option( 'brainstrom_products', $brainstrom );
 
 // Activation.
 register_activation_hook( __FILE__, 'activation' );
@@ -25,7 +29,7 @@ if ( ! function_exists( 'cp_load_convertpro' ) ) {
 	 */
 	function cp_load_convertpro() {
 		require_once 'classes/class-cp-v2-loader.php';
-
+		require_once 'classes/class-bsf-updater.php';
 	}
 }
 
@@ -40,6 +44,7 @@ function activation() {
 	update_site_option( 'bsf_force_check_extensions', true );
 
 	delete_option( 'cpro_hide_branding' );
+	delete_site_option( '_cpro_hide_branding' );
 
 	global $wp_version;
 	$wp  = '3.5';
@@ -54,7 +59,9 @@ function activation() {
 	$version = 'PHP' == $flag ? $php : $wp;
 	deactivate_plugins( CP_V2_DIR_NAME );
 	wp_die(
-		'<p><strong>' . CP_PRO_NAME . ' </strong> requires <strong>' . $flag . '</strong> version <strong>' . $version . '</strong> or greater. Please contact your host.</p>', 'Plugin Activation Error', array(
+		'<p><strong>' . CP_PRO_NAME . ' </strong> requires <strong>' . $flag . '</strong> version <strong>' . $version . '</strong> or greater. Please contact your host.</p>',
+		'Plugin Activation Error',
+		array(
 			'response'  => 200,
 			'back_link' => true,
 		)

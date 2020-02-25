@@ -49,6 +49,7 @@ $.each( cp_params, function(i, param){
 		$('body').append($('<script />', {
 			html: response,
 			type: 'text/template',
+			class: 'cpro-field-template',
 			id: 'param-template-'+type
 		}));
 	});
@@ -157,7 +158,7 @@ var ConvertProField = {
     _onOptionBlur: function() {
 
     	var element = $(this);
-		if( $(this).attr('name') == 'custom_html_content' ) {
+		if( element.attr('name') == 'custom_html_content' ) {
 			setTimeout(function() {
 				ConvertProField._applyPanelProperties(element);
 				ConvertProEditPanel._handleDependency();
@@ -287,6 +288,10 @@ var ConvertProField = {
 				replace_name_option = 'checkbox_name';
 				var input_name = 'checkboxfield';
 			break;
+			case "cp_date":
+				replace_name_option = 'date_name';
+				var input_name = 'datefield';
+			break;
 		}
 
 		var new_input_name = input_name + '_' + Math.floor(1000 + Math.random() * 9000); 
@@ -303,7 +308,7 @@ var ConvertProField = {
 		if( typeof position != 'undefined' ) {
 			temp_clone_position['x'] = positionLeft;
 			temp_clone_position['y'] = positionTop;
-			bmodel.setModalValue( dynamic_id, step_id, 'position', temp_clone_position, false, true);
+			bmodel.setModalValue( dynamic_id, step_id, 'position', temp_clone_position, false, true );
 		}
 
 		var zIndex = cpLayers.getMaxZIndex("cp-field-html-data");
@@ -511,13 +516,17 @@ var ConvertProField = {
 
 		$('.cp-edit-modal-data').each(function(i, element){
 
+			if( $(element).closest('script').hasClass('cpro-field-template' ) ) {
+                return; 
+            }
+
 			for_edit = $(element).attr('for');
 			var name = $(element).attr('name');
 			var value = $(element).val();		
 			type = $('#'+for_edit).attr('data-type');	
 
 			// for radio button type field
-			if( name == 'btn_text_align' || name == 'close_text_align' ) {
+			if( name == 'btn_text_align' || name == 'close_text_align' || name == 'countdown_text_align' ) {
 				value = jQuery('input[name="' + name + '"]:checked').val();
 			}	
 

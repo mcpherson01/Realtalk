@@ -517,12 +517,13 @@ var step_id = 0,
 			return false;
 		},
 
-		_setPanelPosition: function( position ) {
+		_setPanelPosition: function( position, current_panel_id ) {
 			var toggle_ht = jQuery(".toggle_height.cp-input").val();
 			var popup_container = jQuery(".cp-popup-content");
-			var toggle_type = jQuery(".toggle_type.cp-input").val();
+			var toggle_type = jQuery("#cp-open-toggle").hasClass('sticky') ? 'sticky' : 'hide_on_click';
 			var toggle_container = jQuery('.cp-open-toggle');
-			var el_panel_height = bmodel.getModalValue( 'panel-1', 0, "panel_height" );
+			var panel_height = bmodel.getModalValue( 'panel-'+current_panel_id, current_panel_id-1, "panel_height" );
+			var panel_width = bmodel.getModalValue( 'panel-'+current_panel_id, current_panel_id-1, "panel_width" );
 
 			if ( toggle_type == 'sticky' ) {
 				popup_container.css({ 
@@ -542,20 +543,28 @@ var step_id = 0,
 					case "top-left":
 					case "top-right":
 						toggle_container.css({ 
-							"top"    : el_panel_height + 'px',
+							"top"    : panel_height + 'px',
 						});	
 					break;
 					case "bottom-center":
 					case "bottom-left":
 					case "bottom-right":
 						toggle_container.css({
-							"bottom" : el_panel_height + 'px',
+							"bottom" : panel_height + 'px',
 						});
 					break;
 					case "center-left":
 
 						var slide_in_width = bmodel.getModalValue( 'panel-1', step_id, "panel_width" );
-						var left_pos_val  = parseInt( slide_in_width ) + 22.5 + 'px';
+						var left_pos_val  = '';
+
+						if ( jQuery( 'html' ).hasClass( 'cp-mobile-device' ) ) {
+							/* Mobile Sticky toggle. */
+							left_pos_val  = parseInt( panel_width ) + 24.5 + 'px';
+						} else {
+							/* Desktop Sticky toggle. */
+							left_pos_val  = parseInt( panel_width ) + 22.5 + 'px';
+						}
 
 						toggle_container.css({
 							"left" : left_pos_val
@@ -565,8 +574,15 @@ var step_id = 0,
 					case "center-right":
 
 						var slide_in_width = bmodel.getModalValue( 'panel-1', step_id, "panel_width" );
-						var right_pos_val  = parseInt( slide_in_width ) + 22.5 + 'px';
+						var right_pos_val  = '';
 
+						if ( jQuery( 'html' ).hasClass( 'cp-mobile-device' ) ) {
+							/* Mobile Sticky toggle. */
+							right_pos_val  = parseInt( panel_width ) + 24.5 + 'px';
+						} else {
+							/* Desktop Sticky toggle. */
+							right_pos_val  = parseInt( panel_width ) + 22.5 + 'px';
+						}
 						toggle_container.css({
 							"right" : right_pos_val
 						});
@@ -611,7 +627,6 @@ var step_id = 0,
 						popup_container.css( "bottom", toggle_ht + 'px' );
 					break;
 					case "bottom-left":
-						popup_container.css( "left", '20px' );
 						popup_container.css( "bottom", toggle_ht + 'px' );
 					break;
 					case "bottom-right":
@@ -658,7 +673,7 @@ var step_id = 0,
 				}
 
 				$( '#' + toggle_id ).remove();
-				
+
 				if ( value == '1' ) {
 					var cp_panel_position = ' cp-toggle-' + $('#cp_panel_position').val();
 					var toggle_html = '';
@@ -669,7 +684,12 @@ var step_id = 0,
 						toggle_html = '<div id="cp-open-toggle" class="cp-open-toggle ' + cp_panel_position + '"><span class="cp-open-toggle-content">Click Here</span><span class="cp-toggle-icon cp-icon-arrow"></span></div>';
 					}
 					
-					$('.panel-wrapper' ).after( toggle_html );
+					if  ( 'info_bar' == module_type && 'cp-toggle-top' == cp_panel_position.trim() ){
+						$( '.panel-wrapper' ).before( toggle_html );
+					}
+					else{
+						$( '.panel-wrapper' ).after( toggle_html );
+					}
 
 					if( module_type == 'info_bar' ) {
 						ConvertProHelper._applyInfobarToggle();
@@ -678,9 +698,11 @@ var step_id = 0,
 					}
 					
 				} else {
+
 					$(".cp-popup-content").css({
 						'top'    : '',
 						'left'   : '',
+						'right'  : '',
 						'bottom' : '',
 					});
 				}
@@ -838,7 +860,7 @@ var step_id = 0,
 					var field_name = jQuery(this).attr("name");
 					var current_panel_id = step_id + 1;
 					var panel_field_id = "toggle";
-					var field_value = bmodel.getModalValue( panel_field_id, step_id, field_name );
+					var field_value = bmodel.getModalValue( panel_field_id, 0, field_name );
 					field_value = 'undefined' == typeof field_value ? jQuery(this).val() : field_value;
 
 					if( typeof field_value !== 'undefined' ) {
@@ -864,18 +886,21 @@ var step_id = 0,
 								if( 'toggle_height' == field_name ) {
 
 									field_elm.css( "line-height", value + unit );
-									var panel_id = "panel-" + ( step_id + 1 );
-									var panel_position = bmodel.getModalValue( panel_id, 0, 'panel_position' );
+									jQuery( '.toggle_height.cp-input' ).val(value);
+									var panel_position = bmodel.getModalValue( 'panel-1', 0, 'panel_position' );
 
-									ConvertProHelper._setPanelPosition( panel_position );
+									ConvertProHelper._setPanelPosition( panel_position, current_panel_id );
 								}
 
 							break;
 							case "toggle_type":
-								field_elm.addClass( field_value );
 								if( field_value == 'hide_on_click' ) {
+									field_elm.addClass( field_value );
+									field_elm.removeClass( 'sticky' );
 									field_elm.find(".cp-toggle-icon").hide();
 								} else {
+									field_elm.addClass( field_value );
+									field_elm.removeClass( 'hide_on_click' );
 									field_elm.find(".cp-toggle-icon").show();
 								}
 
@@ -930,7 +955,11 @@ var step_id = 0,
 
 								if( 'toggle_infobar_width' == field_name ) {
 									var m_left = field_value/2;
-									field_elm.css( "margin-left", '-' + m_left + 'px' );							
+									field_elm.css({
+										"margin-left"	:	'50%',
+										"transform"		:	'translateX(-50%)'
+									});
+
 								}
 
 								if( 'toggle_infobar_height' == field_name ) {
@@ -964,7 +993,6 @@ var step_id = 0,
 						});	
 
 						popup_container.css({ 
-							"bottom": 'auto',
 							"left"  : 'auto',
 							"top"   : 'auto'
 						});
@@ -975,7 +1003,7 @@ var step_id = 0,
 								popup_container.css( "top", toggle_ht + 'px' );
 							break;
 							case "bottom":
-								popup_container.css( "bottom", toggle_ht + 'px' );
+								popup_container.css( "bottom", '0px' );
 							break;
 						}
 					}
@@ -1201,8 +1229,13 @@ var step_id = 0,
 					var current_panel_id = step_id + 1;
 
 					jQuery("#panel-" + current_panel_id ).find(".cp-form-field").each( function() {
-						var field_id = jQuery(this).closest(".cp-field-html-data").attr("id");	
-						ConvertProHelper._applySettings( field_id, parameter, value, unit, onhover, target, step_id );
+						var field_id = jQuery(this).closest(".cp-field-html-data").attr("id");
+
+						if( $( '#' + field_id ).data('type') == 'cp_textarea' && 'padding' == parameter ) {
+							return true;
+						} else {
+							ConvertProHelper._applySettings( field_id, parameter, value, unit, onhover, target, step_id );
+						}
 					});
 				}
 				
@@ -1376,7 +1409,7 @@ var step_id = 0,
 									}
 								}
 
-								if( typeof image_sizes !== 'undefined' && typeof image_sizes[sel_image_size] !== 'undefined' ) {
+								if( image_sizes && typeof image_sizes[sel_image_size] !== 'undefined' ) {
 									image_size_element.val( image_sizes[sel_image_size].url );
 									image_size_element.trigger('change');
 								}
@@ -1877,7 +1910,8 @@ var step_id = 0,
 
 					case 'inner-html':
 					case 'inner_html':
-						target.html(value);
+						var page_content = $.parseHTML(value);
+						target.html(page_content);
 					break;
 
 					case 'loader-position' :
@@ -1917,6 +1951,13 @@ var step_id = 0,
 								ConvertProHelper._setHoverStyle( newSelector, StyleSelector, index, val );
 							});
 						} else {
+
+							// if( 'padding' == parameter ) {
+							// 	console.log( target );
+							// 	console.log ( for_edit );
+							// 	console.log( paddingval );
+							// 	// console.log( val );
+							// }
 
 							$.each( paddingval, function(index, val) {	
 								target.css(index, val);
@@ -2097,6 +2138,18 @@ var step_id = 0,
 						$( "<style id='radio-size-before-css'>#" + for_edit + " input[type=radio]::before { width:" + before_val + "px; height:" + before_val + "px; }</style>" ).appendTo( "head" );
 					break;
 
+					case 'checkbox-size':
+						target.css( 'width', value );
+						target.css( 'height', value );
+						target.closest( '.cp-target' ).find( '.cp-checkbox-wrap' ).css( 'line-height', value + 'px' );
+
+						$('#checkbox-size-before-css').remove();
+
+						var before_val = ( ( value - 10 ) < 1 ) ? 6 : ( value - 10 );
+						
+						$( "<style id='checkbox-size-before-css'>#" + for_edit + " input[type=checkbox]::before { width:" + before_val + "px; height:" + before_val + "px; }</style>" ).appendTo( "head" );
+					break;
+
 					case 'checkbox-options' :
 						var output_html = '';
 						
@@ -2123,8 +2176,22 @@ var step_id = 0,
 						target.attr( 'data-placeholder', hidden_input_name );
 					break;
 
+					case 'recaptcha-input':
+						var tr = target.closest( '.cp-field-html-data' ).html();
+						target.closest( '.cp-field-html-data' ).html( tr.replace( '{{backend_view}}', '<p> ' + cp_pro.recaptcha_field_text + ' </p>' ) );
+						var hidden_input_name = bmodel.getModalValue( for_edit, current_step, 'recaptcha_input_name' );
+						hidden_input_name = typeof hidden_input_name == 'undefined' ? target.attr( 'name' ) : hidden_input_name;
+
+						target.attr( 'placeholder', hidden_input_name );
+						target.attr( 'data-placeholder', hidden_input_name );
+					break;
+
 					case 'hidden-input-name':
 						target.attr( 'placeholder', value );
+						target.attr( 'data-placeholder', value );
+					break;
+
+					case 'date-data-placeholder':
 						target.attr( 'data-placeholder', value );
 					break;
 
@@ -2223,7 +2290,7 @@ var step_id = 0,
 							$('#panel-img-after-css').remove();
 
 							$('#'+for_edit).css( "background-color", value );
-
+							value = 'unset';
 							$( "<style id='panel-img-after-css'>#" + for_edit + "::before { background-color:" + value + "; }</style>" ).appendTo( "head" );
 						}
 
@@ -2296,6 +2363,7 @@ var step_id = 0,
 								var	bg_size   = bg_option[2];
 
 								$('#'+for_edit).css({
+									'background-blend-mode':'overlay',
 									'background-repeat': bg_repeat,
 									'background-position': bg_pos,
 									'background-size': bg_size,
@@ -2575,7 +2643,9 @@ var step_id = 0,
 								ConvertProHelper._setInfoBarPanelPosition( value );
 							}
 							
-							if( module_type == 'info_bar' || module_type == 'slide_in' ) {
+							if( 'info_bar' == module_type ) {
+								ConvertProHelper._toggle( for_edit, $('#cp_panel_toggle_infobar').val(), module_type );
+							}else{
 								ConvertProHelper._toggle( for_edit, $('#cp_panel_toggle').val(), module_type );
 							}
 						}
@@ -2740,6 +2810,15 @@ var step_id = 0,
 						$( 'head' ).append( '<style id="cp-countdown-text-font-size-' + for_edit + '" type="text/css">' + text_font_size + '</style>' );
 						break;
 
+					case 'countdown-text-align':
+						if( 'justify' == value )
+							value = 'auto';
+						var text_align = '#' + for_edit + ' .cp-countdown-holding { text-align: -webkit-' + value + ' }';
+
+						$( '#cp-countdown-holding-' + for_edit ).remove();
+						$( 'head' ).append( '<style id="cp-countdown-holding-' + for_edit + '" type="text/css">' + text_align + '</style>' );
+						break;
+
 					case 'countdown-border-style':
 						var in_out = bmodel.getModalValue( for_edit, current_step, 'inside_outside' );
 						var cls_name = '.cp-countdown-holding';
@@ -2843,7 +2922,7 @@ var step_id = 0,
 
 									$('#'+for_edit).css({
 										"max-width": maxWidth + "px", 
-										"width"    : maxWidth 
+										"width"    : maxWidth,
 									});
 								}
 
@@ -2975,6 +3054,16 @@ var step_id = 0,
 	     * @since 1.0.0
 	     */
 	    init: function( e ) {
+	    	if('' != cp_admin_ajax.cp_typekit_id) {
+		    	(function(d) {
+					var config = {
+					kitId         : cp_admin_ajax.cp_typekit_id,
+					scriptTimeout : 3000,
+					async         : true
+					},
+					h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+				})(document);
+	    	}
 	    },
 
 		_applyGradientColor: function( for_edit, lighter_color, location_1, darker_color, location_2, angle ) {

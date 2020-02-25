@@ -42,16 +42,28 @@ $cp_pro_filesystem = null;
 /**
  * Function Name: cp_load_filesystem.
  * Function Description: cp_load_filesystem.
+ *
+ * @param bool $cp_load_geo_files bool parameter.
  */
-function cp_load_filesystem() {
-
+function cp_load_filesystem( $cp_load_geo_files = false ) {
 	global $cp_pro_filesystem;
 
 	if ( null === $cp_pro_filesystem ) {
-
 		require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-base.php';
 		require_once ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php';
-
+		// Load Geo location files if $cp_load_geo_files is true.
+		if ( $cp_load_geo_files ) {
+			/* Geo Targeting */
+			require_once CP_V2_BASE_DIR . 'includes/class-cp-countries.php';
+			require_once CP_V2_BASE_DIR . 'includes/class-cp-geolocation.php';
+			require_once CP_V2_BASE_DIR . 'includes/class-cp-geolite-integration.php';
+			/* Include GeoIP2 lib */
+			require_once CP_V2_BASE_DIR . 'includes/lib/geolite2/Reader.php';
+			require_once CP_V2_BASE_DIR . 'includes/lib/geolite2/Reader/Decoder.php';
+			require_once CP_V2_BASE_DIR . 'includes/lib/geolite2/Reader/InvalidDatabaseException.php';
+			require_once CP_V2_BASE_DIR . 'includes/lib/geolite2/Reader/Metadata.php';
+			require_once CP_V2_BASE_DIR . 'includes/lib/geolite2/Reader/Util.php';
+		}
 		$cp_pro_filesystem = new WP_Filesystem_Direct( array() );
 
 		if ( ! defined( 'FS_CHMOD_FILE' ) ) {
@@ -121,23 +133,16 @@ function cp_add_input_type( $type, $input_field_callback ) {
  * Function Description: Get all campaigns.
  */
 function cp_get_all_campaigns() {
+	$terms = get_terms(
+		array(
+			'taxonomy'   => CP_CAMPAIGN_TAXONOMY,
+			'hide_empty' => true,
+		)
+	);
 
-	$campaign_terms = true;
+	set_transient( '_cp_campaign_taxonomy', $terms, 30 * DAY_IN_SECONDS );
 
-	if ( false !== $campaign_terms ) {
-
-		$terms = get_terms(
-			array(
-				'taxonomy'   => CP_CAMPAIGN_TAXONOMY,
-				'hide_empty' => true,
-			)
-		);
-
-		set_transient( '_cp_campaign_taxonomy', $terms, 30 * DAY_IN_SECONDS );
-		$campaign_terms = $terms;
-	}
-
-	return $campaign_terms;
+	return $terms;
 }
 
 /**
@@ -155,7 +160,6 @@ function cpro_get_style_settings( $style_id, $section, $settings_name ) {
 
 	if ( is_array( $data ) ) {
 		if ( 'configure' == $section ) {
-
 			$rulsets = array();
 
 			if ( isset( $data['rulesets'] ) ) {
@@ -163,10 +167,8 @@ function cpro_get_style_settings( $style_id, $section, $settings_name ) {
 			}
 
 			if ( isset( $rulsets[0][ $settings_name ] ) ) {
-
 				$setting_value = $rulsets[0][ $settings_name ];
 			} elseif ( isset( $data[ $settings_name ] ) ) {
-
 				$setting_value = $data[ $settings_name ];
 			}
 		} else {
@@ -180,7 +182,6 @@ function cpro_get_style_settings( $style_id, $section, $settings_name ) {
 			}
 		}
 	}
-
 	return $setting_value;
 }
 
@@ -347,7 +348,6 @@ function cp_overlay_gradient_bg_rad( $style_id, $style_array ) {
 			$gradient_style .= 'background : -o-radial-gradient( at bottom right, ' . $lighter_color . ' ' . $location_1 . '%, ' . $darker_color . ' ' . $location_2 . '%);';
 			$gradient_style .= 'background : radial-gradient( at bottom right, ' . $lighter_color . ' ' . $location_1 . '%, ' . $darker_color . ' ' . $location_2 . '%);';
 			break;
-
 	}
 	$gradient_style .= '}';
 	return $gradient_style;
@@ -437,7 +437,6 @@ function cp_apply_gradient_bg_rad( $radial_gadient_type, $lighter_color, $locati
 			$gradient_style .= 'background : -o-radial-gradient( at bottom right, ' . $lighter_color . ' ' . $location_1 . '%, ' . $darker_color . ' ' . $location_2 . '%);';
 			$gradient_style .= 'background : radial-gradient( at bottom right, ' . $lighter_color . ' ' . $location_1 . '%, ' . $darker_color . ' ' . $location_2 . '%);';
 			break;
-
 	}
 	return $gradient_style;
 }
@@ -497,8 +496,9 @@ if ( ! function_exists( 'cp_pro_get_form_hidden_fields' ) ) {
 
 		global $wp;
 		$current_url = home_url( add_query_arg( array(), $wp->request ) );
-		?>		
+		?>      
 		<input type="hidden" name="param[date]" value="{{current_date}}" />
+		{{cpro_honeypot_field}}
 		<input type="hidden" name="action" value="<?php echo esc_attr( $action ); ?>" />
 		<input type="hidden" name="style_id" value="<?php echo esc_attr( $style_id ); ?>" />
 		<?php
@@ -521,31 +521,159 @@ function cp_v2_is_style_visible( $style_id ) {
 	$old_post = $post;
 	wp_reset_postdata();
 	$post_id = ( ! is_404() && ! is_search() && ! is_archive() && ! is_home() ) ? $post->ID : false;
-	$post    = $old_post;
+	if ( class_exists( 'WooCommerce' ) ) {
+		if ( is_shop() ) {
+			if ( function_exists( 'wc_get_page_id' ) ) {
+				$post_id = wc_get_page_id( 'shop' );
+			} else {
+				$post_id = woocommerce_get_page_id( 'shop' );
+			}
+		}
+	}
+	$post               = $old_post;
+	$is_country_display = true;
+	$is_country_exclude = false;
 
-	$show_popup = false;
-	$display_on = cpro_get_style_settings( $style_id, 'configure', 'target_rule_display' );
-	$exclude_on = cpro_get_style_settings( $style_id, 'configure', 'target_rule_exclude' );
-
+	$show_popup         = false;
+	$display_on         = cpro_get_style_settings( $style_id, 'configure', 'target_rule_display' );
+	$exclude_on         = cpro_get_style_settings( $style_id, 'configure', 'target_rule_exclude' );
 	$show_for_logged_in = cpro_get_style_settings( $style_id, 'configure', 'show_for_logged_in' );
-
+	$hide_cta           = cpro_get_style_settings( $style_id, 'configure', 'hide_custom_cookies' );
 	/* Parse Display On Condition */
 	$is_display = cp_v2_parse_condition( $post_id, $display_on );
 	/* Parse Exclude On Condition */
 	$is_exclude = cp_v2_parse_condition( $post_id, $exclude_on );
 
-	if ( $is_display && ! $is_exclude ) {
+	$target_countries = cpro_get_style_settings( $style_id, 'configure', 'target_geo_rule_display' );
 
+	$exclude_countries = cpro_get_style_settings( $style_id, 'configure', 'target_geo_rule_exclude' );
+
+	/* Parse Display On Condition */
+	if ( ! empty( $target_countries ) ) {
+		$is_country_display = cp_v2_parse_geo_condition( $target_countries );
+	}
+	/* Parse Exclude On Condition */
+	if ( ! empty( $exclude_countries ) ) {
+		$is_country_exclude = cp_v2_parse_geo_condition( $exclude_countries );
+	}
+
+	if ( $is_display && ! $is_exclude && $is_country_display && ! $is_country_exclude ) {
 		$show_popup = true;
-
 		if ( is_user_logged_in() && ! $show_for_logged_in ) {
 			$show_popup = false;
+		}
+		if ( $hide_cta ) {
+			$cookies_list = cpro_get_style_settings( $style_id, 'configure', 'hide_cookies_class' );
+
+			$cookies_list_array = explode( ',', $cookies_list );
+
+			foreach ( $cookies_list_array as $key => $value ) {
+				if ( isset( $_COOKIE[ $value ] ) ) {
+					$show_popup = false;
+					break;
+				}
+			}
 		}
 	}
 
 	// filter target page settings.
 	$show_popup = apply_filters( 'cp_pro_target_page_settings', $show_popup, $style_id );
 
+	return $show_popup;
+}
+
+/**
+ * Function Name: cp_v2_parse_geo_condition.
+ * Function Description: parse country target rule conditions.
+ *
+ * @param array $rules target rules.
+ */
+function cp_v2_parse_geo_condition( $rules ) {
+	$rules      = json_decode( $rules );
+	$show_popup = false;
+
+	if ( is_array( $rules ) && ! empty( $rules ) ) {
+		foreach ( $rules as $rule ) {
+			if ( ! isset( $rule->type ) || ( isset( $rule->type ) && '' == $rule->type ) ) {
+				break;
+			}
+
+			if ( strrpos( $rule->type, 'all' ) !== false ) {
+				$rule_case = 'all';
+			} else {
+				$rule_case = $rule->type;
+			}
+
+			$ipaddress = '';
+			if ( getenv( 'HTTP_CLIENT_IP' ) ) {
+				$ipaddress = getenv( 'HTTP_CLIENT_IP' );
+			} elseif ( getenv( 'HTTP_X_FORWARDED_FOR' ) ) {
+				$ipaddress = getenv( 'HTTP_X_FORWARDED_FOR' );
+				// HTTP_X_FORWARDED_FOR sometimes returns internal or local IP address, which is not usually useful. Also, it would return a comma separated list if it was forwarded from multiple ipaddresses.
+				$addr      = explode( ',', $ipaddress );
+				$ipaddress = $addr[0];
+			} elseif ( getenv( 'HTTP_X_FORWARDED' ) ) {
+				$ipaddress = getenv( 'HTTP_X_FORWARDED' );
+			} elseif ( getenv( 'HTTP_FORWARDED_FOR' ) ) {
+				$ipaddress = getenv( 'HTTP_FORWARDED_FOR' );
+			} elseif ( getenv( 'HTTP_FORWARDED' ) ) {
+				$ipaddress = getenv( 'HTTP_FORWARDED' );
+			} elseif ( getenv( 'REMOTE_ADDR' ) ) {
+				$ipaddress = getenv( 'REMOTE_ADDR' );
+			} else {
+				$ipaddress = 'UNKNOWN';
+			}
+
+			$agent_ip = $ipaddress;
+
+			// Load the geo location files only if the popup location is not set to All countries.
+			if ( 'all' !== $rule_case ) {
+				cp_load_filesystem( true );
+
+				$visitor_ip_location = CP_Geolocation::geolocate_ip( $agent_ip );
+				$get_all_countries   = new CP_Countries();
+				$arr_eu_countries    = $get_all_countries->get_eu_countries();
+			}
+			switch ( $rule_case ) {
+				case 'all':
+					$show_popup = true;
+					break;
+
+				case 'basic-eu':
+					foreach ( $arr_eu_countries as $key => $value ) {
+						if ( $visitor_ip_location['country'] == $key ) {
+							$show_popup = true;
+							break;
+						}
+					}
+					break;
+
+				case 'basic-non-eu':
+					$arr_country_code = array_keys( $arr_eu_countries );
+					if ( ! in_array( $visitor_ip_location['country'], $arr_country_code ) ) {
+						$show_popup = true;
+					}
+					break;
+
+				case 'specifics-geo':
+					if ( isset( $rule->specific ) && is_array( $rule->specific ) ) {
+						foreach ( $rule->specific as $specific_country ) {
+							if ( $visitor_ip_location['country'] == $specific_country ) {
+								$show_popup = true;
+							}
+						}
+					}
+					break;
+
+				default:
+					break;
+			}
+
+			if ( $show_popup ) {
+				break;
+			}
+		}
+	}
 	return $show_popup;
 }
 
@@ -563,7 +691,6 @@ function cp_v2_parse_condition( $post_id, $rules ) {
 
 	if ( is_array( $rules ) && ! empty( $rules ) ) {
 		foreach ( $rules as $rule ) {
-
 			if ( ! isset( $rule->type ) || ( isset( $rule->type ) && '' == $rule->type ) ) {
 				break;
 			}
@@ -635,23 +762,18 @@ function cp_v2_parse_condition( $post_id, $rules ) {
 					$taxonomy      = isset( $rule_data[3] ) ? $rule_data[3] : false;
 
 					if ( false === $archieve_type ) {
-
 						$current_post_type = get_post_type( $post_id );
 
 						if ( false !== $post_id && $current_post_type == $post_type ) {
-
 							$show_popup = true;
 						}
 					} else {
-
 						if ( is_archive() ) {
-
 							$current_post_type = get_post_type();
 							if ( $current_post_type == $post_type ) {
 								if ( 'archive' == $archieve_type ) {
 									$show_popup = true;
 								} elseif ( 'taxarchive' == $archieve_type ) {
-
 									$obj              = get_queried_object();
 									$current_taxonomy = '';
 									if ( '' !== $obj && null !== $obj ) {
@@ -669,30 +791,24 @@ function cp_v2_parse_condition( $post_id, $rules ) {
 
 				case 'specifics':
 					if ( isset( $rule->specific ) && is_array( $rule->specific ) ) {
-
 						foreach ( $rule->specific as $specific_page ) {
-
 							$specific_data      = explode( '-', $specific_page );
 							$specific_post_type = isset( $specific_data[0] ) ? $specific_data[0] : false;
 
 							if ( 'post' == $specific_post_type ) {
-
 								$specific_post_id = isset( $specific_data[1] ) ? $specific_data[1] : false;
 
 								if ( $specific_post_id == $post_id ) {
 									$show_popup = true;
 								}
 							} elseif ( 'tax' == $specific_post_type ) {
-
 								$tax_slug = isset( $specific_data[3] ) ? $specific_data[3] : false;
 
 								if ( $tax_slug ) {
-
 									$tax_id     = isset( $specific_data[1] ) ? (int) $specific_data[1] : false;
 									$apply_type = isset( $specific_data[2] ) ? $specific_data[2] : false;
 
 									if ( 'single' === $apply_type && is_singular() ) {
-
 										$current_terms = get_the_terms( $post_id, $tax_slug );
 
 										if ( $tax_id && is_array( $current_terms ) && ! empty( $current_terms ) ) {
@@ -703,7 +819,6 @@ function cp_v2_parse_condition( $post_id, $rules ) {
 											}
 										}
 									} elseif ( 'archive' === $apply_type && is_archive() && ( is_category() || is_tag() || is_tax() ) ) {
-
 										$q_obj = get_queried_object();
 
 										if ( is_object( $q_obj ) && $tax_id === $q_obj->term_id ) {
@@ -735,16 +850,12 @@ function cp_v2_parse_condition( $post_id, $rules ) {
  * @since 1.0.0
  */
 function cp_v2_display_style_inline() {
-
-	$before_content_string = '';
-	$after_content_string  = '';
+		$before_content_string = '';
+	$after_content_string      = '';
 
 	$style_arrays = cp_get_live_popups( 'inline' );
-
 	if ( is_array( $style_arrays ) ) {
-
 		foreach ( $style_arrays as $key => $style_id ) {
-
 			$display          = false;
 			$display_inline   = false;
 			$settings_encoded = '';
@@ -763,7 +874,9 @@ function cp_v2_display_style_inline() {
 				$display         = cp_v2_is_style_visible( $style_id );
 			}
 
-			if ( $display && $display_inline && $style_id ) {
+			$hide_on_device    = cpro_get_style_settings( $style_id, 'configure', 'hide_on_device' );
+			$is_enabled_device = cpro_is_current_device( $hide_on_device );
+			if ( $display && $display_inline && $style_id && $is_enabled_device ) {
 				$step_id = '1';
 				ob_start();
 
@@ -820,7 +933,6 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 	}
 
 	if ( isset( $properties->type ) ) {
-
 		$template_data = cp_get_field_template( $properties->type );
 
 		$template_data = apply_filters( 'cp_get_field_template', $template_data, $properties->type );
@@ -856,7 +968,6 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 		$label_as_placeholder = ( isset( $properties->label_as_placeholder ) ) ? $properties->label_as_placeholder : null;
 
 		switch ( $properties->type ) {
-
 			case 'cp_button':
 			case 'cp_gradient_button':
 				$template_data = str_replace( '{{value}}', $properties->title, $template_data );
@@ -893,6 +1004,37 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 
 				if ( isset( $properties->hidden_input_value ) ) {
 					$template_data = str_replace( '{{value}}', $properties->hidden_input_value, $template_data );
+				}
+
+				break;
+
+			case 'cp_google_recaptcha':
+				$template_data = str_replace( '{{backend_view}}', '', $template_data );
+
+				if ( isset( $properties->recaptcha_input_name ) ) {
+					$template_data = str_replace( '{{name}}', $properties->recaptcha_input_name, $template_data );
+				}
+
+				if ( isset( $properties->recaptcha_input_value ) ) {
+					$template_data = str_replace( '{{value}}', $properties->recaptcha_input_value, $template_data );
+				}
+
+				break;
+
+			case 'cp_date':
+				$template_data = str_replace( 'readonly="{{readonly}}"', '', $template_data );
+				if ( isset( $properties->date_name ) ) {
+					$template_data = str_replace( '{{name}}', $properties->date_name, $template_data );
+				}
+				if ( isset( $properties->date_placeholder ) ) {
+					$template_data = str_replace( '{{placeholder}}', $properties->date_placeholder, $template_data );
+				}
+				if ( isset( $properties->date_field_format ) ) {
+					$template_data = str_replace( '{{date_field_format}}', $properties->date_field_format, $template_data );
+				}
+				if ( isset( $properties->required ) ) {
+					$required      = ( 'true' == $properties->required ) ? 'required="required"' : '';
+					$template_data = str_replace( '{{required}}', $required, $template_data );
 				}
 
 				break;
@@ -1015,12 +1157,11 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 						$optons_arr = explode( "\n", $properties->checkbox_options );
 
 						foreach ( $optons_arr as $key => $value ) {
-
 							if ( isset( $properties->required ) && 'true' == $properties->required ) {
 								$template_data = str_replace( '{{checkbox_required}}', 'cpro-checkbox-required', $template_data );
 							}
 
-							$output_html .= '<div class="cp-checkbox-wrap"><label class="cp_checkbox_label"><input type="checkbox" name="param[' . $properties->checkbox_name . '-' . $key . ']" value="' . $value . '">' . $value . '</label></div>';
+							$output_html .= '<div class="cp-checkbox-wrap"><label class="cp_checkbox_label"><input type="checkbox" name="param[' . $properties->checkbox_name . '-' . $key . ']" value="' . esc_html( $value ) . '">' . $value . '</label></div>';
 						}
 					}
 					$template_data = str_replace( '{{checkbox_options}}', $output_html, $template_data );
@@ -1034,7 +1175,6 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 				global $cp_pro_filesystem;
 
 				if ( isset( $properties->shape_preset ) ) {
-
 					$field_dir_preset = CP_V2_BASE_DIR . 'framework/fields/' . $properties->type . '/presets/' . str_replace( '-', '_', $properties->shape_preset ) . '.svg';
 					$preset_contents  = '';
 
@@ -1062,6 +1202,10 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 					$template_data = str_replace( '{{sec_shape_color}}', $properties->sec_shape_color, $template_data );
 				}
 
+				if ( isset( $properties->get_parameter ) ) {
+					$template_data = str_replace( '{{get-param}}', $properties->get_parameter, $template_data );
+				}
+
 				if ( isset( $properties->submit_message ) ) {
 					$template_data = str_replace( '{{shape-successs-message}}', $properties->submit_message, $template_data );
 				}
@@ -1081,7 +1225,6 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 			case 'cp_custom_html':
 				if ( isset( $properties->custom_html_content ) ) {
 					$template_data = str_replace( '{{value}}', urldecode( $properties->custom_html_content ), $template_data );
-
 				} else {
 					$template_data = str_replace( '{{value}}', '', $template_data );
 				}
@@ -1118,7 +1261,6 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 						}
 					}
 				} elseif ( isset( $module_image ) && isset( $module_image[0] ) && '0' == $module_image[0] ) {
-
 					// if image is default image.
 					$img_src = CP_V2_BASE_URL . 'assets/' . $module_image[1];
 				}
@@ -1212,10 +1354,8 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 				$vid_autoplay = $properties->video_autoplay;
 
 				if ( 'true' == $vid_autoplay && $is_inline_module ) {
-
 					$video_html = '<iframe class="cpro-video-iframe" id="cp-vid-' . $panel_id . '-' . $style_id . '" src="' . $custom_url . '" ></iframe>';
 				} else {
-
 					$video_html = '<video class="cpro-video-iframe" id="cp-vid-' . $panel_id . '-' . $style_id . '" controls><source src="' . $custom_url . '" type="video/mp4"></video>';
 				}
 
@@ -1235,7 +1375,7 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 							$yt_source .= '&showinfo=0&controls=0';
 						}
 
-						$video_html = '<iframe class="cpro-yt-iframe" id="cp-vid-' . $panel_id . '-' . $style_id . '" src="' . $yt_source . '" allowfullscreen></iframe>';
+						$video_html = '<iframe class="cpro-yt-iframe" id="cp-vid-' . $panel_id . '-' . $style_id . '" src="' . $yt_source . '" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 						break;
 
 					case 'vimeo':
@@ -1245,7 +1385,7 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 							$vimeo_src .= '?autoplay=1';
 						}
 
-						$video_html = '<iframe src="' . $vimeo_src . '" allowfullscreen></iframe>';
+						$video_html = '<iframe src="' . $vimeo_src . '" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
 						break;
 				}
 
@@ -1253,22 +1393,18 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 				$template_data = str_replace( '{{data-autoplay}}', $vid_autoplay, $template_data );
 				$template_data = str_replace( '{{video_source}}', $properties->video_source, $template_data );
 				break;
-
 		}
 
 		$template_data = apply_filters( 'cp_after_template_data', $template_data, $properties );
 
 		if ( isset( $properties->field_animation ) ) {
-
 			$anim_class = 'cp-none';
 
 			if ( 'cp-none' != $properties->field_animation ) {
-
 				$anim_class = 'cp-animation';
 			}
 
 			$template_data = str_replace( '{{animation}}', $anim_class, $template_data );
-
 		}
 
 		if ( isset( $properties->field_animation ) && 'cp-none' == $properties->field_animation ) {
@@ -1282,7 +1418,6 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 				$template_data
 			);
 		} else {
-
 			if ( isset( $properties->field_animation ) ) {
 				$template_data = str_replace( '{{animation-type}}', $properties->field_animation, $template_data );
 			}
@@ -1312,8 +1447,7 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 		$template_data = str_replace( '{{data-step}}', $step_number, $template_data );
 
 		if ( isset( $properties->field_action ) ) {
-			if ( 'goto_url' !== $properties->field_action && 'submit_n_goto_url' !== $properties->field_action ) {
-
+			if ( 'goto_url' !== $properties->field_action && 'submit_n_goto_url' !== $properties->field_action && 'close_n_goto_url' !== $properties->field_action ) {
 				$template_data = str_replace(
 					array(
 						'data-redirect="{{data-redirect}}"',
@@ -1322,9 +1456,7 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 					'',
 					$template_data
 				);
-
 			} else {
-
 				$btn_url       = isset( $properties->btn_url ) ? esc_url( $properties->btn_url ) : '';
 				$template_data = str_replace( '{{data-redirect}}', $btn_url, $template_data );
 
@@ -1366,11 +1498,9 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 		$template_data = str_replace( '{{custom_class}}', '', $template_data );
 
 		if ( isset( $template_data ) ) {
-
 			$style = cp_generate_style( $properties, $panel_id, $style_id, $properties->type, 'desktop' );
 
 			if ( 'yes' == $mobile_resp ) {
-
 				$style .= '@media ( max-width: ' . $mobile_break_pt . 'px ) {';
 
 				$style .= cp_generate_style( $properties, $panel_id, $style_id, $properties->type, 'mobile' );
@@ -1384,23 +1514,21 @@ function cp_get_panel( $properties, $panel_id, $style_id ) {
 	}
 
 	return $data;
-
 }
 
 /**
- * Function Name: hex_to_rgb.
- * Function Description: hex_to_rgb.
+ * Function Name: cp_hex_to_rgb.
+ * Function Description: cp_hex_to_rgb.
  *
  * @param string $hex string parameter.
  */
-function hex_to_rgb( $hex ) {
+function cp_hex_to_rgb( $hex ) {
 	return array(
 		'r' => hexdec( substr( $hex, 0, 2 ) ),
 		'g' => hexdec( substr( $hex, 2, 2 ) ),
 		'b' => hexdec( substr( $hex, 4, 2 ) ),
 	);
 }
-
 
 /**
  * Function Name: cp_get_device_value.
@@ -1426,7 +1554,9 @@ function cp_get_device_value( $style_array, $device ) {
 			if ( isset( $value[ $device_index ] ) ) {
 				$style_array_d->$key = $value[ $device_index ];
 			} else {
-				$style_array_d->$key = $value[0];
+				if ( isset( $value[0] ) ) {
+					$style_array_d->$key = $value[0];
+				}
 			}
 		}
 	}
@@ -1472,12 +1602,10 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 	// if panel properties style to render.
 	if ( strpos( $panel_id, 'panel-' ) !== false ) {
-
 		if ( 'info_bar' == $module_type || 'welcome_mat' == $module_type || 'full_screen' == $module_type ) {
 			$style = '.cp_style_' . $style_id . ' .cp-popup{ ';
 
 			$bg_overlay_style .= '.cp_style_' . $style_id . ' .cpro-fs-overlay{ ';
-
 		} else {
 			$style = '.cp_style_' . $style_id . ' .cp-popup-content{ ';
 		}
@@ -1493,6 +1621,8 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 	$form_field_placeholder_webstyle = '';
 	$form_field_placeholder_mozstyle = '';
 	$form_field_focus_style          = '';
+	$date_hover_color                = '';
+	$date_selected_color             = '';
 
 	if ( strpos( $panel_id, 'form_field' ) !== false ) {
 		$style = '.cp_style_' . $style_id . ' .cp-popup .cpro-form .cp-form-input-field{ ';
@@ -1504,6 +1634,10 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 		$form_field_placeholder_webstyle .= '.cp_style_' . $style_id . ' .cp-popup .cpro-form .cp-form-input-field::-webkit-input-placeholder {';
 
 		$form_field_placeholder_mozstyle .= '.cp_style_' . $style_id . ' .cp-popup .cpro-form .cp-form-input-field::-moz-placeholder  {';
+
+		$date_hover_color .= '.cp_style_' . $style_id . ' .cp-popup .cpro-form .pika-lendar table tbody button:hover { ';
+
+		$date_selected_color .= '.cp_style_' . $style_id . ' .cp-popup .cpro-form .pika-lendar table tbody .is-selected .pika-button { ';
 	}
 
 	$extra_style       = '';
@@ -1517,12 +1651,10 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 	$btn_gradient_loc_1 = isset( $style_array->btn_gradient_loc_1 ) ? $style_array->btn_gradient_loc_1 : '';
 	$btn_gradient_loc_2 = isset( $style_array->btn_gradient_loc_2 ) ? $style_array->btn_gradient_loc_2 : '';
 
-	$exc_opts_arr = array( 'gradient-background', 'close-link', 'inner-html', 'class-name', 'class', 'dropdown-options', 'padding', 'overlay-color', 'background-type', 'background-opt', 'entry-animation', 'exit-animation', 'gradient-angle', 'gradient-type', 'position', 'btn-gradient-angle', 'btn-gradient-bg1', 'btn-gradient-bg2', 'overlay-gradient-type', 'lighten-color', 'gradient-lighter-location', 'darken-color', 'panel-gradient-type', 'gradient-darker-location', 'radial-gradient-direction', 'radial-gradient-direction', 'overlay-lighter-color', 'overlay-lighter-location', 'overlay-darker-color', 'overlay-darker-location', 'overlay-panel-gradient-type', 'radial-overlay-gradient-direction', 'overlay-gradient-angle', 'radio-options', 'panel-img-overlay-color', 'toggle-text', 'inherit-bg', 'btn-gradient-loc-1', 'btn-gradient-loc-2', 'btn-gradient-radial-dir', 'btn-gradient-bg1-hover', 'btn-gradient-bg2-hover', 'btn-gradient-loc-1-hover', 'btn-gradient-loc-2-hover', 'btn-gradient-type-hover', 'btn-gradient-radial-dir-hover', 'btn-gradient-angle-hover', 'removeAnimClass', 'margin', 'video-source', 'video-id', 'close-image-type', 'radio-image', 'btn-gradient-hover-options', 'radio-orientation', 'checkbox-options', 'checkbox-orientation', 'active-border-color', 'countdown-number-color', 'countdown-text-color', 'inside-outside', 'countdown-background', 'countdown-border-style', 'countdown-border-color', 'countdown-border-width', 'countdown-border-radius', 'countdown-padding', 'text-space', 'countdown-text-font-size', 'countdown-number-font-size' );
+	$exc_opts_arr = array( 'gradient-background', 'close-link', 'inner-html', 'class-name', 'class', 'dropdown-options', 'padding', 'overlay-color', 'background-type', 'background-opt', 'entry-animation', 'exit-animation', 'gradient-angle', 'gradient-type', 'position', 'btn-gradient-angle', 'btn-gradient-bg1', 'btn-gradient-bg2', 'overlay-gradient-type', 'lighten-color', 'gradient-lighter-location', 'darken-color', 'panel-gradient-type', 'gradient-darker-location', 'radial-gradient-direction', 'radial-gradient-direction', 'overlay-lighter-color', 'overlay-lighter-location', 'overlay-darker-color', 'overlay-darker-location', 'overlay-panel-gradient-type', 'radial-overlay-gradient-direction', 'overlay-gradient-angle', 'radio-options', 'panel-img-overlay-color', 'toggle-text', 'inherit-bg', 'btn-gradient-loc-1', 'btn-gradient-loc-2', 'btn-gradient-radial-dir', 'btn-gradient-bg1-hover', 'btn-gradient-bg2-hover', 'btn-gradient-loc-1-hover', 'btn-gradient-loc-2-hover', 'btn-gradient-type-hover', 'btn-gradient-radial-dir-hover', 'btn-gradient-angle-hover', 'removeAnimClass', 'margin', 'video-source', 'video-id', 'close-image-type', 'radio-image', 'btn-gradient-hover-options', 'radio-orientation', 'checkbox-options', 'checkbox-orientation', 'countdown-number-color', 'countdown-text-color', 'inside-outside', 'countdown-background', 'countdown-border-style', 'countdown-border-color', 'countdown-border-width', 'countdown-border-radius', 'countdown-padding', 'text-space', 'countdown-text-font-size', 'countdown-number-font-size' );
 
 	if ( isset( $style_array->map_style ) ) {
-
 		foreach ( $style_array->map_style as $style_prop ) {
-
 			$map_style_value = '';
 			if ( isset( $style_prop->name ) ) {
 				$map_style_value = $style_array->{$style_prop->name};
@@ -1539,9 +1671,7 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 			if ( in_array( $style_prop->name, $step_dependent_opts ) &&
 				! in_array( $style_prop->parameter, $exc_opts_arr ) ) {
-
 				switch ( $style_prop->parameter ) {
-
 					case 'background-color':
 						$lightn_color = ( isset( $style_array->panel_lighter_color ) && '' !== $style_array->panel_lighter_color ) ? $style_array->panel_lighter_color : '#fff';
 
@@ -1559,7 +1689,6 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 						if ( '0' == $is_inherit_bg || 'panel-1' == $panel_id ) {
 							if ( 'gradient' == $bg_type ) {
-
 								$darker_location = ( isset( $style_array->gradient_darker_location ) && '' !== $style_array->gradient_darker_location ) ? $style_array->gradient_darker_location : '100';
 
 								$lighter_location = ( isset( $style_array->gradient_lighter_location ) && '' !== $style_array->gradient_lighter_location ) ? $style_array->gradient_lighter_location : '0';
@@ -1571,7 +1700,6 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 								$gradient_direction = ( isset( $style_array->radial_panel_gradient_direction ) && '' !== $style_array->radial_panel_gradient_direction ) ? $style_array->radial_panel_gradient_direction : 'center_center';
 
 								if ( 'info_bar' !== $module_type && 'welcome_mat' != $module_type && 'full_screen' != $module_type ) {
-
 									if ( 'lineargradient' == $gradient_type ) {
 										$step_dependent_style .= cp_apply_gradient_bg( $lightn_color, $lighter_location, $dark_color, $darker_location, $angle );
 									} elseif ( 'radialgradient' == $gradient_type ) {
@@ -1585,25 +1713,22 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 									}
 								}
 							} elseif ( 'image' == $bg_type ) {
-
 								if ( 'info_bar' == $module_type ) {
-									$style            .= $style_prop->parameter . ':' . $img_overlay_bg . ';';
-									$bg_overlay_style .= $style_prop->parameter . ':' . $img_overlay_bg . ';';
-
+									$style .= 'background-blend-mode:overlay;';
+									$style .= $style_prop->parameter . ':' . $img_overlay_bg . ';';
+									// $bg_overlay_style .= $style_prop->parameter . ':' . $img_overlay_bg . ';';.
 								} elseif ( 'welcome_mat' == $module_type || 'full_screen' == $module_type ) {
-										$bg_overlay_style .= $style_prop->parameter . ':' . $img_overlay_bg . ';';
+									$style .= 'background-blend-mode:overlay;';
+									$style .= $style_prop->parameter . ':' . $img_overlay_bg . ';';
+									// $bg_overlay_style .= $style_prop->parameter . ':' . $img_overlay_bg . ';';.
 								} else {
-										$step_dependent_style .= $style_prop->parameter . ':' . $img_overlay_bg . ';';
+										$step_dependent_style .= $style_prop->parameter . ':' . $img_overlay_bg . ';background-blend-mode: overlay;';
 								}
 							} else {
-
 								if ( ! in_array( $val, $gradient_arr ) ) {
-
 									if ( 'info_bar' == $module_type || 'welcome_mat' == $module_type || 'full_screen' == $module_type ) {
-
 										$style .= $style_prop->parameter . ':' . $map_style_value . $unit . ';';
 									} else {
-
 										$step_dependent_style .= $style_prop->parameter . ':' . $map_style_value . $unit . ';';
 									}
 								}
@@ -1614,7 +1739,6 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 					case 'background-image':
 						if ( '0' == $is_inherit_bg || 'panel-1' == $panel_id ) {
-
 							if ( 'info_bar' == $module_type || 'welcome_mat' == $module_type || 'full_screen' == $module_type ) {
 								$style .= cp_generate_bg_style( $bg_type, $map_style_value, $style_prop->parameter, $opt_bg );
 							} else {
@@ -1635,11 +1759,9 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 				$parameter = isset( $new_parameter[1] ) ? $new_parameter[1] : $style_prop->parameter;
 
 				if ( 'btn-gradient-type-hover' == $parameter ) {
-
 					$btn_gradient_hover_options = ( isset( $style_array->btn_gradient_hover_options ) && '' !== $style_array->btn_gradient_hover_options ) ? $style_array->btn_gradient_hover_options : '';
 
 					if ( 'true' == $btn_gradient_hover_options ) {
-
 						$extra_hover_style .= '.cp_style_' . $style_id . ' #' . $panel_id . '-' . $style_id . ' button:hover { ';
 
 						$btn_gradient_loc_1_hover = ( isset( $style_array->btn_gradient_loc_1_hover ) && '' !== $style_array->btn_gradient_loc_1_hover ) ? $style_array->btn_gradient_loc_1_hover : '';
@@ -1664,12 +1786,9 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 			}
 
 			if ( isset( $style_prop->onhover ) && $style_prop->onhover ) {
-
 				if ( isset( $target ) && '' != $target && trim( $target ) != '.cp-target' ) {
-
 					$muliple_target = explode( ',', $target );
 					foreach ( $muliple_target as $key => $value ) {
-
 						$new_parameter     = explode( '|', $value );
 						$new_parameter_arr = explode( ' ', $new_parameter[0] );
 
@@ -1691,7 +1810,6 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 						$val = $map_style_value;
 
 						if ( '' !== $val ) {
-
 							if ( ! in_array( $parameter, $exc_arr ) ) {
 								$extra_hover_style .= $parameter . ':' . $val . $unit . ';';
 							}
@@ -1700,27 +1818,21 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 						$extra_hover_style .= '}';
 					}
 				} else {
-
 					$exc_arr      = array( 'gradient-background', 'close-link', 'inner-html', 'class-name', 'class', 'dropdown-options', 'padding', 'overlay-color', 'background-type' );
 					$val          = $map_style_value;
 					$parameter    = $style_prop->parameter;
 					$paenl_bg_css = '';
 
 					if ( '' !== $val ) {
-
 						if ( ! in_array( $parameter, $exc_arr ) ) {
-
 							$hover_style .= $parameter . ':' . $map_style_value . $unit . ';';
 						}
 					}
 				}
 			} else {
-
 				if ( isset( $target ) && '' != $target && trim( $target ) != '.cp-target' && trim( $target ) != '.cp-field-html-data' ) {
-
 					$muliple_target = explode( ',', $target );
 					foreach ( $muliple_target as $key => $value ) {
-
 						$new_parameter = explode( '|', $value );
 
 						if ( 'toggle' == $panel_id ) {
@@ -1741,16 +1853,12 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 						if ( '' !== $val ) {
 							if ( 'border-width' == $parameter || 'border-radius' == $parameter || 'padding' == $parameter ) {
-
 								$extra_style .= cp_generate_multi_input_result( $parameter, $val );
-
 							} elseif ( 'box-shadow' == $parameter ) {
-
 								if ( 'cp_shape' != $style_array->type ) {
 									$extra_style .= cp_generate_box_shadow( $val );
 								}
 							} elseif ( 'btn-gradient-type' == $parameter ) {
-
 								$lighter_color = $btn_back_color;
 								$darker_color  = $sec_btn_back_color;
 
@@ -1767,16 +1875,13 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 									$style .= cp_apply_gradient_bg_rad( $btn_gradient_radial_dir, $lighter_color, $btn_gradient_loc_1, $darker_color, $btn_gradient_loc_2 );
 								}
 							} elseif ( 'overlay-gradient-type' == $parameter ) {
-
 								if ( 'lineargradient' == $overlay_gradient_type ) {
 									$style .= cp_overlay_gradient_bg( $style_id, $style_array );
 								} elseif ( 'radialgradient' == $overlay_gradient_type ) {
 									$style .= cp_overlay_gradient_bg_rad( $style_id, $style_array );
 								}
 							} elseif ( 'background-image' == $parameter ) {
-
 								$extra_style .= cp_generate_bg_style( $bg_type, $image, $parameter, $opt_bg );
-
 							} elseif ( 'font-family' == $parameter ) {
 								$font         = explode( ':', $val );
 								$font_family  = $font[0];
@@ -1784,7 +1889,6 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 								$font_weight  = ( 'regular' == $font_new ) ? 'normal' : $font_new;
 								$extra_style .= $parameter . ':' . $font_family . ';';
 								$extra_style .= 'font-weight' . ':' . $font_weight . ';';
-
 							} elseif ( ! in_array( $parameter, $exc_arr ) ) {
 								if ( 'height' == $parameter && 'toggle' == $target ) {
 									$extra_style .= 'line-height' . ':' . $map_style_value . $unit . ';';
@@ -1793,7 +1897,7 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 								if ( 'placeholder' == $target ) {
 									$form_field_placeholder_webstyle .= $parameter . ':' . $val . ';';
 									$form_field_placeholder_mozstyle .= $parameter . ':' . $val . ';';
-
+									$date_hover_color                .= 'background :' . $val . ';';
 								}
 
 								$extra_style .= $parameter . ':' . $val . $unit . ';';
@@ -1803,7 +1907,6 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 						$extra_style .= '}';
 					}
 				} elseif ( trim( $target ) == '.cp-field-html-data' ) {
-
 					$parameter = $style_prop->parameter;
 
 					if ( 'transform' == $parameter ) {
@@ -1817,14 +1920,12 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 						$field_style .= '}';
 					}
 				} else {
-
 					$val           = isset( $map_style_value ) ? $map_style_value : '';
 					$parameter     = $style_prop->parameter;
 					$property_name = $style_prop->name;
 					$paenl_bg_css  = '';
 
 					if ( '' !== $val ) {
-
 						if ( 'border-width' == $parameter || 'border-radius' == $parameter || 'padding' == $parameter ) {
 							$style .= cp_generate_multi_input_result( $parameter, $val );
 						} elseif ( 'box-shadow' == $parameter || 'panel-box-shadow' == $parameter ) {
@@ -1853,13 +1954,9 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 								$overlay_style .= cp_overlay_gradient_bg_rad( $style_id, $style_array );
 							}
 						} elseif ( 'background-image' == $parameter ) {
-
 							$style .= cp_generate_bg_style( $bg_type, $map_style_value, $parameter, $opt_bg );
-
 						} elseif ( 'background-color' == $parameter ) {
-
 							if ( strpos( $panel_id, 'panel-' ) == false ) {
-
 								if ( strpos( $panel_id, 'form_field' ) !== false ) {
 									$form_field_select_field_style .= $parameter . ':' . $map_style_value . ';';
 								}
@@ -1873,14 +1970,12 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 							$font_weight = ( 'regular' == $font_new ) ? 'normal' : $font_new;
 							$style      .= $parameter . ':' . $font_family . ';';
 							$style      .= 'font-weight' . ':' . $font_weight . ';';
-
 						} elseif ( ! in_array( $parameter, $exc_opts_arr ) ) {
 							if ( 'height' == $parameter && 'cp_toggle' == $type ) {
 								$style .= 'line-height' . ':' . $map_style_value . $unit . ';';
 							}
 
 							if ( 'height' == $parameter || 'width' == $parameter ) {
-
 								if ( 0 == $map_style_value ) {
 									$map_style_value = 'auto';
 									$unit            = '';
@@ -1889,14 +1984,12 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 							if ( strpos( $panel_id, 'form_field' ) !== false && 'color' == $parameter ) {
 								$form_field_select_field_style .= $parameter . ':' . $map_style_value . ';';
+								$date_selected_color           .= 'background :' . $map_style_value . ';';
+								$date_selected_color           .= 'box-shadow : inset 0 1px 3px ' . $map_style_value . ';';
 							}
 
 							if ( 'active-border-color' == $parameter && strpos( $panel_id, 'form_field' ) !== false ) {
-								$form_field_focus_style .= 'border-color: ' . $map_style_value;
-							}
-
-							if ( 'active-border-color' == $parameter && strpos( $panel_id, 'form_field' ) !== false ) {
-								$form_field_focus_style .= 'border-color: ' . $map_style_value;
+								$form_field_focus_style .= 'border-color: ' . $map_style_value . ';';
 							}
 
 							if ( 'height' == $parameter && ( isset( $style_array->shape_preset ) ) && ( 'line05' == $style_array->shape_preset || 'line06' == $style_array->shape_preset || 'line07' == $style_array->shape_preset ) ) {
@@ -1913,7 +2006,6 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 	$style .= '}';
 	foreach ( $style_array->map_style as $style_prop ) {
-
 		switch ( $style_prop->parameter ) {
 			case 'radio-size':
 				$style .= '.cp_style_' . $style_id . ' #' . $panel_id . '-' . $style_id . ' .cp-target .cp-radio-wrap input[type=radio] ' . ' { ';
@@ -1929,6 +2021,30 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 				$style .= 'height' . ':' . $beforeval . 'px;';
 				$style .= 'width' . ':' . $beforeval . 'px;';
+				$style .= ' }';
+				break;
+
+			case 'checkbox-size':
+				$style .= '.cp_style_' . $style_id . ' #' . $panel_id . '-' . $style_id . ' .cp-target .cp-checkbox-wrap input[type=checkbox] ' . ' { ';
+				$style .= 'height' . ':' . $map_style_value . 'px;';
+				$style .= 'width' . ':' . $map_style_value . 'px;';
+				$style .= ' }';
+				$style .= '.cp_style_' . $style_id . ' #' . $panel_id . '-' . $style_id . ' .cp-target .cp-checkbox-wrap' . ' { ';
+				$style .= 'line-height' . ':' . $map_style_value . 'px;';
+				$style .= ' }';
+				$style .= '.cp_style_' . $style_id . ' #' . $panel_id . '-' . $style_id . ' .cp-target .cp-checkbox-wrap input[type=checkbox]::before ' . ' { ';
+
+				$beforeval = ( ( $map_style_value - 10 ) < 1 ) ? 6 : ( $map_style_value - 10 );
+
+				$style .= 'height' . ':' . $beforeval . 'px;';
+				$style .= 'width' . ':' . $beforeval . 'px;';
+				if ( $beforeval < 10 ) {
+					$style .= 'right' . ':' . ( $beforeval - ( $beforeval / 2 ) ) . 'px;';
+					$style .= 'top' . ':' . ( $beforeval + ( $beforeval / 2 ) ) . 'px;';
+				} else {
+					$style .= 'font-size' . ':' . $beforeval . 'px;';
+					$style .= 'top' . ':' . $beforeval . 'px;';
+				}
 				$style .= ' }';
 				break;
 
@@ -2025,6 +2141,16 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 				$style .= ' }';
 				break;
 
+			case 'countdown-text-align':
+				$val = $style_array->{$style_prop->name};
+				if ( 'justify' == $val ) {
+					$val = 'auto';
+				}
+				$style .= '.cp_style_' . $style_id . ' #' . $panel_id . '-' . $style_id . ' .cp-target .cp-countdown-holding { ';
+				$style .= 'text-align: -webkit-' . $val;
+				$style .= ' }';
+				break;
+
 			default:
 				break;
 		}
@@ -2035,6 +2161,8 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 		$form_field_focus_style          .= '}';
 		$form_field_placeholder_webstyle .= '}';
 		$form_field_placeholder_mozstyle .= '}';
+		$date_hover_color                .= '}';
+		$date_selected_color             .= '}';
 	}
 
 	$style .= '.cp_style_' . $style_id . ' #' . $panel_id . '-' . $style_id . ' .cp-target:hover { ';
@@ -2043,16 +2171,14 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 	$style .= '}';
 
-	$style .= $extra_style . $field_style . $extra_hover_style . $form_field_select_field_style . $form_field_focus_style . $form_field_placeholder_webstyle . $form_field_placeholder_mozstyle;
+	$style .= $extra_style . $field_style . $extra_hover_style . $form_field_select_field_style . $form_field_focus_style . $form_field_placeholder_webstyle . $form_field_placeholder_mozstyle . $date_hover_color . $date_selected_color;
 
 	$style .= '.cp_style_' . $style_id . ' #' . $panel_id . '-' . $style_id . ' { ';
 
 	$respective_to_overlay = isset( $style_array->respective_to ) ? $style_array->respective_to : false;
 
 	foreach ( $style_array as $key => $style_prop ) {
-
 		if ( 'position' == $key ) {
-
 			$unit = 'px';
 			if ( 'true' == $respective_to_overlay ) {
 				$unit = '%';
@@ -2088,11 +2214,9 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 
 	// style for panel.
 	if ( strpos( $panel_id, 'panel-' ) !== false ) {
-
 		$overlay_type = ( isset( $style_array->overlay_gradient_type ) && '' !== $style_array->overlay_gradient_type ) ? $style_array->overlay_gradient_type : 'lineargradient';
 
 		if ( 'color' == $overlay_type ) {
-
 			if ( isset( $style_array->panel_overlay_color ) ) {
 				$style .= '.cp_style_' . $style_id . ' .cpro-overlay{';
 				$style .= 'background:' . $style_array->panel_overlay_color . ';';
@@ -2117,14 +2241,12 @@ function cp_generate_style( $style_array, $panel_id, $style_id, $type, $device_i
 		}
 
 		if ( isset( $style_array->panel_width ) && ( 'info_bar' == $module_type || 'welcome_mat' == $module_type || 'full_screen' == $module_type ) ) {
-
 			$style .= '.cp_style_' . $style_id . ' .cp-popup-wrapper .cp-panel-content {';
 			$style .= 'max-width:' . ( $style_array->panel_width ) . 'px;';
 			$style .= '}';
 		}
 
 		if ( isset( $style_array->panel_margin ) ) {
-
 			$style .= '.cp-popup-container.cp_style_' . $style_id . ' {';
 			$style .= cp_generate_multi_input_result( 'margin', $style_array->panel_margin );
 			$style .= '}';
@@ -2155,8 +2277,9 @@ if ( ! function_exists( 'cp_render_popup' ) ) {
 	 */
 	function cp_render_popup( $atts, $content = null ) {
 		ob_start();
-		$style = '';
-
+		$style               = '';
+		$is_country_displays = true;
+		$is_country_excludes = false;
 		shortcode_atts(
 			array(
 				'style_id'      => '',
@@ -2166,14 +2289,24 @@ if ( ! function_exists( 'cp_render_popup' ) ) {
 				'display'       => '',
 				'manual'        => false,
 				'only_preview'  => 'no',
-			), $atts
+			),
+			$atts
 		);
 
-		$style_id = $atts['style_id'];
+		$style_id = apply_filters( 'cpro_front_end_cta_id', $atts['style_id'] );
 
 		$html = get_post_meta( $style_id, 'html_data', true );
+
 		if ( strpos( $html, 'cp-countdown-field' ) ) {
 			cpro_enqueue_countdown_script();
+		}
+
+		if ( strpos( $html, 'cp-date-field' ) ) {
+			cpro_enqueue_date_script();
+		}
+
+		if ( strpos( $html, 'cp-google-recaptcha' ) ) {
+			cpro_enqueue_google_recaptcha_script();
 		}
 
 		$cp_popups     = CP_V2_Popups::get_instance();
@@ -2192,6 +2325,49 @@ if ( ! function_exists( 'cp_render_popup' ) ) {
 			$display_class = $atts['display'];
 		}
 
+		/* Geo Location Condition Starts Here */
+		$target_countriess = cpro_get_style_settings( $style_id, 'configure', 'target_geo_rule_display' );
+
+		$exclude_countriess = cpro_get_style_settings( $style_id, 'configure', 'target_geo_rule_exclude' );
+
+		/* Parse Display On Condition */
+		if ( ! empty( $target_countriess ) ) {
+			$is_country_displays = cp_v2_parse_geo_condition( $target_countriess );
+		}
+		/* Parse Exclude On Condition */
+		if ( ! empty( $exclude_countriess ) ) {
+			$is_country_excludes = cp_v2_parse_geo_condition( $exclude_countriess );
+		}
+
+		if ( $is_country_displays ) {
+			if ( $is_country_excludes ) {
+				$style_id = '';
+			}
+		} else {
+			if ( $is_country_excludes ) {
+				$style_id = '';
+			} else {
+				$style_id = '';
+			}
+		}
+		/* Geo Location Condition Ends Here */
+
+		/* Hide On Device Condition */
+		if ( strpos( $html, 'hide_on_device' ) ) {
+			$hide_on_device = cpro_get_style_settings( $style_id, 'configure', 'hide_on_device' );
+			if ( ! cpro_is_current_device( $hide_on_device ) ) {
+				$style_id = '';
+			}
+		}
+
+		/* Show For Logged In Condition */
+		if ( strpos( $html, 'show_for_logged_in' ) ) {
+			$show_for_logged_in = cpro_get_style_settings( $style_id, 'configure', 'show_for_logged_in' );
+			if ( is_user_logged_in() && ! $show_for_logged_in ) {
+				$style_id = '';
+			}
+		}
+
 		$manual_class = '';
 		if ( isset( $atts['manual'] ) && '' != $atts['manual'] ) {
 			$manual_class = $atts['manual'];
@@ -2202,7 +2378,6 @@ if ( ! function_exists( 'cp_render_popup' ) ) {
 
 		if ( ( isset( $atts['only_preview'] ) && 'yes' == $atts['only_preview'] )
 			|| '1' == $style_status || '1' == $has_active_ab_test ) {
-
 			cp_v2_enqueue_google_fonts( $style_id );
 			$output           = get_post_meta( $style_id, 'html_data', true );
 			$credit_link_html = '';
@@ -2211,11 +2386,13 @@ if ( ! function_exists( 'cp_render_popup' ) ) {
 			$txt                    = sprintf( __( 'Powered by %s', 'convertpro' ), CPRO_BRANDING_NAME );
 			$credit_text            = apply_filters( 'cppro_credit_text', $txt );
 			$link_color             = cpro_get_style_settings( $style_id, 'design', 'credit_link_color' );
-			$is_display_credit_link = esc_attr( get_option( 'cp_credit_option' ) );
+			$is_display_credit_link = esc_attr( get_option( 'cp_credit_option', '0' ) );
 
 			if ( '0' !== $is_display_credit_link ) {
-
-				$branding_agency_url = get_option( 'cpro_branding_plugin_author_url' );
+				$branding_agency_url = ( ! is_multisite() ) ? esc_url( get_option( 'cpro_branding_plugin_author_url' ) ) : esc_url( get_site_option( '_cpro_branding_plugin_author_url' ) );
+				if ( defined( 'CPRO_CUSTOM_AUTHOR_URL' ) ) {
+					$branding_agency_url = esc_url( CPRO_CUSTOM_AUTHOR_URL );
+				}
 
 				$powered_by_url = false == $branding_agency_url ? CP_POWERED_BY_URL : $branding_agency_url;
 
@@ -2224,8 +2401,20 @@ if ( ! function_exists( 'cp_render_popup' ) ) {
 				</div>';
 			}
 
+			$date_format = apply_filters( 'cpro_email_date_format', get_option( 'date_format' ) );
+
 			$output = str_replace( '{{cpro_credit_link}}', $credit_link_html, $output );
-			$output = str_replace( '{{current_date}}', esc_attr( date( 'j-n-Y' ) ), $output );
+			$output = str_replace( '{{current_date}}', esc_attr( date( $date_format ) ), $output );
+
+			$antispam_enabled = esc_attr( get_option( 'cp_antispam_enabled' ) );
+
+			if ( '0' != $antispam_enabled ) {
+				$honeypot_field = "<input type='text' class='cpro-hp-field' name='cpro_hp_field_" . $style_id . "' value=''>";
+
+				$output = str_replace( '{{cpro_honeypot_field}}', $honeypot_field, $output );
+			} else {
+				$output = str_replace( '{{cpro_honeypot_field}}', '', $output );
+			}
 
 			echo do_shortcode( htmlspecialchars_decode( $output ) );
 
@@ -2246,8 +2435,12 @@ if ( ! function_exists( 'cp_get_live_popups' ) ) {
 	 */
 	function cp_get_live_popups( $type = 'all' ) {
 
-		$cp_popup = CP_V2_Popups::get_instance();
-		$popups   = $cp_popup->get( $type );
+		$popups = array();
+
+		if ( class_exists( 'CP_V2_Popups' ) ) {
+			$cp_popup = CP_V2_Popups::get_instance();
+			$popups   = $cp_popup->get( $type );
+		}
 
 		return $popups;
 	}
@@ -2311,7 +2504,6 @@ if ( ! function_exists( 'cp_generate_drop_shadow' ) ) {
 		$rgb_color = $result['color'];
 		$res       = '';
 		if ( 'none' !== $result['type'] ) {
-
 			$res .= 'drop-shadow(';
 			$res .= $result['horizontal'] . 'px ';
 			$res .= $result['vertical'] . 'px ';
@@ -2352,18 +2544,15 @@ if ( ! function_exists( 'cp_is_modal_scheduled' ) ) {
  * @since 0.0.1
  */
 function cp_load_popup_content() {
-
 	$tests = array();
 
 	// first get active ab tests.
 	if ( class_exists( 'CP_V2_AB_Test' ) ) {
-
 		$ab_tests        = CP_V2_AB_Test::get_instance();
 		$active_ab_tests = $ab_tests->get_all_tests( array( 1 ) );
 
 		if ( is_array( $active_ab_tests ) ) {
 			foreach ( $active_ab_tests as $ab_test ) {
-
 				$temp_arr = array();
 
 				$styles = $ab_tests->get_styles_by_test_id( $ab_test->term_id );
@@ -2373,17 +2562,21 @@ function cp_load_popup_content() {
 				}
 
 				$tests[ $ab_test->term_id ] = $temp_arr;
-
 			}
 		}
 	}
+
 	$translation_array = array(
 		'cp_v2_ab_tests_object' => $tests,
 	);
 	wp_localize_script( 'cp-popup-script', 'cp_v2_ab_tests', $translation_array );
 
-	$cp_popups = CP_V2_Popups::get_instance();
-	$popups    = $cp_popups->get( 'launch' );
+	$popups = array();
+
+	if ( class_exists( 'CP_V2_Popups' ) ) {
+		$cp_popups = CP_V2_Popups::get_instance();
+		$popups    = $cp_popups->get( 'launch' );
+	}
 
 	if ( ! empty( $tests ) ) {
 		foreach ( $tests as $t ) {
@@ -2399,6 +2592,7 @@ function cp_load_popup_content() {
 
 	$is_inactive_needed = false;
 	$is_device_needed   = false;
+	$display            = true;
 
 	$script_handlers = array(
 		'cp-cookie-script',
@@ -2408,7 +2602,9 @@ function cp_load_popup_content() {
 	);
 
 	foreach ( $popups as $popup_id ) {
-		$inactivity = cpro_get_style_settings( $popup_id, 'configure', 'inactivity' );
+		if ( function_exists( 'cpro_get_style_settings' ) ) {
+			$inactivity = cpro_get_style_settings( $popup_id, 'configure', 'inactivity' );
+		}
 
 		if ( 1 == $inactivity ) {
 			$is_inactive_needed = true;
@@ -2420,7 +2616,6 @@ function cp_load_popup_content() {
 
 	// developer mode.
 	if ( '1' == $dev_mode ) {
-
 		$list = 'enqueued';
 
 		foreach ( $script_handlers as $handler ) {
@@ -2429,7 +2624,6 @@ function cp_load_popup_content() {
 			}
 		}
 	} else {
-
 		if ( $is_inactive_needed ) {
 			wp_enqueue_script( 'cp-ideal-timer-script' );
 		}
@@ -2446,15 +2640,23 @@ function cp_load_popup_content() {
 	do_action( 'cp_front_scripts_loaded' );
 
 	if ( ! empty( $popups ) ) {
-
 		foreach ( $popups as $popup_id ) {
-			$display = cp_v2_is_style_visible( $popup_id );
-			if ( $display ) {
+			if ( function_exists( 'cp_v2_is_style_visible' ) ) {
+				$display = cp_v2_is_style_visible( $popup_id );
+			}
 
+			if ( $display ) {
 				$hide_on_device = cpro_get_style_settings( $popup_id, 'configure', 'hide_on_device' );
 				$html           = get_post_meta( $popup_id, 'html_data', true );
 				if ( strpos( $html, 'cp-countdown-field' ) ) {
 					cpro_enqueue_countdown_script();
+				}
+				if ( strpos( $html, 'cp-date-field' ) ) {
+					cpro_enqueue_date_script();
+				}
+
+				if ( strpos( $html, 'cp-google-recaptcha' ) ) {
+					cpro_enqueue_google_recaptcha_script();
 				}
 
 				if ( cpro_is_current_device( $hide_on_device ) ) {
@@ -2475,6 +2677,27 @@ if ( ! function_exists( 'cpro_enqueue_countdown_script' ) ) {
 		wp_enqueue_script( 'cpro-countdown', CP_V2_BASE_URL . 'framework/fields/cp_countdown/cp_countdown.min.js', array( 'cp-popup-script' ), '1.0.0', true );
 		wp_enqueue_script( 'cpro-countdown-script', CP_V2_BASE_URL . 'framework/fields/cp_countdown/cp-countdown-script.js', array( 'cp-popup-script' ), '1.0.0', true );
 		wp_enqueue_style( 'cpro-countdown-style', CP_V2_BASE_URL . 'framework/fields/cp_countdown/cp-countdown-style.css' );
+	}
+}
+
+if ( ! function_exists( 'cpro_enqueue_date_script' ) ) {
+	/**
+	 * Function Name: cpro_enqueue_date_script.
+	 * Function Description: Enqueue pikaday script.
+	 */
+	function cpro_enqueue_date_script() {
+		wp_enqueue_style( 'cp-pikaday', CP_V2_BASE_URL . 'framework/fields/cp_date/pikaday.min.css' );
+		wp_enqueue_script( 'cp-pikaday', CP_V2_BASE_URL . 'framework/fields/cp_date/pikaday.min.js', array( 'cp-popup-script' ), '1.8.0', true );
+	}
+}
+
+if ( ! function_exists( 'cpro_enqueue_google_recaptcha_script' ) ) {
+	/**
+	 * Function Name: cpro_enqueue_google_recaptcha_script.
+	 * Function Description: Enqueue google recaptcha script.
+	 */
+	function cpro_enqueue_google_recaptcha_script() {
+		wp_enqueue_script( 'cp-google-recaptcha', 'https://www.google.com/recaptcha/api.js', array( 'cp-popup-script' ), null, true );
 	}
 }
 
@@ -2531,18 +2754,18 @@ function cp_v2_enqueue_google_fonts( $style_id ) {
 	$fonts_list       = get_post_meta( $style_id, 'cp_gfonts', true );
 	$fonts            = json_decode( $fonts_list );
 	$unique_font_list = array();
+	$display_font     = true;
 
 	/* Add Global Font to list */
 	$cp_global_font = Cp_V2_Model::get_cp_global_fonts();
 
 	if ( CP_V2_Fonts::is_google_font( $cp_global_font['family'] ) ) {
-
 		$fonts->panel_global_font         = new stdClass();
 		$fonts->panel_global_font->family = $cp_global_font['family'];
 		$fonts->panel_global_font->weight = $cp_global_font['weight'];
 	}
 
-	if ( null !== $fonts && count( get_object_vars( $fonts ) ) > 0 ) {
+	if ( null !== $fonts && count( (array) ( $fonts ) ) > 0 ) {
 		foreach ( $fonts as $key => $value ) {
 			$font_family  = $value->family;
 			$font_wt      = $value->weight;
@@ -2567,9 +2790,9 @@ function cp_v2_enqueue_google_fonts( $style_id ) {
 			$weight = implode( ',', $font );
 
 			if ( 'Inherit' == $weight ) {
-				$font_string .= $key . '|';
+				$font_string .= $key . ':normal,|';
 			} else {
-				$font_string .= $key . ':' . $weight . '|';
+				$font_string .= $key . ':' . $weight . ',|';
 			}
 		}
 	}
@@ -2584,7 +2807,14 @@ function cp_v2_enqueue_google_fonts( $style_id ) {
 		}
 	}
 
-	if ( '' !== $font_string ) {
+	// Filter to check if google font is enabled or not?
+	$display_font = apply_filters( 'cpro_disable_google_font', $style_id );
+
+	if ( ! empty( $font_string ) ) {
+		$font_string = substr( $font_string, 0, -1 );
+	}
+
+	if ( '' !== $font_string && $display_font ) {
 		$google_font_url = '//fonts.googleapis.com/css?family=' . $font_string;
 		wp_enqueue_style( 'cp-google-fonts-' . $style_id, $google_font_url );
 	}
@@ -2616,19 +2846,15 @@ if ( ! function_exists( 'cp_get_form_content' ) ) {
 		$styles = '';
 
 		foreach ( $attr as $panelkey => $panelvalue ) {
-
 			$result = cp_get_panel( $panelvalue, $panelkey, $style_id );
 
 			if ( ! empty( $result ) ) {
 				if ( 'cp_toggle' == $panelvalue->type ) {
-
 					ob_start();
 					echo $result['html'];
 					$toggle_fields .= ob_get_clean();
 					$styles        .= $result['style'];
-
 				} elseif ( 'cp_custom_html' != $panelvalue->type ) {
-
 					ob_start();
 					echo $result['html'];
 
@@ -2639,7 +2865,6 @@ if ( ! function_exists( 'cp_get_form_content' ) ) {
 					}
 
 					$styles .= $result['style'];
-
 				} else {
 					ob_start();
 					echo $result['html'];
@@ -2653,7 +2878,6 @@ if ( ! function_exists( 'cp_get_form_content' ) ) {
 		$mobile_resp     = get_post_meta( $style_id, 'cp_mobile_responsive', true ) != false ? get_post_meta( $style_id, 'cp_mobile_responsive', true ) : 'no';
 
 		if ( 'yes' == $mobile_resp ) {
-
 			$styles .= '@media ( max-width: ' . $mobile_break_pt . 'px ) {';
 
 				$styles     .= '.cp_style_' . $style_id . ' .cp-invisible-on-mobile {';
@@ -2685,7 +2909,6 @@ if ( ! function_exists( 'cp_get_form_content' ) ) {
 		);
 
 		return $content;
-
 	}
 }
 
@@ -2761,10 +2984,11 @@ function cp_get_popup_categories( $hide_empty = false ) {
 		'all' => __( 'Select Your Goal', 'convertpro' ),
 	);
 
-	if ( count( $terms ) > 0 ) {
-
+	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 		foreach ( $terms as $term ) {
-			$categories[ $term->slug ] = htmlspecialchars_decode( $term->name );
+			if ( isset( $term->slug ) ) {
+				$categories[ $term->slug ] = htmlspecialchars_decode( $term->name );
+			}
 		}
 	}
 
@@ -2785,7 +3009,6 @@ function cp_generate_bg_style( $bg_type, $image, $parameter, $opt_bg ) {
 	$extra_style = '';
 
 	if ( 'image' == $bg_type ) {
-
 		if ( '' !== $opt_bg ) {
 			$bg_option    = explode( '|', $opt_bg );
 			$bg_repeat    = $bg_option[0];
@@ -2808,15 +3031,29 @@ add_action( 'wp_ajax_cp_v2_notify_admin', 'cp_v2_notify_admin' );
  * Function Description: cp v2 notify admin
  */
 function cp_v2_notify_admin() {
-
 	check_ajax_referer( 'cp_add_subscriber_nonce', '_nonce' );
+
+	$style_id = isset( $_POST['style_id'] ) ? sanitize_text_field( esc_attr( $_POST['style_id'] ) ) : '';
+
+	if ( '' !== $style_id ) {
+		$hp_field = 'cpro_hp_field_' . $style_id;
+
+		// Honeypot field validation.
+		if ( isset( $_POST[ $hp_field ] ) && '' != $_POST[ $hp_field ] ) {
+			if ( wp_doing_ajax() ) {
+				wp_die( -1, 403 );
+			} else {
+				die( '-1' );
+			}
+		}
+	}
 
 	$response               = array(
 		'error'      => false,
 		'style_slug' => '',
 	);
 	$post_data              = sanitize_post_data( $_POST );
-	$style_id               = isset( $post_data['style_id'] ) ? (int) esc_attr( $post_data['style_id'] ) : '';
+	$style_id               = isset( $post_data['style_id'] ) ? (int) sanitize_text_field( esc_attr( $post_data['style_id'] ) ) : '';
 	$post                   = get_post( (int) $style_id );
 	$response['style_slug'] = $post->post_name;
 	$email_meta             = get_post_meta( $style_id, 'connect', true );
@@ -2829,10 +3066,31 @@ function cp_v2_notify_admin() {
 		$can_user_see_errors = false;
 	}
 
+	// Google recaptcha secret key verification starts.
+	$cp_google_recaptcha_verify = isset( $_POST['cp_google_recaptcha_verify'] ) ? 0 : 1;
+
+	if ( ! $cp_google_recaptcha_verify ) {
+
+		$google_recaptcha = isset( $_POST['g-recaptcha-response'] ) && 1 ? $_POST['g-recaptcha-response'] : '';
+
+		$google_recaptcha_secret_key = get_option( 'cp_google_recaptcha_secret_key' );
+
+		// calling google recaptcha api.
+		$google_response = file_get_contents( 'https://www.google.com/recaptcha/api/siteverify?secret=' . $google_recaptcha_secret_key . '&response=' . $google_recaptcha . '&remoteip=' . $_SERVER['REMOTE_ADDR'] );
+		// validating result.
+		$decode_google_response = json_decode( $google_response );
+
+		if ( false == $decode_google_response->success ) {
+			$response['error'] = true;
+			wp_send_json_error( $response );
+		} else {
+			$response['error'] = false;
+		}
+	}
+	// Google recaptcha secret key verification ends.
 	$email_meta = ( ! empty( $email_meta ) ) ? call_user_func_array( 'array_merge', $email_meta ) : array();
 
 	if ( ! empty( $email_meta ) && '1' == $email_meta['enable_notification'] ) {
-
 		if ( cpro_notify_via_email( $post_data, $email_meta ) ) {
 			wp_send_json_error( $response );
 		} else {
@@ -2856,7 +3114,7 @@ function cp_v2_notify_admin() {
  */
 function cpro_notify_via_email( $post_data, $email_meta ) {
 
-	$style_id   = isset( $post_data['style_id'] ) ? (int) esc_attr( $post_data['style_id'] ) : '';
+	$style_id   = isset( $post_data['style_id'] ) ? (int) sanitize_text_field( esc_attr( $post_data['style_id'] ) ) : '';
 	$settings   = $post_data;
 	$style_name = get_the_title( $style_id );
 
@@ -2893,11 +3151,15 @@ function cpro_notify_via_email( $post_data, $email_meta ) {
 
 		$template = str_replace( '[DESIGN_NAME]', $style_name, $template );
 
-		$blogname = mb_convert_encoding( get_bloginfo( 'name', 'display' ), 'UTF-8', 'HTML-ENTITIES' );
+		$blogname = get_bloginfo( 'name' );
 
 		$template = str_replace( '[SITE_NAME]', $blogname, $template );
 
 		$subject = str_replace( '[SITE_NAME]', $blogname, $subject );
+
+		$template = str_replace( '[SITE_URL]', site_url(), $template );
+
+		$subject = str_replace( '[SITE_URL]', site_url(), $subject );
 
 		$subject = str_replace( '[DESIGN_NAME]', $style_name, $subject );
 
@@ -2948,14 +3210,10 @@ function cpro_send_email( $email, $subject, $template, $settings, $map ) {
 function sanitize_post_data( &$array ) {
 
 	if ( is_array( $array ) ) {
-
 		foreach ( $array as &$value ) {
-
 			if ( ! is_array( $value ) ) {
-
 				// Sanitize if value is not an array.
 				$value = sanitize_text_field( $value );
-
 			} else {
 				// Go inside this function again.
 				sanitize_post_data( $value );
@@ -3020,7 +3278,6 @@ function cpro_get_decoded_array( $mapping_array ) {
  * @since 0.0.1
  */
 function cpro_is_current_device( $device ) {
-
 	$is_current_device = true;
 	if ( '' != $device ) {
 		$device_array = explode( '|', $device );
@@ -3040,6 +3297,7 @@ function cpro_is_current_device( $device ) {
 			}
 			if ( in_array( 'desktop', $device_array ) ) {
 				$is_current_device = ! cpro_is_desktop_device();
+
 				if ( ! $is_current_device ) {
 					return $is_current_device;
 				}
@@ -3057,6 +3315,7 @@ function cpro_is_current_device( $device ) {
  * @return bool $is_medium
  */
 function cpro_is_medium_device() {
+	$aa = strpos( $_SERVER['HTTP_USER_AGENT'], 'iPad' );
 
 	if ( empty( $_SERVER['HTTP_USER_AGENT'] ) ) {
 		$is_medium = false;
@@ -3065,7 +3324,6 @@ function cpro_is_medium_device() {
 	} else {
 		$is_medium = false;
 	}
-
 	return $is_medium;
 }
 
@@ -3076,7 +3334,6 @@ function cpro_is_medium_device() {
  * @return bool $is_desktop
  */
 function cpro_is_desktop_device() {
-
 	$is_desktop = ( ! cpro_is_medium_device() && ! wp_is_mobile() ) ? true : false;
 
 	return $is_desktop;
@@ -3092,7 +3349,6 @@ function cpro_is_desktop_device() {
 function cpro_get_gmt_difference( $time_zone ) {
 
 	if ( ! empty( $time_zone ) ) {
-
 		$time_zone_kolkata = new DateTimeZone( 'Asia/Kolkata' );
 		$tzone             = new DateTimeZone( $time_zone );
 
@@ -3104,4 +3360,40 @@ function cpro_get_gmt_difference( $time_zone ) {
 	} else {
 		return 'NULL';
 	}
+}
+
+/**
+ * Returns users country and country code
+ *
+ * @since 1.0.4
+ * @param string $ip IP address.
+ * @param bool   $deep_detect deep detect IP address.
+ * @return array $output Output data.
+ */
+function cpro_get_user_location( $ip = null, $deep_detect = true ) {
+
+	$output = array();
+	if ( false === filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+		$ip = $_SERVER['REMOTE_ADDR'];
+		if ( $deep_detect ) {
+			if ( filter_var( $_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP ) ) {
+				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			}
+			if ( filter_var( $_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP ) ) {
+				$ip = $_SERVER['HTTP_CLIENT_IP'];
+			}
+		}
+	}
+
+	if ( filter_var( $ip, FILTER_VALIDATE_IP ) ) {
+		$ipdat = json_decode( file_get_contents( 'http://www.geoplugin.net/json.gp?ip=' . $ip ) );
+
+		// @codingStandardsIgnoreStart
+		if ( strlen( trim( $ipdat->geoplugin_countryCode ) ) == 2 ) {
+			$output['country']      = $ipdat->geoplugin_countryName;
+			$output['country_code'] = $ipdat->geoplugin_countryCode;
+		}
+		// @codingStandardsIgnoreEnd
+	}
+	return $output;
 }

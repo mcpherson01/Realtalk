@@ -12,6 +12,8 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
  */
 final class CP_V2_Popups {
 
+
+
 	/**
 	 * The unique instance of the plugin.
 	 *
@@ -83,7 +85,6 @@ final class CP_V2_Popups {
 		$style_id = wp_insert_post( $cp_popup_post );
 
 		if ( 0 == $style_id ) {
-
 			$data = $style_id;
 			wp_send_json_error( $data );
 		}
@@ -103,10 +104,8 @@ final class CP_V2_Popups {
 
 		if ( is_array( $style_settings ) ) {
 			foreach ( $style_settings as $key => $value ) {
-
 				if ( isset( $value['value'] ) ) {
 					if ( ! isset( $value['section'] ) ) {
-
 						$meta_key   = $value['name'];
 						$meta_value = $value['value'];
 
@@ -114,7 +113,6 @@ final class CP_V2_Popups {
 							update_post_meta( $style_id, $meta_key, $meta_value );
 						}
 					} else {
-
 						// For meta groups.
 						if ( ! isset( $sections[ $value['section'] ] ) ) {
 							$sections[ $value['section'] ] = array();
@@ -127,6 +125,7 @@ final class CP_V2_Popups {
 								'modal_exit_intent',
 								'autoload_on_scroll',
 								'load_after_scroll',
+								'close_after_scroll',
 								'inactivity',
 								'enable_after_post',
 								'enable_custom_scroll',
@@ -155,7 +154,6 @@ final class CP_V2_Popups {
 					}
 				} else {
 					foreach ( $value as $f_data ) {
-
 						if ( ! isset( $sections[ $f_data['section'] ] ) ) {
 							$sections[ $f_data['section'] ] = array();
 						}
@@ -209,9 +207,10 @@ final class CP_V2_Popups {
 	public static function get_all() {
 
 		$query_args = array(
-			'post_type'      => CP_CUSTOM_POST_TYPE,
-			'posts_per_page' => -1,
-			'post_status'    => 'publish',
+			'post_type'        => CP_CUSTOM_POST_TYPE,
+			'posts_per_page'   => -1,
+			'post_status'      => 'publish',
+			'suppress_filters' => false,
 		);
 
 		$popups = new WP_Query( $query_args );
@@ -315,7 +314,15 @@ final class CP_V2_Popups {
 
 		global $post;
 		wp_reset_postdata();
+		// Restore the original current post.
+		//
+		// Note that wp_reset_postdata() isn't enough because it resets the current post by using the main
+		// query, but it doesn't take into account the possibility that it might have been overridden by a
+		// third-party plugin in the meantime.
+		//
+		// Specifically, this used to cause problems with Toolset Views, when its Conent Templates were used.
 		$post = $this->current_post;
+		setup_postdata( $this->current_post );
 	}
 
 	/**
@@ -329,9 +336,10 @@ final class CP_V2_Popups {
 
 		$posts_array = get_posts(
 			array(
-				'posts_per_page' => -1,
-				'post_type'      => CP_CUSTOM_POST_TYPE,
-				'tax_query'      => array(
+				'posts_per_page'   => -1,
+				'post_type'        => CP_CUSTOM_POST_TYPE,
+				'suppress_filters' => false,
+				'tax_query'        => array(
 					array(
 						'taxonomy' => CP_CAMPAIGN_TAXONOMY,
 						'field'    => 'term_id',
@@ -342,7 +350,6 @@ final class CP_V2_Popups {
 		);
 
 		return $posts_array;
-
 	}
 
 	/**
@@ -474,7 +481,6 @@ final class CP_V2_Popups {
 
 		if ( is_array( $cusom_class_arr ) && ! empty( $cusom_class_arr ) ) {
 			foreach ( $cusom_class_arr as $key => $value ) {
-
 				if ( false !== strpos( $value, '#' ) ) {
 					$value = str_replace( '#', 'cp-custom-cls-', $value );
 				}
@@ -519,9 +525,9 @@ final class CP_V2_Popups {
 		}
 
 		if ( 'inline' !== $display ) {
-		?>
+			?>
 			<div class="cpro-onload <?php echo $enable_after_post_class; ?> <?php echo $enable_custom_class; ?>" <?php echo $enable_scroll_class; ?> data-class-id="<?php echo $style_id; ?>" <?php echo $user_inactivity_data; ?> ></div>
-		<?php
+			<?php
 		}
 
 		if ( '1' == $panel_toggle_enabled ) {
@@ -537,10 +543,9 @@ final class CP_V2_Popups {
 
 		?>
 
-		<div class="cp-popup-container cp-popup-live-wrap cp_style_<?php echo $style_id; ?> cp-module-<?php echo $type; ?> <?php echo $cp_open_class; ?> <?php echo $toggle_active_class; ?>" data-style="<?php echo 'cp_style_' . $style_id; ?>" data-module-type="<?php echo $type; ?>" data-class-id="<?php echo $style_id; ?>" data-styleslug="<?php echo esc_attr( $style_slug ); ?>">
+		<div id="cp_popup_id_<?php echo $style_id; ?>" class="cp-popup-container cp-popup-live-wrap cp_style_<?php echo $style_id; ?> cp-module-<?php echo $type; ?> <?php echo $cp_open_class; ?> <?php echo $toggle_active_class; ?>" data-style="<?php echo 'cp_style_' . $style_id; ?>" data-module-type="<?php echo $type; ?>" data-class-id="<?php echo $style_id; ?>" data-styleslug="<?php echo esc_attr( $style_slug ); ?>">
 
 			<?php if ( 'modal_popup' == $type ) { ?>
-
 				<div class="cpro-overlay">
 			<?php } ?>
 
@@ -562,230 +567,219 @@ final class CP_V2_Popups {
 						'cp_radio',
 						'cp_checkbox',
 						'cp_hidden_input',
+						'cp_date',
 					);
 					$show_form_tag_array = array();
 					$show_form_tag       = true;
-				foreach ( $modal_panels as $key => $attr ) {
-					foreach ( $attr as $panelkey => $panelvalue ) {
-						$str                   = explode( '-', $panelkey );
-						$show_form_tag_array[] = in_array( $str[0], $form_fields_array );
-					}
-				}
-					$show_form_tag = ( false === array_search( true, $show_form_tag_array ) ) ? false : true;
-				if ( $show_form_tag ) {
-				?>
-				<form class="cpro-form" method="post">
-				<?php
-				}
-				foreach ( $modal_panels as $key => $attr ) {
-
-					$generate_hidden_fields = false;
-
-					if ( 'common' === $key ) {
-
+					foreach ( $modal_panels as $key => $attr ) {
 						foreach ( $attr as $panelkey => $panelvalue ) {
-							$common_field_data = cp_get_panel( $panelvalue, $panelkey, $style_id );
+							$str                   = explode( '-', $panelkey );
+							$show_form_tag_array[] = in_array( $str[0], $form_fields_array );
+						}
+					}
+					$show_form_tag = ( false === array_search( true, $show_form_tag_array ) ) ? false : true;
+					if ( $show_form_tag ) {
+						?>
+				<form class="cpro-form" method="post">
+						<?php
+					}
+					foreach ( $modal_panels as $key => $attr ) {
+						$generate_hidden_fields = false;
 
-							if ( isset( $common_field_data['style'] ) ) {
-								$common_field_html .= '<style> ' . $common_field_data['style'] . '</style>';
+						if ( 'common' === $key ) {
+							foreach ( $attr as $panelkey => $panelvalue ) {
+								$common_field_data = cp_get_panel( $panelvalue, $panelkey, $style_id );
+
+								if ( isset( $common_field_data['style'] ) ) {
+									$common_field_html .= '<style> ' . $common_field_data['style'] . '</style>';
+								}
+
+								if ( isset( $common_field_data['html'] ) ) {
+									$common_field_html .= $common_field_data['html'];
+								}
 							}
 
-							if ( isset( $common_field_data['html'] ) ) {
-								$common_field_html .= $common_field_data['html'];
-							}
+							continue;
 						}
 
-						continue;
-					}
+						$anim_data              = '';
+						$close_overlay          = '';
+						$exit_animation         = '';
+						$entry_animation        = '';
+						$close_overlay_click    = '';
+						$size_data              = '';
+						$active_class           = '';
+						$lazy_load_classes      = '';
+						$lazy_load_bg_img       = '';
+						$bg_data_attr           = '';
+						$submit_container_class = '';
+						$animation_class        = '';
 
-					$anim_data              = '';
-					$close_overlay          = '';
-					$exit_animation         = '';
-					$entry_animation        = '';
-					$close_overlay_click    = '';
-					$size_data              = '';
-					$active_class           = '';
-					$lazy_load_classes      = '';
-					$lazy_load_bg_img       = '';
-					$bg_data_attr           = '';
-					$submit_container_class = '';
-					$animation_class        = '';
-
-					foreach ( $attr as $panelkey => $panelvalue ) {
-
-						if ( strpos( $panelkey, 'panel' ) !== false ) {
-
-							if ( isset( $panelvalue->panel_entry_animation ) ) {
-								$entry_animation = $panelvalue->panel_entry_animation;
-							}
-
-							if ( isset( $panelvalue->close_overlay_click ) ) {
-								$close_overlay_click = $panelvalue->close_overlay_click;
-							} else {
-								$close_overlay_click = '1';
-							}
-
-							if ( isset( $panelvalue->panel_width ) ) {
-								$size_data .= ' data-width="' . $panelvalue->panel_width[0] . '"';
-
-								if ( isset( $panelvalue->panel_width[1] ) ) {
-									$size_data .= ' data-mobile-width="' . $panelvalue->panel_width[1] . '"';
-								}
-							}
-
-							if ( isset( $panelvalue->panel_height ) ) {
-								$size_data .= ' data-height="' . $panelvalue->panel_height[0] . '"';
-
-								if ( isset( $panelvalue->panel_height[1] ) ) {
-									$size_data .= ' data-mobile-height="' . $panelvalue->panel_height[1] . '"';
-								}
-							}
-
-							if ( isset( $panelvalue->cp_mobile_br_point ) ) {
-								$size_data .= ' data-mobile-break-pt="' . $panelvalue->cp_mobile_br_point . '"';
-							} else {
-								$size_data .= ' data-mobile-break-pt="767"';
-							}
-
-							if ( isset( $panelvalue->panel_position ) ) {
-								$panel_position = str_replace( '-', ' ', $panelvalue->panel_position );
-								$size_data     .= ' data-popup-position="' . $panel_position . '"';
-							}
-
-							if ( isset( $panelvalue->background_type ) ) {
-								if ( is_array( $panelvalue->background_type ) && 'image' == $panelvalue->background_type[0] ) {
-									$lazy_load_classes .= 'cp-img-lazy cp-bg-lazy';
-								} elseif ( 'image' == $panelvalue->background_type ) {
-									$lazy_load_classes .= 'cp-img-lazy cp-bg-lazy';
-								}
-							}
-
-							$is_inherit_bg_prop = isset( $panelvalue->inherit_bg_prop ) ? $panelvalue->inherit_bg_prop : '1';
-
-							if ( isset( $panelvalue->panel_bg_image ) ) {
-
-								// if it is a first step?
-								if ( '0' == $key ) {
-									$inherited_bg_image = $panelvalue->panel_bg_image;
+						foreach ( $attr as $panelkey => $panelvalue ) {
+							if ( strpos( $panelkey, 'panel' ) !== false ) {
+								if ( isset( $panelvalue->panel_entry_animation ) ) {
+									$entry_animation = $panelvalue->panel_entry_animation;
 								}
 
-								if ( is_array( $panelvalue->panel_bg_image ) && isset( $panelvalue->panel_bg_image ) ) {
+								if ( isset( $panelvalue->close_overlay_click ) ) {
+									$close_overlay_click = $panelvalue->close_overlay_click;
+								} else {
+									$close_overlay_click = '1';
+								}
 
-									if ( '0' != $key && '1' == $is_inherit_bg_prop ) {
+								if ( isset( $panelvalue->panel_width ) ) {
+									$size_data .= ' data-width="' . $panelvalue->panel_width[0] . '"';
 
-										$lazy_load_bg_img = $inherited_bg_image;
-									} else {
-										$lazy_load_bg_img = $panelvalue->panel_bg_image;
+									if ( isset( $panelvalue->panel_width[1] ) ) {
+										$size_data .= ' data-mobile-width="' . $panelvalue->panel_width[1] . '"';
 									}
-								} elseif ( $panelvalue->panel_bg_image ) {
+								}
 
+								if ( isset( $panelvalue->panel_height ) ) {
+									$size_data .= ' data-height="' . $panelvalue->panel_height[0] . '"';
+
+									if ( isset( $panelvalue->panel_height[1] ) ) {
+										$size_data .= ' data-mobile-height="' . $panelvalue->panel_height[1] . '"';
+									}
+								}
+
+								if ( isset( $panelvalue->cp_mobile_br_point ) ) {
+									$size_data .= ' data-mobile-break-pt="' . $panelvalue->cp_mobile_br_point . '"';
+								} else {
+									$size_data .= ' data-mobile-break-pt="767"';
+								}
+
+								if ( isset( $panelvalue->panel_position ) ) {
+									$panel_position = str_replace( '-', ' ', $panelvalue->panel_position );
+									$size_data     .= ' data-popup-position="' . $panel_position . '"';
+								}
+
+								if ( isset( $panelvalue->background_type ) ) {
+									if ( is_array( $panelvalue->background_type ) && 'image' == $panelvalue->background_type[0] ) {
+										$lazy_load_classes .= 'cp-img-lazy cp-bg-lazy';
+									} elseif ( 'image' == $panelvalue->background_type ) {
+										$lazy_load_classes .= 'cp-img-lazy cp-bg-lazy';
+									}
+								}
+
+								$is_inherit_bg_prop = isset( $panelvalue->inherit_bg_prop ) ? $panelvalue->inherit_bg_prop : '1';
+
+								if ( isset( $panelvalue->panel_bg_image ) ) {
 									// if it is a first step?
 									if ( '0' == $key ) {
 										$inherited_bg_image = $panelvalue->panel_bg_image;
 									}
 
-									if ( '0' != $key && '1' == $is_inherit_bg_prop ) {
-										$lazy_load_bg_img = $inherited_bg_image;
-									} else {
-										$lazy_load_bg_img = $panelvalue->panel_bg_image;
+									if ( is_array( $panelvalue->panel_bg_image ) && isset( $panelvalue->panel_bg_image ) ) {
+										if ( '0' != $key && '1' == $is_inherit_bg_prop ) {
+											$lazy_load_bg_img = $inherited_bg_image;
+										} else {
+											$lazy_load_bg_img = $panelvalue->panel_bg_image;
+										}
+									} elseif ( $panelvalue->panel_bg_image ) {
+										// if it is a first step?
+										if ( '0' == $key ) {
+											$inherited_bg_image = $panelvalue->panel_bg_image;
+										}
+
+										if ( '0' != $key && '1' == $is_inherit_bg_prop ) {
+											$lazy_load_bg_img = $inherited_bg_image;
+										} else {
+											$lazy_load_bg_img = $panelvalue->panel_bg_image;
+										}
 									}
 								}
-							}
 
-							if ( '' !== $lazy_load_classes && '' !== $lazy_load_bg_img ) {
+								if ( '' !== $lazy_load_classes && '' !== $lazy_load_bg_img ) {
+									if ( is_array( $lazy_load_bg_img ) ) {
+										$lazy_load_bg_img = json_encode( $lazy_load_bg_img );
+									}
 
-								if ( is_array( $lazy_load_bg_img ) ) {
-									$lazy_load_bg_img = json_encode( $lazy_load_bg_img );
+									$bg_data_attr = 'data-cp-src="' . htmlspecialchars( $lazy_load_bg_img ) . '"';
 								}
 
-								$bg_data_attr = 'data-cp-src="' . htmlspecialchars( $lazy_load_bg_img ) . '"';
+								$size_data .= ' data-mobile-responsive="' . esc_attr( get_post_meta( $style_id, 'cp_mobile_responsive', true ) ) . '"';
 							}
-
-							$size_data .= ' data-mobile-responsive="' . esc_attr( get_post_meta( $style_id, 'cp_mobile_responsive', true ) ) . '"';
 						}
-					}
 
-					if ( 'inline' == $display ) {
-						$entry_animation = '';
-						$exit_animation  = '';
-					}
-
-					if ( '' !== $entry_animation ) {
-						$anim_data .= 'data-entry-animation = "' . $entry_animation . '"';
-					}
-
-					if ( '' !== $exit_animation ) {
-						$anim_data .= 'data-exit-animation ="cp-fadeOut"';
-					}
-
-					if ( '' !== $close_overlay_click ) {
-						$close_overlay .= 'data-overlay-click ="' . $close_overlay_click . '"';
-					}
-
-					$step_id = (int) $key + 1;
-
-					if ( $is_preview ) {
-
-						if ( $default_step == $step_id ) {
-							$active_class = 'cpro-active-step';
+						if ( 'inline' == $display ) {
+							$entry_animation = '';
+							$exit_animation  = '';
 						}
-					} else {
 
-						if ( 0 == (int) $key ) {
-							$active_class = 'cpro-active-step';
+						if ( '' !== $entry_animation ) {
+							$anim_data .= 'data-entry-animation = "' . $entry_animation . '"';
 						}
-					}
 
-					if ( 0 == $key ) {
-						$generate_hidden_fields = true;
-					}
+						if ( '' !== $exit_animation ) {
+							$anim_data .= 'data-exit-animation ="cp-fadeOut"';
+						}
 
-					$content = cp_get_form_content( $style_id, $attr, $generate_hidden_fields, $design_meta_data );
+						if ( '' !== $close_overlay_click ) {
+							$close_overlay .= 'data-overlay-click ="' . $close_overlay_click . '"';
+						}
 
-					?>
+						$step_id = (int) $key + 1;
+
+						if ( $is_preview ) {
+							if ( $default_step == $step_id ) {
+								$active_class = 'cpro-active-step';
+							}
+						} else {
+							if ( 0 == (int) $key ) {
+								$active_class = 'cpro-active-step';
+							}
+						}
+
+						if ( 0 == $key ) {
+							$generate_hidden_fields = true;
+						}
+
+						$content = cp_get_form_content( $style_id, $attr, $generate_hidden_fields, $design_meta_data );
+
+						?>
 
 					<div class="cp-popup-content <?php echo $active_class; ?> <?php echo $lazy_load_classes; ?> <?php echo $popup_container_classes; ?> cp-panel-<?php echo $step_id; ?>" <?php echo $anim_data; ?> <?php echo $bg_data_attr; ?> <?php echo $close_overlay; ?> data-title="<?php echo sanitize_text_field( $style_title ); ?>" data-module-type="<?php echo $type; ?>"  data-step="<?php echo $step_id; ?>" <?php echo $size_data; ?>>
-					<?php
-					if ( 'slide_in' == $type && '1' == $panel_toggle_enabled && 'sticky' == $toggle_type ) {
-
-						switch ( $slidein_position ) {
-							case 'bottom-right':
-							case 'bottom-left':
-							case 'bottom-center':
-								$animation_class .= ' cp-slideInUp';
-								break;
-							case 'top-left':
-							case 'top-right':
-							case 'top-left':
-								$animation_class .= ' cp-slideInDown';
-								break;
-							case 'center-left':
-								$animation_class .= ' cp-slideInDown';
-								break;
-							case 'center-right':
-								$animation_class .= ' cp-slideInDown';
-								break;
-						}
+						<?php
+						if ( 'slide_in' == $type && '1' == $panel_toggle_enabled && 'sticky' == $toggle_type ) {
+							switch ( $slidein_position ) {
+								case 'bottom-right':
+								case 'bottom-left':
+								case 'bottom-center':
+									$animation_class .= ' cp-slideInUp';
+									break;
+								case 'top-left':
+								case 'top-right':
+								case 'top-left':
+									$animation_class .= ' cp-slideInDown';
+									break;
+								case 'center-left':
+									$animation_class .= ' cp-slideInDown';
+									break;
+								case 'center-right':
+									$animation_class .= ' cp-slideInDown';
+									break;
+							}
 
 							echo '<div class="cp-open-toggle-wrap cp-toggle-type-' . $toggle_type . ' ' . $slidein_position . '">';
 								echo '<div class="cp-open-toggle cp-toggle-' . $slidein_position . ' " data-position="' . $slidein_position . '" data-type="' . $toggle_type . '">';
 									echo '<span class="cp-open-toggle-content">' . $toggle_text . '</span>';
 
-						if ( '1' == $toggle_minimizer ) {
-							echo '<span class="cp-toggle-icon cp-icon-arrow"></span>';
-						}
+							if ( '1' == $toggle_minimizer ) {
+								echo '<span class="cp-toggle-icon cp-icon-arrow"></span>';
+							}
 								echo '</div>';
 							echo '</div>';
-					}
-?>
-					<?php do_action( 'cp_before_popup_content', $style_id ); ?>
+						}
+						?>
+						<?php do_action( 'cp_before_popup_content', $style_id ); ?>
 
 					<div class="cpro-form-container">                             
 						<?php
 						echo $content['output_html'];
 						echo $content['custom_html'];
 						?>
-							</div>	            
+							</div>              
 							<?php do_action( 'cp_after_popup_content', $style_id ); ?>
 							<?php if ( '' != $content['inner_wrap'] ) { ?>
 							<div class="cp-inner-panel-wrap">
@@ -794,14 +788,14 @@ final class CP_V2_Popups {
 							<?php } ?>
 
 						</div><!-- .cp-popup-content -->
-					<?php
-				}
+						<?php
+					}
 					do_action( 'cp_pro_form_hidden_fields', $style_id );
-				if ( $show_form_tag ) {
-				?>
+					if ( $show_form_tag ) {
+						?>
 				</form>
-				<?php
-				}
+						<?php
+					}
 					?>
 				</div>
 				<?php
@@ -812,7 +806,6 @@ final class CP_V2_Popups {
 			<?php
 
 			if ( 'slide_in' == $type && '1' == $panel_toggle_enabled && 'sticky' != $toggle_type ) {
-
 				$toggle_text     = cpro_get_style_settings( $style_id, 'design', 'toggle_text' );
 				$animation_class = 'cp-animated';
 
@@ -846,7 +839,6 @@ final class CP_V2_Popups {
 			<?php
 
 			if ( 'info_bar' == $type && '1' == $panel_infobar_toggle_enabled ) {
-
 				$animation_class = 'cp-animated';
 
 				switch ( $panel_position ) {
@@ -861,14 +853,13 @@ final class CP_V2_Popups {
 				echo '<div class="cp-open-infobar-toggle-wrap cp-' . $panel_position . '">';
 					echo '<div class="cp-open-infobar-toggle cp-toggle-' . $panel_position . ' " data-position="' . $panel_position . '">';
 						echo '<span class="cp-open-infobar-toggle-content">' . $infobar_toggle_text . '</span>';
-						echo '<span class="cp-toggle-infobar-icon cp-icon-arrow cp-' . $position . '"></span>';
+						echo '<span class="cp-toggle-infobar-icon cp-icon-arrow cp-' . $panel_position . '"></span>';
 					echo '</div>';
 				echo '</div>';
 			}
 
 			if ( 'modal_popup' == $type || 'welcome_mat' == $type || 'full_screen' == $type ) {
-
-			?>
+				?>
 				</div><!-- Overlay -->
 				{{cpro_credit_link}}
 
@@ -932,7 +923,6 @@ final class CP_V2_Popups {
 			$temp_panel_settings = json_decode( $panel_settings, true );
 
 			if ( is_array( $temp_panel_settings ) ) {
-
 				if ( isset( $temp_panel_settings['rulesets'] ) ) {
 					$panel_rulesets = $temp_panel_settings['rulesets'];
 					unset( $temp_panel_settings['rulesets'] );
@@ -942,6 +932,10 @@ final class CP_V2_Popups {
 				unset( $temp_panel_settings['target_rule_display_on'] );
 				unset( $temp_panel_settings['target_rule_exclude'] );
 				unset( $temp_panel_settings['target_rule_exclude_on'] );
+				unset( $temp_panel_settings['target_geo_rule_display'] );
+				unset( $temp_panel_settings['target_geo_rule_display_on'] );
+				unset( $temp_panel_settings['target_geo_rule_exclude'] );
+				unset( $temp_panel_settings['target_geo_rule_exclude_on'] );
 
 				$panel_settings = json_encode( $temp_panel_settings );
 			}
@@ -962,10 +956,8 @@ final class CP_V2_Popups {
 		$module_type      = get_post_meta( $style_id, 'cp_module_type', true );
 		$info_position    = array();
 		if ( 'info_bar' == $module_type ) {
-
 			if ( is_array( $meta_data ) && ! empty( $meta_data ) ) {
 				foreach ( $meta_data as $key => $meta_value ) {
-
 					if ( array_key_exists( 'panel_position', $meta_value ) ) {
 						$panel_position = $meta_value['panel_position'];
 					}
@@ -1004,7 +996,6 @@ final class CP_V2_Popups {
 
 		if ( ! empty( $styles ) ) {
 			foreach ( $styles as $key => $style ) {
-
 				$style_id = $style->ID;
 
 				if ( class_exists( 'CP_V2_AB_Test' ) ) {
@@ -1013,11 +1004,9 @@ final class CP_V2_Popups {
 					$ab_test_status     = $has_active_ab_test['status'];
 
 					if ( $ab_test_status && isset( $has_active_ab_test['is_parent'] ) ) {
-
 						$is_parent_style = $has_active_ab_test['is_parent'];
 
 						if ( ! $is_parent_style ) {
-
 							$test_id         = $has_active_ab_test['test_id'];
 							$cp_parent_style = get_term_meta( $test_id, 'cp_parent_style', true );
 
@@ -1039,17 +1028,14 @@ final class CP_V2_Popups {
 
 		if ( ! empty( $styles ) ) {
 			foreach ( $styles as $key => $style ) {
-
 				$style_id = $style->ID;
 
 				// If style is among childs.
 				if ( array_key_exists( $style_id, $child_styles ) ) {
-
 					// Insert A/B test child style just after parent.
 					$child_styles_arr = $child_styles[ $style_id ];
 
 					foreach ( $child_styles_arr as $child_style ) {
-
 						$styles = $this->array_insert_after( $styles, $key, array( $child_style ) );
 					}
 					unset( $child_styles[ $style_id ] );
@@ -1058,7 +1044,6 @@ final class CP_V2_Popups {
 		}
 
 		return $styles;
-
 	}
 
 	/**
@@ -1073,7 +1058,6 @@ final class CP_V2_Popups {
 
 		$has_parent = false;
 		foreach ( $styles as $style ) {
-
 			$style_id = $style->ID;
 
 			if ( $style_id == $parent_id ) {

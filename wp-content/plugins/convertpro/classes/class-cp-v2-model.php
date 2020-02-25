@@ -11,7 +11,6 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 	 * Class Cp_V2_Model.
 	 */
 	class Cp_V2_Model {
-
 		/**
 		 * The unique instance of the plugin.
 		 *
@@ -151,8 +150,13 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 
 			/* Css Asynchronous Loading */
 			add_action( 'wp_head', array( $this, 'load_css_async' ), 7 );
-			add_filter( 'style_loader_tag', array( $this, 'link_to_load_css_script' ), 999, 3 );
-			add_filter( 'script_loader_tag', array( $this, 'link_async_js' ), 999, 3 );
+			/* Optimization of the unecessary loading of the filter in the backend. */
+			if ( ! is_admin() ) {
+				add_filter( 'style_loader_tag', array( $this, 'link_to_load_css_script' ), 999, 3 );
+				add_filter( 'script_loader_tag', array( $this, 'link_async_js' ), 999, 3 );
+			}
+
+			add_action( 'template_redirect', array( $this, 'block_cp_popups_frontend' ) );
 		}
 
 		/**
@@ -162,13 +166,14 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 		function is_load_popup_data() {
 
 			if ( null === self::$is_popup_live ) {
+				if ( function_exists( 'cp_get_live_popups' ) ) {
+					$live_popups = cp_get_live_popups();
 
-				$live_popups = cp_get_live_popups();
-
-				if ( empty( $live_popups ) ) {
-					self::$is_popup_live = false;
-				} else {
-					self::$is_popup_live = true;
+					if ( empty( $live_popups ) ) {
+						self::$is_popup_live = false;
+					} else {
+						self::$is_popup_live = true;
+					}
 				}
 			}
 
@@ -216,6 +221,18 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 			}
 
 			return $tag;
+		}
+
+		/**
+		 * Don't display the cp_popups custom post type on the frontend for non edit_posts capable users, also helps in restricting from crawling.
+		 *
+		 * @since  1.3.2
+		 */
+		public function block_cp_popups_frontend() {
+			if ( is_singular( 'cp_popups' ) && ! current_user_can( 'edit_posts' ) ) {
+				wp_redirect( site_url(), 301 );
+				die;
+			}
 		}
 
 		/**
@@ -284,10 +301,8 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 					$role = get_role( $key );
 
 					if ( in_array( $key, $roles ) ) {
-
 						foreach ( $capabilities as $cap_group ) {
 							foreach ( $cap_group as $cap ) {
-
 								// add capabilities to role.
 								$role->add_cap( $cap );
 							}
@@ -319,7 +334,6 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 			$capability_types = array( 'cp_popup' );
 
 			foreach ( $capability_types as $capability_type ) {
-
 				$capabilities[ $capability_type ] = array(
 					// Post type.
 					"edit_{$capability_type}",
@@ -357,13 +371,23 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 			// Traditional WordPress plugin locale filter.
 			$locale = apply_filters( 'plugin_locale', get_locale(), 'convertpro' );
 
-			// Setup paths to current locale file.
-			$mofile_global = trailingslashit( WP_LANG_DIR ) . 'plugins/convertpro/' . $locale . '.mo';
-			$mofile_local  = trailingslashit( CP_V2_BASE_DIR ) . 'languages/' . $locale . '.mo';
+			$mofile_locale = sprintf( '%1$s-%2$s.mo', 'convertpro', $locale );
 
-			if ( file_exists( $mofile_global ) ) {
+			// Setup paths to current locale file.
+			$mofile_global = trailingslashit( WP_LANG_DIR ) . 'plugins/convertpro/' . $locale;
+			$mofile_local  = trailingslashit( CP_V2_BASE_DIR ) . 'languages/' . $locale;
+			// Setup new names to current locale file.
+			$new_mofile_global = trailingslashit( WP_LANG_DIR ) . 'plugins/convertpro/' . $mofile_locale;
+			$new_mofile_local  = trailingslashit( CP_V2_BASE_DIR ) . 'languages/' . $mofile_locale;
+			if ( file_exists( $new_mofile_global ) ) {
+				// Look in global /wp-content/languages/plugins/convertpro/ folder.
+				return load_textdomain( 'convertpro', $new_mofile_global );
+			} elseif ( file_exists( $mofile_global ) ) {
 				// Look in global /wp-content/languages/plugins/convertpro/ folder.
 				return load_textdomain( 'convertpro', $mofile_global );
+			} elseif ( file_exists( $new_mofile_local ) ) {
+				// Look in local /wp-content/plugins/convertpro/languages/ folder.
+				return load_textdomain( 'convertpro', $new_mofile_local );
 			} elseif ( file_exists( $mofile_local ) ) {
 				// Look in local /wp-content/plugins/convertpro/languages/ folder.
 				return load_textdomain( 'convertpro', $mofile_local );
@@ -386,37 +410,42 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 
 			$dev_mode = get_option( 'cp_dev_mode' );
 
-			wp_register_script( 'cp-ideal-timer-script', CP_V2_BASE_URL . 'assets/modules/js/idle-timer.min.js', array( 'jquery' ), null, true );
+			wp_register_script( 'cp-ideal-timer-script', CP_V2_BASE_URL . 'assets/modules/js/idle-timer.min.js', array( 'jquery' ), CP_V2_VERSION, true );
 
 			if ( '1' == $dev_mode ) {
-
 				// Register styles.
 				wp_enqueue_style( 'cp-popup-style', CP_V2_BASE_URL . 'assets/modules/css/cp-popup.css' );
 				wp_enqueue_style( 'cp-animate-style', CP_V2_BASE_URL . 'assets/modules/css/animate.css' );
 
 				// Register scripts.
-				wp_register_script( 'cp-cookie-script', CP_V2_BASE_URL . 'assets/admin/js/jquery.cookies.js', array( 'jquery' ), null, true );
+				wp_register_script( 'cp-cookie-script', CP_V2_BASE_URL . 'assets/admin/js/jquery.cookies.js', array( 'jquery' ), CP_V2_VERSION, true );
 
-				wp_register_script( 'cp-popup-script', CP_V2_BASE_URL . 'assets/modules/js/cp-popup.js', array( 'jquery' ), null, true );
+				wp_register_script( 'cp-popup-script', CP_V2_BASE_URL . 'assets/modules/js/cp-popup.js', array( 'jquery' ), CP_V2_VERSION, true );
 
-				wp_register_script( 'cp-video-api', CP_V2_BASE_URL . 'assets/modules/js/cp-video-api.js', array( 'jquery' ), null, true );
+				wp_register_script( 'cp-video-api', CP_V2_BASE_URL . 'assets/modules/js/cp-video-api.js', array( 'jquery' ), CP_V2_VERSION, true );
 				// Common JS.
-				wp_register_script( 'cp-submit-actions-script', CP_V2_BASE_URL . 'assets/modules/js/cp-submit-actions.js', array( 'jquery' ), null, true );
+				wp_register_script( 'cp-submit-actions-script', CP_V2_BASE_URL . 'assets/modules/js/cp-submit-actions.js', array( 'jquery' ), CP_V2_VERSION, true );
 			} else {
-				wp_register_script( 'cp-popup-script', CP_V2_BASE_URL . 'assets/modules/js/cp-popup.min.js', array( 'jquery' ), null, true );
+				wp_register_script( 'cp-popup-script', CP_V2_BASE_URL . 'assets/modules/js/cp-popup.min.js', array( 'jquery' ), CP_V2_VERSION, true );
 				wp_enqueue_style( 'cp-popup-style', CP_V2_BASE_URL . 'assets/modules/css/cp-popup.min.css' );
 			}
 
 			$image_on_ready = esc_attr( get_option( 'cpro_image_on_ready' ) );
+
+			$timer_labels_value = __( 'Years', 'convertpro' ) . ',' . __( 'Months', 'convertpro' ) . ',' . __( 'Weeks', 'convertpro' ) . ',' . __( 'Days', 'convertpro' ) . ',' . __( 'Hours', 'convertpro' ) . ',' . __( 'Minutes', 'convertpro' ) . ',' . __( 'Seconds', 'convertpro' );
+			$timer_labels_value = apply_filters( 'cpro_countdown_timer_label', $timer_labels_value );
+
+			$timer_labels_singular_value = __( 'Year', 'convertpro' ) . ',' . __( 'Month', 'convertpro' ) . ',' . __( 'Week', 'convertpro' ) . ',' . __( 'Day', 'convertpro' ) . ',' . __( 'Hour', 'convertpro' ) . ',' . __( 'Minute', 'convertpro' ) . ',' . __( 'Second', 'convertpro' );
+			$timer_labels_singular_value = apply_filters( 'cpro_countdown_timer_label_singular', $timer_labels_singular_value );
 
 			$params = array(
 				'url'                     => admin_url( 'admin-ajax.php' ),
 				'ajax_nonce'              => wp_create_nonce( 'cp_add_subscriber_nonce' ),
 				'assets_url'              => CP_V2_BASE_URL . 'assets/',
 				'not_connected_to_mailer' => __( 'This form is not connected with any mailer service! Please contact web administrator.', 'convertpro' ),
-				'timer_labels'            => __( 'Years', 'convertpro' ) . ',' . __( 'Months', 'convertpro' ) . ',' . __( 'Weeks', 'convertpro' ) . ',' . __( 'Days', 'convertpro' ) . ',' . __( 'Hours', 'convertpro' ) . ',' . __( 'Minutes', 'convertpro' ) . ',' . __( 'Seconds', 'convertpro' ),
+				'timer_labels'            => $timer_labels_value,
 
-				'timer_labels_singular'   => __( 'Year', 'convertpro' ) . ',' . __( 'Month', 'convertpro' ) . ',' . __( 'Week', 'convertpro' ) . ',' . __( 'Day', 'convertpro' ) . ',' . __( 'Hour', 'convertpro' ) . ',' . __( 'Minute', 'convertpro' ) . ',' . __( 'Second', 'convertpro' ),
+				'timer_labels_singular'   => $timer_labels_singular_value,
 				'image_on_ready'          => $image_on_ready,
 			);
 
@@ -431,6 +460,17 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 
 			wp_localize_script( 'cp-popup-script', 'cp_ajax', $params );
 			wp_localize_script( 'cp-popup-script', 'cp_pro', $cp_pro_params );
+
+			// filter number of days you want to hide popup from users by url params.
+			$url_cookie_days = 30;
+
+			$get_url_cookie_days = apply_filters( 'cpro_set_url_cookie_for_subscribers', $url_cookie_days );
+
+			$cp_pro_url_cookie_days = array(
+				'days' => $get_url_cookie_days,
+			);
+
+			wp_localize_script( 'cp-popup-script', 'cp_pro_url_cookie', $cp_pro_url_cookie_days );
 		}
 
 		/**
@@ -442,7 +482,6 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 		function add_content( $content ) {
 			if ( ( is_single() || is_page() ) && ! is_front_page() ) {
 				$content_str_array = cp_v2_display_style_inline();
-
 				$enable_after_post = apply_filters( 'cpro_enable_after_post', true );
 
 				if ( $enable_after_post ) {
@@ -486,7 +525,9 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 
 			if ( ! is_customize_preview() && $load ) {
 				// Load popup only when customizer is off.
-				cp_load_popup_content();
+				if ( function_exists( 'cp_load_popup_content' ) ) {
+					cp_load_popup_content();
+				}
 			}
 		}
 
@@ -516,4 +557,3 @@ if ( ! class_exists( 'Cp_V2_Model' ) ) {
 
 	$cp_v2_model = Cp_V2_Model::get_instance();
 }
-

@@ -65,6 +65,106 @@
 					style_slug   = form.closest( ".cp-popup-container" ).data("styleslug"),
 					btn_old_text      = '';
 
+				var css_val = form.find( '.cp-form-input-field' ).css( 'text-transform' );
+				var form_field, attr_name, radio_attr_name, checkbox_attr_name, field_name, field_name_value, field_name_class, select_dropdown, selected_radio, selectedCheck;
+
+				if( 'uppercase' == css_val || 'lowercase' == css_val || 'capitalize' == css_val )
+				{
+					form_field = form.closest( ".cp-popup-container" ).find( '.cp-form-field' ).each(function() {
+					attr_name = jQuery(this).attr('name');
+
+					field_name = form.find( '[name="'+attr_name+'"]' );
+					field_name_class = field_name.attr( 'class' );
+
+					// Dropdown field section start.
+					if( undefined != field_name_class){
+						var isFound = field_name_class.indexOf( "cp-dropdown-field" ) !=-1? true: false;
+						if( isFound )
+						{
+							if( 'uppercase' == css_val ) {
+								select_dropdown = $( 'select[name="'+attr_name+'"] option:selected' ).val().toUpperCase();
+							} else if( 'lowercase' == css_val )	{
+								select_dropdown = $( 'select[name="'+attr_name+'"] option:selected' ).val().toLowerCase();
+							} else if ( 'capitalize' == css_val ) {
+								select_dropdown = $( 'select[name="'+attr_name+'"] option:selected' ).val().toLowerCase().replace(/\b[a-z]/g, function(letter) {
+									return letter.toUpperCase();
+								});;
+							}
+
+							$( 'select[name="'+attr_name+'"] option:selected' ).attr( 'value', select_dropdown );
+						}
+					}
+					// Dropdown field section end.
+					
+					// Radio and Checkbox field section start.
+					if( undefined == field_name_class )
+					{
+						var radio_length = $( ".cp-radio-field" ).length;
+						var checkbox_length = $( ".cp-checkbox-field" ).length;
+
+						if( radio_length > 0 ){
+							var each_radio = jQuery(this).find( 'input:radio' ).each(function() {
+							radio_attr_name = jQuery(this).attr( 'name' );
+
+							if( 'uppercase' == css_val ) {
+								selected_radio = $( 'input[name="'+radio_attr_name+'"]:checked' ).val().toUpperCase();
+							} else if( 'lowercase' == css_val ) {
+								selected_radio = $( 'input[name="'+radio_attr_name+'"]:checked' ).val().toLowerCase();
+							} else if ( 'capitalize' == css_val ) {
+								selected_radio = $( 'input[name="'+radio_attr_name+'"]:checked' ).val().toLowerCase().replace(/\b[a-z]/g, function(letter) {
+									return letter.toUpperCase();
+								});;
+							}
+								$( 'input[name="'+radio_attr_name+'"]:checked' ).attr( 'value', selected_radio );
+
+							});
+							;
+						}
+
+						if( checkbox_length > 0 ){
+							var each_checkbox = jQuery(this).find( 'input:checkbox' ).each(function() {
+							checkbox_attr_name = jQuery(this).attr( 'name' );
+								
+							var check = $( 'input[name="'+checkbox_attr_name+'"]' ).is( ":checked" );
+								
+							if( true == check ){
+								if( 'uppercase' == css_val ) {
+									selectedCheck = $( 'input[name="'+checkbox_attr_name+'"]:checked' ).val().toUpperCase();
+								} else if( 'lowercase' == css_val ) {
+									selectedCheck = $( 'input[name="'+checkbox_attr_name+'"]:checked' ).val().toLowerCase();
+								} else if ( 'capitalize' == css_val ) {
+									selectedCheck = $( 'input[name="'+checkbox_attr_name+'"]:checked' ).val().toLowerCase().replace(/\b[a-z]/g, function(letter) {
+										return letter.toUpperCase();
+									});;
+								}
+									$( 'input[name="'+checkbox_attr_name+'"]:checked' ).attr( 'value', selectedCheck );
+								}
+							});
+						}
+					}
+					// Radio checkbox field section end.
+
+					if( undefined != field_name_class)
+					{
+						if( 'param[email]' == attr_name )
+			            {
+			              field_name_value   = field_name.val().toLowerCase();
+			            }else{
+							if( 'uppercase' == css_val ) {
+								field_name_value   = field_name.val().toUpperCase();
+							} else if( 'lowercase' == css_val ) {
+								field_name_value   = field_name.val().toLowerCase();
+							} else if ( 'capitalize' == css_val ) {
+								field_name_value   = field_name.val().toLowerCase().replace(/\b[a-z]/g, function(letter) {
+									return letter.toUpperCase();
+								});;
+							}
+						}
+						jQuery(this).attr( 'value', field_name_value );
+					}
+				});
+				}
+				
 				var	data 				= form.serialize(),
 					form_container  	= form.closest(".cpro-form-container");
 					redirectdata 		= form.data("redirect-lead-data");
@@ -80,6 +180,25 @@
 					shape_old_text      = currentShape.html();
 
 				var button_field = currentBtn.find('.cp-button-field');
+
+				var google_recaptcha = thisForm.find('.g-recaptcha');
+
+				if( google_recaptcha.length > 0 ) {
+// var client_side_response = grecaptcha.getResponse(); // returns a null if reCaptcha is not validated on client side, else is returns a value.
+
+					var client_side_response = thisForm.find( '[name="g-recaptcha-response"]' ).val();
+
+					if ( client_side_response.length === 0 ) {
+						thisForm.find( '.recaptcha-msg-error' ).text( "reCAPTCHA is Mandatory" );
+						if( !google_recaptcha.hasClass( "error" ) ){
+							google_recaptcha.addClass( "error" );
+						}
+						return;
+					} else {
+						thisForm.find('.recaptcha-msg-error' ).text('');
+						google_recaptcha.removeClass( "error" );
+					}
+				}
 
 				if( currentBtn.attr( 'data-type' ) == 'cp_button' || currentBtn.attr( 'data-type' ) == 'cp_gradient_button' ) {
 
@@ -98,7 +217,13 @@
 						button_field.html("<div class='cp_loader_container'><i class='cp-button-loader-style draw " + loader_style + "'></i></div>");
 
 						if( currentBtnAction == 'submit_n_close' || currentBtnAction == 'submit' || currentBtnAction == 'submit_n_goto_url') {
-							button_field.addClass('cp-button-tooltip');
+							if( '' != success_message.trim() && null != success_message.trim() )
+							{
+								button_field.addClass('cp-button-tooltip');
+								setTimeout(function(){
+								    button_field.removeClass('cp-button-tooltip');
+								},5000);
+							}
 						}
 					}
 				}
@@ -125,14 +250,15 @@
 
 				close_span = '<span class="cp-tooltip-close">&times;</span>';
 
+				var email_field = thisForm.find( '[name="param[email]"]' );
+				var email_val   = email_field.val();
+
 				jQuery.ajax({
 					url: cp_ajax.url,
 					data: data,
 					type: 'POST',
 					dataType: 'json',
 					success: function( response ) {
-
-						// console.log( response );
 
 						var id      = currentBtn.closest(".cp-popup-wrapper").find('input[name=style_id]').val();
 						var modal   = $( '.cpro-onload[data-class-id=' + id + ']' );
@@ -178,11 +304,17 @@
 
 						} else {
 
+							console.log( response );
+
 							if( false != result.error ) {
 
 								if( 'Invalid email address.' == result.error ) {
 									error_msg = 'Invalid Email Address';
 									invalid_email = true;
+								}
+
+								if( true == result.error ) {
+									error_msg = 'Google Recaptcha Secret Key Not Valid!!!! Please contact web administrator.';
 								}
 
 								is_success = false;
@@ -248,34 +380,7 @@
 												var get_param = currentBtn.find( '.cp-target' ).data( "get-param" );
 												var param = currentBtn.closest(".cpro-form").serializeArray();
 
-												for ( param_index = 0; param_index < param.length; ++param_index ) {
-
-													// Remove parameters with blank value
-													if( '' == param[param_index].value || 
-														'param[date]' == param[param_index].name || 
-														'action' == param[param_index].name ||
-														'style_id' == param[param_index].name ) {
-														delete param[param_index];
-													} else {
-
-														var new_name = param[param_index].name.replace( 'param[', '' );
-														new_name = new_name.substring( 0, new_name.length - 1 ); 
-														param[param_index].name = new_name;
-													}
-												}
-
-												// Remove empty paramters 
-												var param = param.filter(function(v){ return v !== '' } );
-												param = jQuery.param( param );
-
-												if( true == get_param ) {
-													var arr = redirect_url.split('?');
-													if( arr.length == 1 ) {
-													  	redirect_url = redirect_url + '?' + param
-													} else {
-														redirect_url = redirect_url + '&' + param
-													}
-												}
+												redirect_url = cpro_generate_url( param, redirect_url, get_param );
 
 												setTimeout(function() {
 
@@ -283,10 +388,16 @@
 														redirect_target ='_self';
 													}
 													if( redirect_url !== '' ) {
+
 														if( '_self' !== redirect_target ) {
 															window.open( redirect_url, redirect_target );
 														} else {
-															window.location = redirect_url;
+
+															if( redirect_url.indexOf( '.pdf' ) > 0 ) {
+																cpro_download_pdf( redirect_url );
+															} else {
+																window.location = redirect_url;
+															}
 														}
 														
 														// close popup if target is new window
@@ -333,37 +444,10 @@
 												var redirect_url  = currentShape.closest('.cp-field-html-data').data("redirect");
 												var redirect_target = currentShape.closest('.cp-field-html-data').data("redirect-target");
 
-												var get_param = currentShape.find( '.cp-target' ).data( "get-param" );
+												var get_param = currentShape.closest( '.cp-field-html-data' ).data( "get-param" );
 												var param = currentShape.closest('.cpro-form').serializeArray();
 
-												for ( param_index = 0; param_index < param.length; ++param_index ) {
-
-													// Remove parameters with blank value
-													if( '' == param[param_index].value || 
-														'param[date]' == param[param_index].name || 
-														'action' == param[param_index].name ||
-														'style_id' == param[param_index].name ) {
-														delete param[param_index];
-													} else {
-
-														var new_name = param[param_index].name.replace( 'param[', '' );
-														new_name = new_name.substring( 0, new_name.length - 1 ); 
-														param[param_index].name = new_name;
-													}
-												}
-
-												// Remove empty paramters 
-												var param = param.filter(function(v){ return v !== '' } );
-												param = jQuery.param( param );
-
-												if( true == get_param ) {
-													var arr = redirect_url.split('?');
-													if( arr.length == 1 ) {
-													  	redirect_url = redirect_url + '?' + param
-													} else {
-														redirect_url = redirect_url + '&' + param
-													}
-												}
+												redirect_url = cpro_generate_url( param, redirect_url, get_param );
 
 												setTimeout(function() {
 													if( typeof redirect_target == 'undefined' || redirect_target == ''){
@@ -374,7 +458,12 @@
 														if( '_self' !== redirect_target ) {
 															window.open( redirect_url, redirect_target );
 														} else {
-															window.location = redirect_url;
+																
+															if( redirect_url.indexOf( '.pdf' ) > 0 ) {
+																cpro_download_pdf( redirect_url );
+															} else {
+																window.location = redirect_url;
+															}
 														}
 
 														// close popup if target is new window
@@ -435,7 +524,7 @@
 						currentShape.removeClass('cp-current-clicked-shape');
 
 						if( ! invalid_email ) {
-							jQuery(document).trigger( "cp_after_form_submit", [jQuery(this), response, style_slug] );
+							jQuery(document).trigger( "cp_after_form_submit", [jQuery(this), response, style_slug, email_val] );
 						}
 
 					},
@@ -483,6 +572,40 @@
 			}
 		});
 
+		function cpro_generate_url( param, redirect_url, get_param ) {
+
+			for ( param_index = 0; param_index < param.length; ++param_index ) {
+
+				// Remove parameters with blank value
+				if( '' == param[param_index].value || 
+					'param[date]' == param[param_index].name || 
+					'action' == param[param_index].name ||
+					'style_id' == param[param_index].name ) {
+					delete param[param_index];
+				} else {
+
+					var new_name = param[param_index].name.replace( 'param[', '' );
+					new_name = new_name.substring( 0, new_name.length - 1 ); 
+					param[param_index].name = new_name;
+				}
+			}
+
+			// Remove empty paramters 
+			var param = param.filter(function(v){ return v !== '' } );
+			param = jQuery.param( param );
+
+			if( true == get_param ) {
+				var arr = redirect_url.split('?');
+				if( arr.length == 1 ) {
+				  	redirect_url = redirect_url + '?' + param
+				} else {
+					redirect_url = redirect_url + '&' + param
+				}
+			}
+
+			return redirect_url;
+		}
+
 		/**
 		 * Button Actions
 		 */
@@ -497,8 +620,8 @@
 
             // count button click as conversion
             if( count_conversion ) {
-
-				var category = "Convert Pro";
+            	// category name as per the plugin name is set.
+				var category = cp_ga_object.ga_category_name;
 			    var action   = 'conversion';
 			    var label    =  btn.closest( ".cp-popup-container" ).data("styleslug");
 
@@ -548,6 +671,27 @@
 							}
 						} );
 
+						// Google Recaptcha validate starts here.
+						var google_recaptcha = btn.closest('.cpro-form-container').find('.g-recaptcha');
+
+						if( google_recaptcha.length > 0) {
+
+							var client_side_response = btn.closest('.cpro-form-container').find('[name="g-recaptcha-response"]').val();
+							
+							if (client_side_response.length === 0) {
+							
+								btn.closest('.cpro-form-container').find('.recaptcha-msg-error').text( "reCAPTCHA is Mandatory" );
+							
+								if( !google_recaptcha.hasClass( "error" ) ){
+									google_recaptcha.addClass( "error" );
+								}
+								return false;
+							} else {
+								btn.closest('.cpro-form-container').find('.recaptcha-msg-error' ).text('');
+								google_recaptcha.removeClass( "error" );
+							}
+						}// Google Recaptcha validate ends here.
+
 						if( all_inputs.length > 0 ) {
 							var proceed_to_next_step = true;
 							if( current_step < step_number ) {
@@ -572,11 +716,46 @@
 				case "goto_url":
 					var redirect_url = btn.data("redirect"),
 						target 		 = btn.data("redirect-target");
+					
 					if( typeof target == 'undefined' || target == '' ) {
 						target ='_self';
 					}
-					if( redirect_url !== '' ) {
-						 window.open( redirect_url,target );
+
+					if( '' !== redirect_url ) {
+
+						if( '_self' !== target ) {
+							window.open( redirect_url, target );
+						} else {
+								
+							if( redirect_url.indexOf( '.pdf' ) > 0 ) {
+								cpro_download_pdf( redirect_url );
+							} else {
+								window.location = redirect_url;
+							}
+						}
+					}
+				break;
+				case "close_n_goto_url":
+					var redirect_url = btn.data("redirect"),
+						target 		 = btn.data("redirect-target");
+					
+					if( typeof target == 'undefined' || target == '' ) {
+						target ='_self';
+					}
+
+					if( '' !== redirect_url ) {
+
+						if( '_self' !== target ) {
+							window.open( redirect_url, target );
+						} else {
+								
+							if( redirect_url.indexOf( '.pdf' ) > 0 ) {
+								cpro_download_pdf( redirect_url );
+							} else {
+								window.location = redirect_url;
+							}
+						}
+						$(document).trigger( 'closePopup', [modal,id] );
 					}
 				break;
 			}
@@ -590,6 +769,26 @@
 				obj.closest( '.cp-popup' ).find( '.cp-popup-content.cp-panel-'+step_id ).removeClass('cpro-active-step');
 				obj.closest( '.cp-popup' ).find( '.cp-popup-content.cp-panel-'+step_number ).addClass('cpro-active-step');
 			}
+		}
+
+		function cpro_download_pdf( redirect_url ) {
+
+            var index = redirect_url.lastIndexOf("/") + 1;
+			var filename = redirect_url.substr(index);
+
+			var link = $("<a>");
+                link.attr( "href", redirect_url );
+                link.attr( "download", filename );
+                link.text( "cpro_anchor_link" );
+                link.addClass( "cpro_dummy_anchor" );
+
+            $('body').append(link);
+
+            $(".cpro_dummy_anchor")[0].click();
+
+            setTimeout(function() {
+				$(".cpro_dummy_anchor").remove();												                	
+            }, 500 );
 		}
 
 	});

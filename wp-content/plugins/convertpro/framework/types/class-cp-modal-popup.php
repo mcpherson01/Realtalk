@@ -10,6 +10,8 @@
  */
 class CP_Modal_Popup extends cp_Framework {
 
+
+
 	/**
 	 * Options
 	 *
@@ -39,7 +41,30 @@ class CP_Modal_Popup extends cp_Framework {
 			'title'       => __( 'Modal Popup', 'convertpro' ),
 			'description' => __( 'A Light-box overlay that can be launched on any web page with a dedicated call to action.', 'convertpro' ),
 		);
+		add_filter( 'cp_configuration_option', array( $this, 'cp_remove_scrolling_option_in_modal' ), 10, 1 );
 		parent::cp_add_popup_type( self::$slug, self::$settings );
+	}
+
+	/**
+	 * Function Name: cp_remove_scrolling_option_in_modal.
+	 * Function Description: Remove the scroll within range section in Modal popup.
+	 *
+	 * @param array $configure array parameter.
+	 * @return array $configure modified.
+	 * @since 1.3.8
+	 */
+	function cp_remove_scrolling_option_in_modal( $configure ) {
+
+		$options_to_remove = array(
+			'autoload_on_scroll',
+			'load_after_scroll',
+		);
+		foreach ( $configure as $option_key => $option ) {
+			if ( in_array( $option['name'], $options_to_remove ) ) {
+				$configure[ $option_key ]['category'] = __( 'After Scroll', 'convertpro' );
+			}
+		}
+		return $configure;
 	}
 
 	/**
@@ -55,6 +80,8 @@ class CP_Modal_Popup extends cp_Framework {
 				'enable_display_inline',
 				'inline_position',
 				'inline_shortcode',
+				'show_after_within_scroll_info',
+				'close_after_scroll',
 			),
 			$options
 		);
@@ -116,7 +143,7 @@ class CP_Modal_Popup extends cp_Framework {
 				'cp_shape',
 				'cp_dual_color_shape',
 			),
-			array( 'title', 'font_family', 'font_size', 'text_color', 'text_hover_color', 'back_color', 'back_color_hover', 'letter_spacing', 'btn_text_align', 'line_height', 'label_border', 'border_style', 'border_radius', 'border_color', 'border_hover_color', 'border_width', 'field_padding', 'get_parameter' ),
+			array( 'title', 'font_family', 'font_size', 'text_color', 'text_hover_color', 'back_color', 'back_color_hover', 'letter_spacing', 'btn_text_align', 'line_height', 'label_border', 'border_style', 'border_radius', 'border_color', 'border_hover_color', 'border_width', 'field_padding' ),
 			$options
 		);
 
@@ -1075,6 +1102,12 @@ class CP_Modal_Popup extends cp_Framework {
 			// Form - Hidden Input Field.
 			parent::$cp_form_hiddeninput_opts,
 
+			// Form - Google Recaptcha Input Field.
+			parent::$cp_form_google_recaptcha_opts,
+
+			// Form - Date Field.
+			parent::$cp_form_date_opts,
+
 			// Form - Typography Accordion.
 			array(
 				'type'         => 'font',
@@ -1089,6 +1122,26 @@ class CP_Modal_Popup extends cp_Framework {
 						'parameter' => 'font-family',
 					),
 					'global'      => false,
+				),
+				'panel'        => 'Form',
+				'section'      => 'Design',
+				'section_icon' => 'cp-icon-field',
+				'has_params'   => false,
+				'category'     => 'Typography',
+			),
+			array(
+				'type'         => 'dropdown',
+				'class'        => '',
+				'name'         => 'form_field_text_transform',
+				'opts'         => array(
+					'title'     => __( 'Text Transform', 'convertpro' ),
+					'value'     => 'none',
+					'options'   => cp_Framework::$text_transform_options,
+					'tags'      => 'field font,font family, font weight',
+					'map_style' => array(
+						'parameter' => 'text-transform',
+					),
+					'global'    => false,
 				),
 				'panel'        => 'Form',
 				'section'      => 'Design',
@@ -1475,7 +1528,6 @@ class CP_Modal_Popup extends cp_Framework {
 		$panel_design_options = array_merge( $design_field_options, $panel_design_options );
 
 		return $panel_design_options;
-
 	}
 }
 

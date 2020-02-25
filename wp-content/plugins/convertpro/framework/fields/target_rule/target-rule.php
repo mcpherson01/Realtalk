@@ -211,12 +211,12 @@ function cp_v2_target_rule_settings_field( $name, $settings, $value ) {
 				'404'        => __( '404 Page', 'convertpro' ),
 			);
 
-		foreach ( $spacial_pages as $page => $title ) {
-			$selected = ( 'special-' . $page == $sel_value ) ? true : false;
-			if ( $selected ) {
-				$output .= "<option selected='selected' value='special-" . $page . "' >" . $title . '</option>';
+			foreach ( $spacial_pages as $page => $title ) {
+				$selected = ( 'special-' . $page == $sel_value ) ? true : false;
+				if ( $selected ) {
+					$output .= "<option selected='selected' value='special-" . $page . "' >" . $title . '</option>';
+				}
 			}
-		}
 	}
 
 	$output .= '</select></div>';

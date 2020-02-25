@@ -44,7 +44,7 @@ function cp_render_style_status( $style ) {
 			?>
 
 			<input type="text" id="cp_<?php echo $input_name; ?>" class="form-control cp-input cp-switch-input" name="<?php echo $input_name; ?>" data-style="<?php echo $style->ID; ?>" value="<?php echo $style_status; ?>" />
-
+			<?php wp_nonce_field( 'cpro_publish', 'cpro_publish_new' ); ?>
 			<input type="checkbox" <?php echo $checked; ?> id="cp_<?php echo $input_name; ?>_btn_<?php echo $uniq; ?>" class="ios-toggle cp-input cp-switch-input switch-checkbox cp-switch" value="<?php echo $style_status; ?>"   >
 
 			<label class="cp-switch-btn checkbox-label" data-on="ON"  data-off="OFF" data-id="cp_<?php echo $input_name; ?>" for="cp_<?php echo $input_name; ?>_btn_<?php echo $uniq; ?>">
@@ -63,7 +63,7 @@ function cp_render_style_status( $style ) {
 		?>
 		<a href="<?php echo admin_url( 'admin.php?page=' . CP_PRO_SLUG . '-ab-test' ); ?>" class="cp-prog-label"><?php echo $test_name; ?></a>
 		<?php
-}
+	}
 }
 
 /**
@@ -128,6 +128,7 @@ function cp_update_campaign() {
 		);
 		wp_send_json_error( $data );
 	}
+	check_ajax_referer( 'cp_update_campaign', 'security' );
 
 	$post_id       = esc_attr( $_POST['post_id'] );
 	$campaign_id   = esc_attr( $_POST['campaign_id'] );
@@ -258,6 +259,8 @@ function handle_cp_popup_duplicate_action() {
 		wp_send_json_error( $data );
 	}
 
+	check_ajax_referer( 'cp_duplicate_popup', 'security' );
+
 	$popup_id = esc_attr( $_POST['popup_id'] );
 	$title    = esc_attr( $_POST['popup_name'] );
 
@@ -313,6 +316,8 @@ function handle_cp_popup_duplicate_action() {
  */
 function handle_cp_delete_popup_action() {
 
+	check_ajax_referer( 'cp_delete_popup', 'security' );
+
 	$popup_id = esc_attr( $_POST['popup_id'] );
 
 	if ( current_user_can( 'delete_cp_popup', $popup_id ) ) {
@@ -354,6 +359,7 @@ function cp_rename_popup() {
 		);
 		wp_send_json_error( $data );
 	}
+	check_ajax_referer( 'cp_rename_popup', 'security' );
 
 	$popup_id   = isset( $_POST['popup_id'] ) ? esc_attr( $_POST['popup_id'] ) : '';
 	$popup_name = isset( $_POST['popup_name'] ) ? esc_attr( $_POST['popup_name'] ) : '';
@@ -393,6 +399,8 @@ function cp_rename_campaign() {
 		);
 		wp_send_json_error( $data );
 	}
+
+	check_ajax_referer( 'cp_rename_campaign', 'security' );
 
 	$campaign_id   = isset( $_POST['campaign_id'] ) ? esc_attr( $_POST['campaign_id'] ) : '';
 	$campaign_name = isset( $_POST['campaign_name'] ) ? esc_attr( $_POST['campaign_name'] ) : '';
@@ -450,7 +458,7 @@ function cp_get_style_info( $settings, $style_id, $title ) {
 	<table>
 		<?php
 		if ( 'before_after' != $cp_module_type && 'inline' != $cp_module_type & 'widget' != $cp_module_type ) {
-		?>
+			?>
 		<tr>
 			<td><?php _e( 'When should this call-to-action appear?', 'convertpro' ); ?></td>
 			<td class="cpro-rules-data">
@@ -482,6 +490,12 @@ function cp_get_style_info( $settings, $style_id, $title ) {
 					if ( isset( $ruleset->autoload_on_scroll ) && '1' == $ruleset->autoload_on_scroll ) {
 						/* translators: %s percentage */
 						$confi_rules[] = sprintf( __( 'After user scrolls the %s%%', 'convertpro' ), $ruleset->load_after_scroll );
+
+						if ( isset( $ruleset->close_after_scroll ) && ( $ruleset->close_after_scroll > $ruleset->load_after_scroll ) ) {
+
+							/* translators: %s percentage */
+							$confi_rules[] = sprintf( __( 'Display within Range - Will appear when user scrolls to %1$s%% and close when he scrolls to %2$s%%.<br> i.e. Remains open between the range (%3$s%% and %4$s%% of the page)', 'convertpro' ), $ruleset->load_after_scroll, $ruleset->close_after_scroll, $ruleset->load_after_scroll, $ruleset->close_after_scroll );
+						}
 					}
 
 					if ( isset( $ruleset->inactivity ) && '1' == $ruleset->inactivity ) {
@@ -562,15 +576,15 @@ function cp_get_style_info( $settings, $style_id, $title ) {
 			<td class="cpro-rules-data">
 				<?php
 				if ( isset( $settings['show_for_logged_in'] ) && '1' == $settings['show_for_logged_in'] ) {
-				?>
+					?>
 					<li class="cpro-bb-cls"><?php _e( 'Everyone including logged in users.', 'convertpro' ); ?></li>
-				<?php
+					<?php
 				}
 
 				if ( isset( $settings['display_on_first_load'] ) && '1' == $settings['display_on_first_load'] ) {
-				?>
+					?>
 					<li class="cpro-bb-cls"><?php _e( 'Everyone including first time visitors.', 'convertpro' ); ?></li>
-				<?php
+					<?php
 				}
 
 				if ( isset( $settings['hide_on_device'] ) && $settings['hide_on_device'] ) {
@@ -578,7 +592,7 @@ function cp_get_style_info( $settings, $style_id, $title ) {
 					?>
 					<li class="cpro-bb-cls"><?php _e( 'Hide On Devices - ', 'convertpro' ); ?>
 					<?php echo $hide_devices; ?></li>
-				<?php
+					<?php
 				}
 
 				foreach ( $display_rules as $key => $rules ) {
@@ -601,7 +615,7 @@ function cp_get_style_info( $settings, $style_id, $title ) {
 						$incrementor++;
 					}
 				}
-			?>
+				?>
 			</td>
 		</tr>
 		<tr>
@@ -614,27 +628,30 @@ function cp_get_style_info( $settings, $style_id, $title ) {
 						/* translators: %1$s days */
 						__(
 							'Hide for - <br> %1$s days after conversion <br>
-	                    %2$s days after closing', 'convertpro'
-						), $settings['conversion_cookie'], $settings['closed_cookie']
+	                    %2$s days after closing',
+							'convertpro'
+						),
+						$settings['conversion_cookie'],
+						$settings['closed_cookie']
 					);
 					?>
 					</li>
 				<?php } else { ?>
 					<li><?php _e( 'It will appear every time a visitor arrives on your website.', 'convertpro' ); ?></li>
-				<?php
-}
+					<?php
+				}
 				?>
 			</td>
 		</tr>
-		<?php
+			<?php
 		} elseif ( 'inline' == $cp_module_type ) {
-		?>
+			?>
 		<tr>
 			<td><?php _e( 'This is an inline form & will be displayed on post/pages you have added the short-code.', 'convertpro' ); ?></td>
 		</tr>
-		<?php
+			<?php
 		} elseif ( 'before_after' == $cp_module_type ) {
-		?>
+			?>
 		<tr>
 			<td><?php _e( 'What is the call-to-action inline position?', 'convertpro' ); ?></td>
 			<td>
@@ -646,9 +663,9 @@ function cp_get_style_info( $settings, $style_id, $title ) {
 				} elseif ( 'after_post' == $settings['inline_position'] ) {
 					$inline_position = __( 'After the posts.', 'convertpro' );
 				}
-			?>
+				?>
 				<li><?php echo $inline_position; ?></li>
-			<?php
+				<?php
 			}
 			?>
 			</td>
@@ -680,32 +697,32 @@ function cp_get_style_info( $settings, $style_id, $title ) {
 			<td>
 				<?php
 				if ( isset( $settings['show_for_logged_in'] ) && '1' == $settings['show_for_logged_in'] ) {
-				?>
+					?>
 					<li><?php _e( 'Everyone including logged in users.', 'convertpro' ); ?></li>
-				<?php
+					<?php
 				}
 				if ( isset( $settings['display_on_first_load'] ) && '1' == $settings['display_on_first_load'] ) {
-				?>
+					?>
 					<li><?php _e( 'Everyone including first time visitors.', 'convertpro' ); ?></li>
-				<?php
+					<?php
 				}
 				if ( isset( $settings['hide_on_device'] ) && $settings['hide_on_device'] ) {
 					$hide_devices = str_replace( '|', ', ', $settings['hide_on_device'] );
 					?>
 					<li><?php _e( 'Hide On Devices - ', 'convertpro' ); ?>
 					<?php echo $hide_devices; ?></li>
-				<?php
+					<?php
 				}
-			?>
+				?>
 			</td>
 		</tr>
-		<?php
+			<?php
 		} elseif ( 'widget' == $cp_module_type ) {
-		?>
+			?>
 		<tr>
 			<td><?php _e( 'This is a widget form & will be displayed on post/pages you have added the widget.', 'convertpro' ); ?></td>
 		</tr>
-		<?php
+			<?php
 		}
 		?>
 	</table>

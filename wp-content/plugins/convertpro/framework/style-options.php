@@ -9,967 +9,1341 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die();
 }
 
-	$user_inactivity = esc_attr( get_option( 'cp_user_inactivity' ) );
+$user_inactivity = esc_attr( get_option( 'cp_user_inactivity' ) );
 if ( ! $user_inactivity ) {
 	$user_inactivity = '60';
 }
-	$style   = isset( $_GET['post'] ) ? esc_attr( $_GET['post'] ) : '';
-	$step_id = '1';
+$style   = isset( $_GET['post'] ) ? esc_attr( $_GET['post'] ) : '';
+$step_id = '1';
 
-	/*** Array contains optin form options */
-	$optin_form = array();
+$shortcode = '[cp_popup display="inline" style_id="' . $style . '" step_id = "' . $step_id . '"][/cp_popup]';
 
-	/*** Array contains Configure options */
-	$configure = array(
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'autoload_on_duration',
-			'opts'         => array(
-				'title'       => '',
-				'value'       => true,
-				'on'          => __( 'ON', 'convertpro' ),
-				'off'         => __( 'OFF', 'convertpro' ),
-				'description' => '',
-				'tags'        => 'autoload,seconds,after,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'After Few Seconds on Page',
-		),
-		array(
-			'type'         => 'number',
-			'class'        => '',
-			'name'         => 'load_on_duration',
-			'opts'         => array(
-				'title'  => __( 'Display when a user is on the page for at least:', 'convertpro' ),
-				'link'   => __( 'By default, this modal will be effective for all. However using controls above, you can hide it for certain visitors.', 'convertpro' ),
-				'value'  => 1,
-				'min'    => 1,
-				'max'    => 100,
-				'step'   => 1,
-				'suffix' => 'Seconds',
-				'tags'   => 'load,seconds,after,duration,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'dependency'   => array(
-				'name'     => 'autoload_on_duration',
-				'operator' => '==',
-				'value'    => '1',
-			),
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'After Few Seconds on Page',
-		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'modal_exit_intent',
-			'opts'         => array(
-				'title' => __( 'Display when a user is about to leave the site', 'convertpro' ),
-				'value' => false,
-				'on'    => __( 'ON', 'convertpro' ),
-				'off'   => __( 'OFF', 'convertpro' ),
-				'tags'  => 'exit,intent,leaves,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'Exit Intent',
-		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'autoload_on_scroll',
-			'opts'         => array(
-				'title'       => '',
-				'value'       => false,
-				'on'          => __( 'ON', 'convertpro' ),
-				'off'         => __( 'OFF', 'convertpro' ),
-				'description' => '',
-				'tags'        => 'autoload,scroll,visitor,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'After Scroll',
-		),
-		array(
-			'type'         => 'slider',
-			'class'        => '',
-			'name'         => 'load_after_scroll',
-			'opts'         => array(
-				'title'       => __( 'Display when a user scrolls the page:', 'convertpro' ),
-				'value'       => 75,
-				'min'         => 1,
-				'max'         => 100,
-				'step'        => 1,
-				'suffix'      => '%',
-				'description' => '',
-				'tags'        => 'load,scroll,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'dependency'   => array(
-				'name'     => 'autoload_on_scroll',
-				'operator' => '==',
-				'value'    => '1',
-			),
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'After Scroll',
-		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'inactivity',
-			'opts'         => array(
-				/* translators: %s percentage */
-				'title'       => sprintf( __( 'Display when a user is inactive for %s seconds', 'convertpro' ), $user_inactivity ),
-				'value'       => false,
-				'on'          => __( 'ON', 'convertpro' ),
-				'off'         => __( 'OFF', 'convertpro' ),
-				'description' => '',
-				'tags'        => 'inactivity,activity,user,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'User Inactivity',
-		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'inactivity_link',
-			'opts'         => array(
-				/* translators: %s percentage */
-				'link'  => sprintf( __( "You can change inactivity time <a rel='noopener' target='_blank' href='%s'>here.</a>", 'convertpro' ), CP_V2_Tab_Menu::get_page_url( 'general-settings' ) ),
-				'value' => '',
-				'title' => '',
-				'tags'  => 'inactivity,link,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'dependency'   => array(
-				'name'     => 'inactivity',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'User Inactivity',
-		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_after_post',
-			'opts'         => array(
-				'title' => __( 'Display when a user finishes reading the full blog post', 'convertpro' ),
-				'value' => false,
-				'on'    => __( 'ON', 'convertpro' ),
-				'off'   => __( 'OFF', 'convertpro' ),
-				'tags'  => 'after,post,content,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'After Blog Post',
-		),
+/*** Array contains optin form options */
+$optin_form = array();
 
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_display_inline',
-			'opts'         => array(
-				'title'       => __( 'Display Inline', 'convertpro' ),
-				'value'       => true,
-				'on'          => __( 'YES', 'convertpro' ),
-				'off'         => __( 'NO', 'convertpro' ),
-				'description' => __( 'If enabled, module will display inline as a part of page / post content.', 'convertpro' ),
-				'tags'        => 'inline,display,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-		),
-		array(
-			'type'         => 'dropdown',
-			'class'        => '',
-			'name'         => 'inline_position',
-			'opts'         => array(
-				'title'       => __( 'Display Inline Position', 'convertpro' ),
-				'value'       => 'both',
-				'description' => __( 'Select the position, where you want to display module inline.', 'convertpro' ),
-				'options'     => array(
-					'before_post' => __( 'Before Post', 'convertpro' ),
-					'after_post'  => __( 'After Post', 'convertpro' ),
-					'both'        => __( 'Both', 'convertpro' ),
-				),
-				'tags'        => 'inline,position,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'dependency'   => array(
-				'name'     => 'enable_display_inline',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_custom_scroll',
-			'opts'         => array(
-				'title'       => '',
-				'value'       => false,
-				'on'          => __( 'YES', 'convertpro' ),
-				'off'         => __( 'NO', 'convertpro' ),
-				'description' => '',
-				'tags'        => 'custom,enable,scroll,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'After Certain CSS Element',
-		),
-		array(
-			'type'         => 'textfield',
-			'class'        => '',
-			'name'         => 'enable_scroll_class',
-			'opts'         => array(
-				'title'       => __( 'Display when following CSS Class / ID is visible:', 'convertpro' ),
-				'value'       => '',
-				'description' => '',
-				'tags'        => 'scroll,enable,class,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'dependency'   => array(
-				'name'     => 'enable_custom_scroll',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'After Certain CSS Element',
-		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'on_scroll_txt',
-			'opts'         => array(
-				'link'  => __( 'You can add multiple classes or IDs seprated by comma. Example - #button, .widget-title, .site-description', 'convertpro' ),
-				'value' => '',
-				'title' => '',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-pages',
-			'dependency'   => array(
-				'name'     => 'enable_custom_scroll',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'After Certain CSS Element',
-		),
 
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_adblock_detection',
-			'opts'         => array(
-				'title'       => '',
-				'value'       => false,
-				'on'          => __( 'YES', 'convertpro' ),
-				'off'         => __( 'NO', 'convertpro' ),
-				'description' => '',
-				'tags'        => 'launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'Ad Block detection',
+$recaptcha_setting_link = 'You can set reCaptcha Site Key and Secret Key <a rel="noopener" target="_blank" href="' . CP_V2_Tab_Menu::get_page_url( 'general-settings' ) . '#recaptcha">here.</a>';
+/*** Array contains Configure options */
+$configure = array(
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'autoload_on_duration',
+		'opts'         => array(
+			'title'       => '',
+			'value'       => true,
+			'on'          => __( 'ON', 'convertpro' ),
+			'off'         => __( 'OFF', 'convertpro' ),
+			'description' => '',
+			'tags'        => 'autoload,seconds,after,launch,smart',
 		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'After Few Seconds on Page',
+	),
+	array(
+		'type'         => 'number',
+		'class'        => '',
+		'name'         => 'load_on_duration',
+		'opts'         => array(
+			'title'  => __( 'Display when a user is on the page for at least:', 'convertpro' ),
+			'link'   => __( 'By default, this modal will be effective for all. However using controls above, you can hide it for certain visitors.', 'convertpro' ),
+			'value'  => 1,
+			'min'    => 1,
+			'max'    => 100,
+			'step'   => 1,
+			'suffix' => 'Seconds',
+			'tags'   => 'load,seconds,after,duration,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'dependency'   => array(
+			'name'     => 'autoload_on_duration',
+			'operator' => '==',
+			'value'    => '1',
+		),
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'After Few Seconds on Page',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'modal_exit_intent',
+		'opts'         => array(
+			'title' => __( 'Display when a user is about to leave the site', 'convertpro' ),
+			'value' => false,
+			'on'    => __( 'ON', 'convertpro' ),
+			'off'   => __( 'OFF', 'convertpro' ),
+			'tags'  => 'exit,intent,leaves,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'Exit Intent',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'autoload_on_scroll',
+		'opts'         => array(
+			'title'       => '',
+			'value'       => false,
+			'on'          => __( 'ON', 'convertpro' ),
+			'off'         => __( 'OFF', 'convertpro' ),
+			'description' => '',
+			'tags'        => 'autoload,scroll,visitor,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'After Scroll / Display Within Range',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'show_after_within_scroll_info',
+		'opts'         => array(
+			'link'  => __(
+				'<strong>After Scroll Trigger - </strong>Please keep the first slider value higher than the second. <a rel="noopener" target="_blank" href="https://www.convertpro.net/docs/after-scroll-trigger-for-slide-in-and-infobar/">Know more.</a><br><br>
+				<strong>Display Within Range - </strong>Please keep the second slider value higher than the first. <a rel="noopener" target="_blank" href="https://www.convertpro.net/docs/display-within-range-call-to-action-in-convert-pro/">Know more.</a>',
+				'convertpro'
+			),
+			'value' => '',
+			'title' => '',
+			'class' => 'cp_show_after_within_scroll_info',
+		),
+		'panel'        => 'Launch',
+		'dependency'   => array(
+			'name'     => 'autoload_on_scroll',
+			'operator' => '==',
+			'value'    => '1',
+		),
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'After Scroll / Display Within Range',
+	),
+	array(
+		'type'         => 'slider',
+		'class'        => '',
+		'name'         => 'load_after_scroll',
+		'opts'         => array(
+			'title'       => __( 'Display at - Display when a user scrolls the page:', 'convertpro' ),
+			'value'       => 75,
+			'min'         => 1,
+			'max'         => 100,
+			'step'        => 1,
+			'suffix'      => '%',
+			'description' => '',
+			'tags'        => 'load,scroll,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'dependency'   => array(
+			'name'     => 'autoload_on_scroll',
+			'operator' => '==',
+			'value'    => '1',
+		),
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'After Scroll / Display Within Range',
+	),
+	array(
+		'type'         => 'slider',
+		'class'        => '',
+		'name'         => 'close_after_scroll',
+		'opts'         => array(
+			'title'       => __( 'Hide at - Close when a user scrolls the page:', 'convertpro' ),
+			'value'       => 0,
+			'min'         => 0,
+			'max'         => 100,
+			'step'        => 1,
+			'suffix'      => '%',
+			'description' => '',
+			'tags'        => 'load,scroll,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'dependency'   => array(
+			'name'     => 'autoload_on_scroll',
+			'operator' => '==',
+			'value'    => '1',
+		),
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'After Scroll / Display Within Range',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'inactivity',
+		'opts'         => array(
+			/* translators: %s percentage */
+			'title'       => sprintf( __( 'Display when a user is inactive for %s seconds', 'convertpro' ), $user_inactivity ),
+			'value'       => false,
+			'on'          => __( 'ON', 'convertpro' ),
+			'off'         => __( 'OFF', 'convertpro' ),
+			'description' => '',
+			'tags'        => 'inactivity,activity,user,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'User Inactivity',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'inactivity_link',
+		'opts'         => array(
+			/* translators: %s percentage */
+			'link'  => sprintf( __( "You can change inactivity time <a rel='noopener' target='_blank' href='%s'>here.</a>", 'convertpro' ), CP_V2_Tab_Menu::get_page_url( 'general-settings' ) ),
+			'value' => '',
+			'title' => '',
+			'tags'  => 'inactivity,link,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'dependency'   => array(
+			'name'     => 'inactivity',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'User Inactivity',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_after_post',
+		'opts'         => array(
+			'title' => __( 'Display when a user finishes reading the full blog post', 'convertpro' ),
+			'value' => false,
+			'on'    => __( 'ON', 'convertpro' ),
+			'off'   => __( 'OFF', 'convertpro' ),
+			'tags'  => 'after,post,content,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'After Blog Post',
+	),
 
-		/* Visitors Field */
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'all_visitor_info',
-			'opts'         => array(
-				'link'  => __( '<strong>By default it will be shown to all visitors</strong>', 'convertpro' ),
-				'value' => '',
-				'title' => '',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'Visitors',
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_display_inline',
+		'opts'         => array(
+			'title'       => __( 'Display Inline', 'convertpro' ),
+			'value'       => true,
+			'on'          => __( 'YES', 'convertpro' ),
+			'off'         => __( 'NO', 'convertpro' ),
+			'description' => __( 'If enabled, module will display inline as a part of page / post content.', 'convertpro' ),
+			'tags'        => 'inline,display,launch,smart',
 		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_visitors',
-			'opts'         => array(
-				'title'       => '',
-				'value'       => '',
-				'on'          => __( 'ON', 'convertpro' ),
-				'off'         => __( 'OFF', 'convertpro' ),
-				'description' => __( 'Do you wish to display this to visitors who are First Time or Returning?', 'convertpro' ),
-				'tags'        => 'first,load,time,visitors,target,visitors',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+	),
+	array(
+		'type'         => 'dropdown',
+		'class'        => '',
+		'name'         => 'inline_position',
+		'opts'         => array(
+			'title'       => __( 'Display Inline Position', 'convertpro' ),
+			'value'       => 'both',
+			'description' => __( 'Select the position, where you want to display module inline.', 'convertpro' ),
+			'options'     => array(
+				'before_post' => __( 'Before Post', 'convertpro' ),
+				'after_post'  => __( 'After Post', 'convertpro' ),
+				'both'        => __( 'Both', 'convertpro' ),
 			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'Visitors',
+			'tags'        => 'inline,position,launch,smart',
 		),
-		array(
-			'type'         => 'dropdown',
-			'name'         => 'visitor_type',
-			'opts'         => array(
-				'title'       => __( 'Visitor Type', 'convertpro' ),
-				'options'     => array(
-					'first-time' => __( 'First Time Visitors Only', 'convertpro' ),
-					'returning'  => __( 'Returning Visitors Only', 'convertpro' ),
-				),
-				'value'       => 'first-time',
-				'description' => __( 'Do you wish to display this to visitors who are First Time or Returning?', 'convertpro' ),
-				'tags'        => 'first,load,time,visitors,target,visitors',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'Visitors',
-			'dependency'   => array(
-				'name'     => 'enable_visitors',
-				'operator' => '==',
-				'value'    => 'true',
-			),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'dependency'   => array(
+			'name'     => 'enable_display_inline',
+			'operator' => '==',
+			'value'    => 'true',
 		),
-		/* Referrer Field */
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_referrer',
-			'opts'         => array(
-				'title'       => '',
-				'value'       => '',
-				'on'          => __( 'ON', 'convertpro' ),
-				'off'         => __( 'OFF', 'convertpro' ),
-				'description' => __( 'Track the source your visitors come from', 'convertpro' ),
-				'tags'        => 'referrer,detection,visitors',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'Referrer',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_custom_scroll',
+		'opts'         => array(
+			'title'       => '',
+			'value'       => false,
+			'on'          => __( 'YES', 'convertpro' ),
+			'off'         => __( 'NO', 'convertpro' ),
+			'description' => '',
+			'tags'        => 'custom,enable,scroll,launch,smart',
 		),
-		array(
-			'type'         => 'dropdown',
-			'name'         => 'referrer_type',
-			'opts'         => array(
-				'title'       => __( 'Display Type', 'convertpro' ),
-				'options'     => array(
-					'hide-from'  => __( 'Hide From', 'convertpro' ),
-					'display-to' => __( 'Display To', 'convertpro' ),
-				),
-				'value'       => 'hide-from',
-				'description' => __( 'Track the source your visitors come from', 'convertpro' ),
-				'tags'        => 'referrer,detection,visitors',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'Referrer',
-			'dependency'   => array(
-				'name'     => 'enable_referrer',
-				'operator' => '==',
-				'value'    => 'true',
-			),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'After Certain CSS Element',
+	),
+	array(
+		'type'         => 'textfield',
+		'class'        => '',
+		'name'         => 'enable_scroll_class',
+		'opts'         => array(
+			'title'       => __( 'Display when following CSS Class / ID is visible:', 'convertpro' ),
+			'value'       => '',
+			'description' => '',
+			'tags'        => 'scroll,enable,class,launch,smart',
 		),
-		array(
-			'type'         => 'tags',
-			'class'        => '',
-			'name'         => 'display_to',
-			'opts'         => array(
-				'title'       => __( 'Visitors coming from -', 'convertpro' ),
-				'value'       => '',
-				'tags'        => 'display,visitors',
-				'description' => __( 'Display it to visitors who come from a particular domain / domains. Mention the domain name or list of domain names separated by a comma. Eg: google.com, facebook.com', 'convertpro' ),
-			),
-			'dependency'   => array(
-				'name'     => 'referrer_type',
-				'operator' => '==',
-				'value'    => 'display-to',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'category'     => 'Referrer',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'dependency'   => array(
+			'name'     => 'enable_custom_scroll',
+			'operator' => '==',
+			'value'    => 'true',
 		),
-		array(
-			'type'         => 'tags',
-			'class'        => '',
-			'name'         => 'hide_from',
-			'opts'         => array(
-				'title'       => __( 'Visitors who come from -', 'convertpro' ),
-				'value'       => '',
-				'tags'        => 'hide,visitors',
-				'description' => __( 'Hide it from visitors who come from a particular domain / domains. Mention the domain name or list of domain names separated by a comma. Eg: google.com, facebook.com', 'convertpro' ),
-			),
-			'dependency'   => array(
-				'name'     => 'referrer_type',
-				'operator' => '==',
-				'value'    => 'hide-from',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'Referrer',
+		'category'     => 'After Certain CSS Element',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'on_scroll_txt',
+		'opts'         => array(
+			'link'  => __( 'You can add multiple classes or IDs seprated by comma. Example - #button, .widget-title, .site-description', 'convertpro' ),
+			'value' => '',
+			'title' => '',
 		),
-		/* Scheduler */
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_scheduler',
-			'opts'         => array(
-				'title' => __( 'Do you wish to schedule this design to display later?', 'convertpro' ),
-				'value' => false,
-				'on'    => __( 'YES', 'convertpro' ),
-				'off'   => __( 'NO', 'convertpro' ),
-				'tags'  => 'custom,enable,launch',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'dashicons dashicons-clock',
-			'category'     => 'Schedule',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'dependency'   => array(
+			'name'     => 'enable_custom_scroll',
+			'operator' => '==',
+			'value'    => 'true',
 		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'enable_scheduler_txt',
-			'opts'         => array(
-				'link'  => __( 'Select the time period between which you wish to display this design.', 'convertpro' ),
-				'value' => '',
-				'title' => '',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'dependency'   => array(
-				'name'     => 'enable_scheduler',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'Schedule',
+		'category'     => 'After Certain CSS Element',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'show_cta_info',
+		'opts'         => array(
+			'link'  => __( '<strong>Enable this if you want to show this call-to-action when a particular cookie is set</strong>', 'convertpro' ),
+			'value' => '',
+			'title' => '',
 		),
-		array(
-			'type'         => 'datetimepicker',
-			'class'        => '',
-			'name'         => 'start_date',
-			'opts'         => array(
-				'title'       => __( 'Start Time', 'convertpro' ),
-				'value'       => '',
-				'description' => __( 'Select the particular date and time you wish to start displaying this.', 'convertpro' ),
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'dashicons dashicons-clock',
-			'dependency'   => array(
-				'name'     => 'enable_scheduler',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'Schedule',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Cookie Based Trigger',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_custom_cookies',
+		'opts'         => array(
+			'title' => '',
+			'value' => false,
+			'on'    => __( 'YES', 'convertpro' ),
+			'off'   => __( 'NO', 'convertpro' ),
+			'tags'  => 'custom,enable,cookies,repeat,control,launch,smart',
 		),
-		array(
-			'type'         => 'datetimepicker',
-			'class'        => '',
-			'name'         => 'end_date',
-			'opts'         => array(
-				'title'       => __( 'End Time', 'convertpro' ),
-				'value'       => '',
-				'description' => 'Select the particular date and time you wish to stop displaying this.',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'dashicons dashicons-clock',
-			'dependency'   => array(
-				'name'     => 'enable_scheduler',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'Schedule',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'Cookie Based Trigger',
+	),
+	array(
+		'type'         => 'textfield',
+		'class'        => '',
+		'name'         => 'enable_cookies_class',
+		'opts'         => array(
+			'title'       => __( 'Enter cookie name / names that will trigger the CTA', 'convertpro' ),
+			'value'       => '',
+			'description' => __( 'Enter the cookie name or names which when set, you wish to trigger this call-to-action.', 'convertpro' ),
+			'tags'        => 'enable,cookies,repeat,control,launch,smart',
 		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'custom_cls_text_head',
-			'opts'         => array(
-				'link'  => __( 'Display when the user clicks a link, button or any element', 'convertpro' ),
-				'class' => 'cp-custom-class',
-				'value' => '',
-				'title' => '',
-				'tags'  => 'custom,shortcode,manual,display',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
-			'category'     => 'On Click',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'dependency'   => array(
+			'name'     => 'enable_custom_cookies',
+			'operator' => '==',
+			'value'    => 'true',
 		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_custom_class',
-			'opts'         => array(
-				'title'       => '',
-				'value'       => false,
-				'on'          => __( 'YES', 'convertpro' ),
-				'off'         => __( 'NO', 'convertpro' ),
-				'description' => '',
-				'tags'        => 'custom,enable,class,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
-			'category'     => 'On Click',
+		'category'     => 'Cookie Based Trigger',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'on_cookie_txt',
+		'opts'         => array(
+			'link'  => __( 'You can add multiple Cookie names separated by a comma. Ex - firstcookie_name,secondcookie_name,thirdcookie_name', 'convertpro' ),
+			'value' => '',
+			'title' => '',
 		),
-		array(
-			'type'         => 'button',
-			'class'        => '',
-			'name'         => 'copy_link_code_button',
-			'opts'         => array(
-				'title'       => __( 'Copy link code', 'convertpro' ),
-				'value'       => __( 'Copy Link Code', 'convertpro' ),
-				'description' => '',
-				'tags'        => 'copy-link,css,class,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
-			'dependency'   => array(
-				'name'     => 'enable_custom_class',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'On Click',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'dependency'   => array(
+			'name'     => 'enable_custom_cookies',
+			'operator' => '==',
+			'value'    => 'true',
 		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'copy_link_cls_code_button',
-			'opts'         => array(
-				'link'  => __( 'Paste this copied code in your page. Call-to-action will appear when a user clicks on it.', 'convertpro' ),
-				'class' => 'cp-custom-class',
-				'value' => '',
-				'title' => '',
-				'tags'  => 'custom,shortcode,manual,display',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
-			'dependency'   => array(
-				'name'     => 'enable_custom_class',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'On Click',
+		'category'     => 'Cookie Based Trigger',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'hide_cta_link',
+		'opts'         => array(
+			'link'  => __( "Do you want to hide this CTA when a particular cookie is set? You can do that <a class='hide-cta-class'>here</a>", 'convertpro' ),
+			'value' => '',
+			'title' => '',
 		),
-		array(
-			'type'         => 'textfield',
-			'class'        => '',
-			'name'         => 'custom_class',
-			'opts'         => array(
-				'title'       => __( 'Enter your css Class or ID', 'convertpro' ),
-				'value'       => '',
-				'description' => '',
-				'tags'        => 'custom,enable,css,class,launch,smart',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
-			'dependency'   => array(
-				'name'     => 'enable_custom_class',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'On Click',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'dependency'   => array(
+			'name'     => 'enable_custom_cookies',
+			'operator' => '==',
+			'value'    => '1',
 		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'custom_cls_text',
-			'opts'         => array(
-				'link'  => __( 'Enter unique CSS Class / ID name of the element. Call-to-action will appear when a user clicks on it. You can add multiple classes or IDs separated by comma. <br><br>Example - #button, .widget-title, .site-description', 'convertpro' ),
-				'class' => 'cp-custom-class',
-				'value' => '',
-				'title' => '',
-				'tags'  => 'custom,shortcode,manual,display',
-			),
-			'panel'        => 'Launch',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
-			'dependency'   => array(
-				'name'     => 'enable_custom_class',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'On Click',
+		'category'     => 'Cookie Based Trigger',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_adblock_detection',
+		'opts'         => array(
+			'title'       => '',
+			'value'       => false,
+			'on'          => __( 'YES', 'convertpro' ),
+			'off'         => __( 'NO', 'convertpro' ),
+			'description' => '',
+			'tags'        => 'launch,smart',
 		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'inline_shortcode',
-			'opts'         => array(
-				'link'        => '[cp_popup display="inline" style_id="' . $style . '" step_id = ' . $step_id . '][/cp_popup]',
-				'class'       => 'cp-shortcode',
-				'value'       => '',
-				'title'       => __( 'Display Inline', 'convertpro' ),
-				'description' => __( 'Use this shortcode to display this call-to-action inline as a part of the page content / Widget area.', 'convertpro' ),
-				'tags'        => 'inline,shortcode,manual,display',
-			),
-			'panel'        => 'Embed',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
-		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'inline_shortcode',
-			'opts'         => array(
-				'link'        => '[cp_popup display="inline" style_id="' . $style . '" step_id = ' . $step_id . '][/cp_popup]',
-				'class'       => 'cp-shortcode',
-				'value'       => '',
-				'title'       => __( 'This will not be shown to repeated visitors for the set number of days.', 'convertpro' ),
-				'description' => __( 'Use this shortcode to display this call-to-action inline as a part of the page content / Widget area.', 'convertpro' ),
-				'tags'        => 'inline,shortcode,manual,display',
-			),
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
-		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'Ad Block detection',
+	),
 
-		array(
-			'type'         => 'target_rule',
-			'class'        => '',
-			'name'         => 'target_rule_display',
-			'opts'         => array(
-				'title'          => __( 'Display Rules', 'convertpro' ),
-				'value'          => '[{"type":"basic-global","specific":null}]',
-				'tags'           => 'site,enable,target,pages',
-				'rule_type'      => 'display',
-				'add_rule_label' => __( 'Add Display Rule', 'convertpro' ),
-			),
-			'panel'        => 'Target',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-pages',
-			'category'     => 'Pages',
+	/* Visitors Field */
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'all_visitor_info',
+		'opts'         => array(
+			'link'  => __( '<strong>By default it will be shown to all visitors</strong>', 'convertpro' ),
+			'value' => '',
+			'title' => '',
 		),
-		array(
-			'type'         => 'target_rule',
-			'class'        => '',
-			'name'         => 'target_rule_exclude',
-			'opts'         => array(
-				'title'          => __( 'Exclusion Rules', 'convertpro' ),
-				'value'          => '[]',
-				'tags'           => 'site,enable,target,pages',
-				'rule_type'      => 'exclude',
-				'add_rule_label' => __( 'Add Exclusion Rule', 'convertpro' ),
-			),
-			'panel'        => 'Target',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-pages',
-			'category'     => 'Pages',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Visitors',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_visitors',
+		'opts'         => array(
+			'title'       => '',
+			'value'       => '',
+			'on'          => __( 'ON', 'convertpro' ),
+			'off'         => __( 'OFF', 'convertpro' ),
+			'description' => __( 'Do you wish to display this to visitors who are First Time or Returning?', 'convertpro' ),
+			'tags'        => 'first,load,time,visitors,target,visitors',
 		),
-		/* User Behavior */
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'visitor_info',
-			'opts'         => array(
-				'link'  => __( '<strong>By default it will be shown to all visitors</strong>', 'convertpro' ),
-				'value' => '',
-				'title' => '',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Visitors',
+	),
+	array(
+		'type'         => 'dropdown',
+		'name'         => 'visitor_type',
+		'opts'         => array(
+			'title'       => __( 'Visitor Type', 'convertpro' ),
+			'options'     => array(
+				'first-time' => __( 'First Time Visitors Only', 'convertpro' ),
+				'returning'  => __( 'Returning Visitors Only', 'convertpro' ),
 			),
-			'panel'        => 'Target',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'User Behavior',
+			'value'       => 'first-time',
+			'description' => __( 'Do you wish to display this to visitors who are First Time or Returning?', 'convertpro' ),
+			'tags'        => 'first,load,time,visitors,target,visitors',
 		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'show_for_logged_in',
-			'opts'         => array(
-				'title'       => __( 'Logged-in Users', 'convertpro' ),
-				'value'       => true,
-				'on'          => __( 'SHOW', 'convertpro' ),
-				'off'         => __( 'HIDE', 'convertpro' ),
-				'description' => __( 'Does your website have a login functionality? If yes, do you wish to display this to logged in users?', 'convertpro' ),
-				'tags'        => 'disable,exception,target,visitors',
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Visitors',
+		'dependency'   => array(
+			'name'     => 'enable_visitors',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+	),
+	/* Referrer Field */
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_referrer',
+		'opts'         => array(
+			'title'       => '',
+			'value'       => '',
+			'on'          => __( 'ON', 'convertpro' ),
+			'off'         => __( 'OFF', 'convertpro' ),
+			'description' => __( 'Track the source your visitors come from', 'convertpro' ),
+			'tags'        => 'referrer,detection,visitors',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Referrer',
+	),
+	array(
+		'type'         => 'dropdown',
+		'name'         => 'referrer_type',
+		'opts'         => array(
+			'title'       => __( 'Display Type', 'convertpro' ),
+			'options'     => array(
+				'hide-from'  => __( 'Hide From', 'convertpro' ),
+				'display-to' => __( 'Display To', 'convertpro' ),
 			),
-			'panel'        => 'Target',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'User Behavior',
+			'value'       => 'hide-from',
+			'description' => __( 'Track the source your visitors come from', 'convertpro' ),
+			'tags'        => 'referrer,detection,visitors',
 		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Referrer',
+		'dependency'   => array(
+			'name'     => 'enable_referrer',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+	),
+	array(
+		'type'         => 'tags',
+		'class'        => '',
+		'name'         => 'display_to',
+		'opts'         => array(
+			'title'       => __( 'Visitors coming from -', 'convertpro' ),
+			'value'       => '',
+			'tags'        => 'display,visitors',
+			'description' => __( 'Display it to visitors who come from a particular domain / domains. Mention the domain name or list of domain names separated by a comma. Eg: google.com, facebook.com', 'convertpro' ),
+		),
+		'dependency'   => array(
+			'name'     => 'referrer_type',
+			'operator' => '==',
+			'value'    => 'display-to',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'Referrer',
+	),
+	array(
+		'type'         => 'tags',
+		'class'        => '',
+		'name'         => 'hide_from',
+		'opts'         => array(
+			'title'       => __( 'Visitors who come from -', 'convertpro' ),
+			'value'       => '',
+			'tags'        => 'hide,visitors',
+			'description' => __( 'Hide it from visitors who come from a particular domain / domains. Mention the domain name or list of domain names separated by a comma. Eg: google.com, facebook.com', 'convertpro' ),
+		),
+		'dependency'   => array(
+			'name'     => 'referrer_type',
+			'operator' => '==',
+			'value'    => 'hide-from',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Referrer',
+	),
+	/* Scheduler */
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_scheduler',
+		'opts'         => array(
+			'title' => __( 'Do you wish to schedule this design to display later?', 'convertpro' ),
+			'value' => false,
+			'on'    => __( 'YES', 'convertpro' ),
+			'off'   => __( 'NO', 'convertpro' ),
+			'tags'  => 'custom,enable,launch',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'dashicons dashicons-clock',
+		'category'     => 'Schedule',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'enable_scheduler_txt',
+		'opts'         => array(
+			'link'  => __( 'Select the time period between which you wish to display this design.', 'convertpro' ),
+			'value' => '',
+			'title' => '',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'dependency'   => array(
+			'name'     => 'enable_scheduler',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'Schedule',
+	),
+	array(
+		'type'         => 'datetimepicker',
+		'class'        => '',
+		'name'         => 'start_date',
+		'opts'         => array(
+			'title'       => __( 'Start Time', 'convertpro' ),
+			'value'       => '',
+			'description' => __( 'Select the particular date and time you wish to start displaying this.', 'convertpro' ),
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'dashicons dashicons-clock',
+		'dependency'   => array(
+			'name'     => 'enable_scheduler',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'Schedule',
+	),
+	array(
+		'type'         => 'datetimepicker',
+		'class'        => '',
+		'name'         => 'end_date',
+		'opts'         => array(
+			'title'       => __( 'End Time', 'convertpro' ),
+			'value'       => '',
+			'description' => 'Select the particular date and time you wish to stop displaying this.',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'dashicons dashicons-clock',
+		'dependency'   => array(
+			'name'     => 'enable_scheduler',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'Schedule',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'custom_cls_text_head',
+		'opts'         => array(
+			'link'  => __( 'Display when the user clicks a link, button or any element', 'convertpro' ),
+			'class' => 'cp-custom-class',
+			'value' => '',
+			'title' => '',
+			'tags'  => 'custom,shortcode,manual,display',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'category'     => 'On Click',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_custom_class',
+		'opts'         => array(
+			'title'       => '',
+			'value'       => false,
+			'on'          => __( 'YES', 'convertpro' ),
+			'off'         => __( 'NO', 'convertpro' ),
+			'description' => '',
+			'tags'        => 'custom,enable,class,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'category'     => 'On Click',
+	),
+	array(
+		'type'         => 'button',
+		'class'        => '',
+		'name'         => 'copy_link_code_button',
+		'opts'         => array(
+			'title'       => __( 'Copy link code', 'convertpro' ),
+			'value'       => __( 'Copy Link Code', 'convertpro' ),
+			'description' => '',
+			'tags'        => 'copy-link,css,class,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'dependency'   => array(
+			'name'     => 'enable_custom_class',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'On Click',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'copy_link_cls_code_button',
+		'opts'         => array(
+			'link'  => __( 'Paste this copied code in your page. Call-to-action will appear when a user clicks on it.', 'convertpro' ),
+			'class' => 'cp-custom-class',
+			'value' => '',
+			'title' => '',
+			'tags'  => 'custom,shortcode,manual,display',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'dependency'   => array(
+			'name'     => 'enable_custom_class',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'On Click',
+	),
+	array(
+		'type'         => 'textfield',
+		'class'        => '',
+		'name'         => 'custom_class',
+		'opts'         => array(
+			'title'       => __( 'Enter your CSS Class or ID', 'convertpro' ),
+			'value'       => '',
+			'description' => '',
+			'tags'        => 'custom,enable,css,class,launch,smart',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'dependency'   => array(
+			'name'     => 'enable_custom_class',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'On Click',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'custom_cls_text',
+		'opts'         => array(
+			'link'  => __( 'Enter unique CSS Class / ID name of the element. Call-to-action will appear when a user clicks on it. You can add multiple classes or IDs separated by comma. <br><br>Example - #button, .widget-title, .site-description', 'convertpro' ),
+			'class' => 'cp-custom-class',
+			'value' => '',
+			'title' => '',
+			'tags'  => 'custom,shortcode,manual,display',
+		),
+		'panel'        => 'Launch',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'dependency'   => array(
+			'name'     => 'enable_custom_class',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'On Click',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'inline_shortcode',
+		'opts'         => array(
+			'link'        => '<input type="text" id="cpro-shortcode" onfocus="this.select();" readonly="readonly" class="large-text code" value="' . htmlspecialchars( $shortcode ) . '">',
+			'class'       => 'cp-shortcode',
+			'value'       => '',
+			'title'       => __( 'Display Inline', 'convertpro' ),
+			'description' => __( 'Use this shortcode to display this call-to-action inline as a part of the page content / Widget area.', 'convertpro' ),
+			'tags'        => 'inline,shortcode,manual,display',
+		),
+		'panel'        => 'Embed',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+	),
 
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'show_logged_in_enbl_txt',
-			'opts'         => array(
-				'link'  => __( 'Logged in users will see this too!', 'convertpro' ),
-				'value' => '',
-				'title' => '',
-			),
-			'panel'        => 'Target',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-pages',
-			'dependency'   => array(
-				'name'     => 'show_for_logged_in',
-				'operator' => '==',
-				'value'    => 'true',
-			),
-			'category'     => 'User Behavior',
+	array(
+		'type'         => 'target_rule',
+		'class'        => '',
+		'name'         => 'target_rule_display',
+		'opts'         => array(
+			'title'          => __( 'Display Rules', 'convertpro' ),
+			'value'          => '[{"type":"basic-global","specific":null}]',
+			'tags'           => 'site,enable,target,pages',
+			'rule_type'      => 'display',
+			'add_rule_label' => __( 'Add Display Rule', 'convertpro' ),
 		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'show_logged_in_disbl_txt',
-			'opts'         => array(
-				'link'  => __( 'Logged in users will not see this.', 'convertpro' ),
-				'value' => '',
-				'title' => '',
-			),
-			'panel'        => 'Target',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-pages',
-			'dependency'   => array(
-				'name'     => 'show_for_logged_in',
-				'operator' => '!=',
-				'value'    => 'true',
-			),
-			'category'     => 'User Behavior',
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'category'     => 'Pages',
+	),
+	array(
+		'type'         => 'target_rule',
+		'class'        => '',
+		'name'         => 'target_rule_exclude',
+		'opts'         => array(
+			'title'          => __( 'Exclusion Rules', 'convertpro' ),
+			'value'          => '[]',
+			'tags'           => 'site,enable,target,pages',
+			'rule_type'      => 'exclude',
+			'add_rule_label' => __( 'Add Exclusion Rule', 'convertpro' ),
 		),
-		array(
-			'type'         => 'checkbox',
-			'class'        => '',
-			'name'         => 'hide_on_device',
-			'opts'         => array(
-				'title'       => __( 'Select device on which you wish to hide this call-to-action.', 'convertpro' ),
-				'value'       => '',
-				'options'     => array(
-					__( 'Desktop', 'convertpro' ) => 'desktop',
-					__( 'Tablet', 'convertpro' )  => 'tablet',
-					__( 'Mobile', 'convertpro' )  => 'mobile',
-				),
-				'description' => __( 'Select the device/devices you wish to hide this call-to-action on.', 'convertpro' ),
-				'tags'        => 'hide,devices,target,visitors',
-			),
-			'panel'        => 'Target',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-visitor',
-			'category'     => 'Hide on Devices',
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'category'     => 'Pages',
+	),
+	/* Geo Location Targeting */
+	array(
+		'type'         => 'target_geo_rule',
+		'class'        => '',
+		'name'         => 'target_geo_rule_display',
+		'opts'         => array(
+			'title'     => __( 'Display Rules', 'convertpro' ),
+			'value'     => '[{"type":"basic-all-countries","specific":null}]',
+			'tags'      => 'site,enable,target,pages',
+			'rule_type' => 'display',
 		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'cookies_enabled',
-			'opts'         => array(
-				'title'       => __( 'Do you wish to hide this call-to-action after a visitor closes it or after successful submission?', 'convertpro' ),
-				'value'       => true,
-				'on'          => __( 'YES', 'convertpro' ),
-				'off'         => __( 'NO', 'convertpro' ),
-				'description' => __(
-					'Decide whether you wish to enable cookies. If enabled, you can hide it from a visitor who has closed it or from the one who has submitted it successfully.
-				', 'convertpro'
-				),
-				'tags'        => 'cookies,repeat,control',
-			),
-			'panel'        => 'Cookies',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'category'     => 'Geo Location',
+	),
+	array(
+		'type'         => 'target_geo_rule',
+		'class'        => '',
+		'name'         => 'target_geo_rule_exclude',
+		'opts'         => array(
+			'title'          => __( 'Exclusion Rules', 'convertpro' ),
+			'value'          => '[]',
+			'tags'           => 'site,enable,target,pages',
+			'rule_type'      => 'exclude',
+			'add_rule_label' => __( 'Add Exclusion Rule', 'convertpro' ),
 		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'cookies_enabled_enbl',
-			'opts'         => array(
-				'link'  => __( 'This will not be shown to repeated visitors for the set number of days.', 'convertpro' ),
-				'value' => '',
-				'title' => '',
-				'tags'  => '',
-			),
-			'panel'        => 'Cookies',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'dependency'   => array(
-				'name'     => 'cookies_enabled',
-				'operator' => '==',
-				'value'    => 'true',
-			),
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'category'     => 'Geo Location',
+	),
+	/* Hide CTA by Cookies */
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'hide_cta_info',
+		'opts'         => array(
+			'link'  => __( '<strong>Enable this if you want to hide this call-to-action when a particular cookie is set</strong>', 'convertpro' ),
+			'value' => '',
+			'title' => '',
 		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'cookies_enabled',
-			'opts'         => array(
-				'link'  => __( 'This will be displayed again when the visitor arrives on the website; irrespective of whether he has submitted the form or closed it earlier.', 'convertpro' ),
-				'value' => '',
-				'title' => '',
-				'tags'  => '',
-			),
-			'panel'        => 'Cookies',
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-launch',
-			'dependency'   => array(
-				'name'     => 'cookies_enabled',
-				'operator' => '!=',
-				'value'    => 'true',
-			),
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Hide CTA Based on Cookies',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'hide_custom_cookies',
+		'opts'         => array(
+			'title' => '',
+			'value' => false,
+			'on'    => __( 'YES', 'convertpro' ),
+			'off'   => __( 'NO', 'convertpro' ),
+			'tags'  => 'custom,enable,cookies,repeat,control,launch,smart',
 		),
-		array(
-			'type'         => 'slider',
-			'class'        => '',
-			'name'         => 'conversion_cookie',
-			'opts'         => array(
-				'title'       => __( "Hide for 'X' number of days after conversion", 'convertpro' ),
-				'value'       => 90,
-				'min'         => 0,
-				'max'         => 365,
-				'step'        => 1,
-				'suffix'      => 'days',
-				'description' => __( "Select the value of 'X'. This will not be shown for set number of days after conversion.", 'convertpro' ),
-				'tags'        => 'cookies,conversion,repeat,control',
-			),
-			'panel'        => 'Cookies',
-			'dependency'   => array(
-				'name'     => 'cookies_enabled',
-				'operator' => '==',
-				'value'    => '1',
-			),
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-embed',
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Hide CTA Based on Cookies',
+	),
+	array(
+		'type'         => 'textfield',
+		'class'        => '',
+		'name'         => 'hide_cookies_class',
+		'opts'         => array(
+			'title'       => __( 'Enter cookie name / names that will hide the CTA', 'convertpro' ),
+			'value'       => '',
+			'description' => __( 'Enter the cookie name or names which when set, you wish to hide this call-to-action.', 'convertpro' ),
+			'tags'        => 'enable,cookies,repeat,control,launch,smart',
+		),
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'dependency'   => array(
+			'name'     => 'hide_custom_cookies',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'Hide CTA Based on Cookies',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'off_cookie_txt',
+		'opts'         => array(
+			'link'  => __( 'You can add multiple Cookie names separated by a comma. Ex - firstcookie_name,secondcookie_name,thirdcookie_name', 'convertpro' ),
+			'value' => '',
+			'title' => '',
+		),
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'dependency'   => array(
+			'name'     => 'hide_custom_cookies',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'Hide CTA Based on Cookies',
+	),
+	/* User Behavior */
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'visitor_info',
+		'opts'         => array(
+			'link'  => __( '<strong>By default it will be shown to all visitors</strong>', 'convertpro' ),
+			'value' => '',
+			'title' => '',
+		),
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'User Behavior',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'show_for_logged_in',
+		'opts'         => array(
+			'title'       => __( 'Logged-in Users', 'convertpro' ),
+			'value'       => true,
+			'on'          => __( 'SHOW', 'convertpro' ),
+			'off'         => __( 'HIDE', 'convertpro' ),
+			'description' => __( 'Does your website have a login functionality? If yes, do you wish to display this to logged in users?', 'convertpro' ),
+			'tags'        => 'disable,exception,target,visitors',
+		),
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'User Behavior',
+	),
 
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'show_logged_in_enbl_txt',
+		'opts'         => array(
+			'link'  => __( 'Logged in users will see this too!', 'convertpro' ),
+			'value' => '',
+			'title' => '',
 		),
-		array(
-			'type'         => 'slider',
-			'class'        => '',
-			'name'         => 'closed_cookie',
-			'opts'         => array(
-				'title'       => __( "Hide for 'X' number of days after closing", 'convertpro' ),
-				'value'       => 30,
-				'min'         => 0,
-				'max'         => 365,
-				'step'        => 1,
-				'suffix'      => 'days',
-				'description' => __( "Select the value of 'X'. This will not be shown for set number of days after closing.", 'convertpro' ),
-				'tags'        => 'cookies,closed,repeat,control',
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'dependency'   => array(
+			'name'     => 'show_for_logged_in',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'User Behavior',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'show_logged_in_disbl_txt',
+		'opts'         => array(
+			'link'  => __( 'Logged in users will not see this.', 'convertpro' ),
+			'value' => '',
+			'title' => '',
+		),
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-pages',
+		'dependency'   => array(
+			'name'     => 'show_for_logged_in',
+			'operator' => '!=',
+			'value'    => 'true',
+		),
+		'category'     => 'User Behavior',
+	),
+	array(
+		'type'         => 'checkbox',
+		'class'        => '',
+		'name'         => 'hide_on_device',
+		'opts'         => array(
+			'title'       => __( 'Select device on which you wish to hide this call-to-action.', 'convertpro' ),
+			'value'       => '',
+			'options'     => array(
+				__( 'Desktop', 'convertpro' ) => 'desktop',
+				__( 'Tablet', 'convertpro' )  => 'tablet',
+				__( 'Mobile', 'convertpro' )  => 'mobile',
 			),
-			'panel'        => 'Cookies',
-			'dependency'   => array(
-				'name'     => 'cookies_enabled',
-				'operator' => '==',
-				'value'    => '1',
+			'description' => __( 'Select the device/devices you wish to hide this call-to-action on.', 'convertpro' ),
+			'tags'        => 'hide,devices,target,visitors',
+		),
+		'panel'        => 'Target',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-visitor',
+		'category'     => 'Hide on Devices',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'cookies_enabled',
+		'opts'         => array(
+			'title'       => __( 'Do you wish to hide this call-to-action after a visitor closes it or after successful submission?', 'convertpro' ),
+			'value'       => true,
+			'on'          => __( 'YES', 'convertpro' ),
+			'off'         => __( 'NO', 'convertpro' ),
+			'description' => __(
+				'Decide whether you wish to enable cookies. If enabled, you can hide it from a visitor who has closed it or from the one who has submitted it successfully.
+                ',
+				'convertpro'
 			),
-			'section'      => 'Configure',
-			'section_icon' => 'cp-icon-cookies',
+			'tags'        => 'cookies,repeat,control',
+		),
+		'panel'        => 'Cookies',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'category'     => 'Hide Call-to-action after closing / submission',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'cookies_enabled_enbl',
+		'opts'         => array(
+			'link'  => __( 'This will not be shown to repeated visitors for the set number of days.', 'convertpro' ),
+			'value' => '',
+			'title' => '',
+			'tags'  => '',
+		),
+		'panel'        => 'Cookies',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'dependency'   => array(
+			'name'     => 'cookies_enabled',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'Hide Call-to-action after closing / submission',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'cookies_enabled',
+		'opts'         => array(
+			'link'  => __( 'This will be displayed again when the visitor arrives on the website; irrespective of whether he has submitted the form or closed it earlier.', 'convertpro' ),
+			'value' => '',
+			'title' => '',
+			'tags'  => '',
+		),
+		'panel'        => 'Cookies',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'dependency'   => array(
+			'name'     => 'cookies_enabled',
+			'operator' => '!=',
+			'value'    => 'true',
+		),
+		'category'     => 'Hide Call-to-action after closing / submission',
+	),
+	array(
+		'type'         => 'slider',
+		'class'        => '',
+		'name'         => 'conversion_cookie',
+		'opts'         => array(
+			'title'       => __( "Hide for 'X' number of days after conversion", 'convertpro' ),
+			'value'       => 90,
+			'min'         => 0,
+			'max'         => 365,
+			'step'        => 1,
+			'suffix'      => 'days',
+			'description' => __( "Select the value of 'X'. This will not be shown for set number of days after conversion.", 'convertpro' ),
+			'tags'        => 'cookies,conversion,repeat,control',
+		),
+		'panel'        => 'Cookies',
+		'dependency'   => array(
+			'name'     => 'cookies_enabled',
+			'operator' => '==',
+			'value'    => '1',
+		),
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'category'     => 'Hide Call-to-action after closing / submission',
+	),
+	array(
+		'type'         => 'slider',
+		'class'        => '',
+		'name'         => 'closed_cookie',
+		'opts'         => array(
+			'title'       => __( "Hide for 'X' number of days after closing", 'convertpro' ),
+			'value'       => 30,
+			'min'         => 0,
+			'max'         => 365,
+			'step'        => 1,
+			'suffix'      => 'days',
+			'description' => __( "Select the value of 'X'. This will not be shown for set number of days after closing.", 'convertpro' ),
+			'tags'        => 'cookies,closed,repeat,control',
+		),
+		'panel'        => 'Cookies',
+		'dependency'   => array(
+			'name'     => 'cookies_enabled',
+			'operator' => '==',
+			'value'    => '1',
+		),
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-cookies',
+		'category'     => 'Hide Call-to-action after closing / submission',
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => '',
+		'opts'         => array(
+			'link'  => __( 'If you want to set a specific cookie after submission or closing of the call-to-action, you can do that here :', 'convertpro' ),
+			'class' => 'cp-cookie-title',
+			'value' => '',
+			'title' => '',
+			'tags'  => '',
+		),
+		'panel'        => 'Cookies',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'category'     => 'Add specific Cookie name after closing / submission',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'cookies_enabled_submit',
+		'opts'         => array(
+			'title'       => __( 'Set a cookie after successful submission.', 'convertpro' ),
+			'value'       => false,
+			'on'          => __( 'YES', 'convertpro' ),
+			'off'         => __( 'NO', 'convertpro' ),
+			'description' => __(
+				'You can add multiple Cookie names separated by a comma. Ex - firstcookie_name,secondcookie_name,thirdcookie_name.',
+				'convertpro'
+			),
+			'tags'        => 'cookies,repeat,control',
+		),
+		'panel'        => 'Cookies',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'category'     => 'Add specific Cookie name after closing / submission',
+	),
+	array(
+		'type'         => 'textfield',
+		'class'        => '',
+		'name'         => 'enable_cookies_class_submit',
+		'opts'         => array(
+			'title'       => __( 'Enter cookie name / names', 'convertpro' ),
+			'value'       => '',
+			'description' => __( 'Enter the cookie name or names.', 'convertpro' ),
+			'tags'        => 'enable,cookies,repeat,control,launch,smart',
+		),
+		'panel'        => 'Cookies',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'dependency'   => array(
+			'name'     => 'cookies_enabled_submit',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'Add specific Cookie name after closing / submission',
+	),
+	array(
+		'type'         => 'slider',
+		'class'        => '',
+		'name'         => 'conversion_cookie_submit',
+		'opts'         => array(
+			'title'       => __( "Set for 'X' number of days after conversion", 'convertpro' ),
+			'value'       => 90,
+			'min'         => 0,
+			'max'         => 365,
+			'step'        => 1,
+			'suffix'      => 'days',
+			'description' => __( "Select the value of 'X'. This will not be shown for set number of days after conversion.", 'convertpro' ),
+			'tags'        => 'cookies,conversion,repeat,control',
+		),
+		'panel'        => 'Cookies',
+		'dependency'   => array(
+			'name'     => 'cookies_enabled_submit',
+			'operator' => '==',
+			'value'    => '1',
+		),
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'category'     => 'Add specific Cookie name after closing / submission',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'cookies_enabled_closed',
+		'opts'         => array(
+			'title'       => __( 'Set a cookie after visitor closes it.', 'convertpro' ),
+			'value'       => false,
+			'on'          => __( 'YES', 'convertpro' ),
+			'off'         => __( 'NO', 'convertpro' ),
+			'description' => __(
+				'You can add multiple Cookie names separated by a comma. Ex - firstcookie_name,secondcookie_name,thirdcookie_name.',
+				'convertpro'
+			),
+			'tags'        => 'cookies,repeat,control',
+		),
+		'panel'        => 'Cookies',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'category'     => 'Add specific Cookie name after closing / submission',
+	),
+	array(
+		'type'         => 'textfield',
+		'class'        => '',
+		'name'         => 'enable_cookies_class_closed',
+		'opts'         => array(
+			'title'       => __( 'Enter cookie name / names', 'convertpro' ),
+			'value'       => '',
+			'description' => __( 'Enter the cookie name or names.', 'convertpro' ),
+			'tags'        => 'enable,cookies,repeat,control,launch,smart',
+		),
+		'panel'        => 'Cookies',
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-launch',
+		'dependency'   => array(
+			'name'     => 'cookies_enabled_closed',
+			'operator' => '==',
+			'value'    => 'true',
+		),
+		'category'     => 'Add specific Cookie name after closing / submission',
+	),
+	array(
+		'type'         => 'slider',
+		'class'        => '',
+		'name'         => 'closed_cookie_new',
+		'opts'         => array(
+			'title'       => __( "Set for 'X' number of days after closing", 'convertpro' ),
+			'value'       => 30,
+			'min'         => 0,
+			'max'         => 365,
+			'step'        => 1,
+			'suffix'      => 'days',
+			'description' => __( "Select the value of 'X'. This will not be shown for set number of days after closing.", 'convertpro' ),
+			'tags'        => 'cookies,conversion,repeat,control',
+		),
+		'panel'        => 'Cookies',
+		'dependency'   => array(
+			'name'     => 'cookies_enabled_closed',
+			'operator' => '==',
+			'value'    => '1',
+		),
+		'section'      => 'Configure',
+		'section_icon' => 'cp-icon-embed',
+		'category'     => 'Add specific Cookie name after closing / submission',
+	),
+);
 
-		),
-	);
+$configure = apply_filters( 'cp_configuration_option', $configure );
 
-	$configure = apply_filters( 'cp_configuration_option', $configure );
+/****** Submission */
+$collect = array(
+	array(
+		'type'         => 'connect',
+		'class'        => '',
+		'name'         => 'connect',
+		'opts'         => array(
+			'title' => __( 'Collect Leads Using', 'convertpro' ),
+			'value' => '0',
+			'tags'  => 'submission,collect,leads,connect',
+		),
+		'panel'        => 'Connect',
+		'section'      => 'Connect',
+		'section_icon' => 'cp-icon-connect',
+	),
+	array(
+		'type'         => 'switch',
+		'class'        => '',
+		'name'         => 'enable_notification',
+		'opts'         => array(
+			'title'       => __( 'Enable Email Notification', 'convertpro' ),
+			'value'       => true,
+			'on'          => __( 'YES', 'convertpro' ),
+			'off'         => __( 'NO', 'convertpro' ),
+			'description' => __( 'If enabled, all the lead data will be sent to the specified email ID.', 'convertpro' ),
+			'tags'        => 'submission,collect,leads,connect',
+		),
+		'panel'        => 'Email',
+		'section'      => 'Connect',
+		'section_icon' => 'dashicons dashicons-email-alt',
+	),
+	array(
+		'type'         => 'textfield',
+		'class'        => '',
+		'name'         => 'custom_email',
+		'opts'         => array(
+			'title'       => __( 'Enter Email', 'convertpro' ),
+			'value'       => get_option( 'admin_email' ),
+			'description' => __( 'All the lead data will be sent to this email ID. This happens when you are not connected to any service/mailer.', 'convertpro' ),
+			'tags'        => 'submission,collect,leads,connect,email',
+		),
+		'panel'        => 'Email',
+		'section'      => 'Connect',
+		'section_icon' => 'dashicons dashicons-email-alt',
+		'dependency'   => array(
+			'name'     => 'enable_notification',
+			'operator' => '==',
+			'value'    => '1',
+		),
+	),
+	array(
+		'type'         => 'txt-link',
+		'class'        => '',
+		'name'         => 'email_temp_link',
+		'opts'         => array(
+			/* translators: %s percentage */
+			'link'  => sprintf( __( "You can modify email template <a rel='noopener' target='_blank' href='%s'>here.</a>", 'convertpro' ), CP_V2_Tab_Menu::get_page_url( 'general-settings' ) . '#email-template' ),
+			'value' => '',
+			'title' => '',
+		),
+		'panel'        => 'Email',
+		'section'      => 'Connect',
+		'section_icon' => 'dashicons dashicons-email-alt',
+		'dependency'   => array(
+			'name'     => 'enable_notification',
+			'operator' => '==',
+			'value'    => '1',
+		),
+	),
+	array(
+		'type'         => 'cp_hidden',
+		'class'        => '',
+		'name'         => 'map_placeholder',
+		'opts'         => array(
+			'title'       => '',
+			'value'       => -1,
+			'description' => '',
+			'tags'        => '',
+		),
+		'panel'        => 'Email',
+		'section'      => 'Connect',
+		'section_icon' => 'dashicons dashicons-email-alt',
+		'dependency'   => array(
+			'name'     => 'enable_notification',
+			'operator' => '==',
+			'value'    => '1',
+		),
+	),
+);
 
-	/****** Submission */
-	$collect = array(
-		array(
-			'type'         => 'connect',
-			'class'        => '',
-			'name'         => 'connect',
-			'opts'         => array(
-				'title' => __( 'Collect Leads Using', 'convertpro' ),
-				'value' => '0',
-				'tags'  => 'submission,collect,leads,connect',
-			),
-			'panel'        => 'Connect',
-			'section'      => 'Connect',
-			'section_icon' => 'cp-icon-connect',
-		),
-		array(
-			'type'         => 'switch',
-			'class'        => '',
-			'name'         => 'enable_notification',
-			'opts'         => array(
-				'title'       => __( 'Enable Email Notification', 'convertpro' ),
-				'value'       => true,
-				'on'          => __( 'YES', 'convertpro' ),
-				'off'         => __( 'NO', 'convertpro' ),
-				'description' => __( 'If enabled, all the lead data will be sent to the specified email ID.', 'convertpro' ),
-				'tags'        => 'submission,collect,leads,connect',
-			),
-			'panel'        => 'Email',
-			'section'      => 'Connect',
-			'section_icon' => 'dashicons dashicons-email-alt',
-		),
-		array(
-			'type'         => 'textfield',
-			'class'        => '',
-			'name'         => 'custom_email',
-			'opts'         => array(
-				'title'       => __( 'Enter Email', 'convertpro' ),
-				'value'       => get_option( 'admin_email' ),
-				'description' => __( 'All the lead data will be sent to this email ID. This happens when you are not connected to any service/mailer.', 'convertpro' ),
-				'tags'        => 'submission,collect,leads,connect,email',
-			),
-			'panel'        => 'Email',
-			'section'      => 'Connect',
-			'section_icon' => 'dashicons dashicons-email-alt',
-			'dependency'   => array(
-				'name'     => 'enable_notification',
-				'operator' => '==',
-				'value'    => '1',
-			),
-		),
-		array(
-			'type'         => 'txt-link',
-			'class'        => '',
-			'name'         => 'email_temp_link',
-			'opts'         => array(
-				/* translators: %s percentage */
-				'link'  => sprintf( __( "You can modify email template <a rel='noopener' target='_blank' href='%s'>here.</a>", 'convertpro' ), CP_V2_Tab_Menu::get_page_url( 'general-settings' ) . '#email-template' ),
-				'value' => '',
-				'title' => '',
-			),
-			'panel'        => 'Email',
-			'section'      => 'Connect',
-			'section_icon' => 'dashicons dashicons-email-alt',
-			'dependency'   => array(
-				'name'     => 'enable_notification',
-				'operator' => '==',
-				'value'    => '1',
-			),
-		),
-		array(
-			'type'         => 'cp_hidden',
-			'class'        => '',
-			'name'         => 'map_placeholder',
-			'opts'         => array(
-				'title'       => '',
-				'value'       => -1,
-				'description' => '',
-				'tags'        => '',
-			),
-			'panel'        => 'Email',
-			'section'      => 'Connect',
-			'section_icon' => 'dashicons dashicons-email-alt',
-			'dependency'   => array(
-				'name'     => 'enable_notification',
-				'operator' => '==',
-				'value'    => '1',
-			),
-		),
-	);
-
-	$collect = apply_filters( 'cp_collect_option', $collect );
+$collect = apply_filters( 'cp_collect_option', $collect );
 
 	/**
 	 * Setup the option array for `customizer` for individual modal popup
@@ -994,7 +1368,7 @@ if ( ! $user_inactivity ) {
 	);
 
 	/**
-	 * Filter for Entry Enimation Array
+	 * Filter for Entry Animation Array
 	 *
 	 * @param array $animations - animations.
 	 */
@@ -1024,6 +1398,27 @@ if ( ! $user_inactivity ) {
 	add_filter( 'cp_entry_animations', 'cp_entry_animations_callback' );
 
 	/**
+	 * Filter for Entry Date Format Array
+	 *
+	 * @param array $date_format - get date formats.
+	 */
+	function cp_date_format_callback( $date_format ) {
+
+		$entry_date_format_arr = array(
+			'MM/DD/YYYY' => __( 'MM/DD/YYYY', 'convertpro' ),
+			'MM-DD-YYYY' => __( 'MM-DD-YYYY', 'convertpro' ),
+			'DD/MM/YYYY' => __( 'DD/MM/YYYY', 'convertpro' ),
+			'DD-MM-YYYY' => __( 'DD-MM-YYYY', 'convertpro' ),
+		);
+
+		if ( is_array( $date_format ) && count( $date_format ) > 0 ) {
+			$entry_date_format_arr = array_merge( $entry_date_format_arr, $date_format );
+		}
+		return $entry_date_format_arr;
+	}
+	add_filter( 'cp_date_format', 'cp_date_format_callback' );
+
+	/**
 	 * Filter for Exit Enimation Array
 	 *
 	 * @param array $animations - animations.
@@ -1047,10 +1442,17 @@ if ( ! $user_inactivity ) {
 		'dashed' => __( 'Dashed', 'convertpro' ),
 		'none'   => __( 'None', 'convertpro' ),
 	);
-
+	// Text transform.
+	$text_transform_arr = array(
+		'none'       => __( 'None', 'convertpro' ),
+		'capitalize' => __( 'Capitalize', 'convertpro' ),
+		'uppercase'  => __( 'Uppercase', 'convertpro' ),
+		'lowercase'  => __( 'Lowercase', 'convertpro' ),
+	);
 	// Set default options.
-	cp_Framework::$border_options = $border_arr;
-	cp_Framework::$icon_options   = $icons_array;
+	cp_Framework::$border_options         = $border_arr;
+	cp_Framework::$text_transform_options = $text_transform_arr;
+	cp_Framework::$icon_options           = $icons_array;
 
 	$close_link_options = array(
 		'type'         => 'cp_close_text',
@@ -1913,6 +2315,24 @@ if ( ! $user_inactivity ) {
 							'parameter' => 'countdown_text_color',
 						),
 					),
+					array(
+						'id'             => 'countdown_text_align',
+						'name'           => 'countdown_text_align',
+						'type'           => 'text_align',
+						'label'          => __( 'Text Alignment', 'convertpro' ),
+						'default_value'  => 'center',
+						'options'        => array(
+							'center'  => __( 'center', 'convertpro' ),
+							'left'    => __( 'left', 'convertpro' ),
+							'right'   => __( 'right', 'convertpro' ),
+							'justify' => __( 'justify', 'convertpro' ),
+						),
+						'map_style'      => array(
+							'parameter' => 'countdown_text_align',
+							'target'    => '.cp-target .cp-countdown-holding',
+						),
+						'show_on_mobile' => true,
+					),
 				),
 			),
 			array(
@@ -2397,6 +2817,7 @@ if ( ! $user_inactivity ) {
 							'goto_step'          => __( 'Go to Step', 'convertpro' ),
 							'close'              => __( 'Close', 'convertpro' ),
 							'close_tab'          => __( 'Close Page', 'convertpro' ),
+							'close_n_goto_url'   => __( 'Close & Go to URL', 'convertpro' ),
 						),
 						'map'            => array(
 							'attr'   => 'button-type',
@@ -4076,6 +4497,20 @@ if ( ! $user_inactivity ) {
 						),
 						'show_on_mobile' => true,
 					),
+					array(
+						'id'             => 'textarea_padding',
+						'name'           => 'textarea_padding',
+						'type'           => 'multiinput',
+						'label'          => __( 'Padding', 'convertpro' ),
+						'suffix'         => 'px',
+						'default_value'  => '10|10|0|10|px',
+						'map_style'      => array(
+							'parameter' => 'padding',
+							'unit'      => 'px',
+							'target'    => '.cp-target',
+						),
+						'show_on_mobile' => true,
+					),
 				),
 			),
 		),
@@ -4391,6 +4826,23 @@ if ( ! $user_inactivity ) {
 				'title'  => 'Advanced',
 				'params' => array(
 					array(
+						'id'             => 'label_line_height',
+						'name'           => 'label_line_height',
+						'type'           => 'number',
+						'label'          => __( 'Line Height', 'convertpro' ),
+						'default_value'  => 1.5,
+						'min'            => 1,
+						'max'            => 50,
+						'step'           => 0.1,
+						'suffix'         => '',
+						'map_style'      => array(
+							'parameter' => 'line-height',
+							'unit'      => '',
+							'target'    => '.cp-target',
+						),
+						'show_on_mobile' => true,
+					),
+					array(
 						'id'    => 'label_anim_checkbox',
 						'name'  => 'label_anim_checkbox',
 						'type'  => 'label',
@@ -4488,6 +4940,22 @@ if ( ! $user_inactivity ) {
 						),
 						'show_on_mobile' => true,
 					),
+					array(
+						'id'             => 'checkbox_size',
+						'name'           => 'checkbox_size',
+						'type'           => 'number',
+						'label'          => __( 'Checkbox Size', 'convertpro' ),
+						'default_value'  => 16,
+						'min'            => 16,
+						'max'            => 100,
+						'step'           => 1,
+						'suffix'         => 'px',
+						'map_style'      => array(
+							'parameter' => 'checkbox-size',
+							'target'    => '.cp-target .cp-checkbox-wrap input[type=checkbox]',
+						),
+						'show_on_mobile' => true,
+					),
 				),
 			),
 		),
@@ -4558,6 +5026,274 @@ if ( ! $user_inactivity ) {
 	);
 
 	$cp_form_hiddeninput_options = apply_filters( 'cp_form_hiddeninput_options', $cp_form_hiddeninput_options );
+
+	$cp_form_google_recaptcha_options = array(
+		'type'         => 'cp_google_recaptcha',
+		'class'        => '',
+		'name'         => 'cp_google_recaptcha',
+		'opts'         => array(
+			'title'          => __( 'Recaptcha Info', 'convertpro' ),
+			'value'          => '',
+			'description'    => '',
+			'tags'           => 'input,email,form fields,hidden',
+			'resize'         => true,
+			'show_on_mobile' => false,
+		),
+		'sections'     => array(
+			array(
+				'title'  => 'Recaptcha Info',
+				'params' => array(
+					array(
+						'id'            => 'recaptcha_input_name',
+						'name'          => 'recaptcha_input_name',
+						'type'          => 'text',
+						'label'         => __( 'Name', 'convertpro' ),
+						'default_value' => 'recaptcha field',
+						'suffix'        => '',
+						'map'           => array(
+							'attr'   => 'name',
+							'target' => '.cp-target',
+						),
+						'map_style'     => array(
+							'parameter' => 'hidden-input-name',
+						),
+					),
+					array(
+						'id'            => 'recaptcha_input_value',
+						'name'          => 'recaptcha_input_value',
+						'type'          => 'hidden',
+						'label'         => __( 'Recaptcha Site key', 'convertpro' ),
+						'default_value' => get_option( 'cp_google_recaptcha_site_key' ),
+						'suffix'        => '',
+						'map_style'     => array(
+							'parameter' => 'recaptcha-input',
+						),
+						'map'           => array(
+							'attr'   => 'value',
+							'target' => '.cp-target',
+						),
+					),
+					array(
+						'id'    => 'recaptcha_setting_link',
+						'name'  => 'recaptcha_setting_link',
+						'type'  => 'label',
+						'label' => /* translators:%s module name .*/
+						sprintf( __( '%s ', 'convertpro' ), $recaptcha_setting_link ),
+						'map'   => array(
+							'attr'   => 'placeholder',
+							'target' => '.cp-target',
+						),
+					),
+				),
+			),
+		),
+
+		'panel'        => 'Form',
+		'section'      => 'Design',
+		'has_params'   => true,
+		'category'     => 'Form Fields',
+		'section_icon' => 'cp-icon-field',
+	);
+
+	$cp_form_google_recaptcha_options = apply_filters( 'cp_form_google_recaptcha_options', $cp_form_google_recaptcha_options );
+
+	$cp_form_date_options = array(
+		'type'         => 'cp_date',
+		'class'        => '',
+		'name'         => 'cp_date',
+		'opts'         => array(
+			'title'          => __( 'Date', 'convertpro' ),
+			'value'          => '',
+			'description'    => '',
+			'tags'           => 'input,date,form fields',
+			'resize'         => true,
+			'show_on_mobile' => false,
+		),
+		'sections'     => array(
+			array(
+				'title'  => 'General',
+				'params' => array(
+					array(
+						'id'            => 'date_name',
+						'name'          => 'date_name',
+						'type'          => 'text',
+						'label'         => __( 'Name', 'convertpro' ),
+						'default_value' => 'datefield',
+						'suffix'        => '',
+						'map'           => array(
+							'attr'   => 'name',
+							'target' => '.cp-target',
+						),
+						'map_style'     => array(
+							'parameter' => 'date-data-placeholder',
+						),
+					),
+					array(
+						'id'            => 'date_placeholder',
+						'name'          => 'date_placeholder',
+						'type'          => 'text',
+						'suffix'        => '',
+						'label'         => __( 'Placeholder', 'convertpro' ),
+						'default_value' => __( 'MM/DD/YYYY', 'convertpro' ),
+						'map'           => array(
+							'attr'   => 'placeholder',
+							'target' => '.cp-target',
+						),
+					),
+					array(
+						'id'            => 'date_field_format',
+						'name'          => 'date_field_format',
+						'type'          => 'dropdown',
+						'label'         => 'Date Format',
+						'default_value' => 'none',
+						'options'       => apply_filters( 'cp_date_format', array() ),
+						'map'           => array(
+							'attr'   => 'data-cp-date-format',
+							'target' => '.cp-field-html-data',
+						),
+					),
+					array(
+						'id'            => 'required',
+						'name'          => 'required',
+						'type'          => 'switch',
+						'label'         => __( 'Required', 'convertpro' ),
+						'suffix'        => '',
+						'default_value' => false,
+						'options'       => array(
+							'on'  => __( 'YES', 'convertpro' ),
+							'off' => __( 'NO', 'convertpro' ),
+						),
+						'map'           => array(
+							'attr'   => 'required',
+							'target' => '.cp-target',
+						),
+					),
+				),
+			),
+			array(
+				'title'  => 'Advanced',
+				'params' => array(
+					array(
+						'id'    => 'label_anim_date',
+						'name'  => 'label_anim_date',
+						'type'  => 'label',
+						'label' => __( 'Animation', 'convertpro' ),
+					),
+					array(
+						'id'            => 'field_animation',
+						'name'          => 'field_animation',
+						'type'          => 'dropdown',
+						'label'         => 'Animation',
+						'default_value' => 'none',
+						'options'       => apply_filters( 'cp_entry_animations', array() ),
+						'map'           => array(
+							'attr'   => 'data-anim-class',
+							'target' => '.cp-field-html-data',
+						),
+						'map_style'     => array(
+							'parameter' => 'removeAnimClass',
+							'target'    => '.cp-field-html-data',
+							'unit'      => 'data-anim-class',
+						),
+					),
+					array(
+						'id'            => 'field_animation_delay',
+						'name'          => 'field_animation_delay',
+						'type'          => 'number',
+						'suffix'        => 'ms,s',
+						'label'         => 'Animation Delay',
+						'default_value' => '0ms',
+						'min'           => 0,
+						'dependency'    => array(
+							'name'     => 'field_animation',
+							'operator' => '!=',
+							'value'    => 'cp-none',
+						),
+						'map'           => array(
+							'attr'   => 'data-anim-delay',
+							'target' => '.cp-field-html-data',
+						),
+					),
+					array(
+						'id'            => 'field_animation_duration',
+						'name'          => 'field_animation_duration',
+						'type'          => 'number',
+						'suffix'        => 'ms,s',
+						'label'         => 'Animation Duration',
+						'default_value' => '1000ms',
+						'min'           => 0,
+						'dependency'    => array(
+							'name'     => 'field_animation',
+							'operator' => '!=',
+							'value'    => 'cp-none',
+						),
+						'map'           => array(
+							'attr'   => 'data-anim-duration',
+							'target' => '.cp-field-html-data',
+						),
+					),
+					array(
+						'id'             => 'label_layout_date',
+						'name'           => 'label_layout_date',
+						'type'           => 'label',
+						'label'          => __( 'Size', 'convertpro' ),
+						'show_on_mobile' => true,
+					),
+					array(
+						'id'             => 'width',
+						'name'           => 'width',
+						'label'          => __( 'Width', 'convertpro' ),
+						'type'           => 'number',
+						'default_value'  => 230,
+						'min'            => 1,
+						'max'            => 800,
+						'step'           => 1,
+						'suffix'         => 'px',
+						'map_style'      => array(
+							'parameter' => 'width',
+							'unit'      => 'px',
+						),
+						'show_on_mobile' => true,
+					),
+					array(
+						'id'             => 'height',
+						'name'           => 'height',
+						'type'           => 'number',
+						'label'          => __( 'Height', 'convertpro' ),
+						'default_value'  => 45,
+						'min'            => 1,
+						'max'            => 800,
+						'step'           => 1,
+						'suffix'         => 'px',
+						'map_style'      => array(
+							'parameter' => 'height',
+							'unit'      => 'px',
+						),
+						'show_on_mobile' => true,
+					),
+					array(
+						'id'             => 'date_field_type',
+						'name'           => 'date_field_type',
+						'type'           => 'hidden',
+						'label'          => 'Date Field Type',
+						'default_value'  => 'yes',
+						'hide_on_mobile' => true,
+						'map'            => array(
+							'attr'   => 'date-field-type',
+							'target' => '.cp-target',
+						),
+					),
+				),
+			),
+		),
+		'panel'        => 'Form',
+		'section'      => 'Design',
+		'has_params'   => true,
+		'category'     => 'Form Fields',
+		'section_icon' => 'cp-icon-field',
+	);
+
+	$cp_form_date_options = apply_filters( 'cp_form_date_options', $cp_form_date_options );
 
 	$cp_button_flatbtn_options = array(
 		'type'         => 'cp_button',
@@ -4658,6 +5394,7 @@ if ( ! $user_inactivity ) {
 							'goto_step'          => __( 'Go to Step', 'convertpro' ),
 							'close'              => __( 'Close', 'convertpro' ),
 							'close_tab'          => __( 'Close Page', 'convertpro' ),
+							'close_n_goto_url'   => __( 'Close & Go to URL', 'convertpro' ),
 						),
 						'map'           => array(
 							'attr'   => 'button-type',
@@ -5078,6 +5815,7 @@ if ( ! $user_inactivity ) {
 							'goto_step'          => __( 'Go To Step', 'convertpro' ),
 							'close'              => __( 'Close', 'convertpro' ),
 							'close_tab'          => __( 'Close Page', 'convertpro' ),
+							'close_n_goto_url'   => __( 'Close & Go to URL', 'convertpro' ),
 						),
 						'map'           => array(
 							'attr'   => 'button-type',
@@ -5277,14 +6015,16 @@ if ( ! $user_inactivity ) {
 	cp_Framework::$cp_countdown_opts   = $cp_countdown_options;
 
 	// Set default for Form Panel.
-	cp_Framework::$cp_form_email_opts         = $cp_form_email_options;
-	cp_Framework::$cp_form_name_opts          = $cp_form_name_options;
-	cp_Framework::$cp_form_phone_opts         = $cp_form_phone_options;
-	cp_Framework::$cp_form_dropdown_opts      = $cp_form_dropdown_options;
-	cp_Framework::$cp_form_textarea_opts      = $cp_form_textarea_options;
-	cp_Framework::$cp_form_radio_opts         = $cp_form_radio_options;
-	cp_Framework::$cp_form_checkbox_opts      = $cp_form_checkbox_options;
-	cp_Framework::$cp_form_hiddeninput_opts   = $cp_form_hiddeninput_options;
-	cp_Framework::$cp_button_flatbtn_opts     = $cp_button_flatbtn_options;
-	cp_Framework::$cp_button_gradientbtn_opts = $cp_button_gradientbtn_options;
-	cp_Framework::$cp_video_options           = $video_options;
+	cp_Framework::$cp_form_email_opts            = $cp_form_email_options;
+	cp_Framework::$cp_form_name_opts             = $cp_form_name_options;
+	cp_Framework::$cp_form_phone_opts            = $cp_form_phone_options;
+	cp_Framework::$cp_form_dropdown_opts         = $cp_form_dropdown_options;
+	cp_Framework::$cp_form_textarea_opts         = $cp_form_textarea_options;
+	cp_Framework::$cp_form_radio_opts            = $cp_form_radio_options;
+	cp_Framework::$cp_form_checkbox_opts         = $cp_form_checkbox_options;
+	cp_Framework::$cp_form_hiddeninput_opts      = $cp_form_hiddeninput_options;
+	cp_Framework::$cp_form_google_recaptcha_opts = $cp_form_google_recaptcha_options;
+	cp_Framework::$cp_form_date_opts             = $cp_form_date_options;
+	cp_Framework::$cp_button_flatbtn_opts        = $cp_button_flatbtn_options;
+	cp_Framework::$cp_button_gradientbtn_opts    = $cp_button_gradientbtn_options;
+	cp_Framework::$cp_video_options              = $video_options;

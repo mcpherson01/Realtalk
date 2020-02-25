@@ -5,7 +5,7 @@
  * @package convertpro
  */
 
-	?>
+?>
 
 <div class="edit-screen-overlay" style="overflow: hidden;background: #FCFCFC;position: fixed;width: 100%;height: 100%;top: 0;left: 0;z-index: 9999999;">
 	<div class="cp-absolute-loader" style="visibility: visible;overflow: hidden;">

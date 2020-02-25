@@ -40,9 +40,11 @@ var ConvertProFieldEvents = '';
 	    	$( document ).on( 'click', '.customizer-collapse', this._collapse );
 	    	$( document ).on( 'click', '.cp-panel-link', this._panelClick );
 	    	$( document ).on( 'click', '.cp-save', this._save );
+			$( document ).on( 'click', '.cp-info-slide-error-notice .error-close', this._closeErrorMsg );
 	    	$( document ).on( 'keyup', '#field-search', this._search );
 	    	$( document ).on( 'click', this._documentClick );
 	    	$( document ).on( 'click', '.cp-field-html-data', this._htmlClicked );
+	    	$( document ).on( 'click', '#cp_count_as_conversion', this._countAsConversionClicked );
 
 	    	$( document ).on( 'click', '.search-panel.search-close-icon', function() {
 	    		field_search_input.val("");
@@ -106,6 +108,45 @@ var ConvertProFieldEvents = '';
 				}
 			});
 	    },
+
+
+	    _countAsConversionClicked: function() {
+
+			var security_nonce 	= $( '#cp-save-ajax-nonce' ).val(),
+				status	= $( '#count_as_conversion' ).val();
+			if ( 'true' == status ) {
+				$.ajax({
+					url:ajaxurl,
+					data: { 
+						action:'cpro_check_count_as_conversion', 
+						status: status,
+						security: security_nonce,
+					},
+				type:'POST',
+				dataType:'JSON',
+				success:function( result ) {
+					$('.cp_count_as_conversion_error').remove();
+					if( ! result.success ) {
+
+						$( '#count_as_conversion' ).val( 'false' );
+						$( '#cp_count_as_conversion' ).prop( "checked", false );
+						var link = '<div class="cp_count_as_conversion_error" style="color: red;">'+result.data.message+'</div>';
+						$( '.cp-param-inner.cp-param-content-switch' ).append(link);
+					}
+
+				},
+				error:function( err ) {
+					console.log( err );
+				}
+			});
+	    	}
+	    },
+
+
+		_closeErrorMsg: function() {
+			$( '.cp-info-slide-error-notice' ).html( '' );
+		},
+
 
 	    _htmlClicked: function () {
 
@@ -381,6 +422,47 @@ var ConvertProFieldEvents = '';
 				post_status = 'new';
 			}
 
+			/* checking the close cta scrolling trigger for multiple ruleset - infobar,slide-in */
+			if( 'info_bar' === module_type || 'slide_in' === module_type ) {
+				var ruleset_json = JSON.parse( new_format.rulesets.value );
+				var ruleset_autoload_on_scroll_count = ruleset_autoload_on_scroll_range_count = 0;
+				var ruleset_json_length = ruleset_json.length;
+				$.each( ruleset_json, function( i, index ) {
+
+					if( '1' === index.autoload_on_scroll ) {
+						ruleset_autoload_on_scroll_count++;
+						if( parseInt( index.load_after_scroll ) > parseInt( index.close_after_scroll ) ){
+							ruleset_autoload_on_scroll_range_count++;
+						}
+						if( undefined === index.close_after_scroll ) {
+							ruleset_autoload_on_scroll_range_count++;
+						}
+					}
+				});
+
+				if( ( 1 < ruleset_autoload_on_scroll_count ) && ( ruleset_autoload_on_scroll_range_count !== ruleset_autoload_on_scroll_count ) ) {
+
+					$( '.cp-info-slide-error-notice' ).html( '' );
+					$( '.cp-info-slide-error-notice' ).html(
+						$( '<div>', {
+							class: 'cp-info-slide-error-notice-wrap'
+						} )
+						);
+
+					$( '.cp-info-slide-error-notice-wrap' ).html(
+						$( '<div>', {
+							class: 'cp-info-slide-error-notice-head'
+						} ).append(
+						$( '<span>' ).html( "Looks like you have set more than one rulesets!" )
+						)
+						);
+
+					$( '.cp-info-slide-error-notice-wrap' ).append(
+						$( '<div>' ).append( cp_pro.close_scroll_ruleset_err_msg + '<span class="error-close">&times;<span>' )
+						);
+				}
+			}
+
 			$.ajax({
 				url:ajaxurl,
 				data: { 
@@ -505,7 +587,16 @@ var ConvertProFieldEvents = '';
 									return;
 								}
 
-								if( $this.closest(".fields-panel").closest('.cp-element-container').hasClass('has-preset') ) {
+								if( $this.closest(".cp-connect-integration-wrap").closest('.cp-element-container').hasClass('skip-search') ) {
+
+									$this.closest('.cp-panel-content').show();
+									$this.closest(".cp-connect-integration-wrap").closest(".cp-element-container.skip-search").show();
+									$this.show();
+
+									if( $this.parent().hasClass('cp-md-trigger') ) {
+					                    $this.parent().show();
+                					}
+            					}else if( $this.closest(".fields-panel").closest('.cp-element-container').hasClass('has-preset') ) {
 
 									$this.closest('.cp-panel-content').show();
 									$this.closest(".fields-panel").closest(".cp-element-container.has-preset").show();
@@ -584,7 +675,16 @@ var ConvertProFieldEvents = '';
 			) {
 				search_section.hide();
 			} else {
-				if( section == 'design' ) {
+				if( section == 'design' || ( section == 'connect' && panel == 'connect' ) ) {
+					if( section == 'connect' && panel == 'connect' ){
+						$( '#field-search' ).attr("placeholder", "Search Connections...");
+						var connect_check = $('.cp-customizer-tabs-wrapper').find("input[name='cp_connect_settings']").val();
+						if( connect_check != -1) {
+							search_section.hide();
+						} else {
+							search_section.show();
+						}
+					}
 					if( $( 'html' ).hasClass( 'cp-mobile-device' ) ) {
 						search_section.hide();
 					} else {
@@ -703,7 +803,9 @@ var ConvertProFieldEvents = '';
 	    },
 
 	    _ready: function() {
-
+	    	$( '.hide-cta-class' ).on( 'click', function(e){
+	    		$('[data-panel="target"]').trigger('click');
+	    	});
 	    	$( '.wp-admin.wp-core-ui' ).addClass( 'folded' );
 	    	$( "#cp_design_iframe" ).css( "visibility", "visible" );
 			$( ".design-area-loading" ).hide();
@@ -1006,21 +1108,30 @@ var ConvertProFieldEvents = '';
 
 				var style_status = val;
 				var style_id = $("#cp_style_id").val();
-				
+				var wp_nonce = $("#cpro_publish_new").val();
+				var checkbox		= jQuery(obj).siblings(".cp-switch-btn.checkbox-label");
+				checkbox.css('pointer-events', 'none');
+				checkbox.append( '<div class="loader-container" style="margin-left: 340%;"><i class="cp-loader-style"></i></div>' );
+
 				$.ajax({
 					url: ajaxurl,
 					data: { 
 						action: 'cp_update_style_status', 
 						style_id: style_id,
-						style_status: style_status
+						style_status: style_status,
+						publish_nonce: wp_nonce
 					},
 					type: 'POST',
 					dataType:'JSON',
 					success:function(result) {
-						console.log(result);		
+						console.log(result);
+						checkbox.children('.loader-container').remove();
+						checkbox.css('pointer-events', '');
 					},
 					error:function(err){
 						console.log(err);
+						checkbox.children('.loader-container').remove();
+						checkbox.css('pointer-events', '');
 					}
 				});
 			}

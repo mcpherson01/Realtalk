@@ -4,12 +4,12 @@
  *
  * @package     ConvertPro
  * @author      Brainstormforce
- * @link        http://convertplug.com/plus
+ * @link        https://www.convertpro.net
  * @since       ConvertPro 1.0.0
  */
 
 // Set current version.
-define( 'CP_V2_VERSION', '1.1.5' );
+define( 'CP_V2_VERSION', '1.4.2' );
 
 if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 
@@ -19,6 +19,7 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 	 * @since 1.0.0
 	 */
 	class CP_V2_Auto_Update {
+
 
 		/**
 		 * Class instance.
@@ -45,7 +46,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 
 			// Theme Updates.
 			add_action( 'init', __CLASS__ . '::init' );
-
 		}
 
 		/**
@@ -54,7 +54,7 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 		 * @since 1.0.0
 		 * @return void
 		 */
-		static public function init() {
+		public static function init() {
 
 			do_action( 'cp_pro_before_update' );
 
@@ -99,11 +99,117 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 				self::refresh_html();
 			}
 
+			if ( version_compare( $saved_version, '1.2.5', '=' ) ) {
+				self::update_textarea_padding();
+			}
+
 			// Update auto saved version number.
 			update_option( 'cp-pro-auto-version', CP_V2_VERSION );
 
 			do_action( 'cp_pro_after_update' );
+		}
 
+		/**
+		 * Function to replace double quotes to single quotes
+		 *
+		 * @param string $raw_html HTML.
+		 *
+		 * @since 1.0.2
+		 */
+		public static function fix_json( $raw_html ) {
+			$raw_html = str_replace( '"', "'", $raw_html );
+			$raw_html = stripslashes( $raw_html );
+			return $raw_html; // Return fixed HTML.
+		}
+
+		/**
+		 * Function to set placeholder key for existing form field data
+		 *
+		 * @since 1.0.0-rc.11
+		 */
+		public static function update_textarea_padding() {
+
+			$designs = self::get_designs();
+
+			$arr_old_map_style = array();
+
+			$form_field_name = false;
+
+			if ( is_array( $designs ) && ! empty( $designs ) ) {
+				foreach ( $designs as $design ) {
+					$modal_data = get_post_meta( $design, 'cp_modal_data', true );
+
+					update_post_meta( $design, 'cp_modal_data_old', $modal_data );
+
+					$pattern = '/:"<(.*?)>(.*?)\",/s';
+
+					$modal_data = preg_replace_callback(
+						$pattern,
+						function ( $matches ) {
+							$matches[0] = substr_replace( $matches[0], '', strlen( $matches[0] ) - 2 );
+							$matches[0] = substr( $matches[0], 2 );
+
+							return ':"' . CP_V2_Auto_Update::fix_json( $matches[0] ) . '",';
+						},
+						$modal_data
+					);
+
+					$decoded_modal_data = json_decode( $modal_data );
+
+					if ( ! empty( $decoded_modal_data ) ) {
+						foreach ( $decoded_modal_data as $key => $value ) {
+							foreach ( $value as $nested_key => $nested_value ) {
+								if ( false !== strpos( $nested_key, 'cp_textarea-2' ) ) {
+									foreach ( $nested_value->map_style as $key1 => $value2 ) {
+										if ( 'textarea_padding' == $value2->name ) {
+											$form_field_name = true;
+										}
+									}
+								}
+
+								if ( ! $form_field_name ) {
+									if ( false !== strpos( $nested_key, 'form_field' ) ) {
+										if ( isset( $nested_value->form_field_padding ) ) {
+											$old_form_field_padding = $nested_value->form_field_padding[0];
+										} else {
+											$old_form_field_padding = '10|10|0|10|px';
+										}
+									}
+
+									if ( false !== strpos( $nested_key, 'cp_textarea-2' ) ) {
+										$nested_value->textarea_padding = $old_form_field_padding;
+
+										$old_map_style      = $nested_value->map_style;
+										$index_count        = count( (array) $old_map_style );
+										$new_index          = $index_count + 1;
+										$map_style_property = (object) array(
+											'name'      => 'textarea_padding',
+											'parameter' => 'padding',
+											'onhover'   => '',
+											'target'    => '.cp-target',
+											'unit'      => 'px',
+										);
+
+										$decoded_index             = $decoded_modal_data->$key->$nested_key->map_style;
+										$decoded_index->$new_index = $map_style_property;
+									}
+								}
+							}
+						}
+					}
+
+					// Ignore the PHPCS warning about JSON_UNESCAPED_UNICODE parameter usage.
+					// @codingStandardsIgnoreStart
+					$modal_data = json_encode( $decoded_modal_data, JSON_UNESCAPED_UNICODE );
+					// @codingStandardsIgnoreEnd
+
+					// Update modal data.
+					if ( false != $modal_data && 'null' != $modal_data && ! empty( $modal_data ) ) {
+						update_post_meta( $design, 'cp_modal_data', $modal_data );
+					}
+				}
+			}
+			self::refresh_html();
 		}
 
 		/**
@@ -138,9 +244,7 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 			$cp_popup_obj = new CP_V2_Popups();
 
 			if ( is_array( $designs ) && ! empty( $designs ) ) {
-
 				foreach ( $designs as $design ) {
-
 					$module_type = get_post_meta( $design, 'cp_module_type', true );
 					$display     = '';
 
@@ -168,24 +272,19 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 			$designs = self::get_designs();
 
 			if ( is_array( $designs ) && ! empty( $designs ) ) {
-
 				foreach ( $designs as $design ) {
-
 					$modal_data         = get_post_meta( $design, 'cp_modal_data', true );
 					$decoded_modal_data = json_decode( $modal_data );
 
 					if ( ! empty( $decoded_modal_data ) ) {
 						foreach ( $decoded_modal_data as $key => $value ) {
-
 							if ( 'common' == $key ) {
 								continue;
 							}
 
 							foreach ( $value as $nested_key => $nested_value ) {
-
 								// Form field data.
 								if ( false !== strpos( $nested_key, 'form_field' ) ) {
-
 									$text_color = $nested_value->form_field_color;
 
 									// Set placeholder color same as text color.
@@ -257,6 +356,7 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 				'modal_exit_intent',
 				'autoload_on_scroll',
 				'load_after_scroll',
+				'close_after_scroll',
 				'inactivity',
 				'enable_after_post',
 				'enable_custom_scroll',
@@ -279,6 +379,7 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 				'modal_exit_intent'         => '0',
 				'autoload_on_scroll'        => '0',
 				'load_after_scroll'         => '75',
+				'close_after_scroll'        => '0',
 				'inactivity'                => '0',
 				'inactivity_link'           => '',
 				'enable_after_post'         => '0',
@@ -308,7 +409,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 			);
 
 			foreach ( $popups->posts as $post_data ) {
-
 				$configure_rulsets = array();
 				$configure_data    = get_post_meta( $post_data->ID, 'configure', true );
 
@@ -316,7 +416,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 				update_post_meta( $post_data->ID, 'bckp_configure', $configure_data );
 
 				if ( isset( $configure_data[0] ) && is_array( $configure_data[0] ) ) {
-
 					$configure_data = $configure_data[0];
 
 					$configure_common_data = array(
@@ -330,9 +429,7 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 					);
 
 					foreach ( $configure_common_data as $com_key => $com_value ) {
-
 						if ( isset( $configure_data[ $com_key ] ) ) {
-
 							$configure_common_data[ $com_key ] = $configure_data[ $com_key ];
 
 							unset( $configure_data[ $com_key ] );
@@ -342,9 +439,7 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 					$counter = 1;
 
 					foreach ( $configure_data as $c_key => $c_value ) {
-
 						if ( in_array( $c_key, $rulesets_enabled ) ) {
-
 							$temp_ruleset = $rulset_rule_defaults;
 
 							if ( $counter > 1 ) {
@@ -352,13 +447,10 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 							}
 
 							foreach ( $configure_common_data as $com_key => $com_value ) {
-
 								if ( 'display_on_first_load' == $com_key || 'enable_referrer' == $com_key ) {
-
 									switch ( $com_key ) {
 										case 'display_on_first_load':
 											if ( '1' != $com_value ) {
-
 												$temp_ruleset['enable_visitors'] = '1';
 												$temp_ruleset['visitor_type']    = 'returning';
 											}
@@ -366,16 +458,12 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 											break;
 										case 'enable_referrer':
 											if ( '1' == $com_value ) {
-
 												if ( isset( $configure_common_data['display_to'] ) && '' !== $configure_common_data['display_to'] ) {
-
 													$temp_ruleset['enable_referrer'] = '1';
 													$temp_ruleset['referrer_type']   = 'display-to';
 												}
 											} else {
-
 												if ( isset( $configure_common_data['hide_from'] ) && '' !== $configure_common_data['hide_from'] ) {
-
 													$temp_ruleset['enable_referrer'] = '1';
 													$temp_ruleset['referrer_type']   = 'hide-from';
 												}
@@ -391,7 +479,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 							switch ( $c_key ) {
 								case 'autoload_on_duration':
 									if ( '1' == $c_value ) {
-
 										$temp_ruleset['autoload_on_duration'] = $configure_data['autoload_on_duration'];
 										$temp_ruleset['load_on_duration']     = $configure_data['load_on_duration'];
 
@@ -405,7 +492,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 									break;
 								case 'modal_exit_intent':
 									if ( '1' == $c_value ) {
-
 										$temp_ruleset['modal_exit_intent'] = $configure_data['modal_exit_intent'];
 
 										$configure_rulsets[] = $temp_ruleset;
@@ -417,21 +503,19 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 									break;
 								case 'autoload_on_scroll':
 									if ( '1' == $c_value ) {
-
 										$temp_ruleset['autoload_on_scroll'] = $configure_data['autoload_on_scroll'];
 										$temp_ruleset['load_after_scroll']  = $configure_data['load_after_scroll'];
-
-										$configure_rulsets[] = $temp_ruleset;
+										$temp_ruleset['close_after_scroll'] = $configure_data['close_after_scroll'];
+										$configure_rulsets[]                = $temp_ruleset;
 										$counter++;
 									}
 
 									unset( $configure_data['autoload_on_scroll'] );
 									unset( $configure_data['load_after_scroll'] );
-
+									unset( $configure_data['close_after_scroll'] );
 									break;
 								case 'inactivity':
 									if ( '1' == $c_value ) {
-
 										$temp_ruleset['inactivity'] = $configure_data['inactivity'];
 
 										$configure_rulsets[] = $temp_ruleset;
@@ -443,7 +527,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 									break;
 								case 'enable_after_post':
 									if ( '1' == $c_value ) {
-
 										$temp_ruleset['enable_after_post'] = $configure_data['enable_after_post'];
 
 										$configure_rulsets[] = $temp_ruleset;
@@ -455,7 +538,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 									break;
 								case 'enable_custom_scroll':
 									if ( '1' == $c_value ) {
-
 										$temp_ruleset['enable_custom_scroll'] = $configure_data['enable_custom_scroll'];
 										$temp_ruleset['enable_scroll_class']  = $configure_data['enable_scroll_class'];
 
@@ -469,7 +551,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 									break;
 								case 'enable_custom_class':
 									if ( '1' == $c_value ) {
-
 										$temp_ruleset['enable_custom_class'] = $configure_data['enable_custom_class'];
 										$temp_ruleset['custom_class']        = $configure_data['custom_class'];
 
@@ -509,29 +590,22 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 			$designs = self::get_designs();
 
 			if ( ! empty( $designs ) ) {
-
 				foreach ( $designs as $design ) {
-
 					$configuration_meta = get_post_meta( $design, 'configure', true );
 
 					if ( ! empty( $configuration_meta ) ) {
 						foreach ( $configuration_meta as $config_key => $meta ) {
-
 							if ( isset( $meta['target_rule_display'] ) ) {
 								$target_rules = $meta['target_rule_display'];
 
 								$decoded_data = json_decode( $target_rules );
 
 								foreach ( $decoded_data as $decode_key => $data_val ) {
-
 									if ( isset( $data_val->type ) && 'specifics' == $data_val->type ) {
-
 										$specifics = $data_val->specific;
 
 										foreach ( $specifics as $key => $specific ) {
-
 											if ( false !== strpos( $specific, 'tax-' ) ) {
-
 												$term_id = str_replace( 'tax-', '', $specific );
 
 												$taxonomy = self::get_taxonomy_by_term_id( $term_id );
@@ -555,7 +629,6 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 						$configuration_meta[ $config_key ] = $meta;
 
 						update_post_meta( $design, 'configure', $configuration_meta );
-
 					}
 				}
 			}
@@ -576,12 +649,12 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 
 			$taxonomy = $wpdb->get_var(
 				$wpdb->prepare(
-					"SELECT taxonomy FROM $wpdb->term_taxonomy WHERE term_id = %s", $term_id
+					"SELECT taxonomy FROM $wpdb->term_taxonomy WHERE term_id = %s",
+					$term_id
 				)
 			);
 
 			return $taxonomy;
-
 		}
 
 		/**
@@ -594,9 +667,7 @@ if ( ! class_exists( 'CP_V2_Auto_Update' ) ) :
 			$designs = self::get_designs();
 
 			if ( is_array( $designs ) && ! empty( $designs ) ) {
-
 				foreach ( $designs as $design ) {
-
 					$modal_data = get_post_meta( $design, 'cp_modal_data', true );
 
 					$modal_data = str_replace( '{{http_url}}', 'http://', $modal_data );

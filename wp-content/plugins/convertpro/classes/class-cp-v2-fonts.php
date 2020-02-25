@@ -29,8 +29,19 @@ if ( ! class_exists( 'CP_V2_Fonts' ) ) {
 		 */
 		static public function cp_get_fonts() {
 
-			$google_fonts  = self::$google;
-			$default_fonts = self::$default;
+			if ( isset( $_GET['page'] ) && 'convert-pro-general-settings' !== $_GET['page'] ) {
+				return;
+			}
+
+			$google_fonts    = self::$google;
+			$default_fonts   = self::$default;
+			$type_kit_font   = self::$type_kit_font;
+			$cp_custom_fonts = self::$cp_custom_fonts;
+
+			$arr_fonts = array();
+
+			/* Default font filter added. */
+			$default_fonts = apply_filters( 'cp_add_custom_fonts', $default_fonts );
 
 			$google_fonts = apply_filters( 'cp_add_google_fonts', $google_fonts );
 
@@ -44,13 +55,80 @@ if ( ! class_exists( 'CP_V2_Fonts' ) ) {
 				$google_fonts[ $font ] = $value;
 			}
 
-			$fonts = array(
+			$arr_fonts = array(
 				'Default' => $default_fonts,
 				'Google'  => $google_fonts,
 			);
 
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+			if ( is_plugin_active( 'custom-typekit-fonts/custom-typekit-fonts.php' ) ) {
+
+				$kit_info = get_option( 'custom-typekit-fonts' );
+
+				if ( $kit_info && '' != $kit_info ) {
+
+					foreach ( $kit_info['custom-typekit-font-details'] as $font ) {
+						array_unshift( $font['weights'], 'Inherit' );
+						array_unshift( $font['weights'], 'Normal' );
+						$type_kit_font[ $font['family'] ] = $font['weights'];
+					}
+
+					$arr_fonts['Typekit'] = $type_kit_font;
+				}
+			}
+
+			if ( is_plugin_active( 'custom-fonts/custom-fonts.php' ) ) {
+
+				$custom_fonts = self::custom_get_terms( 'bsf_custom_fonts' );
+
+				if ( ! empty( $custom_fonts ) ) {
+
+					$custom_fonts_weights = array( 'Inherit', 'Normal' );
+
+					foreach ( $custom_fonts as $fonts ) {
+						$bsf_custom_font[ $fonts->name ] = $custom_fonts_weights;
+					}
+
+					$arr_fonts['Custom'] = $bsf_custom_font;
+				}
+			}
+
+			$fonts = $arr_fonts;
+
 			return $fonts;
 
+		}
+
+		/**
+		 * Get all the custom terms
+		 *
+		 * @since 1.2.5
+		 * @param int $term custom font taxonomy name.
+		 * @return array of all the terms related to taxonomy.
+		 */
+		public static function custom_get_terms( $term ) {
+			global $wpdb;
+
+			$out = array();
+
+			$a = $wpdb->get_results( $wpdb->prepare( "SELECT t.name,t.slug,t.term_group,x.term_taxonomy_id,x.term_id,x.taxonomy,x.description,x.parent,x.count FROM {$wpdb->prefix}term_taxonomy x LEFT JOIN {$wpdb->prefix}terms t ON (t.term_id = x.term_id) WHERE x.taxonomy=%s;", $term ) );
+
+			foreach ( $a as $b ) {
+				$obj                   = new stdClass();
+				$obj->term_id          = $b->term_id;
+				$obj->name             = $b->name;
+				$obj->slug             = $b->slug;
+				$obj->term_group       = $b->term_group;
+				$obj->term_taxonomy_id = $b->term_taxonomy_id;
+				$obj->taxonomy         = $b->taxonomy;
+				$obj->description      = $b->description;
+				$obj->parent           = $b->parent;
+				$obj->count            = $b->count;
+				$out[]                 = $obj;
+			}
+
+			return $out;
 		}
 
 		/**
@@ -1387,6 +1465,15 @@ if ( ! class_exists( 'CP_V2_Fonts' ) ) {
 			),
 			'Krona One'                => array(
 				'Normal',
+			),
+			'Krub'                     => array(
+				'Normal',
+				'200',
+				'300',
+				'400',
+				'500',
+				'600',
+				'700',
 			),
 			'Kurale'                   => array(
 				'Normal',
@@ -2745,6 +2832,20 @@ if ( ! class_exists( 'CP_V2_Fonts' ) ) {
 				'Normal',
 			),
 		);
+
+		/**
+		 * Array with a list of default fonts.
+		 *
+		 * @var array
+		 */
+		static public $type_kit_font = array();
+
+		/**
+		 * Array with a list of default fonts.
+		 *
+		 * @var array
+		 */
+		static public $cp_custom_fonts = array();
 
 		/**
 		 * Get font list for dropdown

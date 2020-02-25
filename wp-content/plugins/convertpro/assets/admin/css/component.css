@@ -80,7 +80,7 @@ perspective effects (not including the modals and the overlay).
     position: relative;
     border-radius: 3px;
     margin: 0 auto;
-    padding: 20px 30px;
+    padding: 35px 30px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -170,10 +170,10 @@ perspective effects (not including the modals and the overlay).
 /* Failure  message */
 .cp-md-content .cp-response-failure {
     position: absolute;
-    bottom: 99%;
+    bottom: 93%;
     right: 0;
     left: 0;
-    padding: 4px 20px 4px 10px;
+    padding: 5px 20px 4px 10px;
     color: #fff;
     background: #FF5050;
     border-radius: 2px 2px 0 0;
@@ -423,7 +423,7 @@ perspective effects (not including the modals and the overlay).
     top: 8px;
     left: 0;
     position: absolute;
-    color: #808080;
+    color: #d0cece;
     pointer-events: none;
     transition: all linear 150ms;
 }

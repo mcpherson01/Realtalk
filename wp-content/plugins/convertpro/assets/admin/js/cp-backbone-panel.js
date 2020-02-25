@@ -56,7 +56,12 @@
 							return;
 						}
 
-						ConvertProHelper._applySettings( id, parameter, value, unit, onhover, target, panel );
+						if( $( '#' + id ).data('type') == 'cp_textarea' && 'padding' == parameter ) {
+ 							return true;
+						} else {
+							ConvertProHelper._applySettings( id, parameter, value, unit, onhover, target, panel );
+						}
+
 					}
 				});
 			}
@@ -225,6 +230,7 @@
 			$( '#panel-' + panel_id).find(".cp-big-ghost").remove();
 		},
 		setDevice: function( device_name, sync_device_data ) {
+
 			this.r_model.device = device_name;
 			$html = $('html');
 
@@ -236,8 +242,13 @@
 			if ( device_name == 'mobile' ) {
 				$html.removeClass( 'cp-desktop-device' );
 				$html.addClass( 'cp-mobile-device' );
-				$(mobile_container).insertBefore( ".panel-wrapper" );
+				$( mobile_container ).insertBefore( ".panel-wrapper" );
+				var cp_mobile_container = jQuery( '.cp-popup-wrapper' ).find( '.cp-mobile-container' );
+				if( 1 == cp_mobile_container['length'] ){
+					$(".panel-wrapper").appendTo( '.cp-mobile-container' );
+				}
 			}else {				
+				$( ".panel-wrapper" ).appendTo( '.cp-popup-wrapper' );
 				$(document).find('.cp-mobile-container').remove();
 				$html.removeClass( 'cp-mobile-device' );
 				$html.addClass( 'cp-desktop-device' );
@@ -373,7 +384,7 @@
 			return value;
 		},
 		applyDeviceData: function( device_name ) {
-			
+
 			this.setDevice( device_name );
 			this.loadExistingModal( true, false, false, false, true );
 			this.resetUndo();
@@ -491,7 +502,7 @@
 
 	    	// if option is not step dependent
 	    	if( $.inArray( key, step_dependent_opts ) == -1 ) {
-
+	    		
 	    		if( id.indexOf('panel') !== -1 || id.indexOf('form_field') !== -1 ) {
 	    			step_index = 0;
 	    		} 
@@ -554,6 +565,8 @@
 			var this_obj = this;
 			var json = this.get("panel_data");
 			var load_all = false;
+
+			console.log( json );
 
 			if ( is_undo == true ) {
 				$('.panel-wrapper .cp-field-html-data.cp-panel-item').remove();

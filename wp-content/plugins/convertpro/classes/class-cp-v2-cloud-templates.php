@@ -124,7 +124,8 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 			}
 
 			$response = wp_remote_get(
-				$https_url, array(
+				$https_url,
+				array(
 					'timeout' => 30,
 				)
 			);
@@ -132,7 +133,8 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 			if ( $ssl && is_wp_error( $response ) ) {
 
 				$response = wp_remote_get(
-					$url, array(
+					$url,
+					array(
 						'timeout' => 30,
 					)
 				);
@@ -196,7 +198,8 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 				}
 
 				$response = wp_remote_get(
-					$https_url, array(
+					$https_url,
+					array(
 						'timeout' => 30,
 					)
 				);
@@ -204,7 +207,8 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 				if ( $ssl && is_wp_error( $response ) ) {
 
 					$response = wp_remote_get(
-						$url, array(
+						$url,
+						array(
 							'timeout' => 30,
 						)
 					);
@@ -319,6 +323,7 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 		 * @since 0.0.1
 		 */
 		function refresh_cloud_templates() {
+			check_ajax_referer( 'cpro_refresh_cloud', 'security' );
 
 			if ( ! current_user_can( 'access_cp_pro' ) ) {
 				$data = array(
@@ -361,7 +366,8 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 			}
 
 			$response = wp_remote_get(
-				$https_url, array(
+				$https_url,
+				array(
 					'timeout' => 30,
 				)
 			);
@@ -369,7 +375,8 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 			if ( $ssl && is_wp_error( $response ) ) {
 
 				$response = wp_remote_get(
-					$url, array(
+					$url,
+					array(
 						'timeout' => 30,
 					)
 				);
@@ -402,6 +409,7 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 		 * @since 0.0.1
 		 */
 		function download_cloud_templates() {
+			check_ajax_referer( 'cpro_download_cloud', 'security' );
 
 			if ( ! current_user_can( 'access_cp_pro' ) ) {
 
@@ -451,7 +459,8 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 			}
 
 			$response = wp_remote_post(
-				$https_url, array(
+				$https_url,
+				array(
 					'timeout' => 30,
 					'body'    => array(
 						'id'  => $template_id,
@@ -463,7 +472,8 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 			if ( $ssl && is_wp_error( $response ) ) {
 
 				$response = wp_remote_post(
-					$url, array(
+					$url,
+					array(
 						'timeout' => 30,
 						'body'    => array(
 							'id'  => $template_id,
@@ -488,6 +498,12 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 				die();
 			}
 
+			$modal_data = json_decode( $template_meta['cp_modal_data'] );
+
+			$modal_data = $this->process_modal_data( $modal_data );
+
+			$template_meta['cp_modal_data'] = json_encode( $modal_data );
+
 			/* Updated Style Meta in Local */
 			$styles                 = get_site_option( '_cp_v2_template_styles', array() );
 			$styles[ $template_id ] = $template_meta;
@@ -505,12 +521,162 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 		}
 
 		/**
+		 * Process modal data to modify URLs
+		 *
+		 * @param string $modal_data modal_data.
+		 *
+		 * @since 1.1.7
+		 */
+		function process_modal_data( $modal_data ) {
+
+			foreach ( $modal_data as $key => $value ) {
+
+				foreach ( $value as $nested_key => $nested_value ) {
+
+					if ( isset( $nested_value->panel_bg_image ) ) {
+
+						if ( is_array( $nested_value->panel_bg_image ) ) {
+
+							$panel_bg_image = $nested_value->panel_bg_image;
+
+							if ( is_array( $panel_bg_image ) ) {
+								foreach ( $panel_bg_image as $img_key => $img_meta ) {
+
+									$panel_bg_image = explode( '|', $img_meta );
+
+									if ( isset( $panel_bg_image[1] ) && '0' != $panel_bg_image[0] ) {
+
+										$img_meta = $this->get_image_meta( $panel_bg_image );
+
+										// @codingStandardsIgnoreStart
+										$modal_data->$key->$nested_key->panel_bg_image[ $img_key ] = $img_meta['path'];
+										$modal_data->$key->$nested_key->panel_bg_image_sizes[ $img_key ] = $img_meta['sizes'];
+										// @codingStandardsIgnoreEnd
+
+									}
+								}
+							}
+						} else {
+
+							$panel_bg_image = explode( '|', $nested_value->panel_bg_image );
+
+							if ( isset( $panel_bg_image[1] ) && '0' != $panel_bg_image[0] ) {
+								$img_meta = $this->get_image_meta( $panel_bg_image );
+
+								// @codingStandardsIgnoreStart
+								$modal_data->$key->$nested_key->panel_bg_image = $img_meta['path'];
+								$modal_data->$key->$nested_key->panel_bg_image_sizes = $img_meta['sizes'];
+								// @codingStandardsIgnoreEnd
+
+							}
+						}
+					}
+
+					if ( isset( $nested_value->module_image ) ) {
+
+						$module_image = explode( '|', $nested_value->module_image );
+
+						if ( isset( $module_image[1] ) && '0' != $module_image[0] ) {
+							$img_meta = $this->get_image_meta( $module_image );
+
+							// @codingStandardsIgnoreStart
+							$modal_data->$key->$nested_key->module_image = $img_meta['path'];
+							$modal_data->$key->$nested_key->module_image_sizes = $img_meta['sizes'];
+							// @codingStandardsIgnoreEnd
+						}
+					}
+				}
+			}
+
+			return $modal_data;
+		}
+
+		/**
+		 * Get image path and sizes array
+		 *
+		 * @param array $image image details array.
+		 *
+		 * @since 1.1.7
+		 */
+		function get_image_meta( $image ) {
+
+			$img_url = $image[1];
+
+			$attach_id = $this->upload_remote_image_and_attach( $img_url );
+
+			$sizes      = wp_get_attachment_metadata( $attach_id );
+			$upload_dir = wp_upload_dir();
+			$img_sizes  = array();
+
+			if ( isset( $sizes['sizes'] ) ) {
+				foreach ( $sizes['sizes'] as $key => $size ) {
+					$img_sizes[ $key ] = array(
+						'url'    => $upload_dir['url'] . '/' . $size['file'],
+						'height' => $size['height'],
+						'width'  => $size['width'],
+					);
+				}
+			}
+
+			$url = wp_get_attachment_url( $attach_id );
+
+			$image[0] = $attach_id;
+			$image[1] = $url;
+
+			$img_meta = implode( '|', $image );
+
+			return array(
+				'path'  => $img_meta,
+				'sizes' => $img_sizes,
+			);
+
+		}
+
+		/**
+		 * Process modal data to modify URLs
+		 *
+		 * @param string $image image details.
+		 *
+		 * @since 1.1.7
+		 */
+		function upload_remote_image_and_attach( $image ) {
+
+			$image = str_replace( array( 'http:', 'https:' ), '', $image );
+			$image = str_replace( '//', 'http://', $image );
+			$get   = wp_remote_get( $image );
+
+			$type = wp_remote_retrieve_header( $get, 'content-type' );
+
+			if ( ! $type ) {
+				return false;
+			}
+
+			$mirror = wp_upload_bits( basename( $image ), '', wp_remote_retrieve_body( $get ) );
+
+			$attachment = array(
+				'post_title'     => basename( $image ),
+				'post_mime_type' => $type,
+			);
+
+			$attach_id = wp_insert_attachment( $attachment, $mirror['file'] );
+
+			require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+			$attach_data = wp_generate_attachment_metadata( $attach_id, $mirror['file'] );
+
+			wp_update_attachment_metadata( $attach_id, $attach_data );
+
+			return $attach_id;
+
+		}
+
+		/**
 		 * Use this cloud templates
 		 *
 		 * @since 0.0.1
 		 */
 		function use_this_cloud_template() {
-
+			check_ajax_referer( 'cpro_create_new', 'security' );
 			if ( ! current_user_can( 'access_cp_pro' ) ) {
 				$data = array(
 					'message' => __( 'You are not authorized to perform this action.', 'convertpro' ),
@@ -581,7 +747,7 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 				}
 
 				$ajax_result['status']   = 'success';
-				$ajax_result['redirect'] = get_edit_post_link( $style_id ) . '&type=' . $template_type . '&popup_title=' . $style_title;
+				$ajax_result['redirect'] = get_edit_post_link( $style_id, '' ) . '&type=' . $template_type . '&popup_title=' . $style_title;
 
 				echo json_encode( $ajax_result );
 				die();
@@ -599,6 +765,7 @@ if ( ! class_exists( 'CP_V2_Cloud_Templates' ) ) {
 		 * @since 0.0.1
 		 */
 		function remove_local_templates() {
+			check_ajax_referer( 'cpro_delete_template_data', 'security' );
 			if ( ! current_user_can( 'access_cp_pro' ) ) {
 				$data = array(
 					'message' => __( 'You are not authorized to perform this action.', 'convertpro' ),

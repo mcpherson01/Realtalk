@@ -1,6 +1,6 @@
 /**
  * Description: Popup CSS
- * Version: 1.1.4
+ * Version: 1.1.6
  * Author: Brainstorm Force
  */
 
@@ -96,6 +96,10 @@ button.cp-button-field {
     z-index: 999999 !important;
 }
 
+.cp-popup-container.cp-module-full_screen .cp-field-html-data.cpro-overlay-field{
+    z-index: 99999999 !important;
+}
+
 @font-face {
   font-family: 'convertpro';
   src:
@@ -169,21 +173,70 @@ button.cp-button-field {
     border-color: transparent transparent #f9f9f9 transparent;
 }
 
-.cp-target.cp-button-tooltip.cp-tooltip-top:before {
+.cp-target.cp-button-tooltip:before{
     content: attr(data-content);
     position: absolute;
-    bottom: calc(100% + 12px);
+    text-align: center;
+    pointer-events: none;
+    background: #fafafa;
+    font-size: 13px;
+    min-width: 238px;
+    left: 50%;
+    transform: translateX( -50% );
+    color: #444;
+}
+
+.cp-field-html-data .cp-shape-container.cp-tooltip-bottom:before {
+    content: attr(data-content);
+    position: absolute;
+    top: 120%;
     background: #fafafa;
     font-size: 13px;
     min-width: 238px;
     left: 50%;
     transform: translateX( -50% );
     padding: 15px;
-    margin: 0;
+    margin-bottom: 12px;
     border-radius: 3px;
     color: #444;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
     pointer-events: none;
     text-align: center;
+    line-height: 19px;
+}
+
+.cp-field-html-data .cp-shape-container.cp-tooltip-top:before {
+    content: attr(data-content);
+    position: absolute;
+    bottom: 100%;
+    background: #fafafa;
+    font-size: 13px;
+    min-width: 238px;
+    left: 50%;
+    transform: translateX( -50% );
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    color: #444;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    text-align: center;
+    line-height: 19px;
+}
+
+.cp-target.cp-button-tooltip.cp-tooltip-top:before {
+    bottom: calc(100% + 12px);
+    padding: 15px;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.cp-target.cp-button-tooltip.cp-tooltip-bottom:before {
+    top: 120%;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
 }
 
 .cp-state-success .cp-target.cp-button-tooltip.cp-tooltip-top:before,
@@ -208,30 +261,8 @@ button.cp-button-field {
     border-color: #f1dddd transparent transparent transparent;
 }
 
-.cp-target.cp-button-tooltip.cp-tooltip-bottom:before {
-    content: attr(data-content);
-    position: absolute;
-    top: 120%;
-    background: #fafafa;
-    font-size: 13px;
-    min-width: 238px;
-    left: 50%;
-    transform: translateX( -50% );
-    padding: 15px;
-    margin-bottom: 12px;
-    border-radius: 3px;
-    color: #444;
-    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
-    pointer-events: none;
-    text-align: center;
-}
-
 .cp-field-html-data .cp_shape_submit_hidden {
     display: none;
-}
-
-.cp-field-html-data .cp_shape_submit_label {
-    cursor: pointer;
 }
 
 .cp-field-html-data.cp-shapes-wrap.cp-state-success,
@@ -239,6 +270,7 @@ button.cp-button-field {
     z-index: 26 !important;
 }
 
+.cp-field-html-data .cp_shape_submit_label,
 .cp-field-html-data.cp-shapes-wrap[data-action="goto_url"] svg,
 .cp-field-html-data.cp-shapes-wrap[data-action="submit_n_goto_url"] svg {
     cursor: pointer;
@@ -268,25 +300,6 @@ button.cp-button-field {
     border-color: transparent transparent #f9f9f9 transparent;
 }
 
-.cp-field-html-data .cp-shape-container.cp-tooltip-top:before {
-    content: attr(data-content);
-    position: absolute;
-    bottom: 100%;
-    background: #fafafa;
-    font-size: 13px;
-    min-width: 238px;
-    left: 50%;
-    transform: translateX( -50% );
-    padding: 15px;
-    margin-bottom: 12px;
-    border-radius: 3px;
-    color: #444;
-    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
-    pointer-events: none;
-    text-align: center;
-    line-height: 19px;
-}
-
 /* Error Message Tooltip */
 
 .cp-btn-tooltip {
@@ -300,7 +313,7 @@ button.cp-button-field {
 }
 
 .cp-shape-tooltip {
-  position: absolute;
+    position: absolute;
     bottom: 120%;
     bottom: calc(100% + 12px);
     font-size: 13px;
@@ -348,7 +361,6 @@ body.cpro-wel-mat-open{
 
 /* End */
 
-
 .cp-state-success.cp-field-html-data .cp-shape-container.cp-tooltip-top:before,
 .cp-state-success.cp-field-html-data .cp-shape-container.cp-tooltip-bottom:before {
     color: #3c763d;
@@ -365,25 +377,6 @@ body.cpro-wel-mat-open{
     background-color: #f2dede;
     border: 1px solid #ebccd1;
     text-transform: none;
-}
-
-.cp-field-html-data .cp-shape-container.cp-tooltip-bottom:before {
-    content: attr(data-content);
-    position: absolute;
-    top: 120%;
-    background: #fafafa;
-    font-size: 13px;
-    min-width: 238px;
-    left: 50%;
-    transform: translateX( -50% );
-    padding: 15px;
-    margin-bottom: 12px;
-    border-radius: 3px;
-    color: #444;
-    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.15);
-    pointer-events: none;
-    text-align: center;
-    line-height: 19px;
 }
 
 /* =====================
@@ -467,22 +460,12 @@ body.cpro-wel-mat-open{
     display: none;
 }
 
-@media only screen and (max-width: 768px) {
-    .cp-credit-link{
-        display: none;
-    }
-}
-
 .cp-credit-link a {
     color: #fff;
     font-size: 14px;
     line-height: 1em;
     font-weight: 600;
     text-decoration: none;
-}
-
-.cp_aff_false .cp-credit-link {
-    display: none;
 }
 
 /* Popup Structure
@@ -685,7 +668,7 @@ html.cpro-exceed-viewport{
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .cp-popup-container.cp-module-inline .cp-popup-wrapper,
@@ -708,7 +691,6 @@ html.cpro-exceed-viewport{
 
 .cp-module-modal_popup .cpro-animate-container {
     height: 100%;
-    top: 20px;
     left: 0;
     bottom: auto;
     pointer-events: none;
@@ -811,10 +793,7 @@ button.cp-field-element{
 /* Close Button
  ====================== */
 
-.cp-inner-close {
-    cursor: pointer;
-}
-
+.cp-inner-close,
 .cp-close-container {
     cursor: pointer;
 }
@@ -841,7 +820,6 @@ button.cp-field-element{
 
 .cp-popup-content::before,
 .cp-popup-content .panel::before{
-  background-color: inherit;
   content: '';
   display: block;
   height: 100%;
@@ -871,7 +849,6 @@ button.cp-field-element{
     position: relative;
     vertical-align: top;
 }
-
 
 .cp_loader_container .cp-button-loader-style {
     position: relative;
@@ -1182,11 +1159,11 @@ img.cp-target.cp-field-element.cp-close-image {
 
 /* Radio button and checkbox field specidic style */
 .cp-target.cp-field-element.cp-form-input-field.cp-form-field.cp-radio-field, .cp-target.cp-field-element.cp-form-input-field.cp-form-field.cp-checkbox-field {
-  background: none;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  line-height: 20px;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    line-height: 20px;
 }
 
 .cp-horizontal-orien .cp-radio-wrap,
@@ -1217,10 +1194,6 @@ select.cp-target.cp-field-element.cp-form-input-field.cp-form-field.cp-dropdown-
 }
 
 /* Close Field */
-.cp-field-html-data .cp-close-field,
-.cp-field-html-data.cp-close-field[data-action="none"]{
-    cursor: pointer;
-}
 
 .cp-close-field .cp-close-link {
     line-height: 1.5;
@@ -1273,6 +1246,14 @@ select.cp-target.cp-field-element.cp-form-input-field.cp-form-field.cp-dropdown-
     position: fixed;
     width: 100%!important;
     z-index: 999999;
+}
+
+.cp-module-full_screen .cp-popup-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .cp-module-welcome_mat .cp-popup{
@@ -1346,9 +1327,13 @@ html.cpro-ib-open{
 /*---------*/
 
 .cp-field-html-data[data-action],
-.cp-field-html-data[data-action] * {
+.cp-field-html-data[data-action] *,
+.cp-field-html-data .cp-close-field,
+.cp-field-html-data.cp-close-field[data-action="none"],
+.cp-trigger-shortcode {
     cursor: pointer;
 }
+
 .cp-field-html-data[data-action="none"] {
     cursor: default;
 }
@@ -1358,7 +1343,8 @@ html.cpro-ib-open{
     border-color: red !important;
 }
 
-.cp-form-field ~ .cp-field-error {
+.cp-form-field ~ .cp-field-error,
+.cp-popup-inline .cp-field-html-data[data-type="cp_close_link"] {
     display: none !important;
 }
 
@@ -1391,17 +1377,9 @@ html.cpro-ib-open{
     overflow:hidden;
 }
 
-.cp-popup-inline .cp-field-html-data[data-type="cp_close_link"] {
-    display: none;
-}
-
 .cp-progress-button .progress,
 .cp-progress-button .progress .progress-inner{
     border-radius: inherit;
-}
-
-.cp-trigger-shortcode {
-    cursor: pointer;    
 }
 
 .admin-bar .cp-popup-wrapper.cp-popup-inline {
@@ -1464,7 +1442,9 @@ textarea.cp-textarea-field {
 }
 
 .cp-open-infobar-toggle.cp-toggle-top,
-.cp-popup-content.cp-infobar.cp-top {
+.cp-popup-content.cp-infobar.cp-top,
+.cp-toggle-type-hide_on_click .cp-open-toggle.cp-toggle-top-center,
+.cp-popup-content.cp-slide_in.top-center{
     top: 0;
     right: auto;
     left: 50%;
@@ -1586,19 +1566,6 @@ textarea.cp-textarea-field {
     bottom: auto;
 }
 
-.cp-toggle-type-hide_on_click .cp-open-toggle.cp-toggle-top-center,
-.cp-popup-content.cp-slide_in.top-center{
-    top: 0;
-    right: auto;
-    left: 50%;
-    bottom: auto;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
-
 .cp-popup-content.cp-slide_in.center-left{
     top: 50%;
     left: 0;
@@ -1706,8 +1673,6 @@ textarea.cp-textarea-field {
     top: auto;   
 }
 
-
-
 .cp-popup-content.center-left .cp-toggle-type-sticky{
     top: 50%;
     left: 100%;
@@ -1788,24 +1753,10 @@ span.cp-toggle-infobar-icon.cp-icon-arrow.cp-top {
     transform: rotate(90deg);
 }
 
-.cp-popup-content.toggle_active .cp-toggle-icon {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
+.cp-popup-content.toggle_active .cp-toggle-icon,
 .cp-toggle-type-sticky.top-center .cp-toggle-icon,
 .cp-toggle-type-sticky.top-left .cp-toggle-icon,
-.cp-toggle-type-sticky.top-right .cp-toggle-icon{
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
+.cp-toggle-type-sticky.top-right .cp-toggle-icon,
 .cp-toggle-type-sticky.center-left .cp-toggle-icon,
 .cp-toggle-type-sticky.center-right .cp-toggle-icon{
     -webkit-transform: rotate(90deg);
@@ -1816,14 +1767,7 @@ span.cp-toggle-infobar-icon.cp-icon-arrow.cp-top {
 }
 
 .cp-popup-content.toggle_active .cp-toggle-type-sticky.center-left .cp-toggle-icon,
-.cp-popup-content.toggle_active .cp-toggle-type-sticky.center-right .cp-toggle-icon{
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    transform: rotate(270deg);
-}
-
+.cp-popup-content.toggle_active .cp-toggle-type-sticky.center-right .cp-toggle-icon,
 .cp-popup-content.toggle_active .cp-toggle-type-sticky.top-center .cp-toggle-icon,
 .cp-popup-content.toggle_active .cp-toggle-type-sticky.top-left .cp-toggle-icon,
 .cp-popup-content.toggle_active .cp-toggle-type-sticky.top-right .cp-toggle-icon{
@@ -1844,6 +1788,15 @@ span.cp-toggle-infobar-icon.cp-icon-arrow.cp-top {
 .cpro-video-container video{
     width: inherit;
     height: inherit;
+}
+
+/* Fixes on click working issue on iOs devices */
+a[class^="manual_trigger_"]{
+    cursor: pointer;
+}
+
+input.cpro-hp-field[type="text"]{
+    display: none;
 }
 
 @media only screen and ( max-width: 768px ) {
@@ -1885,6 +1838,50 @@ span.cp-toggle-infobar-icon.cp-icon-arrow.cp-top {
     }
 
     html.cpro-overflow-mat{
-        overflow: hidden;
+        overflow: scroll;
+    }
+}
+
+/* Fix cursor misplace issue */
+@media only screen and ( max-width: 480px ) {
+    /*html.cpro-ios-device.cp-disable-scroll{
+        position: fixed;
+    }*/
+
+    .cp-module-modal_popup .cp-popup{
+        position: absolute;
+    }
+}
+
+/* Google Recaptcha CSS */
+.g-recaptcha {
+    transform:scale(0.77);
+    -webkit-transform:scale(0.77);
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+}
+
+#rc-imageselect {
+    transform:scale(0.77);
+    -webkit-transform:scale(0.77);
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+}
+
+.recaptcha-msg-error {
+  color: #c65848;
+}
+.g-recaptcha.error {
+  border: solid 2px #c64848;
+  padding: .2em;
+  width: 21em;
+}
+
+@media screen and (max-height: 575px){
+#rc-imageselect, .g-recaptcha {
+    transform:scale(0.77);
+    -webkit-transform:scale(0.77);
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
     }
 }

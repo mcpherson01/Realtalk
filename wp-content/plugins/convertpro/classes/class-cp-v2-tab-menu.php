@@ -13,6 +13,7 @@ defined( 'ABSPATH' ) || die( 'No direct script access allowed!' );
  */
 class CP_V2_Tab_Menu extends Bsf_Menu {
 
+
 	/**
 	 * Action
 	 *
@@ -38,7 +39,6 @@ class CP_V2_Tab_Menu extends Bsf_Menu {
 		if ( '' !== $action ) {
 			self::cp_render_tab_menu( $action );
 		}
-
 	}
 
 	/**
@@ -47,7 +47,7 @@ class CP_V2_Tab_Menu extends Bsf_Menu {
 	 *
 	 * @param string $action string parameter.
 	 */
-	static public function cp_render_tab_menu( $action = '' ) {
+	public static function cp_render_tab_menu( $action = '' ) {
 
 		self::render( $action );
 	}
@@ -58,7 +58,7 @@ class CP_V2_Tab_Menu extends Bsf_Menu {
 	 *
 	 * @param string $action string parameter.
 	 */
-	static public function render( $action ) {
+	public static function render( $action ) {
 
 		?>
 		<div class="nav-tab-wrapper">
@@ -66,7 +66,6 @@ class CP_V2_Tab_Menu extends Bsf_Menu {
 			$view_actions = apply_filters( 'bsf_menu_options', parent::$view_actions );
 
 			foreach ( $view_actions as $slug => $menu ) {
-
 				$name = $menu['name'];
 				$url  = self::get_page_url( $slug, $menu );
 
@@ -85,12 +84,10 @@ class CP_V2_Tab_Menu extends Bsf_Menu {
 		<?php
 
 		if ( isset( $_REQUEST['message'] ) && 'saved' == $_REQUEST['message'] ) {
-
 			$message = __( 'Settings saved successfully!', 'convertpro' );
 
 			echo sprintf( '<div id="message" class="notice notice-success is-dismissible"><p>%s</p></div>', $message );
 		}
-
 	}
 
 	/**
@@ -109,8 +106,9 @@ class CP_V2_Tab_Menu extends Bsf_Menu {
 		$menu_position         = ! $position ? 'middle' : $position;
 		$chk_is_top_level_page = in_array( $menu_position, array( 'top', 'middle', 'bottom' ), true );
 
+		$chk_is_other_plugin = in_array( $menu_position, array( 'index.php', 'edit.php', 'upload.php', 'edit.php?post_type=page', 'edit-comments.php', 'themes.php', 'plugins.php', 'users.php', 'tools.php', 'options-general.php' ), true );
+		$flag                = 0;
 		if ( $chk_is_top_level_page ) {
-
 			if ( $menu_slug == parent::$parent_page_slug ) {
 				$url = admin_url( 'admin.php?page=' . $plugin_slug );
 			} else {
@@ -121,21 +119,23 @@ class CP_V2_Tab_Menu extends Bsf_Menu {
 				$url = $menu['link'];
 			}
 		} else {
-
 			$parent_page = parent::$default_menu_position;
 
 			if ( strpos( $parent_page, '?' ) !== false ) {
 				$query_var = '&page=' . $plugin_slug;
+				$flag      = 1;
 			} else {
 				$query_var = '?page=' . $plugin_slug;
 			}
-					$parent_page_url = admin_url( $parent_page . $query_var );
+			$parent_page_url = admin_url( $parent_page . $query_var );
 
-					$url = $parent_page_url . '&action=' . $menu_slug;
+			$url = $parent_page_url . '&action=' . $menu_slug;
 
+			if ( ! $chk_is_other_plugin && ! $flag ) {
+				$url = admin_url( 'admin.php?page=' . $plugin_slug . '&action=' . $menu_slug );
+			}
 		}
 
 		return $url;
-
 	}
 }

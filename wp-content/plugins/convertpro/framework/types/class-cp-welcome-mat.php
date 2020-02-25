@@ -10,6 +10,8 @@
  */
 class CP_Welcome_Mat extends cp_Framework {
 
+
+
 	/**
 	 * Options
 	 *
@@ -55,10 +57,8 @@ class CP_Welcome_Mat extends cp_Framework {
 	function hide_enable_onload_option( $options ) {
 
 		foreach ( $options as $key => $option ) {
-
 			// Set field type hidden for display inline option.
 			if ( 'autoload_on_duration' == $option['name'] ) {
-
 				$option['type']                = 'cp_hidden';
 				$option['opts']['title']       = '';
 				$option['opts']['description'] = '';
@@ -75,7 +75,6 @@ class CP_Welcome_Mat extends cp_Framework {
 		}
 
 		return $options;
-
 	}
 
 	/**
@@ -93,6 +92,8 @@ class CP_Welcome_Mat extends cp_Framework {
 				'inline_shortcode',
 				'autoload_on_scroll',
 				'load_after_scroll',
+				'show_after_within_scroll_info',
+				'close_after_scroll',
 				'modal_exit_intent',
 				'enable_custom_scroll',
 				'custom_cls_text_head',
@@ -204,7 +205,7 @@ class CP_Welcome_Mat extends cp_Framework {
 				'cp_custom_html',
 				'cp_video',
 			),
-			array( 'text_hover_color', 'back_color', 'back_color_hover', 'title', 'label_action', 'text_hover_color', 'failed_message', 'submit_message_text_color', 'submit_message_bg_color', 'submit_message_layout', 'btn_url', 'btn_url_target', 'btn_url_follow', 'btn_step', 'field_action', 'submit_message', 'submit_message_font_size', 'field_padding' ),
+			array( 'text_hover_color', 'back_color', 'back_color_hover', 'title', 'label_action', 'text_hover_color', 'failed_message', 'submit_message_text_color', 'submit_message_bg_color', 'submit_message_layout', 'btn_url', 'btn_url_target', 'btn_url_follow', 'btn_step', 'field_action', 'submit_message', 'submit_message_font_size', 'field_padding', 'get_parameter' ),
 			$options
 		);
 
@@ -942,7 +943,7 @@ class CP_Welcome_Mat extends cp_Framework {
 								'id'             => 'respective_to',
 								'name'           => 'respective_to',
 								'type'           => 'switch',
-								'default_value'  => true,
+								'default_value'  => false,
 								'label'          => __( 'Field Respective To', 'convertpro' ),
 								'hide_on_mobile' => true,
 								'options'        => array(
@@ -1178,7 +1179,7 @@ class CP_Welcome_Mat extends cp_Framework {
 								'id'             => 'respective_to',
 								'name'           => 'respective_to',
 								'type'           => 'switch',
-								'default_value'  => true,
+								'default_value'  => false,
 								'label'          => __( 'Field Respective To', 'convertpro' ),
 								'hide_on_mobile' => true,
 								'options'        => array(
@@ -1249,6 +1250,12 @@ class CP_Welcome_Mat extends cp_Framework {
 			// Form - Hidden Input Field.
 			parent::$cp_form_hiddeninput_opts,
 
+			// Form - Google Recaptcha Input Field.
+			parent::$cp_form_google_recaptcha_opts,
+
+			// Form - Date Field.
+			parent::$cp_form_date_opts,
+
 			// Form - Typography Accordion.
 			array(
 				'type'         => 'font',
@@ -1263,6 +1270,26 @@ class CP_Welcome_Mat extends cp_Framework {
 						'parameter' => 'font-family',
 					),
 					'global'      => false,
+				),
+				'panel'        => 'Form',
+				'section'      => 'Design',
+				'section_icon' => 'cp-icon-field',
+				'has_params'   => false,
+				'category'     => 'Typography',
+			),
+			array(
+				'type'         => 'dropdown',
+				'class'        => '',
+				'name'         => 'form_field_text_transform',
+				'opts'         => array(
+					'title'     => __( 'Text Transform', 'convertpro' ),
+					'value'     => 'none',
+					'options'   => cp_Framework::$text_transform_options,
+					'tags'      => 'field font,font family, font weight',
+					'map_style' => array(
+						'parameter' => 'text-transform',
+					),
+					'global'    => false,
 				),
 				'panel'        => 'Form',
 				'section'      => 'Design',
@@ -1649,7 +1676,6 @@ class CP_Welcome_Mat extends cp_Framework {
 		$panel_design_options = array_merge( $design_field_options, $panel_design_options );
 
 		return $panel_design_options;
-
 	}
 
 	/**
@@ -1661,13 +1687,10 @@ class CP_Welcome_Mat extends cp_Framework {
 	function remove_field_actions( $fields ) {
 
 		foreach ( $fields['sections'] as $section_key => $section ) {
-
 			if ( 'Action' == $section['title'] ) {
-
 				$params = $section['params'];
 
 				foreach ( $params as $param_key => $param ) {
-
 					if ( 'field_action' == $param['id'] ) {
 						unset( $param['options']['submit_n_goto_step'] );
 						unset( $param['options']['goto_step'] );

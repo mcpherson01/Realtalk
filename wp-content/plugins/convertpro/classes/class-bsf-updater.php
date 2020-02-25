@@ -28,8 +28,10 @@ if ( ! class_exists( 'BSF_Updater' ) ) {
 			add_filter( 'bsf_registration_page_url_convertpro', array( $this, 'registration_page_url' ) );
 			add_filter( 'bsf_license_form_heading_convertpro', array( $this, 'license_form_heading' ), 10, 3 );
 			add_filter(
-				'bsf_license_not_activate_message_convertpro', array( $this, 'license_not_active_message' ),
-				10, 3
+				'bsf_license_not_activate_message_convertpro',
+				array( $this, 'license_not_active_message' ),
+				10,
+				3
 			);
 		}
 

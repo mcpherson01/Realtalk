@@ -36,7 +36,7 @@ if ( '' !== $view ) {
 		}
 	}
 
-?>
+	?>
 
 <div class="wrap about-wrap about-cp bend">
 	<h2 class="cp-sub-head"><?php _e( 'Select a Call-to-action Type', 'convertpro' ); ?></h2>
@@ -57,7 +57,7 @@ if ( '' !== $view ) {
 
 						$template_page_url = $template_page_url . '&view=template&type=' . $slug;
 
-					?>
+						?>
 					<div class="cp-col-4 cp-popup-style">
 						<div class="cp-popup-type-content">
 							<a href="<?php echo esc_url( $template_page_url ); ?>">
@@ -85,4 +85,4 @@ if ( '' !== $view ) {
 	<?php } ?>
 	<?php do_action( 'cppro_create_new_footer' ); ?>
 <?php }
-	?>
+?>

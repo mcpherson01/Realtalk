@@ -32,12 +32,25 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 	 */
 	class Cp_Framework {
 
+
+
 		/**
 		 * Options.
 		 *
 		 * @var options
 		 */
 		public static $options = array();
+
+		/**
+		 * Get popups post meta data.
+		 *
+		 * @var get_post_meta
+		 */
+		public $popups_get_post_meta = array(
+			'design'    => '',
+			'configure' => '',
+			'connect'   => '',
+		);
 
 		/**
 		 * Addon List.
@@ -59,6 +72,13 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 		 * @var border_options
 		 */
 		public static $border_options = array();
+
+		/**
+		 * Test Transform Options.
+		 *
+		 * @var text_transform_options
+		 */
+		public static $text_transform_options = array();
 
 		/**
 		 * Icon Options.
@@ -187,6 +207,20 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 		public static $cp_form_hiddeninput_opts = array();
 
 		/**
+		 * Form - Google recaptcha Input Options.
+		 *
+		 * @var cp_form_google_recaptcha_opts
+		 */
+		public static $cp_form_google_recaptcha_opts = array();
+
+		/**
+		 * Form - Date Options.
+		 *
+		 * @var cp_form_date_opts
+		 */
+		public static $cp_form_date_opts = array();
+
+		/**
 		 * Button - Flat Button Options.
 		 *
 		 * @var cp_button_flatbtn_opts
@@ -264,7 +298,6 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 		function render_input_type( $name, $type, $input_type_settings, $input_type_params, $input_value, $default_value = null ) {
 
 			if ( isset( self::$params[ $type ]['callback'] ) ) {
-
 				$param_callaback = self::$params[ $type ]['callback'];
 
 				if ( is_callable( $param_callaback ) ) {
@@ -343,9 +376,7 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 		function load_framework_functions( $current_screen ) {
 
 			if ( ( ( 'edit' == $current_screen->base || 'post' == $current_screen->base ) && CP_CUSTOM_POST_TYPE == $current_screen->post_type ) ) {
-
 				if ( ( isset( $_GET['post'] ) && isset( $_GET['action'] ) && 'edit' == $_GET['action'] ) || 'add' == $current_screen->action ) {
-
 					// Load style customizer.
 					require_once( CP_V2_BASE_DIR . 'framework/style-customizer.php' );
 
@@ -355,7 +386,6 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 					}
 				}
 			}
-
 		}
 
 		/**
@@ -449,7 +479,6 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 		public static function cp_remove_options( $fields, $options, $settings ) {
 
 			foreach ( $settings['options'] as $section_key => $setting ) {
-
 				if ( ! empty( $fields ) && ! in_array( $setting['type'], $fields ) ) {
 					continue;
 				}
@@ -458,15 +487,16 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 					$sections = $setting['sections'];
 
 					foreach ( $sections as $key => $section ) {
-
 						if ( isset( $section['params'] ) ) {
 							$params = $section['params'];
 
 							foreach ( $options as $option ) {
 								$params = wp_list_filter(
-									$params, array(
+									$params,
+									array(
 										'name' => $option,
-									), 'NOT'
+									),
+									'NOT'
 								);
 							}
 
@@ -546,8 +576,45 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 			$type               = $properties['type'];
 			$is_global          = isset( $properties['opts']['global'] ) ? $properties['opts']['global'] : true;
 			$tags               = isset( $properties['opts']['tags'] ) ? $properties['opts']['tags'] : false;
-			$input_value        = cpro_get_style_settings( $style_id, $section_slug, $name );
-			$default_value      = '';
+			$setting_value      = '';
+
+			if ( $_GET['post'] == $style_id ) {
+
+				if ( '' == $this->popups_get_post_meta[ $section_slug ] ) {
+					$this->popups_get_post_meta[ $section_slug ] = get_post_meta( $style_id, $section_slug, true );
+					$data                                        = $this->popups_get_post_meta[ $section_slug ];
+				} else {
+					$data = $this->popups_get_post_meta[ $section_slug ];
+				}
+
+				if ( is_array( $data ) ) {
+					if ( 'configure' == $section_slug ) {
+						$rulsets = array();
+
+						if ( isset( $data['rulesets'] ) ) {
+							$rulsets = json_decode( $data['rulesets'], true );
+						}
+
+						if ( isset( $rulsets[0][ $name ] ) ) {
+							$setting_value = $rulsets[0][ $name ];
+						} elseif ( isset( $data[ $name ] ) ) {
+							$setting_value = $data[ $name ];
+						}
+					} else {
+						foreach ( $data as $key => $value ) {
+							if ( is_array( $value ) ) {
+								if ( array_key_exists( $name, $value ) ) {
+									$setting_value = $value[ $name ];
+									break;
+								}
+							}
+						}
+					}
+				}
+				$input_value = $setting_value;
+			}
+
+			$default_value = '';
 
 			if ( isset( $properties['opts']['value'] ) && ! is_array( $properties['opts']['value'] ) ) {
 				$default_value = urldecode( $properties['opts']['value'] );
@@ -577,16 +644,12 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 			$hidden_class .= isset( $properties['opts']['show_on_mobile'] ) && $properties['opts']['show_on_mobile'] ? ' cp-mobile-show ' : '';
 
 			if ( 'cp_hidden' == $type ) {
-
 				$hidden_fields_html .= '<div data-tags="' . $tags . '" data-panel="' . $panel_slug . '" class="' . $hidden_class . '" ' . $dependency . '>';
-
 			} else {
-
 				$html .= '<div data-global="' . $is_global . '" data-tags="' . $tags . '" data-panel="' . $panel_slug . '" class="' . $hidden_class . '" ' . $dependency . '>';
 			}
 
 			if ( 'section' !== $type && 'google_fonts' !== $type ) {
-
 				if ( isset( $properties['has_params'] ) && ! $properties['has_params'] ) {
 					$display_title = true;
 				}
@@ -611,12 +674,9 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 			}
 
 			if ( 'cp_hidden' == $type ) {
-
 				$hidden_fields_html .= $this->do_input_type_settings_field( $name, $type, $properties['opts'], $sections, $input_value, $default_value );
 				$hidden_fields_html .= '</div>';
-
 			} else {
-
 				$html .= $this->do_input_type_settings_field( $name, $type, $properties['opts'], $sections, $input_value, $default_value );
 				$html .= '</div>';
 			}
@@ -627,7 +687,6 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 			);
 
 			return $result;
-
 		}
 
 		/**
@@ -807,6 +866,7 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 								'goto_step'          => __( 'Go to Step', 'convertpro' ),
 								'close'              => __( 'Close', 'convertpro' ),
 								'close_tab'          => __( 'Close Page', 'convertpro' ),
+								'close_n_goto_url'   => __( 'Close & Go to URL', 'convertpro' ),
 							),
 							'map'            => array(
 								'attr'   => 'button-type',
@@ -884,6 +944,11 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 									'operator' => '==',
 									'value'    => 'submit_n_goto_url',
 								),
+								array(
+									'name'     => 'field_action',
+									'operator' => '==',
+									'value'    => 'close_n_goto_url',
+								),
 							),
 						),
 						array(
@@ -909,6 +974,11 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 									'name'     => 'field_action',
 									'operator' => '==',
 									'value'    => 'submit_n_goto_url',
+								),
+								array(
+									'name'     => 'field_action',
+									'operator' => '==',
+									'value'    => 'close_n_goto_url',
 								),
 							),
 						),
@@ -977,6 +1047,11 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 									'name'     => 'field_action',
 									'operator' => '==',
 									'value'    => 'goto_step',
+								),
+								array(
+									'name'     => 'field_action',
+									'operator' => '==',
+									'value'    => 'close_n_goto_url',
 								),
 							),
 						),
@@ -1334,10 +1409,8 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 			$sections = array_merge( $text_section, $background_section, $action_section, $advance_section );
 
 			foreach ( $settings as $parent_key => $setting ) {
-
 				if ( ! isset( $setting['has_params'] ) ) {
 					foreach ( $sections as $section_key => $section ) {
-
 						$new_section    = true;
 						$param_settings = $section;
 						$title          = strtolower( $section['title'] );
@@ -1347,7 +1420,6 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 								$section_title = $field_settings['title'];
 
 								if ( strtolower( $section_title ) == $title ) {
-
 									$new_section = false;
 									$params      = isset( $field_settings['params'] ) ? $field_settings['params'] : array();
 
@@ -1356,7 +1428,6 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 											$flag     = true;
 											$param_id = $param['id'];
 											foreach ( $param_settings['params'] as $key => $value ) {
-
 												// If param id match, unset default values.
 												if ( $value['id'] == $param['id'] ) {
 													$param_settings['params'][ $key ] = $param;
@@ -1380,7 +1451,6 @@ if ( ! class_exists( 'Cp_Framework' ) ) {
 					}
 
 					$settings[ $parent_key ]['sections'] = $setting['sections'];
-
 				}
 			}
 

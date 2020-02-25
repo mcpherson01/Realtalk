@@ -22,6 +22,7 @@ $types = array(
 	'full_screen',
 );
 
+
 foreach ( $types as $type ) {
 	$file_path = str_replace( '_', '-', $type );
 	$file_path = 'class-cp-' . $file_path;
@@ -51,11 +52,10 @@ foreach ( $types as $type ) {
 		<?php
 
 		// Get all campaigns list.
-		$campaigns  = cp_get_all_campaigns();
-		$option     = '';
-		$post_count = wp_count_posts( CP_CUSTOM_POST_TYPE );
-
-		$comp_count = is_object( $post_count ) && isset( $post_count->publish ) ? $post_count->publish : 0;
+		$campaigns      = cp_get_all_campaigns();
+		$option         = '';
+		$cp_popups_inst = CP_V2_Popups::get_instance();
+		$comp_count     = 0;
 
 		$message        = '';
 		$status         = '';
@@ -89,7 +89,7 @@ foreach ( $types as $type ) {
 
 		if ( '' !== $message ) {
 			$status_class = ( 'error' == $status ) ? 'notice-error' : 'notice-success';
-		?>
+			?>
 		<div id="message" class="<?php echo $status_class; ?> notice is-dismissible">
 			<p><?php echo $message; ?></p>
 		</div>
@@ -133,11 +133,11 @@ foreach ( $types as $type ) {
 						<span class="cp-question-icon"><i class="dashicons dashicons-trash"></i></span>
 						<span class="cp-question-title"><?php _e( 'Delete', 'convertpro' ); ?></span>
 					</span>
+					<?php wp_nonce_field( 'cp_delete_popup', 'cp_delete_popup_nonce' ); ?>
 				</a>
 			</div>
 			<div class="cp-accordion">
 				<?php
-				$cp_popups_inst = CP_V2_Popups::get_instance();
 				foreach ( $campaigns as $key => $campaign ) {
 
 					$active_acc_class         = '';
@@ -237,12 +237,12 @@ foreach ( $types as $type ) {
 					<?php
 					$campaign_count++; }
 					$create_page_url = CP_V2_Tab_Menu::get_page_url( 'create-new' );
-					?>
+				?>
 					<p class="cp-no-design <?php echo ( is_array( $campaigns ) && ! empty( $campaigns ) ) ? 'cp-hidden' : ''; ?>">
 														<?php
 														/* translators: %s percentage */
 														echo sprintf( __( "You have not yet created a call-to-action! <a href='%s'>Create one</a> quickly!", 'convertpro' ), esc_url( $create_page_url ) );
-					?>
+														?>
 					</p>
 			</div>
 			<!-- quick View Information -->
@@ -290,7 +290,7 @@ foreach ( $types as $type ) {
 								if ( is_array( $categories ) && ! empty( $categories ) ) {
 
 									$campaign_exists = true;
-						?>
+									?>
 
 						<div id="cp-campaign-list" class="cp-dash-txt-field">
 							<div class="cp-form-input">
@@ -305,7 +305,7 @@ foreach ( $types as $type ) {
 								<label class="cp-label-select"><?php echo __( 'Select Group', 'convertpro' ); ?></label> 
 							</div>
 						</div>
-						<?php
+									<?php
 								}
 							}
 
@@ -313,7 +313,7 @@ foreach ( $types as $type ) {
 							if ( $campaign_exists ) {
 								$hidden_class = 'cp-hidden';
 							}
-						?>
+							?>
 						<div class="cp-dash-txt-field cp-campaign-title-section <?php echo $hidden_class; ?>">
 							<div class="cp-form-input">
 								<input type="text" name="cp_campaign_name" id="cp_campaign_name" value=""/>
@@ -347,6 +347,7 @@ foreach ( $types as $type ) {
 						<div class="cp-modal-button cp-action-row">                            
 							<button class="cp-cancel-rename-btn cp-sm-btn cp-button-style"><?php _e( 'Cancel', 'convertpro' ); ?></button>
 							<button class="cp-save-rename-btn cp-sm-btn cp-button-style cp-btn-primary"><?php _e( 'Save', 'convertpro' ); ?></button>
+							<?php wp_nonce_field( 'cp_rename_popup', 'cp_rename_popup_nonce' ); ?>
 						</div>
 					</div>
 				</div> <!--Rename Action End-->
@@ -371,6 +372,7 @@ foreach ( $types as $type ) {
 						<div class="cp-modal-button cp-action-row">                            
 							<button class="cp-cancel-rename-btn cp-sm-btn cp-button-style"><?php _e( 'Cancel', 'convertpro' ); ?></button>
 							<button class="cp-duplicate-btn cp-sm-btn cp-button-style cp-btn-primary"><?php _e( 'Duplicate', 'convertpro' ); ?></button>
+							<?php wp_nonce_field( 'cp_duplicate_popup', 'cp_duplicate_popup_nonce' ); ?>
 						</div>
 					</div>
 				</div>

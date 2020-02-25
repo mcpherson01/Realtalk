@@ -16,7 +16,8 @@ if ( ! class_exists( 'Add_Convertplug_V2_Widget' ) ) {
 		 */
 		public function __construct() {
 			parent::__construct(
-				'convertplug_V2_widget', sprintf( esc_attr( '%s Widget', 'convertpro' ), CPRO_BRANDING_NAME ),
+				'convertplug_V2_widget',
+				sprintf( esc_attr( '%s Widget', 'convertpro' ), CPRO_BRANDING_NAME ),
 				array(
 					'classname'   => 'convertplug_V2_widget',
 					'description' => __( 'A widget box displays an opt-in form inline as a part of your sidebar area.', 'convertpro' ),
@@ -83,7 +84,7 @@ if ( ! class_exists( 'Add_Convertplug_V2_Widget' ) ) {
 							?>
 						</select>
 					</p>
-				<?php
+					<?php
 				} else {
 					sprintf( esc_attr( '<p>No widgets added yet. Please add widgets from %s -> Create New -> Widget</p>', 'convertpro' ), CPRO_BRANDING_NAME );
 				}

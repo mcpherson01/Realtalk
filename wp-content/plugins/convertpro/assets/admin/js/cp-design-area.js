@@ -1494,7 +1494,7 @@ var ConvertProPanel    = '';
 				save_now = ConvertProHelper._getURLVar( 'save_now' );
 		
 			if( save_now == 'true' ) {
-				ConvertProSidePanel._saveStyleSetting( 'save' );
+				ConvertProSidePanel._saveStyleSetting( 'new-save' );
 				newURL = currURL.replace( '&save_now=true', '' );
 				setTimeout( function() { 
 					history.pushState( {}, null, newURL ); 

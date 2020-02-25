@@ -2,6 +2,9 @@
 
 jQuery(document).ready(function() {
 
+	var numItems = jQuery('.cp-popup-row').length;
+	jQuery(".theme-count").text( numItems );
+
 	function close_accordion_section() {
 		jQuery('.cp-accordion .cp-accordion-section-title').removeClass('active');
 		jQuery('.cp-accordion .cp-accordion-section-content').slideUp( 300, function() {
@@ -38,6 +41,7 @@ jQuery(document).ready(function() {
 
 		var btn 			= jQuery(this);
 		var template_type	= btn.data('modal-type');
+		var security_nonce 	= jQuery( '#cpro_refresh_cloud_nonce' ).val();
 
 		btn.find('i').addClass('cp-reloading-icon');
 		
@@ -45,7 +49,8 @@ jQuery(document).ready(function() {
 			url: cp_ajax.url,
 			data: { 
 				action: 'cp_v2_refresh',
-				template_type: template_type
+				template_type: template_type,
+				security: security_nonce
 			},
 			type: 'POST',
 			dataType:'JSON',
@@ -71,21 +76,31 @@ jQuery(document).on( "cpro_switch_change", function(e, selector, name, value ) {
 
 		var style_status = value;
 		var style_id = jQuery(selector).data("style");
+		var wp_nonce = jQuery("#cpro_publish_new").val();
+		var checkbox		= jQuery(".cp-switch-btn.checkbox-label");
+		var loader			= jQuery(selector).siblings(".cp-switch-btn.checkbox-label");
+		checkbox.css('pointer-events', 'none');
+		loader.append( '<div class="loader-container" style="margin-left: 200%;"><i class="cp-loader-style"></i></div>' );
 
 		jQuery.ajax({
 			url:cp_ajax.url,
 			data: { 
 				action: 'cp_update_style_status', 
 				style_id: style_id,
-				style_status: style_status
+				style_status: style_status,
+				publish_nonce: wp_nonce
 			},
 			type: 'POST',
 			dataType:'JSON',
 			success:function(result){
-				console.log(result);	
+				console.log(result);
+				loader.children('.loader-container').remove();
+				checkbox.css('pointer-events', '');
 			},
 			error:function(err){
 				console.log(err);
+				loader.children('.loader-container').remove();
+				checkbox.css('pointer-events', '');
 			}
 		});
 
@@ -93,23 +108,32 @@ jQuery(document).on( "cpro_switch_change", function(e, selector, name, value ) {
 
 	if( name.indexOf("ab_test_status_") >= 0 ) { 
 
-		var ab_test_status_ = value;
-		var test_id = jQuery(selector).data("test");
+		var ab_test_status_	= value;
+		var test_id			= jQuery(selector).data("test");
+		var checkbox		= jQuery(".cp-switch-btn.checkbox-label");
+		var loader			= jQuery(selector).siblings(".cp-switch-btn.checkbox-label");
+		checkbox.css('pointer-events', 'none');
+		loader.append( '<div class="loader-container" style="margin-left: 250%;"><i class="cp-loader-style"></i></div>' );
 
 		jQuery.ajax({
 			url:cp_ajax.url,
 			data: { 
 				action: 'cp_update_ab_test_status', 
 				test_id: test_id,
-				status: ab_test_status_
+				status: ab_test_status_,
+				security: jQuery( '#cp-delete-test-nonce' ).val()
 			},
 			type: 'POST',
 			dataType:'JSON',
 			success:function(result){
-				console.log(result);	
+				console.log(result);
+				loader.children('.loader-container').remove();
+				checkbox.css('pointer-events', '');
 			},
 			error:function(err){
 				console.log(err);
+				loader.children('.loader-container').remove();
+				checkbox.css('pointer-events', '');
 			}
 		});
 
@@ -292,7 +316,8 @@ jQuery(document).on( "click", "#cp-edit-dropdown a", function(e){
 				url:cp_ajax.url,
 				data: { 
 					action: 'cp_delete_popup', 
-					popup_id: post_id
+					popup_id: post_id,
+					security: jQuery( '#cp_delete_popup_nonce' ).val()
 				},
 				type: 'POST',
 				dataType:'JSON',
@@ -392,7 +417,8 @@ jQuery(document).on( "click", ".cp-save-rename-btn", function(e){
 	var el_dropdown 	= jQuery("#cp-edit-dropdown");
 	var post_id 		= el_dropdown.data('post-id');
 	var prev_name 		= el_dropdown.data('post-name');
-	var campaign_name 	= el_modal_inner.find('#cp_style_title').val();
+	var campaign_name 	= el_modal_inner.find('#cp_style_title').val().trim();
+	var security_nonce 	= jQuery( '#cp_rename_popup_nonce' ).val();
 
 	if ( prev_name == campaign_name ) {
 		el_modal_inner.find('.cp-error').text( cp_pro.already_exists_camp )
@@ -413,7 +439,8 @@ jQuery(document).on( "click", ".cp-save-rename-btn", function(e){
 		data: { 
 			action: 'cp_rename_popup', 
 			popup_id: post_id,
-			popup_name: campaign_name
+			popup_name: campaign_name,
+			security: security_nonce
 		},
 		type: 'POST',
 		dataType:'JSON',
@@ -599,6 +626,7 @@ jQuery(document).on( 'mouseup keypress', function (e) {
 	    	jQuery(".cp-edit-campaign-title.open").siblings(".cp_edit_post_link").show();	
 	    	var campaign_id = jQuery(".cp-edit-campaign-title.open").siblings(".cp-campaign-edit-link").data('id');	
 	    	var campaign_name = jQuery(".cp-edit-campaign-title.open input").val();
+			var security_nonce 	= $( '#cp_rename_campaign_nonce' ).val();
 	        jQuery(".cp-edit-campaign-title.open").removeClass('open');
 	        jQuery(".cp-campaign-name.hidden").removeClass('hidden');
 	        jQuery(".cp-campaign-edit-link[data-id='"+ campaign_id +"']").siblings(".cp-campaign-name").text('.....');
@@ -607,7 +635,8 @@ jQuery(document).on( 'mouseup keypress', function (e) {
 				data: { 
 					action: 'cp_rename_campaign', 
 					campaign_id: campaign_id,
-					campaign_name: campaign_name
+					campaign_name: campaign_name,
+					security: security_nonce
 				},
 				type: 'POST',
 				dataType:'JSON',
@@ -661,7 +690,8 @@ jQuery(document).on( "click", ".cp-duplicate-btn", function(e) {
 	var post_id 	    = el_dropdown.data('post-id');
 	var post_wrap 	    = jQuery( '.cp-row-' + post_id );
 	var count	  		= parseInt( jQuery('.title-count').text() ) + 1;
-	var popup_name  	= jQuery( "#cp_dup_style_title" ).val();
+	var popup_name  	= jQuery( "#cp_dup_style_title" ).val().trim();
+	var security_nonce 	= jQuery( '#cp_duplicate_popup_nonce' ).val();
 
 	if ( popup_name == '' ) {
 		el_modal_inner.find('.cp-error').text( cp_pro.empty_design )
@@ -677,7 +707,8 @@ jQuery(document).on( "click", ".cp-duplicate-btn", function(e) {
 		data: { 
 			action: 'cp_duplicate_popup', 
 			popup_id: post_id,
-			popup_name: popup_name
+			popup_name: popup_name,
+			security: security_nonce
 		},
 		type: 'POST',
 		dataType:'JSON',
@@ -723,6 +754,7 @@ jQuery( document ).ready(function($) {
 
 		var btn 			= jQuery(this);
 		var template_type	= btn.data('modal-type');
+		var security_nonce 	= jQuery( '#cpro_refresh_cloud_nonce' ).val();
 
 		// btn.find('i').addClass('cp-reloading-icon');
 		btn.text('Refreshing...');
@@ -731,7 +763,8 @@ jQuery( document ).ready(function($) {
 			url: cp_ajax.url,
 			data: { 
 				action: 'cp_v2_refresh',
-				template_type: template_type
+				template_type: template_type,
+				security: security_nonce
 			},
 			type: 'POST',
 			dataType:'JSON',
@@ -761,7 +794,7 @@ jQuery( document ).ready(function($) {
 			template_style.removeClass('active');
 			// btn.removeClass('active');
 		} else {
-			
+			var security_nonce 	= $( '#cpro_download_cloud_nonce' ).val();
 			btn.text('loading...');
 			
 			$( ".cp-template-select" ).each(function( index ) {
@@ -771,7 +804,8 @@ jQuery( document ).ready(function($) {
 			action_data = { 
 				action: 'cp_v2_download',
 				template_id: template_id,
-				template_type: template_type
+				template_type: template_type,
+				security: security_nonce,
 			};
 			
 			jQuery.ajax({
@@ -899,8 +933,8 @@ jQuery( document ).ready(function($) {
 			template_name	= btn.closest('.cp-template-style').data('template-name'),
 			create_btn      = $(".cp-create-template-popup");
 			create_string   = create_btn.text().trim();
-		var style_title 	= $("#cp_style_title").val();
-
+		var style_title 	= $("#cp_style_title").val().trim();
+		var wp_nonce 		= $("#cpro_create_new_nonce").val();
 		if ( '' == style_title ) {
 
 			$('.cp-error').html('Design name cannot be empty').addClass('cpro-open');
@@ -917,7 +951,8 @@ jQuery( document ).ready(function($) {
 			template_id: template_id,
 			template_type: template_type,
 			template_name: template_name,
-			style_title: style_title
+			style_title: style_title,
+			security: wp_nonce
 		};
 
 		jQuery.ajax({
@@ -958,13 +993,15 @@ jQuery( document ).ready(function($) {
 		e.preventDefault();
 
 		var btn = jQuery(this);
+		var security_nonce 	= jQuery( '#cpro_delete_template_data_nonce' ).val();
 
 		btn.text( cp_pro.deleting );
 		
 		jQuery.ajax({
 			url: cp_ajax.url,
 			data: { 
-				action: 'cp_v2_remove_data'
+				action: 'cp_v2_remove_data',
+				security: security_nonce,
 			},
 			type: 'POST',
 			dataType:'JSON',
@@ -1125,6 +1162,17 @@ jQuery( document ).ready(function($) {
 				}
 			}, 200 );
 		}
+
+		if( id == 'cpro_branding_enable_image' ) {
+			setTimeout( function() {
+				if( $( 'input[name=' + id + ']' ).val() == '1' ) {
+					$( '.cpro_branding_url_image-row' ).removeClass( 'cp-hidden' );
+				} else {
+					$( '.cpro_branding_url_image-row' ).addClass( 'cp-hidden' );
+				}
+			}, 200 );
+		}
+
 	} );
 
 

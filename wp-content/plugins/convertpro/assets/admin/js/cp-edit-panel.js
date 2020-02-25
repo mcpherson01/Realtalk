@@ -561,7 +561,7 @@ var ConvertProEditPanel = '';
 										var param_id = param.name;
 										var default_value = param.default_value;
 
-										if( param.id == 'input_text_name' || param.id == 'dropdown_name' || param.id == 'radio_name' || param.id == 'checkbox_name' ) {
+										if( param.id == 'input_text_name' || param.id == 'dropdown_name' || param.id == 'radio_name' || param.id == 'checkbox_name' || param.id == 'date_name' ) {
 											default_value = param.default_value + '_' + Math.floor(1000 + Math.random() * 9000);
 										}
 
@@ -656,15 +656,23 @@ var ConvertProEditPanel = '';
 									});
 									
 									// Advanced section
-									if( 'advanced' == title_lcase ) {
+									if( 'advanced' == title_lcase || 'hidden input' == title_lcase ) {
 
 										if( 'undefined' !== typeof params['0'].for ) {
 
 											var el_id = params['0'].for;
 											var style_id = $("#cp_style_id").val();
+											var el_name = $("#"+el_id+"-content.cp-form-field").attr('name');
 
 											var id_html = "<div class='cp-param-inner'>";
 											id_html += "<h2><label class='cpro_elm_id_label'>ID - </label><span class='cpro_elm_id'>" + el_id + "-" + style_id +"</span></h2>";
+
+											// Form fields name
+											if ( 'undefined' !== typeof el_name && undefined !== typeof el_name ) {
+												el_name = 'param[email]' == el_name ? 'email' : el_name ;
+												id_html += "<h2><label class='cpro_elm_id_label'>Name - </label><span class='cpro_elm_id'>" + el_name + "</span></h2>";
+											}
+											
 											id_html += "</div>";
 
 											// Append ID info to HTML 

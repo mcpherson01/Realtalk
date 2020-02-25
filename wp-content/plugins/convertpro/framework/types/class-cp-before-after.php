@@ -10,6 +10,10 @@
  */
 class CP_Before_After extends cp_Framework {
 
+
+
+
+
 	/**
 	 * Options
 	 *
@@ -43,10 +47,16 @@ class CP_Before_After extends cp_Framework {
 
 		add_filter( 'cp_configuration_option', array( $this, 'hide_display_inline_option' ) );
 		add_filter(
-			'cpro_target_rule_is_singular', function() {
+			'cpro_target_rule_is_singular',
+			function () {
 				return true;
 			}
 		);
+
+		// Filter to remove unwanted actions.
+		add_filter( 'cp_button_flatbtn_options', array( $this, 'remove_field_actions' ) );
+		add_filter( 'cp_button_gradientbtn_options', array( $this, 'remove_field_actions' ) );
+		add_filter( 'cp_shapes_options', array( $this, 'remove_field_actions' ) );
 	}
 
 	/**
@@ -58,10 +68,8 @@ class CP_Before_After extends cp_Framework {
 	function hide_display_inline_option( $options ) {
 
 		foreach ( $options as $key => $option ) {
-
 			// Set field type hidden for display inline option.
 			if ( 'enable_display_inline' == $option['name'] ) {
-
 				$option['type']                = 'cp_hidden';
 				$option['opts']['title']       = '';
 				$option['opts']['description'] = '';
@@ -76,7 +84,6 @@ class CP_Before_After extends cp_Framework {
 		}
 
 		return $options;
-
 	}
 
 	/**
@@ -92,6 +99,8 @@ class CP_Before_After extends cp_Framework {
 				'load_on_duration',
 				'autoload_on_scroll',
 				'load_after_scroll',
+				'show_after_within_scroll_info',
+				'close_after_scroll',
 				'modal_exit_intent',
 				'enable_custom_scroll',
 				'custom_cls_text_head',
@@ -119,6 +128,15 @@ class CP_Before_After extends cp_Framework {
 				'visitor_type',
 				'all_visitor_info',
 				'enable_adblock_detection',
+				'enable_custom_cookies',
+				'enable_cookies_class',
+				'on_cookie_txt',
+				'hide_custom_cookies',
+				'hide_cookies_class',
+				'off_cookie_txt',
+				'show_cta_info',
+				'hide_cta_link',
+				'hide_cta_info',
 			),
 			$options
 		);
@@ -174,7 +192,7 @@ class CP_Before_After extends cp_Framework {
 				'cp_shape',
 				'cp_dual_color_shape',
 			),
-			array( 'title', 'font_family', 'font_size', 'text_color', 'text_hover_color', 'back_color', 'back_color_hover', 'letter_spacing', 'btn_text_align', 'line_height', 'label_border', 'border_style', 'border_radius', 'border_color', 'border_hover_color', 'border_width', 'field_padding', 'get_parameter' ),
+			array( 'title', 'font_family', 'font_size', 'text_color', 'text_hover_color', 'back_color', 'back_color_hover', 'letter_spacing', 'btn_text_align', 'line_height', 'label_border', 'border_style', 'border_radius', 'border_color', 'border_hover_color', 'border_width', 'field_padding' ),
 			$options
 		);
 
@@ -882,6 +900,12 @@ class CP_Before_After extends cp_Framework {
 			// Form - Hidden Input Field.
 			parent::$cp_form_hiddeninput_opts,
 
+			// Form - Google Recaptcha Input Field.
+			parent::$cp_form_google_recaptcha_opts,
+
+			// Form - Date Field.
+			parent::$cp_form_date_opts,
+
 			// Form - Typography Accordion.
 			array(
 				'type'         => 'font',
@@ -896,6 +920,26 @@ class CP_Before_After extends cp_Framework {
 						'parameter' => 'font-family',
 					),
 					'global'      => false,
+				),
+				'panel'        => 'Form',
+				'section'      => 'Design',
+				'section_icon' => 'cp-icon-field',
+				'has_params'   => false,
+				'category'     => 'Typography',
+			),
+			array(
+				'type'         => 'dropdown',
+				'class'        => '',
+				'name'         => 'form_field_text_transform',
+				'opts'         => array(
+					'title'     => __( 'Text Transform', 'convertpro' ),
+					'value'     => 'none',
+					'options'   => cp_Framework::$text_transform_options,
+					'tags'      => 'field font,font family, font weight',
+					'map_style' => array(
+						'parameter' => 'text-transform',
+					),
+					'global'    => false,
 				),
 				'panel'        => 'Form',
 				'section'      => 'Design',
@@ -1282,7 +1326,6 @@ class CP_Before_After extends cp_Framework {
 		$panel_design_options = array_merge( $design_field_options, $panel_design_options );
 
 		return $panel_design_options;
-
 	}
 
 	/**
@@ -1294,16 +1337,15 @@ class CP_Before_After extends cp_Framework {
 	function remove_field_actions( $fields ) {
 
 		foreach ( $fields['sections'] as $section_key => $section ) {
-
 			if ( 'Action' == $section['title'] ) {
-
 				$params = $section['params'];
 
 				foreach ( $params as $param_key => $param ) {
-
 					if ( 'field_action' == $param['id'] ) {
-						unset( $param['options']['submit_n_goto_step'] );
-						unset( $param['options']['goto_step'] );
+						unset( $param['options']['submit_n_close'] );
+						unset( $param['options']['close'] );
+						unset( $param['options']['close_tab'] );
+						unset( $param['options']['close_n_goto_url'] );
 					}
 
 					$params[ $param_key ] = $param;
@@ -1316,7 +1358,6 @@ class CP_Before_After extends cp_Framework {
 
 		return $fields;
 	}
-
 }
 
 new CP_Before_After;

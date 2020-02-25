@@ -5,10 +5,7 @@
  * @package ConvertPro
  */
 
-global $bsf_core_path;
-$bsf_core_url = bsf_convert_core_path_to_relative( $bsf_core_path );
-$path         = $bsf_core_url . '/assets/css/style.css';
-wp_register_style( 'bsf-core-admin', $path );
+wp_register_style( 'bsf-core-admin', bsf_core_url( '/assets/css/style.css' ) );
 wp_enqueue_style( 'bsf-core-admin' );
 $product_id = 'convertpro';
 
@@ -83,47 +80,47 @@ $reset_bundled_url = $current_url . '&remove-bundled-products&redirect=' . urlen
 				}
 			}
 		}
-	?>
+		?>
 
 	<ul class="bsf-extensions-list">
-	<?php
-	foreach ( $brainstrom_bundled_products as $key => $plugin ) :
+		<?php
+		foreach ( $brainstrom_bundled_products as $key => $plugin ) :
 
-		if ( ! isset( $plugin->id ) || '' == $plugin->id ) {
-			continue;
-		}
-
-		if ( isset( $request_product_id ) && $request_product_id !== $plugin->id ) {
-			continue;
-		}
-
-		$is_plugin_installed = false;
-		$is_plugin_activated = false;
-
-		$plugin_abs_path = WP_PLUGIN_DIR . '/' . $plugin->init;
-		if ( is_file( $plugin_abs_path ) ) {
-			$is_plugin_installed = true;
-
-			if ( is_plugin_active( $plugin->init ) ) {
-				$is_plugin_activated = true;
+			if ( ! isset( $plugin->id ) || '' == $plugin->id ) {
+				continue;
 			}
-		}
 
-		if ( $is_plugin_installed ) {
-			continue;
-		}
+			if ( isset( $request_product_id ) && $request_product_id !== $plugin->id ) {
+				continue;
+			}
 
-		if ( $is_plugin_installed && $is_plugin_activated ) {
-			$class = 'active-plugin';
-		} elseif ( $is_plugin_installed && ! $is_plugin_activated ) {
-			$class = 'inactive-plugin';
-		} else {
-			$class = 'plugin-not-installed';
-		}
-		?>
+			$is_plugin_installed = false;
+			$is_plugin_activated = false;
+
+			$plugin_abs_path = WP_PLUGIN_DIR . '/' . $plugin->init;
+			if ( is_file( $plugin_abs_path ) ) {
+				$is_plugin_installed = true;
+
+				if ( is_plugin_active( $plugin->init ) ) {
+					$is_plugin_activated = true;
+				}
+			}
+
+			if ( $is_plugin_installed ) {
+				continue;
+			}
+
+			if ( $is_plugin_installed && $is_plugin_activated ) {
+				$class = 'active-plugin';
+			} elseif ( $is_plugin_installed && ! $is_plugin_activated ) {
+				$class = 'inactive-plugin';
+			} else {
+				$class = 'plugin-not-installed';
+			}
+			?>
 		<li id="ext-<?php echo $key; ?>" class="bsf-extension <?php echo $class; ?>">
 			<span class="cp-ext-inner">
-	<?php if ( ! $is_plugin_installed ) : ?>
+			<?php if ( ! $is_plugin_installed ) : ?>
 								<div class="bsf-extension-start-install">
 									<div class="bsf-extension-start-install-content">
 										<h2><?php echo __( 'Downloading', 'convertpro' ); ?><div class="bsf-css-loader"></div></h2>
@@ -131,7 +128,7 @@ $reset_bundled_url = $current_url . '&remove-bundled-products&redirect=' . urlen
 								</div>
 							<?php endif; ?>
 	<div class="top-section">
-		<?php if ( ! empty( $plugin->product_image ) ) : ?>
+			<?php if ( ! empty( $plugin->product_image ) ) : ?>
 									<div class="bsf-extension-product-image">
 										<div class="bsf-extension-product-image-stick">
 											<img src="<?php echo $plugin->product_image; ?>" class="img" alt="image"/>
@@ -143,31 +140,31 @@ $reset_bundled_url = $current_url . '&remove-bundled-products&redirect=' . urlen
 			<h4 class="title"><?php echo $name; ?></h4>
 			<p class="desc"><?php echo $plugin->description; ?><span class="author"><cite>By <?php echo $plugin->author; ?></cite></span></p>
 			<div class="bottom-section">
-		<?php
+			<?php
 			$button_class = '';
-		if ( ! $is_plugin_installed ) {
-			if ( ( ! $plugin->licence_require || 'false' === $plugin->licence_require ) || 'registered' === $status ) {
+			if ( ! $is_plugin_installed ) {
+				if ( ( ! $plugin->licence_require || 'false' === $plugin->licence_require ) || 'registered' === $status ) {
 
-				$link         = bsf_exension_installer_url( $product_id );
-				$button       = __( 'Install', 'convertpro' );
-				$button_class = 'bsf-install-button';
-			} elseif ( ( $plugin->licence_require || 'true' === $plugin->licence_require ) && 'registered' !== $status ) {
+					$link         = bsf_exension_installer_url( $product_id );
+					$button       = __( 'Install', 'convertpro' );
+					$button_class = 'bsf-install-button';
+				} elseif ( ( $plugin->licence_require || 'true' === $plugin->licence_require ) && 'registered' !== $status ) {
 
-				$link         = bsf_registration_page_url( '', $product_id );
-				$button       = __( 'Validate Purchase', 'convertpro' );
-				$button_class = 'bsf-validate-licence-button';
-			}
-		} else {
-			$current_name = strtolower( bsf_get_current_name( $plugin->init, $plugin->type ) );
-
-			$current_name = preg_replace( '![^a-z0-9]+!i', '-', $current_name );
-			if ( is_multisite() ) {
-				$link = network_admin_url( 'plugins.php#' . $current_name );
+					$link         = bsf_registration_page_url( '', $product_id );
+					$button       = __( 'Validate Purchase', 'convertpro' );
+					$button_class = 'bsf-validate-licence-button';
+				}
 			} else {
-				$link = admin_url( 'plugins.php#' . $current_name );
+				$current_name = strtolower( bsf_get_current_name( $plugin->init, $plugin->type ) );
+
+				$current_name = preg_replace( '![^a-z0-9]+!i', '-', $current_name );
+				if ( is_multisite() ) {
+					$link = network_admin_url( 'plugins.php#' . $current_name );
+				} else {
+					$link = admin_url( 'plugins.php#' . $current_name );
+				}
+				$button = __( 'Installed', 'convertpro' );
 			}
-			$button = __( 'Installed', 'convertpro' );
-		}
 
 			?>
 			<a target="_blank" rel="noopener" class="button button-medium cp-addon-btn extension-button <?php echo $button_class; ?>" href="<?php echo $link; ?>" data-ext="<?php echo $key; ?>" data-pid="<?php echo $plugin->id; ?>" data-bundled="true" data-action="install"><?php echo $button; ?></a>
@@ -179,7 +176,7 @@ $reset_bundled_url = $current_url . '&remove-bundled-products&redirect=' . urlen
 				<?php endforeach; ?>
 				<?php
 				if ( $total_bundled_plugins === $global_plugin_installed ) :
-				?>
+					?>
 					<div class="bsf-extensions-no-active">
 					</div>
 				<?php endif; ?>	
@@ -280,7 +277,7 @@ $reset_bundled_url = $current_url . '&remove-bundled-products&redirect=' . urlen
 					<?php
 					endforeach;
 				else :
-				?>
+					?>
 					<div class="bsf-extensions-no-active"></div>
 				<?php endif; ?>
 		</ul>
