@@ -1,1 +1,0 @@
-<?php echo $user_login . ' ' . __('successfully logged in to','SwiftSecurity')  . ' ' . home_url();?>

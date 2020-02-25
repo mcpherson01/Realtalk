@@ -7,14 +7,14 @@
  */
 
 /** WordPress Administration Bootstrap */
-require_once __DIR__ . '/admin.php';
+require_once( dirname( __FILE__ ) . '/admin.php' );
 
 /* translators: Page title of the About WordPress page in the admin. */
 $title = _x( 'About', 'page title' );
 
 list( $display_version ) = explode( '-', get_bloginfo( 'version' ) );
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 	<div class="wrap about__container">
 
@@ -47,6 +47,64 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 				<a href="privacy.php" class="nav-tab"><?php _e( 'Privacy' ); ?></a>
 			</nav>
 		</div>
+
+		<div class="about__section changelog">
+			<div class="column">
+				<h2><?php _e( 'Maintenance and Security Releases' ); ?></h2>
+				<p>
+					<?php
+					printf(
+						/* translators: 1: WordPress version number, 2: plural number of bugs. More than one security issue. */
+						_n(
+							'<strong>Version %1$s</strong> addressed %2$s bug.',
+							'<strong>Version %1$s</strong> addressed %2$s bugs.',
+							5
+						),
+						'5.3.2',
+						number_format_i18n( 5 )
+					);
+					?>
+					<?php
+					printf(
+						/* translators: %s: HelpHub URL */
+						__( 'For more information, see <a href="%s">the release notes</a>.' ),
+						sprintf(
+							/* translators: %s: WordPress version */
+							esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
+							sanitize_title( '5.3.2' )
+						)
+					);
+					?>
+				</p>
+				<p>
+					<?php
+					printf(
+						/* translators: 1: WordPress version number, 2: plural number of bugs. More than one security issue. */
+						_n(
+							'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
+							'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.',
+							46
+						),
+						'5.3.1',
+						number_format_i18n( 46 )
+					);
+					?>
+					<?php
+					printf(
+						/* translators: %s: HelpHub URL */
+						__( 'For more information, see <a href="%s">the release notes</a>.' ),
+						sprintf(
+							/* translators: %s: WordPress version */
+							esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
+							sanitize_title( '5.3.1' )
+						)
+					);
+					?>
+				</p>
+			</div>
+		</div>
+
+		<hr />
 
 		<div class="about__section is-feature">
 			<p>
@@ -202,7 +260,7 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 	</div>
 <?php
 
-require_once ABSPATH . 'wp-admin/admin-footer.php';
+include( ABSPATH . 'wp-admin/admin-footer.php' );
 
 // These are strings we may use to describe maintenance/security releases, where we aim for no new strings.
 return;

@@ -7,13 +7,13 @@
  */
 
 /** WordPress Administration Bootstrap */
-require_once __DIR__ . '/admin.php';
+require_once( dirname( __FILE__ ) . '/admin.php' );
 
 $title = __( 'Privacy' );
 
 list( $display_version ) = explode( '-', get_bloginfo( 'version' ) );
 
-require_once ABSPATH . 'wp-admin/admin-header.php';
+include( ABSPATH . 'wp-admin/admin-header.php' );
 ?>
 <div class="wrap about__container">
 
@@ -76,4 +76,4 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 	</div>
 
 </div>
-<?php require_once ABSPATH . 'wp-admin/admin-footer.php'; ?>
+<?php include( ABSPATH . 'wp-admin/admin-footer.php' ); ?>
