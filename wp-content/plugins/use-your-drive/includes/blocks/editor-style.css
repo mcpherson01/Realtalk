@@ -1,0 +1,8 @@
+.wp-block-useyourdrive-shortcodegenerator{
+  background: #0078d7 url(../../css/images/shortcode_image.png) no-repeat center center;
+  height: 150px;
+  width: 100%;
+  outline: 0;
+  cursor: pointer;
+  border: 2px solid transparent;
+}

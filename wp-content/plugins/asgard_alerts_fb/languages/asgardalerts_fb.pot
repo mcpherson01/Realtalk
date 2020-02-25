@@ -1,0 +1,172 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: asgard_alerts_fb\n"
+"POT-Creation-Date: 2020-01-03 19:40-0300\n"
+"PO-Revision-Date: 2020-01-03 19:40-0300\n"
+"Last-Translator: \n"
+"Language-Team: http://odindesign-themes.com/\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: esc_html;esc_html_e;esc_attr_e\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+
+#: views/introduction.php:22 views/introduction.php:86
+msgid "Getting Started"
+msgstr ""
+
+#: views/introduction.php:29
+msgid "Using The Builder"
+msgstr ""
+
+#: views/introduction.php:35 views/introduction.php:134
+msgid "Builder Overview"
+msgstr ""
+
+#: views/introduction.php:48
+msgid "Facebook + Asgard Builder"
+msgstr ""
+
+#: views/introduction.php:52
+#, php-format
+msgid "Facebook Page%sFeed Box"
+msgstr ""
+
+#: views/introduction.php:56
+msgid "WordPress Version"
+msgstr ""
+
+#: views/introduction.php:74
+msgid "Welcome!"
+msgstr ""
+
+#: views/introduction.php:80
+#, php-format
+msgid ""
+"Thanks for buying the Asgard Facebook Alerts Builder - WordPress Plugin!"
+"%sHere you’ll see a quick overview of how the plugin works. If you want a "
+"more in depth explanation, please read the %sdocumentation file%s included "
+"in the pack."
+msgstr ""
+
+#: views/introduction.php:92
+#, php-format
+msgid "You can access the %sBuilder%s page by using the left pane menu."
+msgstr ""
+
+#: views/introduction.php:96
+#, php-format
+msgid ""
+"The %sBuilder%s let's you create and customize alert groups, preview them, "
+"and save them as profiles that can be activated, edited or deleted. You can "
+"have one active profile at a time, the active profile being the one that "
+"shows on your WordPress active theme."
+msgstr ""
+
+#: views/introduction.php:106
+msgid "Using the Builder"
+msgstr ""
+
+#: views/introduction.php:112
+#, php-format
+msgid ""
+"The Builder can be used to %screate and customize alert groups%s, %smanage "
+"profiles%s and %sselect the alert group%s that will be displayed on your "
+"WordPress theme page."
+msgstr ""
+
+#: views/introduction.php:116
+#, php-format
+msgid ""
+"In order for an alert group to be displayed on your WordPress theme page, "
+"you need to first create and customize it, assign a profile name to it and "
+"save it. After saving it, it will appear in the %sMy Profiles%s menu table, "
+"where you can activate it to make it appear in your page."
+msgstr ""
+
+#: views/introduction.php:120
+#, php-format
+msgid ""
+"The %sMy Profiles%s menu lists all your saved profiles and let's you edit "
+"the alert group that corresponds to that profile, delete it or activate it."
+msgstr ""
+
+#: views/introduction.php:124
+#, php-format
+msgid ""
+"%sRemember that you can have only one alert group active at a time and that "
+"it will display the alert group in all of your WordPress active theme pages."
+"%s"
+msgstr ""
+
+#: views/introduction.php:140
+msgid ""
+"Just to give you a quick overview of the elements of the builder, we are "
+"pointing the most important elements for you to know before starting to use "
+"it. Remember that if you have any questions, just let us know in the "
+"comments, or send us an email to our support account (it’s inside the "
+"documentation file)."
+msgstr ""
+
+#: views/introduction.php:148
+#, php-format
+msgid ""
+"%s01- My Profiles:%s Here you’ll find all your saved alert group profiles. "
+"Activate or edit your profiles from here!"
+msgstr ""
+
+#: views/introduction.php:152
+#, php-format
+msgid ""
+"%s02- Global Settings:%s These are the global settings for the builder. From "
+"here you can change position, animation, direction, load fonts and more!"
+msgstr ""
+
+#: views/introduction.php:156
+#, php-format
+msgid ""
+"%s03- Add New Alert Group:%s Start your group here! Each time you click this "
+"you'll be able to add a new group that will be added to your current profile."
+msgstr ""
+
+#: views/introduction.php:160
+#, php-format
+msgid ""
+"%s04- Added Groups:%s Here you'll see the template groups you added. Click "
+"on it to edit the templates."
+msgstr ""
+
+#: views/introduction.php:164
+#, php-format
+msgid ""
+"%s05- Discard All:%s Click here if you wanna delete all open groups, or if "
+"you wanna start a new profile. Remember to save before clicking!"
+msgstr ""
+
+#: views/introduction.php:168
+#, php-format
+msgid ""
+"%s06- Save Alerts Group:%s With this you’ll save all alert groups (profile) "
+"that you are currently working on. Once saved, it will appear on the \"My "
+"Profiles\" tab."
+msgstr ""
+
+#: views/introduction.php:172
+#, php-format
+msgid ""
+"%s07- Edit Profile Name:%s Click on the icon to change the current profile "
+"name."
+msgstr ""
+
+#: views/introduction.php:176
+#, php-format
+msgid ""
+"%s08- Add and Remove Template:%s Here you can add more templates to your "
+"group with the plus (+) button and remove the template you are currently "
+"selecting with the cross (x) button."
+msgstr ""

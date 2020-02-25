@@ -1,0 +1,4844 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Use-your-Drive\n"
+"POT-Creation-Date: 2019-11-26 10:38+0100\n"
+"PO-Revision-Date: 2019-11-26 10:38+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: includes\n"
+"X-Poedit-SearchPath-1: templates\n"
+"X-Poedit-SearchPath-2: skins\n"
+"X-Poedit-SearchPath-3: use-your-drive.php\n"
+
+#: includes/Admin.php:146 includes/Admin.php:200 templates/admin.php:81
+#: templates/admin.php:86 templates/admin_network.php:18
+#: templates/admin_network.php:23 use-your-drive.php:627
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: includes/Admin.php:156 includes/Admin.php:159
+#: templates/admin_dashboard.php:9
+msgid "Reports"
+msgstr "Raporlar"
+
+#: includes/Admin.php:166 includes/Admin.php:169 templates/tinymce_popup.php:72
+#: templates/tinymce_popup.php:81 templates/tinymce_popup.php:84
+#: templates/tinymce_popup.php:87
+msgid "Shortcode Builder"
+msgstr "Kısa kod Üreticisi"
+
+#: includes/Admin.php:176 includes/Admin.php:179 includes/LinkUsers.php:28
+msgid "Link Private Folders"
+msgstr "Özel Klasörleri Bağla"
+
+#: includes/Admin.php:185 includes/Admin.php:188 includes/Admin.php:203
+#: templates/admin_filebrowser.php:5
+msgid "File Browser"
+msgstr "Dosya Gezgini"
+
+#: includes/Admin.php:232 includes/Admin.php:457 includes/Admin.php:466
+#: includes/Admin.php:474 includes/Admin.php:482
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Bu sayfaya erişim için  yeterli izne sahip değilsiniz."
+
+#: includes/Admin.php:389
+#, php-format
+msgid ""
+"If you like %1$s please leave us a %2$s rating. A huge thanks in advance!"
+msgstr ""
+"Eger %1$s I beğendiyseniz, lütfeh bizim için bir %2$s değerlendirmesi yapın. "
+"Şimdiden çok teşekkür ederiz!"
+
+#: includes/Admin.php:389
+msgid "Use-your-Drive"
+msgstr ""
+
+#: includes/Admin.php:389
+msgid "Thanks :)"
+msgstr "Teşekkürler :)"
+
+#: includes/Admin.php:504
+msgid ""
+"Thanks for registering your product! The plugin is now <strong>Activated</"
+"strong> and the <strong>Auto-Updater</strong> enabled"
+msgstr ""
+"Ürününüzü  kayıt ettirdiğiniç için teşekkürler!  Eklenti şu anda "
+"<strong>Etkinleştirilde</strong> ve <strong>Otomatik Güncelleştirici </"
+"strong>  devreye alındı"
+
+#: includes/Admin.php:504
+msgid "Your purchase code"
+msgstr "Alışveriş kodunuz"
+
+#: includes/Admin.php:508
+msgid ""
+"The plugin is <strong>Not Activated</strong> and the <strong>Auto-Updater</"
+"strong> disabled"
+msgstr ""
+"Eklenti <strong>etkinleştirilmedi</strong>ve <strong>Otomatik "
+"Güncelleştirici</strong> devreden çıkarıldı"
+
+#: includes/Admin.php:508
+msgid "Please activate your copy in order to use the plugin"
+msgstr "Eklentiyi kullanmak için lütfen kopyanızı etkinleştirin"
+
+#: includes/Admin.php:510
+msgid "Activate"
+msgstr "Etkinleştir"
+
+#: includes/Admin.php:510
+msgid "Or insert your purchase code manually and press Activate"
+msgstr ""
+"Veya alışveriş kodunuzu manuel olarak girin ve\"Etkinleştir\" (Activate) "
+"tuşuna basınız"
+
+#: includes/Admin.php:511
+msgid "Where can I find my purchase code?"
+msgstr "Satınalma kodunu nerede bulabilirim?"
+
+#: includes/Admin.php:515
+#: includes/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:395
+#: includes/plugin-update-checker/Puc/v4p5/Plugin/Ui.php:128
+#: includes/plugin-update-checker/Puc/v4p6/Plugin/Ui.php:128
+#: includes/plugin-update-checker/Puc/v4p7/Plugin/Ui.php:128
+#: includes/plugin-update-checker/Puc/v4p8/Plugin/Ui.php:128
+msgid "Check for updates"
+msgstr "Güncellemeleri denetleyin"
+
+#: includes/Admin.php:518
+msgid "Deactivate License"
+msgstr "Lisansınızı  devreden çıkarın"
+
+#: includes/Admin.php:534
+msgid "Revoke"
+msgstr ""
+
+#: includes/Admin.php:535
+msgid "Remove"
+msgstr "Kaldır"
+
+#: includes/Admin.php:536 templates/frontend.php:79 templates/gallery.php:71
+msgid "Refresh"
+msgstr "Tazele"
+
+#: includes/Admin.php:544 includes/Admin.php:563 includes/Admin.php:577
+msgid "Account isn't linked to the plugin anymore."
+msgstr "Hesap artık eklentiyle bağlantılı değil."
+
+#: includes/Admin.php:544 includes/Admin.php:563 includes/Admin.php:577
+msgid "Please re-authorize!"
+msgstr "Lütfen tekrar yetkilendirin!"
+
+#: includes/Admin.php:566
+msgid ""
+"If the problem persists, fall back to the default App via the settings on "
+"the Advanced tab"
+msgstr ""
+"Sorun devam ederse, Gelişmiş sekmesindeki ayarlar aracılığıyla varsayılan "
+"Uygulamaya geri dönün"
+
+#: includes/Admin.php:592
+msgid "Use-your-Drive uses a cache to improve performance"
+msgstr ""
+"Use-your-Drive performans artırmak amacıyla  geçici bellek (Cache) kullanır"
+
+#: includes/Admin.php:592
+msgid "If the plugin somehow is causing issues, try to reset the cache first"
+msgstr ""
+"Eğer, eklenti bir şekilde problem oluşturuyorsa, lütfen öncelikle \"cache\"i "
+"temizleyin"
+
+#: includes/Admin.php:594 templates/admin.php:1087
+#: templates/admin_network.php:206
+msgid "Reset Cache"
+msgstr "Geçici Belleği Temizle"
+
+#: includes/Admin.php:601
+msgid "You need at least PHP 5.4 if you want to use Use-your-Drive"
+msgstr ""
+"Use-Your-Drive 'ı kullanmak için en az PHP 5.4 versiyonuna sahip olmanız "
+"gerekir"
+
+#: includes/Admin.php:602
+msgid "You are using:"
+msgstr "Şu anda kullanmakta olduğunuz:"
+
+#: includes/Admin.php:605
+msgid ""
+"We are not able to connect to the Google API as you don't have the cURL PHP "
+"extension installed"
+msgstr ""
+"Henüz cURL PHP uzantısını eklemediğiniz için Google API'ye bağlanamıyoruz"
+
+#: includes/Admin.php:606
+msgid "Please enable or install the cURL extension on your server"
+msgstr "Lütfen cURL uzantısını sunucunulaz yükelyin ve etkinleştirin"
+
+#: includes/Admin.php:610
+msgid ""
+"We are not able to connect to the Google API as the plugin is interfering "
+"with an other plugin"
+msgstr ""
+"Eklenti bir başka eklenti ile çakıştığı için  Google API'ye bağlanamıyoruz"
+
+#: includes/Admin.php:611
+msgid ""
+"The other plugin is using an old version of the Google-Api-PHP-client that "
+"isn't capable of running multiple configurations"
+msgstr ""
+"Diğer eklenti  çoklu konfigirasyon yeteneği olmayan Google-Api-PHP-"
+"kullanıcı'sının eski bir versiyonunu kullanıyor"
+
+#: includes/Admin.php:612
+msgid ""
+"Please disable this other plugin if you would like to use Use-your-Drive"
+msgstr ""
+"Use-your-Drive'ı kullanmak istiyorsanız lütfen diğer eklentiyi  devreden "
+"çıkarın"
+
+#: includes/Admin.php:613
+msgid ""
+"If you would like to use both plugins, ask the developer to update it's code"
+msgstr ""
+"Her iki eklentiyi birlikte kullanmak istiyorsanız,  program "
+"geliştiricisenden kodu güncellemesini isteyin"
+
+#: includes/Admin.php:616
+#, php-format
+msgid "Cannot create the cache directory %s, or it is not writable"
+msgstr "Geçici bellek klasörünü %s oluşturamıyor veya  yazılabilir değil"
+
+#: includes/Admin.php:617
+#, php-format
+msgid ""
+"Please check if the directory exists on your server and has %s writing "
+"permissions %s"
+msgstr ""
+"Lütfen, klasörün sunucunuzda mevcut olduğunu ve %s yazma izni %s olup "
+"olmadığını kontrol ediniz"
+
+#: includes/Admin.php:619
+#, php-format
+msgid "Cannot find .htaccess file in cache directory %s"
+msgstr ""
+
+#: includes/Admin.php:620
+#, php-format
+msgid ""
+"Please check if the file exists on your server or copy it from the %s folder"
+msgstr ""
+"Lütfen dosyanın sunucunuzda olup olmadığını kontrol edin veya %s klasöründen "
+"kopyalayın"
+
+#: includes/Admin.php:633
+#, php-format
+msgid "The plugin isn't longer linked to the %s account"
+msgstr "Eklenti artık %s hesabına bağlı değil"
+
+#: includes/Admin.php:634
+msgid "Refresh the authorization!"
+msgstr "Yetkilendirmeyi yenile!"
+
+#: includes/Admin.php:651
+msgid "The plugin is not yet activated"
+msgstr ""
+
+#: includes/Admin.php:651
+msgid "Please activate the plugin to manage the plugin settings"
+msgstr "Eklenti ayarlarını yönetmek için lütfen eklentiyi etkinleştirin"
+
+#: includes/Admin.php:652
+msgid "Activate the plugin!"
+msgstr "Eklentiyi etkinleştirin!"
+
+#: includes/Admin.php:675
+msgid "cURL installed but unable to retrieve version."
+msgstr ""
+
+#: includes/App.php:357
+msgid "error communicating with Google API: "
+msgstr "google API ile iletişimde hata var: "
+
+#: includes/Client.php:368
+msgid "Team Drives"
+msgstr "Takım Sürücüleri (Team Drives)"
+
+#: includes/Client.php:855 includes/Client.php:871 includes/Client.php:873
+#: includes/Client.php:921 includes/Processor.php:401
+msgid "Failed to rename entry"
+msgstr "Girdiye yeniden adlandırma başarısız"
+
+#: includes/Client.php:859
+msgid "No new name set"
+msgstr "Yeni isim seti yok"
+
+#: includes/Client.php:869 includes/Client.php:1063 includes/Client.php:1157
+msgid "Invalid entry"
+msgstr "Geçerli olmayan girdi"
+
+#: includes/Client.php:879
+msgid "You are not authorized to rename files in this directory"
+msgstr "Klasörde bulunan dosyaları yeniden isimlendirme yetkiniz yok"
+
+#: includes/Client.php:886 includes/Client.php:891
+msgid "You are not authorized to rename this file or folder"
+msgstr "Bu dosyayı veya klasörü yeniden isimlendirme yetkiniz yok"
+
+#: includes/Client.php:895
+msgid "You are not authorized to rename folder"
+msgstr "Bu klasörü yeniden isimlendirme yetkiniz yok"
+
+#: includes/Client.php:899
+msgid "You are not authorized to rename this file"
+msgstr "Bu dosyayı yeniden isimlendirme yetkiniz yok"
+
+#: includes/Client.php:1053
+msgid "No new description set"
+msgstr "Yeni bir tanımlama seti yok"
+
+#: includes/Client.php:1065 includes/Client.php:1067 includes/Client.php:1103
+msgid "Failed to edit entry"
+msgstr "Girdiyi düzenleme başarısız"
+
+#: includes/Client.php:1073
+msgid "You are not authorized to edit files in this directory"
+msgstr "Bu klasörde dosyaları düzenleme yetkiniz yok"
+
+#: includes/Client.php:1081 includes/Client.php:1086
+msgid "You are not authorized to edit this file or folder"
+msgstr "Bu klasörü veya dosyayı düzenleme yetkiniz yok"
+
+#: includes/Client.php:1142 includes/Client.php:1197 includes/Processor.php:476
+msgid "Failed to add folder"
+msgstr "Klasör ekleme işlemi başarısız"
+
+#: includes/Client.php:1146
+msgid "No new foldername set"
+msgstr "Yeni klasörismi seti yok"
+
+#: includes/Client.php:1159 includes/Client.php:1161
+msgid "Failed to add entry"
+msgstr "Girdi ekleme yetkiniz yok"
+
+#: includes/Client.php:1166
+msgid "You are not authorized to add folders in this directory"
+msgstr "Bu dizinin altına klasör ekleme yetkiniz yok"
+
+#: includes/Client.php:1173
+msgid "You are not authorized to add a folder"
+msgstr "Klasör ekleme yetkiniz yok"
+
+#: includes/Client.php:2020 includes/Client.php:2027
+msgid "Requested directory isn't allowed"
+msgstr "İstenen klasöre izin verilmedi"
+
+#: includes/Client.php:2060
+msgid "Something went wrong... See settings page"
+msgstr "Bazı şeyler yanlış gitti.. Ayarlar sayfasına bakınız"
+
+#: includes/Client.php:2287
+msgid "Can't create link"
+msgstr "Link oluşturamıyor"
+
+#: includes/ContactForm7.php:65
+msgid "Generate a form-tag for a Use-your-Drive Upload field."
+msgstr "Use-your-Drive yükleme alanı için bir form etiketi oluşturun."
+
+#: includes/ContactForm7.php:73 includes/ContactForm7.php:76
+msgid "Field type"
+msgstr "Alan tipi"
+
+#: includes/ContactForm7.php:77
+msgid "Required field"
+msgstr "Gerekli olan alan"
+
+#: includes/ContactForm7.php:83 includes/LinkUsers.php:202
+#: templates/admin_dashboard.php:122 templates/admin_dashboard.php:206
+#: templates/frontend.php:122 templates/system_information.php:433
+#: templates/tinymce_popup.php:736
+msgid "Name"
+msgstr "İsim"
+
+#: includes/ContactForm7.php:88
+msgid "Use-your-Drive Shortcode"
+msgstr "Use-your-Drive kısa kodu"
+
+#: includes/ContactForm7.php:92 includes/GravityForms.php:132
+msgid "Build your Use-your-Drive shortcode"
+msgstr "Use-your-Drive kısa kodu oluşturun"
+
+#: includes/ContactForm7.php:107
+msgid "Insert Tag"
+msgstr "Etiket ekleyin"
+
+#: includes/ContactForm7.php:171 includes/GravityForms.php:245
+#, php-format
+msgid "%d file(s) uploaded to %s:"
+msgstr "% d dosyaya %s yüklendi:"
+
+#: includes/ContactForm7.php:222 includes/UserFolders.php:459
+#: includes/WooCommerce.php:51
+msgid "Guests"
+msgstr "Misafirler"
+
+#: includes/Events.php:422 includes/Events.php:439
+msgid "Visitors"
+msgstr "Ziyaretçiler"
+
+#: includes/Events.php:428
+msgid "Visitor"
+msgstr "Ziyaretçi"
+
+#: includes/Events.php:428 includes/Events.php:445 includes/Events.php:515
+#: includes/Events.php:693 includes/Events.php:774
+msgid "Deleted"
+msgstr "Silindi"
+
+#: includes/Events.php:509 includes/Events.php:769
+msgid "A visitor"
+msgstr "Bir ziyaretçi"
+
+#: includes/Events.php:636
+msgid "Previewed"
+msgstr ""
+
+#: includes/Events.php:646
+msgid "Edited"
+msgstr ""
+
+#: includes/Events.php:656
+msgid "Downloaded"
+msgstr "İndirildi"
+
+#: includes/Events.php:665
+msgid "Streamed"
+msgstr ""
+
+#: includes/Events.php:675 templates/admin_dashboard.php:174
+msgid "Shared"
+msgstr "Paylaşılan"
+
+#: includes/Events.php:684
+msgid "Renamed"
+msgstr "Yeniden adlandırıldı"
+
+#: includes/Events.php:702
+msgid "Created"
+msgstr "Oluşturuldu"
+
+#: includes/Events.php:711
+msgid "Updated metadata"
+msgstr "Metadata güncellendi"
+
+#: includes/Events.php:720
+msgid "Moved"
+msgstr "Taşında"
+
+#: includes/Events.php:729
+msgid "Uploaded"
+msgstr "Yüklendi"
+
+#: includes/Events.php:738
+msgid "Searched"
+msgstr "Araştırıldı"
+
+#: includes/Events.php:774 templates/admin_dashboard.php:102
+#: templates/admin_dashboard.php:121 templates/admin_dashboard.php:205
+msgid "User"
+msgstr "Kullanıcı"
+
+#: includes/Events.php:778
+msgid "folder"
+msgstr "klasör"
+
+#: includes/Events.php:778
+msgid "file"
+msgstr "dosya"
+
+#: includes/Events.php:795
+#, php-format
+msgid "%s previewed the %s %s"
+msgstr "%s %s nin  %s i önizlendi"
+
+#: includes/Events.php:799
+#, php-format
+msgid "%s edited the %s %s"
+msgstr ""
+
+#: includes/Events.php:806
+#, php-format
+msgid "%s downloaded the %s %s"
+msgstr "%s %s si %s indirildi"
+
+#: includes/Events.php:809
+#, php-format
+msgid "%s downloaded the %s %s as %s file"
+msgstr "%s, %s %s yi %s olarak indirildi"
+
+#: includes/Events.php:813
+#, php-format
+msgid "%s streamed the %s %s"
+msgstr "%s  %s nin %s i  yayımlandı"
+
+#: includes/Events.php:816
+msgid "Shared link"
+msgstr "Paylaşılan link"
+
+#: includes/Events.php:817
+#, php-format
+msgid "%s created a %s for the %s %s"
+msgstr "%s %s için %s olarak % s oluşturuldu"
+
+#: includes/Events.php:821
+#, php-format
+msgid "%s renamed the %s %s to %s"
+msgstr "%s %s  %s ye %s olarak isim değiştirildi"
+
+#: includes/Events.php:824
+#, php-format
+msgid "%s deleted the %s %s"
+msgstr "%s  %s nin %s  i silindi"
+
+#: includes/Events.php:827 includes/Events.php:837
+#, php-format
+msgid "%s added the %s %s in %s"
+msgstr "%s de bulunan %s %s ye %s eklendi"
+
+#: includes/Events.php:831
+#, php-format
+msgid "%s updated the %s of the %s %s"
+msgstr "%s  %snin %s'si  %s olarak güncellendi"
+
+#: includes/Events.php:834
+#, php-format
+msgid "%s moved the %s %s to %s"
+msgstr "%s %s nin %s  i %s ye taşındı"
+
+#: includes/Events.php:841
+#, php-format
+msgid "%s searched for: %s"
+msgstr "%s için %s arama yapıldı"
+
+#: includes/Events.php:844
+#, php-format
+msgid "%s performed an action: %s"
+msgstr "%s  %s olarak bir işlem gerçekleştirdi"
+
+#: includes/Events.php:915
+msgid "The file you are looking for cannot be found"
+msgstr "Aradığınız dosya bulunamıyor"
+
+#: includes/Events.php:915
+msgid "The file is probably deleted from the cloud"
+msgstr "Dosya muhtemelen buluttan silindi"
+
+#: includes/Events.php:999
+#, php-format
+msgid "Use-your-Drive activity for %s"
+msgstr ""
+
+#: includes/Events.php:1016 use-your-drive.php:1013
+msgid "Could not send email"
+msgstr ""
+
+#: includes/Filebrowser.php:202 includes/Gallery.php:157
+#, php-format
+msgid "Results for %s"
+msgstr "İçin sonuçlar %s"
+
+#: includes/Filebrowser.php:253 includes/Filebrowser.php:260
+#: includes/Gallery.php:122
+msgid "No files or folders found"
+msgstr "Herhangi bir dosya veya klasör bulunamadı"
+
+#: includes/Filebrowser.php:293 includes/Filebrowser.php:343
+#: includes/Gallery.php:243
+msgid "Previous folder"
+msgstr "Bir önceki klasör"
+
+#: includes/Filebrowser.php:309 includes/Filebrowser.php:315
+msgid "Select folder"
+msgstr "Klasör seç"
+
+#: includes/Filebrowser.php:380 includes/Filebrowser.php:456
+#: includes/Filebrowser.php:676 includes/Filebrowser.php:687
+#: includes/Gallery.php:277 includes/Gallery.php:347 includes/Gallery.php:350
+#: skins/Default_Skin/Player.php:31 templates/admin_dashboard.php:147
+msgid "Download"
+msgstr "İndir"
+
+#: includes/Filebrowser.php:585
+msgid "Your browser does not support HTML5. You can only download this file"
+msgstr ""
+"İnternet tarayıcınız HTML5'i desteklemiyor. Sadece bu dosyayı "
+"indirebilirsiniz"
+
+#: includes/Filebrowser.php:627 includes/Gallery.php:322
+msgid "Add a description"
+msgstr "Bir tanımlama ekleyin"
+
+#: includes/Filebrowser.php:627 includes/Gallery.php:322
+msgid "No description"
+msgstr "Tanımlama yok"
+
+#: includes/Filebrowser.php:659
+msgid "Preview"
+msgstr "Önizleme"
+
+#: includes/Filebrowser.php:665
+msgid "Preview in new window"
+msgstr "Yeni pencerede önizleme yapın"
+
+#: includes/Filebrowser.php:671
+msgid "Edit (new window)"
+msgstr "Düzenle (yeni pencere)"
+
+#: includes/Filebrowser.php:681
+msgid "Download as"
+msgstr "Olarak indirin"
+
+#: includes/Filebrowser.php:692 includes/Gallery.php:355
+msgid "Share"
+msgstr "Payllaşın"
+
+#: includes/Filebrowser.php:697 includes/Gallery.php:360 use-your-drive.php:720
+msgid "Rename"
+msgstr "Yeniden adlandırın"
+
+#: includes/Filebrowser.php:702 includes/Gallery.php:365
+#: templates/frontend.php:58 templates/gallery.php:53
+msgid "Move to"
+msgstr "Taşı"
+
+#: includes/Filebrowser.php:707 includes/Gallery.php:370 use-your-drive.php:710
+msgid "Delete"
+msgstr "Silin"
+
+#: includes/Filebrowser.php:724 includes/Filebrowser.php:745
+#: includes/Gallery.php:387 includes/Gallery.php:389 templates/frontend.php:39
+#: templates/gallery.php:34 use-your-drive.php:723
+msgid "Add folder"
+msgstr "Klasör ekleyin"
+
+#: includes/Filebrowser.php:725
+msgid "Add a new folder in this directory"
+msgstr "Bu dizine yeni bir klasör ekleyin"
+
+#: includes/GravityForms.php:107
+msgid "Upload your Files"
+msgstr "Dosyanızı yükleyin"
+
+#: includes/GravityForms.php:142
+msgid "Use-your-Drive Upload"
+msgstr "Use-your-Drive Yüklemesi"
+
+#: includes/GravityForms.php:148
+msgid "Build here your Use-your-Drive shortcode"
+msgstr "Burada Use-your-Drive kısakodu oluşturun"
+
+#: includes/GravityForms.php:167
+msgid "This field is required. Please upload your files."
+msgstr "Bu alan gereklidir. Lütfen dosyalarınızı yükleyin."
+
+#: includes/GravityForms.php:280
+msgid "Yes"
+msgstr "Evet"
+
+#: includes/GravityForms.php:281 includes/GravityForms.php:283
+msgid "No"
+msgstr "Hayır"
+
+#: includes/Helpers.php:143 includes/Helpers.php:205 includes/LinkUsers.php:289
+#: includes/UserFolders.php:455 includes/WooCommerce.php:1099
+msgid "Anonymous user"
+msgstr ""
+
+#: includes/Helpers.php:206
+msgid "Everyone"
+msgstr ""
+
+#: includes/Helpers.php:207 skins/Default_Skin/Player.php:49
+msgid "None"
+msgstr "Yok"
+
+#: includes/LinkUsers.php:201 templates/admin_dashboard.php:103
+msgid "Username"
+msgstr "Kullanıcı adı"
+
+#: includes/LinkUsers.php:203
+msgid "Email"
+msgstr "EPosta"
+
+#: includes/LinkUsers.php:204
+msgid "Role"
+msgstr "Rol"
+
+#: includes/LinkUsers.php:205
+msgid "Private Folder"
+msgstr "Özel Klasör"
+
+#: includes/LinkUsers.php:249
+#, php-format
+msgctxt "users"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/LinkUsers.php:267
+msgid "No role"
+msgstr "Rol yok"
+
+#: includes/LinkUsers.php:290
+msgid "Default folder for Guests and non-linked Users"
+msgstr "Misafirler ve bağlantısı olmayan kullanıcılar  için varsayılan klasör"
+
+#: includes/LinkUsers.php:371
+#, php-format
+msgid "Account with ID: %s not found"
+msgstr "ID'li hesap: %s bulunamadı"
+
+#: includes/LinkUsers.php:383
+msgid "Create link with Private Folder"
+msgstr "Özel Klasörle bir link oluşturun"
+
+#: includes/LinkUsers.php:383
+msgid "Link to Private Folder"
+msgstr "Özel Klasöre bir link oluşturun"
+
+#: includes/LinkUsers.php:384
+msgid "Break link with Private Folder"
+msgstr "Özel Klasör ile  olan linki kaldırın"
+
+#: includes/LinkUsers.php:384
+msgid "Unlink"
+msgstr "Bağlantıyı (Linki) kaldırın"
+
+#: includes/LinkUsers.php:399
+msgid "No users found."
+msgstr "Herhangi bir kullanıcı bulunamadı."
+
+#: includes/LinkUsers.php:411
+msgctxt "no user roles"
+msgid "None"
+msgstr "Yok"
+
+#: includes/Notification.php:194
+msgid "An anonymous user"
+msgstr ""
+
+#: includes/Processor.php:165
+msgid "Use-your-Drive needs your help!"
+msgstr "Use-your-Drive'ın sizin yardımınıza ihtiyacı var!"
+
+#: includes/Processor.php:165
+msgid "Authorize the plugin."
+msgstr "Eklentiyi yetkilendirin."
+
+#: includes/Processor.php:374
+msgid "Failed to delete entry"
+msgstr "Girdiyi silemedi"
+
+#: includes/Processor.php:387
+msgid "Not all entries could be deleted"
+msgstr "Bütün girdiler silinmedi"
+
+#: includes/Processor.php:391
+msgid "Entry was deleted"
+msgstr "Girdi silindi"
+
+#: includes/Processor.php:414
+msgid "Entry was renamed"
+msgstr "Girdi yeniden adlandırıldı"
+
+#: includes/Processor.php:425
+msgid "Failed to move"
+msgstr "Taşıma başarısız"
+
+#: includes/Processor.php:439
+msgid "Not all entries could be moved"
+msgstr "Tüm girişler taşınamadı"
+
+#: includes/Processor.php:443
+msgid "Successfully moved to new location"
+msgstr ""
+
+#: includes/Processor.php:453
+msgid "Failed to edit description"
+msgstr "Tanımlamayı düzenleme başarısız"
+
+#: includes/Processor.php:463
+msgid "Description was edited"
+msgstr "Tanımlama düzenlendi"
+
+#: includes/Processor.php:489
+msgid "Folder"
+msgstr "Klasör"
+
+#: includes/Processor.php:489
+msgid "was added"
+msgstr "eklendi"
+
+#: includes/Processor.php:506
+msgid "no valid AJAX call"
+msgstr "geçerli bir AJAX c yok"
+
+#: includes/Processor.php:545 templates/tinymce_popup.php:611
+#: use-your-drive.php:708
+msgid "Start"
+msgstr "Başla"
+
+#: includes/Processor.php:656 includes/Processor.php:843 use-your-drive.php:954
+msgid "ERROR: Contact the Administrator to see this content"
+msgstr "HATA: Bu içeriği görmesi için Yöneticiniz (Admin) ile görüşün"
+
+#: includes/Processor.php:669
+msgid "Please authorize Use-your-Drive"
+msgstr "Lütfen Use-your-Drive'ı yetkilendirin"
+
+#: includes/Processor.php:895
+msgid ""
+"To view the Google Drive folders, you need to have JavaScript enabled in "
+"your browser"
+msgstr ""
+"Google Drive'da bulunan dosyaları görebilmeniz için İnternet Tarayıcınızın "
+"javascript'i etkinleştirilmiş olmalıdır"
+
+#: includes/Processor.php:896
+msgid "To do so, please follow these instructions"
+msgstr "Bunu yapmak için, lütfen  şu talimatları takip edin"
+
+#: includes/Processor.php:907
+msgid "Selected folder"
+msgstr "Seçilen Klasör"
+
+#: includes/Processor.php:912
+msgid "Use the Root Folder of your Account"
+msgstr "Hesabınızın kök (root) klasörünü kullanın"
+
+#: includes/StorageInfo.php:16 use-your-drive.php:701
+msgid "Unlimited"
+msgstr "Sınırsız"
+
+#: includes/Upload.php:62
+msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini"
+msgstr ""
+"Yüklenen dosya  php.ini dosyasında tanımlı  upload_max_filesize  (maksimum "
+"dosya büyüklüğünü) aşmaktadır"
+
+#: includes/Upload.php:63
+msgid ""
+"The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
+"the HTML form"
+msgstr ""
+"Yüklenen dosya HTML formunda tanımlanan MAX_FILE_SIZE talimatını aşmaktadır"
+
+#: includes/Upload.php:64
+msgid "The uploaded file was only partially uploaded"
+msgstr "Yüklenmeye çalışılan dosya ancak kısmi olarak aktarıldı"
+
+#: includes/Upload.php:65
+msgid "No file was uploaded"
+msgstr "Hiçbir dosya yüklenmedi"
+
+#: includes/Upload.php:66
+msgid "Missing a temporary folder"
+msgstr "Geçici dosya klasörü (Temporary)  kayıp"
+
+#: includes/Upload.php:67
+msgid "Failed to write file to disk"
+msgstr "Diske yazım işlemi başarısız"
+
+#: includes/Upload.php:68
+msgid "A PHP extension stopped the file upload"
+msgstr "Bir PHP uzantısı  dosya yüklemeyi durdurdu"
+
+#: includes/Upload.php:69
+msgid "The uploaded file exceeds the post_max_size directive in php.ini"
+msgstr ""
+"Yüklenen dosya php.ini de tanımla maksimum dosya büyüklüğünü aşmaktadır"
+
+#: includes/Upload.php:70
+msgid "File is too big"
+msgstr "Dosya aşırı büyük"
+
+#: includes/Upload.php:71 use-your-drive.php:739
+msgid "File is too small"
+msgstr "Dosya aşırı küçük"
+
+#: includes/Upload.php:72
+msgid "Filetype not allowed"
+msgstr "Dosya tipine izin verilmedi"
+
+#: includes/Upload.php:73 use-your-drive.php:736
+msgid "Maximum number of files exceeded"
+msgstr "Maksimum dosya sayısı aşıldı"
+
+#: includes/Upload.php:74
+msgid "Image exceeds maximum width"
+msgstr "Fotograf dosyası maksiumum genişliği aşıyor"
+
+#: includes/Upload.php:75
+msgid "Image requires a minimum width"
+msgstr "Fotograf dosyası minumun genişlik ayarı istiyor"
+
+#: includes/Upload.php:76
+msgid "Image exceeds maximum height"
+msgstr "Fotograf dosyası maksimum yükseklik ayarını geçiyor"
+
+#: includes/Upload.php:77
+msgid "Image requires a minimum height"
+msgstr "Fotograf dosyası minimum yükseklik istiyor"
+
+#: includes/Upload.php:95
+msgid "Uploading failed"
+msgstr "Yükleme işlemi başarısız"
+
+#: includes/Upload.php:173 includes/Upload.php:220 includes/Upload.php:233
+msgid "Not uploaded to Google Drive"
+msgstr "Google Drive'a yükleme yapılmadı"
+
+#: includes/Upload.php:249
+msgid "Not succesfully uploaded to Google Drive"
+msgstr "Google Drive'a başarılı bir şekilde yükleme yapılmadı"
+
+#: includes/Upload.php:568 includes/UserFolders.php:192
+msgid "Failed to add user folder"
+msgstr "Kullanıcı klasörü ekleme işlemi başarısız"
+
+#: includes/UserFolders.php:227 includes/UserFolders.php:228
+msgid ""
+"User folder is inside Template folder. Please select another template folder."
+msgstr ""
+"Kullanıcı klasörü Template klasörünün içinde. Lütfen  başka bir template "
+"klasörü seçiniz."
+
+#: includes/WooCommerce.php:41
+msgid "WooCommerce Google Drive"
+msgstr "WooCommerce  Google Drive"
+
+#: includes/WooCommerce.php:42
+msgid "Easily add downloadable products right from your Google Drive."
+msgstr "Google Drive'ınızdan yüklenebilir ürünler kolayca ekleyiniz."
+
+#: includes/WooCommerce.php:43
+#, php-format
+msgid ""
+"To be able to use this integration, you only need to link your Google "
+"Account to the plugin on the %s."
+msgstr ""
+"Bu entegrasyonu kullanabilmek için, yapmanız gereken Google hesabınızı %s de "
+"bulunan eklentiye bağlamanız yeterlidir."
+
+#: includes/WooCommerce.php:191
+msgid "Choose from Google Drive"
+msgstr "Google Drive'da seçim yapınız"
+
+#: includes/WooCommerce.php:255 templates/admin_dashboard.php:104
+#: templates/admin_dashboard.php:165
+msgid "Downloads"
+msgstr "İndirilenler"
+
+#: includes/WooCommerce.php:278 includes/WooCommerce.php:290
+#: includes/WooCommerce.php:345
+msgid "File not found"
+msgstr "Dosya bulunamadı"
+
+#: includes/WooCommerce.php:302
+msgid "Order not found"
+msgstr "Sıralama düzeni bulunamadı"
+
+#: includes/WooCommerce.php:590
+#, php-format
+msgid "%d file(s) uploaded for product"
+msgstr "Ürün için yüklenen% d dosya"
+
+#: includes/WooCommerce.php:626
+msgid "Uploaded Files"
+msgstr "Yüklenen Dosyalar"
+
+#: includes/WooCommerce.php:641
+#, php-format
+msgid "You can now %sstart uploading your documents%s"
+msgstr "Şimdi  dokumanlarınızı%s yüklemeye başayabilirsiniz%s"
+
+#: includes/WooCommerce.php:654 templates/admin_dashboard.php:183
+msgid "Uploads"
+msgstr "Yüklemeler"
+
+#: includes/WooCommerce.php:655
+msgid "Allows your customers to upload files when ordering this product."
+msgstr ""
+"Bu ürünü sipariş verirken müşterilerinizin dosya yüklemesine imkan tanır."
+
+#: includes/WooCommerce.php:668 includes/WooCommerce.php:691
+msgid "Upload to Google Drive"
+msgstr "Google Drive'a yükle"
+
+#: includes/WooCommerce.php:696
+msgid "Upload Box Settings"
+msgstr "Yükleme seçenekleri ayarı"
+
+#: includes/WooCommerce.php:704
+msgid "Title Upload Box"
+msgstr "Yükleme Kutusu Adı"
+
+#: includes/WooCommerce.php:707
+msgid "Enter the title for the upload box"
+msgstr "Yükleme kutusu için gereken adı yazın"
+
+#: includes/WooCommerce.php:707
+msgid ""
+"You can use the placeholders <code>%wc_order_id%</code>, <code>%wc_product_id"
+"%</code>, <code>%wc_product_sku%</code>, <code>%wc_product_name%</code>, "
+"<code>%jjjj-mm-dd%</code>"
+msgstr ""
+"Sen tutucuları kullanabilirsiniz <code>%wc_order_id%</code> , <code>"
+"%wc_product_id%</code> , <code>%wc_product_sku%</code> , <code>"
+"%wc_product_name%</code> , <code>%jjjj-mm-dd%</code>"
+
+#: includes/WooCommerce.php:718
+msgid "Description Upload Box"
+msgstr "Yükleme Kutusu Tanımı"
+
+#: includes/WooCommerce.php:721
+msgid "Enter a short description of what the customer needs to upload"
+msgstr "Müşterinin yüklemesi gerekenlerin kısa bir tanımını giriniz"
+
+#: includes/WooCommerce.php:729
+msgid "Build your Upload Box"
+msgstr "Yükleme Kutunuzu Oluşturun"
+
+#: includes/WooCommerce.php:730
+msgid "Edit Shortcode Manually"
+msgstr "Kısa kodları manuel olarak düzenleyin"
+
+#: includes/WooCommerce.php:742
+msgid "Upload Folder Name"
+msgstr "Klasör ismini yükleyin"
+
+#: includes/WooCommerce.php:743
+msgid ""
+"Unique folder name where the uploads should be stored. Make sure that "
+"Private Folder feature is enabled in the shortcode"
+msgstr ""
+"Yüklemelerin depolanacağı klasörün tekil ismi. Özel klasör özelliğinin kısa "
+"kodlarda etkinleştirildiğinden emin olun"
+
+#: includes/WooCommerce.php:743
+msgid ""
+"You can use the placeholders <code>%wc_order_id%</code>, <code>"
+"%wc_order_quantity%</code>, <code>%wc_product_id%</code>, <code>"
+"%wc_product_sku%</code>, <code>%wc_product_quantity%</code>, <code>"
+"%wc_product_name%</code>, <code>%user_login%</code>, <code>%user_firstname%</"
+"code>, <code>%user_lastname%</code>, <code>%user_email%</code>, <code>"
+"%display_name%</code>, <code>%ID%</code>, <code>%user_role%</code>, <code>"
+"%jjjj-mm-dd%</code>"
+msgstr ""
+"<code>%wc_order_id%</code> , <code>%wc_order_quantity%</code> , <code>"
+"%wc_order_id%</code> , <code>%wc_order_quantity%</code> , <code>"
+"%wc_product_id%</code> , <code>%wc_product_sku%</code> , <code>"
+"%wc_product_quantity%</code> , <code>%wc_product_name%</code> , <code>"
+"%user_login%</code> , <code>%user_firstname%</code> , <code>%user_lastname%</"
+"code> , <code>%user_lastname%</code> <code>%user_email%</code> , <code>"
+"%display_name%</code> <code>%user_email%</code> <code>%ID%</code> , <code>"
+"%user_role%</code> , <code>%jjjj-mm-dd%</code>"
+
+#: includes/WooCommerce.php:758
+msgid "Show when Order is"
+msgstr "Siparişin ne zaman olduğunu göster"
+
+#: includes/WooCommerce.php:914 templates/frontend.php:45
+#: templates/gallery.php:40
+msgid "Upload files"
+msgstr "Dosyaları yükleyin"
+
+#: includes/WooCommerce.php:985 includes/WooCommerce.php:1029
+#, php-format
+msgid "Please %sconfigure%s the upload location for this product"
+msgstr "Bu ürün için yükleme yeri ni lütfen %skonfigüre%s edin"
+
+#: includes/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:432
+#: includes/plugin-update-checker/Puc/v4p5/Plugin/Ui.php:54
+#: includes/plugin-update-checker/Puc/v4p6/Plugin/Ui.php:54
+#: includes/plugin-update-checker/Puc/v4p7/Plugin/Ui.php:54
+#: includes/plugin-update-checker/Puc/v4p8/Plugin/Ui.php:54
+msgid "View details"
+msgstr "Detayları görün"
+
+#: includes/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:455
+#: includes/plugin-update-checker/Puc/v4p5/Plugin/Ui.php:77
+#: includes/plugin-update-checker/Puc/v4p6/Plugin/Ui.php:77
+#: includes/plugin-update-checker/Puc/v4p7/Plugin/Ui.php:77
+#: includes/plugin-update-checker/Puc/v4p8/Plugin/Ui.php:77
+#, php-format
+msgid "More information about %s"
+msgstr "%s hakkında daha fazla bilgi"
+
+#: includes/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:548
+#: includes/plugin-update-checker/Puc/v4p5/Plugin/Ui.php:213
+#: includes/plugin-update-checker/Puc/v4p6/Plugin/Ui.php:213
+#: includes/plugin-update-checker/Puc/v4p7/Plugin/Ui.php:213
+#: includes/plugin-update-checker/Puc/v4p8/Plugin/Ui.php:213
+#, php-format
+msgctxt "the plugin title"
+msgid "The %s plugin is up to date."
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:550
+#: includes/plugin-update-checker/Puc/v4p5/Plugin/Ui.php:215
+#: includes/plugin-update-checker/Puc/v4p6/Plugin/Ui.php:215
+#: includes/plugin-update-checker/Puc/v4p7/Plugin/Ui.php:215
+#: includes/plugin-update-checker/Puc/v4p8/Plugin/Ui.php:215
+#, php-format
+msgctxt "the plugin title"
+msgid "A new version of the %s plugin is available."
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:552
+#: includes/plugin-update-checker/Puc/v4p5/Plugin/Ui.php:217
+#: includes/plugin-update-checker/Puc/v4p6/Plugin/Ui.php:217
+#: includes/plugin-update-checker/Puc/v4p7/Plugin/Ui.php:217
+#: includes/plugin-update-checker/Puc/v4p8/Plugin/Ui.php:217
+#, php-format
+msgctxt "the plugin title"
+msgid "Could not determine if updates are available for %s."
+msgstr ""
+
+#: includes/plugin-update-checker/Puc/v4p4/Plugin/UpdateChecker.php:558
+#: includes/plugin-update-checker/Puc/v4p5/Plugin/Ui.php:223
+#: includes/plugin-update-checker/Puc/v4p6/Plugin/Ui.php:223
+#: includes/plugin-update-checker/Puc/v4p7/Plugin/Ui.php:223
+#: includes/plugin-update-checker/Puc/v4p8/Plugin/Ui.php:223
+#, php-format
+msgid "Unknown update checker status \"%s\""
+msgstr "Bilinmeyen güncelleme  denetleyicisi durumu \"%s\""
+
+#: includes/plugin-update-checker/Puc/v4p4/Vcs/PluginUpdateChecker.php:98
+#: includes/plugin-update-checker/Puc/v4p5/Vcs/PluginUpdateChecker.php:98
+#: includes/plugin-update-checker/Puc/v4p6/Vcs/PluginUpdateChecker.php:98
+#: includes/plugin-update-checker/Puc/v4p7/Vcs/PluginUpdateChecker.php:98
+#: includes/plugin-update-checker/Puc/v4p8/Vcs/PluginUpdateChecker.php:98
+msgid "There is no changelog available."
+msgstr "Değişiklik Logu mevcut değil."
+
+#: skins/Default_Skin/Player.php:27
+msgid ""
+"You are using a browser that does not have Flash player enabled or "
+"installed. Please turn on your Flash player plugin or download the latest "
+"version from https://get.adobe.com/flashplayer/"
+msgstr ""
+"Flash oynatıcı etkinleştirilmemiş ya da kurulmamış bir tarayıcı "
+"kullanmaktasınız. Lütfen Flash oynatıcı eklentinizi açın ya da son sürümü "
+"https://get.adobe.com/flashplayer/ adresinden indirin/"
+
+#: skins/Default_Skin/Player.php:28
+msgid "Turn off Fullscreen"
+msgstr "Tam Ekranı Kapat"
+
+#: skins/Default_Skin/Player.php:29
+msgid "Go Fullscreen"
+msgstr "Tam ekrana gitmek"
+
+#: skins/Default_Skin/Player.php:30
+msgid "Download Video"
+msgstr "Videoyu indir"
+
+#: skins/Default_Skin/Player.php:32
+msgid "Purchase"
+msgstr "Satın Al"
+
+#: skins/Default_Skin/Player.php:33
+msgid "Fullscreen"
+msgstr "Tam Ekran"
+
+#: skins/Default_Skin/Player.php:34
+msgid "Jump forward 1 second"
+msgstr "İleriye 1 saniye atla"
+
+#: skins/Default_Skin/Player.php:34
+msgid "Jump forward %1 seconds"
+msgstr "% 1 saniye ileri atla"
+
+#: skins/Default_Skin/Player.php:35
+msgid "Toggle Loop"
+msgstr "Tekrar aç/kapa"
+
+#: skins/Default_Skin/Player.php:36
+msgid "Play"
+msgstr "Oynat"
+
+#: skins/Default_Skin/Player.php:37
+msgid "Pause"
+msgstr "Duraklat"
+
+#: skins/Default_Skin/Player.php:38 skins/Default_Skin/Player.php:39
+#: use-your-drive.php:707 use-your-drive.php:746
+msgid "Close"
+msgstr "Kapat"
+
+#: skins/Default_Skin/Player.php:40 use-your-drive.php:729
+msgid "Previous"
+msgstr "Önceki"
+
+#: skins/Default_Skin/Player.php:41 use-your-drive.php:730
+msgid "Next"
+msgstr "Sonraki"
+
+#: skins/Default_Skin/Player.php:42
+msgid "Loop"
+msgstr "Döngü"
+
+#: skins/Default_Skin/Player.php:43
+msgid "Shuffle"
+msgstr "Karıştır"
+
+#: skins/Default_Skin/Player.php:44
+msgid "Time Slider"
+msgstr "Zaman Kaydırıcısı"
+
+#: skins/Default_Skin/Player.php:45
+msgid ""
+"Use Left/Right Arrow keys to advance one second, Up/Down arrows to advance "
+"ten seconds."
+msgstr ""
+"Bir saniye ileri gitmek için Sol / Sağ Ok tuşlarını, on saniye ileri gitmek "
+"için Yukarı / Aşağı oklarını kullanın."
+
+#: skins/Default_Skin/Player.php:46
+msgid "Skip back 1 second"
+msgstr "1 saniye geri git"
+
+#: skins/Default_Skin/Player.php:46
+msgid "Skip back %1 seconds"
+msgstr "% 1 saniye geri atla"
+
+#: skins/Default_Skin/Player.php:47
+msgid "Captions/Subtitles"
+msgstr "Başlıklar / Altyazı"
+
+#: skins/Default_Skin/Player.php:48
+msgid "Chapters"
+msgstr "Bölümler"
+
+#: skins/Default_Skin/Player.php:50
+msgid "Mute Toggle"
+msgstr "Toggle Sessiz"
+
+#: skins/Default_Skin/Player.php:51
+msgid "Use Up/Down Arrow keys to increase or decrease volume."
+msgstr "Sesi artırmak veya azaltmak için Yukarı / Aşağı Ok tuşlarını kullanın."
+
+#: skins/Default_Skin/Player.php:52
+msgid "Unmute"
+msgstr "Sesi aç"
+
+#: skins/Default_Skin/Player.php:53
+msgid "Mute"
+msgstr "Sessiz"
+
+#: skins/Default_Skin/Player.php:54
+msgid "Volume Slider"
+msgstr "Ses kaymak"
+
+#: skins/Default_Skin/Player.php:55
+msgid "Video Player"
+msgstr "Video Oynatıcı"
+
+#: skins/Default_Skin/Player.php:56
+msgid "Audio Player"
+msgstr "Ses Oynatıcısı"
+
+#: skins/Default_Skin/Player.php:57
+msgid "Skip ad"
+msgstr "Reklamı geç"
+
+#: skins/Default_Skin/Player.php:58
+msgid "Skip in 1 second"
+msgstr "1 saniye içinde geç"
+
+#: skins/Default_Skin/Player.php:58
+msgid "Skip in %1 seconds"
+msgstr "%s saniye içinde geç"
+
+#: skins/Default_Skin/Player.php:59
+msgid "Source Chooser"
+msgstr "Kaynak seçici"
+
+#: skins/Default_Skin/Player.php:60
+msgid "Stop"
+msgstr "Durdur"
+
+#: skins/Default_Skin/Player.php:61
+msgid "Speed Rate"
+msgstr "Hız oranı"
+
+#: skins/Default_Skin/Player.php:62
+msgid "Live Broadcast"
+msgstr "Canlı yayın"
+
+#: skins/Default_Skin/Player.php:63
+msgid "Afrikaans"
+msgstr "Afrika"
+
+#: skins/Default_Skin/Player.php:64
+msgid "Albanian"
+msgstr "Arnavutça"
+
+#: skins/Default_Skin/Player.php:65
+msgid "Arabic"
+msgstr "Arapça"
+
+#: skins/Default_Skin/Player.php:66
+msgid "Belarusian"
+msgstr "Belarus Rublesi"
+
+#: skins/Default_Skin/Player.php:67
+msgid "Bulgarian"
+msgstr "Bulgarca"
+
+#: skins/Default_Skin/Player.php:68
+msgid "Catalan"
+msgstr "Catalan"
+
+#: skins/Default_Skin/Player.php:69
+msgid "Chinese"
+msgstr "Çince"
+
+#: skins/Default_Skin/Player.php:70
+msgid "Chinese (Simplified)"
+msgstr "Basitleştirilmiş Çince)"
+
+#: skins/Default_Skin/Player.php:71
+msgid "Chinese (Traditional)"
+msgstr "Çince (Geleneksel)"
+
+#: skins/Default_Skin/Player.php:72
+msgid "Croatian"
+msgstr "Hırvatistan kunası"
+
+#: skins/Default_Skin/Player.php:73
+msgid "Czech"
+msgstr "Çekçe"
+
+#: skins/Default_Skin/Player.php:74
+msgid "Danish"
+msgstr "Danca"
+
+#: skins/Default_Skin/Player.php:75
+msgid "Dutch"
+msgstr "Flemenkçe"
+
+#: skins/Default_Skin/Player.php:76
+msgid "English"
+msgstr "İngilizce"
+
+#: skins/Default_Skin/Player.php:77
+msgid "Estonian"
+msgstr "Estonca"
+
+#: skins/Default_Skin/Player.php:78
+msgid "Filipino"
+msgstr "Filipince"
+
+#: skins/Default_Skin/Player.php:79
+msgid "Finnish"
+msgstr "Fince"
+
+#: skins/Default_Skin/Player.php:80
+msgid "French"
+msgstr "Fransızca"
+
+#: skins/Default_Skin/Player.php:81
+msgid "Galician"
+msgstr "Galicia'ya ait"
+
+#: skins/Default_Skin/Player.php:82
+msgid "German"
+msgstr "Almanca"
+
+#: skins/Default_Skin/Player.php:83
+msgid "Greek"
+msgstr "Yunan"
+
+#: skins/Default_Skin/Player.php:84
+msgid "Haitian Creole"
+msgstr "Haiti Creole"
+
+#: skins/Default_Skin/Player.php:85
+msgid "Hebrew"
+msgstr "İbranice"
+
+#: skins/Default_Skin/Player.php:86
+msgid "Hindi"
+msgstr "Hintçe"
+
+#: skins/Default_Skin/Player.php:87
+msgid "Hungarian"
+msgstr "Macarca"
+
+#: skins/Default_Skin/Player.php:88
+msgid "Icelandic"
+msgstr "İzlandaca"
+
+#: skins/Default_Skin/Player.php:89
+msgid "Indonesian"
+msgstr "Endonezya"
+
+#: skins/Default_Skin/Player.php:90
+msgid "Irish"
+msgstr "İrlanda"
+
+#: skins/Default_Skin/Player.php:91
+msgid "Italian"
+msgstr "İtalyanca"
+
+#: skins/Default_Skin/Player.php:92
+msgid "Japanese"
+msgstr "Japonca"
+
+#: skins/Default_Skin/Player.php:93
+msgid "Korean"
+msgstr "Korece"
+
+#: skins/Default_Skin/Player.php:94
+msgid "Latvian"
+msgstr "Letonca"
+
+#: skins/Default_Skin/Player.php:95
+msgid "Lithuanian"
+msgstr "Litvanca"
+
+#: skins/Default_Skin/Player.php:96
+msgid "Macedonian"
+msgstr "Makedon Denarı"
+
+#: skins/Default_Skin/Player.php:97
+msgid "Malay"
+msgstr "Malaya Dili"
+
+#: skins/Default_Skin/Player.php:98
+msgid "Maltese"
+msgstr "Malta"
+
+#: skins/Default_Skin/Player.php:99
+msgid "Norwegian"
+msgstr "Norveçce"
+
+#: skins/Default_Skin/Player.php:100
+msgid "Persian"
+msgstr "Farsça"
+
+#: skins/Default_Skin/Player.php:101
+msgid "Polish"
+msgstr "Lehçe"
+
+#: skins/Default_Skin/Player.php:102
+msgid "Portuguese"
+msgstr "Portekizce"
+
+#: skins/Default_Skin/Player.php:103
+msgid "Romanian"
+msgstr "Romence"
+
+#: skins/Default_Skin/Player.php:104
+msgid "Russian"
+msgstr "Rusça"
+
+#: skins/Default_Skin/Player.php:105
+msgid "Serbian"
+msgstr ""
+
+#: skins/Default_Skin/Player.php:106
+msgid "Slovak"
+msgstr "Slovakça"
+
+#: skins/Default_Skin/Player.php:107
+msgid "Slovenian"
+msgstr "Slovence"
+
+#: skins/Default_Skin/Player.php:108
+msgid "Spanish"
+msgstr "İspanyolca"
+
+#: skins/Default_Skin/Player.php:109
+msgid "Swahili"
+msgstr "Swahili"
+
+#: skins/Default_Skin/Player.php:110
+msgid "Swedish"
+msgstr "İsveççe"
+
+#: skins/Default_Skin/Player.php:111
+msgid "Tagalog"
+msgstr "Tanrıkulu"
+
+#: skins/Default_Skin/Player.php:112
+msgid "Thai"
+msgstr "Thai"
+
+#: skins/Default_Skin/Player.php:113
+msgid "Turkish"
+msgstr "Türkçe"
+
+#: skins/Default_Skin/Player.php:114
+msgid "Ukrainian"
+msgstr "Ukrayna"
+
+#: skins/Default_Skin/Player.php:115
+msgid "Vietnamese"
+msgstr "Vietnam"
+
+#: skins/Default_Skin/Player.php:116
+msgid "Welsh"
+msgstr "Galler Dili"
+
+#: skins/Default_Skin/Player.php:117
+msgid "Yiddish"
+msgstr "Eskenazi Dili"
+
+#: templates/admin.php:53 templates/admin.php:1181
+msgid "Remove Media"
+msgstr "Medyayı kaldır"
+
+#: templates/admin.php:59
+msgid "Select Image"
+msgstr "Resim seç"
+
+#: templates/admin.php:59
+msgid "Upload or select a file from the media library"
+msgstr "Medya kütüphanesinden bir dosya seç veya yükle"
+
+#: templates/admin.php:62
+msgid "Default"
+msgstr "Varsayılan"
+
+#: templates/admin.php:62
+msgid "Fallback to the default value"
+msgstr "Fabrika ayarlarına döndür"
+
+#: templates/admin.php:80 templates/admin_network.php:17
+msgid "Save Settings"
+msgstr "Ayarları Kaydedin"
+
+#: templates/admin.php:89 templates/admin.php:124
+#: templates/admin_network.php:26 templates/admin_network.php:49
+#: templates/tinymce_popup.php:191 templates/tinymce_popup.php:209
+msgid "General"
+msgstr "Genel"
+
+#: templates/admin.php:94 templates/admin.php:182
+#: templates/tinymce_popup.php:193 templates/tinymce_popup.php:441
+msgid "Layout"
+msgstr "Düzen"
+
+#: templates/admin.php:95 templates/admin.php:379
+msgid "Private Folders"
+msgstr "Özel Klasörler"
+
+#: templates/admin.php:96 templates/admin.php:556
+#: templates/admin_network.php:28 templates/admin_network.php:112
+#: templates/tinymce_popup.php:195 templates/tinymce_popup.php:774
+msgid "Advanced"
+msgstr "İleri Düzey"
+
+#: templates/admin.php:97 templates/admin.php:749
+#: templates/system_information.php:350
+msgid "Integrations"
+msgstr "Entegrasyonları"
+
+#: templates/admin.php:98 templates/admin.php:802
+#: templates/tinymce_popup.php:198 templates/tinymce_popup.php:1165
+msgid "Notifications"
+msgstr "Uyarılar"
+
+#: templates/admin.php:99 templates/admin.php:975
+msgid "Permissions"
+msgstr "İzinler"
+
+#: templates/admin.php:100 templates/admin.php:1021
+msgid "Statistics"
+msgstr "İstatistikler"
+
+#: templates/admin.php:101 templates/admin.php:1072
+#: templates/admin_network.php:30 templates/admin_network.php:191
+msgid "System information"
+msgstr "Sistem Bilgileri"
+
+#: templates/admin.php:105 templates/admin.php:1079
+#: templates/admin_network.php:31 templates/admin_network.php:198
+#: use-your-drive.php:627
+msgid "Support"
+msgstr "Destek"
+
+#: templates/admin.php:108 templates/admin_network.php:34
+msgid "Other Cloud Plugins"
+msgstr "Diğer Bulut Eklentileri"
+
+#: templates/admin.php:115 templates/admin_network.php:41
+#: templates/system_information.php:438
+msgid "Version"
+msgstr "Versiyon"
+
+#: templates/admin.php:127 templates/admin_network.php:69
+msgid "Accounts"
+msgstr "Hesaplar"
+
+#: templates/admin.php:141 templates/admin.php:144
+#: templates/admin_network.php:82 templates/admin_network.php:85
+msgid "Add account"
+msgstr "Hesap ekle"
+
+#: templates/admin.php:146 templates/admin_network.php:87
+msgid "Link a new account to the plugin"
+msgstr "Eklenti için yeni bir hesap bağlayın"
+
+#: templates/admin.php:157
+#, php-format
+msgid ""
+"The authorization is managed by the Network Admin via the <a "
+"href='%s'>Network Settings Page</a> of the plugin"
+msgstr ""
+"Yetkilendirme, eklentinin <a href='%s'>Ağ Ayarları Sayfası</a> üzerinden Ağ "
+"Yöneticisi tarafından yönetilir."
+
+#: templates/admin.php:172 templates/admin_network.php:51
+msgid "Plugin License"
+msgstr "Eklenti Lisansı"
+
+#: templates/admin.php:186
+msgid "Loading Spinner & Images"
+msgstr "Spinner&Resimler yükleniyor"
+
+#: templates/admin.php:189
+msgid "Select Loader Spinner"
+msgstr "Yükleyici Spinner'ını seçiniz"
+
+#: templates/admin.php:191
+msgid "Beat"
+msgstr "Beat"
+
+#: templates/admin.php:192
+msgid "Spinner"
+msgstr "Spinner"
+
+#: templates/admin.php:193
+msgid "Custom Image (selected below)"
+msgstr "Kullanıcı tanıla Fotograf (aşağıda seçili)"
+
+#: templates/admin.php:196
+msgid "General Loader"
+msgstr "Genel  Taşıyıcı"
+
+#: templates/admin.php:201
+msgid "Upload Loader"
+msgstr "Taşıyıcıyı Yükleyin"
+
+#: templates/admin.php:206
+msgid "No Results"
+msgstr "Sonuç yok"
+
+#: templates/admin.php:211
+msgid "Access Forbidden Image"
+msgstr "Yasaklanmış Resim dosyasına erişim"
+
+#: templates/admin.php:216
+msgid "Error Image"
+msgstr "Hatali Resim Dosyası"
+
+#: templates/admin.php:223
+msgid "Color Palette"
+msgstr "Renk Paleti"
+
+#: templates/admin.php:226
+msgid "Content Skin"
+msgstr "İçerik kabı (Skin)"
+
+#: templates/admin.php:227
+msgid "Select the general content skin"
+msgstr "Genel içerik skin'ini seçin"
+
+#: templates/admin.php:229
+msgid "Dark"
+msgstr "Koyu"
+
+#: templates/admin.php:230
+msgid "Light"
+msgstr "Açık"
+
+#: templates/admin.php:237
+msgid "Content Background Color"
+msgstr "İçerik Arkaplanı Rengi"
+
+#: templates/admin.php:241
+msgid "Accent Color"
+msgstr "Accent Rengi"
+
+#: templates/admin.php:245
+msgid "Black"
+msgstr "Siyah"
+
+#: templates/admin.php:249
+msgid "Dark 1"
+msgstr "Koyu 1"
+
+#: templates/admin.php:253
+msgid "Dark 2"
+msgstr "Koyu 2"
+
+#: templates/admin.php:257
+msgid "White"
+msgstr "Beyaz"
+
+#: templates/admin.php:261
+msgid "Light 1"
+msgstr "Açık 1"
+
+#: templates/admin.php:265
+msgid "Light 2"
+msgstr "Açık 2"
+
+#: templates/admin.php:274
+msgid "Icons"
+msgstr "Simgeler"
+
+#: templates/admin.php:277
+msgid "Icon Set"
+msgstr "Simge seti"
+
+#: templates/admin.php:281 templates/admin.php:407 templates/admin.php:576
+#: templates/admin.php:776 templates/admin_network.php:131
+#: templates/tinymce_popup.php:875 templates/tinymce_popup.php:1192
+msgid "NOTICE"
+msgstr "UYARI"
+
+#: templates/admin.php:281
+msgid "Modifications to the default icons set will be lost during an update."
+msgstr ""
+"Güncelleme sırasında ayarlanan varsayılan simgelerde yapılacak değişiklikler "
+"kaybolacaktır."
+
+#: templates/admin.php:287
+msgid "Lightbox"
+msgstr "Lightbox"
+
+#: templates/admin.php:289
+msgid "Lightbox Skin"
+msgstr "Lightbox Skini"
+
+#: templates/admin.php:290
+msgid "Select which skin you want to use for the lightbox"
+msgstr "Lightbox için  hangi skin'i kullancağınızı belirleyin"
+
+#: templates/admin.php:313
+msgid "Lightbox Scroll"
+msgstr "Lightbox  kaydırma"
+
+#: templates/admin.php:314
+msgid ""
+"Sets path for switching windows. Possible values are 'vertical' and "
+"'horizontal' and the default is 'vertical"
+msgstr ""
+"Pencereler arası geçiş için yolu oluşturur. Olası değerler \"dikey\" veya "
+"\"yatay\" ve varsayılan değer \"dikey\" dir"
+
+#: templates/admin.php:316
+msgid "Horizontal"
+msgstr "Yatay"
+
+#: templates/admin.php:317
+msgid "Vertical"
+msgstr "Dikey"
+
+#: templates/admin.php:320
+msgid "Lightbox Image Source"
+msgstr "Lightbox  fotograf kaynağı"
+
+#: templates/admin.php:321
+msgid ""
+"Select the source of the images. Large thumbnails load fast, orignal files "
+"will take some time to load"
+msgstr ""
+"Fotograf kaynaklarını seçin. Büyük thumbnail'ler daha hızlı yüklenir, "
+"orjinal dosyaların yüklenmesi biraz zaman alabilir"
+
+#: templates/admin.php:323
+msgid "Fast - Large preview thumbnails"
+msgstr "Hızlı- Büyük önizleme  küçük resimleri (thumbnail)"
+
+#: templates/admin.php:324
+msgid "Slow - Show orginal files"
+msgstr "Yavaş-Orjinal dosyaları göster"
+
+#: templates/admin.php:327
+msgid "Allow Mouse Click on Image"
+msgstr "Resim üzerine fare tıklanmasına izin ver"
+
+#: templates/admin.php:334
+msgid ""
+"Should people be able to access the right click context menu to e.g. save "
+"the image?"
+msgstr ""
+"Kullanıcılar resmi kaydetmek için fareye sağ tıklayarak içerik menüsüne "
+"erişebilsinmi?"
+
+#: templates/admin.php:336
+msgid "Lightbox Caption"
+msgstr "Lightbox Altyazısı"
+
+#: templates/admin.php:337
+msgid ""
+"Choose when the caption containing the title and (if available) description "
+"are shown"
+msgstr ""
+"Altyazılı içeder yer tutucu ve  (eger varsa) tanımlamanın ne zaman "
+"gösterileceğini seç"
+
+#: templates/admin.php:339
+msgid "Show caption after clicking on the Lightbox"
+msgstr "Lightbox'a tıklandıktan sonra \"resim tanımlama bilgisiin\" göster"
+
+#: templates/admin.php:340
+msgid "Show caption when Lightbox opens"
+msgstr "Lightbox açılınca \"resim tanımlama yazısını\" göster"
+
+#: templates/admin.php:344
+msgid "Default Media Player Skin"
+msgstr ""
+
+#: templates/admin.php:346 templates/tinymce_popup.php:462
+msgid "Select which skin you want to use for the Media Player"
+msgstr "Medya oynatıcı için  bir skin seçiniz"
+
+#: templates/admin.php:367
+msgid "Custom CSS"
+msgstr "Özel tasarlanmış CSS"
+
+#: templates/admin.php:369
+msgid ""
+"If you want to modify the looks of the plugin slightly, you can insert here "
+"your custom CSS. Don't edit the CSS files itself, because those "
+"modifications will be lost during an update."
+msgstr ""
+"Eklentinin görünümünü hafifçe değiştirmek isterseniz, kendi özelleştirilmiş "
+"CSS kodunuzu buraya yerleştirebilirsiniz. CSS dosyasının kendisine müdahale "
+"etmeyiniz, çünkü bu müdahaleler herhangi bir güncellemede kaybolur."
+
+#: templates/admin.php:382
+msgid "Global settings automatically linked Private Folders"
+msgstr ""
+
+#: templates/admin.php:386
+msgid ""
+"The following settings are only used for all shortcodes with automatically "
+"linked Private Folders"
+msgstr ""
+
+#: templates/admin.php:389
+msgid "Create Private Folders on registration"
+msgstr "Kayıt esnasında Özel Klasörünüzü oluşturun"
+
+#: templates/admin.php:396
+msgid ""
+"Create a new Private Folders automatically after a new user has been created"
+msgstr ""
+"Yeni birkullanıcı oluşturulduktan sonra yeni bir Özel Klasörü otomatik "
+"olarak oluşturun"
+
+#: templates/admin.php:398
+msgid "Create all Private Folders on first visit"
+msgstr "Bütün Özel Klasörleri  ilk ziyaretinizde oluşturun"
+
+#: templates/admin.php:405
+msgid ""
+"Create all Private Folders the first time the page with the shortcode is "
+"visited"
+msgstr ""
+"Bütün Özel Klasörleri  üzerinde kısa kod bulunan  sayfa ziyaret edildikten "
+"sonra oluşturun"
+
+#: templates/admin.php:407
+msgid ""
+"Creating User Folders takes around 1 sec per user, so it isn't recommended "
+"to create those on first visit when you have tons of users"
+msgstr ""
+"Kullanıcı Klasörlerinin oluşturulması herbir kullanıcı için yaklaşık bir "
+"saniyeyi alır, onun için bunları ilk ziyarette oluşturmanız önerilmez"
+
+#: templates/admin.php:411
+msgid "Update Private Folders after profile update"
+msgstr "Özel Klasörleri  profil güncellemesinden sonra  güncelleyin"
+
+#: templates/admin.php:418
+msgid ""
+"Update the folder name of the user after they have updated their profile"
+msgstr ""
+"Kullanıcının klasör ismini, onlar profillerini güncelledikten sonra "
+"güncelleyiniz"
+
+#: templates/admin.php:420
+msgid "Remove Private Folders after account removal"
+msgstr "Hesap kaldırıldıktan sonra Özel Klasörleri kaldırın"
+
+#: templates/admin.php:427
+msgid "Try to remove Private Folders after they are deleted"
+msgstr "Silme işleminden sonra özel klasörleri kaldırmayı deneyin"
+
+#: templates/admin.php:429
+msgid "Name Template"
+msgstr "İsim Şablonları"
+
+#: templates/admin.php:430
+msgid ""
+"Template name for automatically created Private Folders. You can use <code>"
+"%user_login%</code>, <code>%user_email%</code>, <code>%display_name%</code>, "
+"<code>%ID%</code>, <code>%user_role%</code>, <code>%jjjj-mm-dd%</code>"
+msgstr ""
+"Otomatik olarak oluşturulan Özel Klasörler için isim şablonu. Şu kodları "
+"kullanabilirsiniz  <code>%user_login%</code>, <code>%user_email%</code>, "
+"<code>%display_name%</code>, <code>%ID%</code>, <code>%user_role%</code>, "
+"<code>%jjjj-mm-d"
+
+#: templates/admin.php:440
+msgid "Private Folders in WP Admin Dashboard"
+msgstr "WP Yönetici Paneli'ndeki Özel Klasörler"
+
+#: templates/admin.php:444
+msgid ""
+"This setting only restrict access of the File Browsers in the Admin "
+"Dashboard (e.g. the ones in the Shortcode Builder and the File Browser "
+"menu). To enable Private Folders for your own Shortcodes, use the Shortcode "
+"Builder"
+msgstr ""
+"Bu ayar yalnızca Yönetici Gösterge Tablosundaki Dosya Tarayıcılarına erişimi "
+"kısıtlar (ör. Kısa Kod Oluşturucu ve Dosya Tarayıcı menüsündekiler). Özel "
+"Klasörleri kendi Kısa Kodlarınız için etkinleştirmek için Kısa Kod "
+"Oluşturucuyu kullanın."
+
+#: templates/admin.php:447
+msgid ""
+"Enable Private Folders in the Shortcode Builder and Back-End File Browser"
+msgstr ""
+"Kısayol Oluşturucu ve Arka Uç Dosya Tarayıcısında Özel Klasörleri Etkinleştir"
+
+#: templates/admin.php:450
+msgid "Yes, I link the users Manually"
+msgstr "Evet,  kullanıcıları manuel olarak bağlayacağım"
+
+#: templates/admin.php:451
+msgid "Yes, let the plugin create the User Folders for me"
+msgstr "Evet, Eklenti Kullanıcı Klasörlerini benim için oluştursun"
+
+#: templates/admin.php:457
+msgid "Root folder for Private Folders"
+msgstr "Özel Klasörler için Kök Klasör"
+
+#: templates/admin.php:458
+msgid "Select in which folder the Private Folders should be created"
+msgstr "Hangi klasörün içinde Özel Klasörlerin oluşturulacağını seçiniz"
+
+#: templates/admin.php:458
+msgid "Current selected folder"
+msgstr "Seçilen Mevcut Klasör"
+
+#: templates/admin.php:502
+msgid "Select Folder"
+msgstr "Klasörü Seçiniz"
+
+#: templates/admin.php:532 templates/tinymce_popup.php:424
+msgid "Full Access"
+msgstr "Tam Erişim"
+
+#: templates/admin.php:533 templates/tinymce_popup.php:425
+msgid ""
+"By default only Administrator users will be able to navigate through all "
+"Private Folders"
+msgstr ""
+"Varsayılan olarak sadece Yöneticiler (Adminler) bütün Özel Klasörlerde "
+"dolaşma imkanına sahip olacaktır"
+
+#: templates/admin.php:533 templates/tinymce_popup.php:425
+msgid ""
+"When you want other User Roles to be able do browse to the Private Folders "
+"as well, please check them below"
+msgstr ""
+"Diğer Kullanıcı Rollerinin de Özel Klasörleri gezebilmesini isterseniz,  "
+"lütfen bunları aşağıdan kontrol ediniz"
+
+#: templates/admin.php:559 templates/admin_network.php:114
+msgid "\"Lost Authorization\" notification"
+msgstr "\" Yetki Kaybedildi\" uyarısı"
+
+#: templates/admin.php:560 templates/admin_network.php:115
+msgid ""
+"If the plugin somehow loses its authorization, a notification email will be "
+"send to the following email address"
+msgstr ""
+"Eklenti bir şekilde yetkilendirmelerini kaybederse,  aşağıdaki mail adresine "
+"bir uyarı maili gönderilecektir"
+
+#: templates/admin.php:563 templates/admin_network.php:118
+msgid "Own Google App"
+msgstr "Google App Sahipliği"
+
+#: templates/admin.php:576 templates/admin_network.php:131
+msgid ""
+"If you encounter any issues when trying to use your own App with Use-your-"
+"Drive, please fall back on the default App by disabling this setting"
+msgstr ""
+"Kendi uygulamanızı Use-your-Drive ile kullanırken herhangi bir problemle "
+"karşılaşırsanız, lütfen  bu ayarları  devre dışı bırakarak fabrika "
+"ayarlarına geri dönünüz"
+
+#: templates/admin.php:580 templates/admin_network.php:135
+msgid "Google Client ID"
+msgstr "Google Müşteri Kimliği (ID)"
+
+#: templates/admin.php:581 templates/admin_network.php:136
+msgid ""
+"<strong>Only</strong> if you want to use your own App, insert your Google "
+"App  Client ID here"
+msgstr ""
+"<strong>Sadece</strong> Sadece kendi uygulamanızı kullanmak istediğinizde, "
+"Google App Müşteri kimliğini buraya giriniz"
+
+#: templates/admin.php:582 templates/admin.php:586
+#: templates/admin_network.php:137 templates/admin_network.php:141
+msgid "Leave empty for easy setup"
+msgstr "Kolay kurulum için boş bırakınız"
+
+#: templates/admin.php:584 templates/admin_network.php:139
+msgid "Google Client Secret"
+msgstr "Google Müşteri  Sırrı"
+
+#: templates/admin.php:585 templates/admin_network.php:140
+msgid ""
+"If you want to use your own App, insert your Google App Client secret here"
+msgstr ""
+"Kendi uygulamanızı kullanmak isterseniz, Google Uygulama Müşteri sırrını "
+"buraya ekleyiniz"
+
+#: templates/admin.php:589 templates/admin_network.php:144
+msgid "OAuth 2.0 Redirect URI"
+msgstr "OAuth 2.0 Yeniden yönlendirme URL'si"
+
+#: templates/admin.php:590 templates/admin_network.php:145
+msgid "Set the redirect URI in your application to the following"
+msgstr ""
+"Uygulamanızdaki yeniden yönlendirme URI'sini  aşağıdaki değere göre "
+"değiştiriniz"
+
+#: templates/admin.php:596 templates/admin_network.php:151
+msgid ""
+"Enter Client ID and Secret, save settings and reload the page to see the "
+"Redirect URI you will need"
+msgstr ""
+"Müşteri kimliği ve Sırrını giriniz, ayarları kaydedin ve ihtiyacınız olan "
+"yönlendirme URI'sını görmek için sayfayı yeniden  yükleyin"
+
+#: templates/admin.php:607 templates/admin_network.php:163
+msgid "Using Google G Suite?"
+msgstr "Google G Suit'mi kullanıyorsunuz?"
+
+#: templates/admin.php:616 templates/admin_network.php:172
+msgid "Your Google G Suite Domain"
+msgstr "G Suite Domain isminiz"
+
+#: templates/admin.php:617 templates/admin_network.php:173
+msgid ""
+"If you have a Google G Suite Domain and you want to share your documents "
+"ONLY with users having an account in your G Suite Domain, please insert your "
+"domain. If you want your documents to be accessible to the public, leave "
+"this setting empty."
+msgstr ""
+"Bir Google G Suite Domain'iniz var ve  belgelerinizi sadece G Suit domain'i "
+"içinde yer alan kullanıcılarla paylaşmak isterseniz, lütfen domain isminizi "
+"ekleyin. Belgeleri herkesin erişimine açmak isterseniz, bu ayarları boş "
+"bırakın."
+
+#: templates/admin.php:620 templates/admin_network.php:176
+msgid "Enable Team Drives"
+msgstr "Takım Sürücülerini (Team Drive) etkinleştirin"
+
+#: templates/admin.php:631
+msgid "Manage Permission"
+msgstr "İzinleri Yönetin"
+
+#: templates/admin.php:637
+msgid ""
+"If you want to manage the sharing permissions by yourself or if you want "
+"users to login to Google, disable the -Manage Permissions- function."
+msgstr ""
+"Paylaşım izinlerini kendiniz yönetmek istiyorsanız veya kullanıcıların "
+"Google'da oturum açmasını istiyorsanız, İzinleri Yönet işlevini devre dışı "
+"bırakın."
+
+#: templates/admin.php:640
+msgid "Load Javascripts on all pages"
+msgstr "Bütün sayfalara JavaScript yükleyiniz"
+
+#: templates/admin.php:646
+msgid ""
+"By default the plugin will only load it scripts when the shortcode is "
+"present on the page. If you are dynamically loading content via AJAX calls "
+"and the plugin does not show up, please enable this setting"
+msgstr ""
+"Varsayılan olarak, Eklenti sadece ilgili sayfada kısakod varsa "
+"yükleyenecektir. AJAX çağrılarıyla içerikleri dinamik olarak yüklüyorsanız "
+"ve Eklenti ortaya çıkmazsa, bu ayarları aktive edin"
+
+#: templates/admin.php:649
+msgid "Enable Font Awesome Library v4 compatibility"
+msgstr ""
+
+#: templates/admin.php:655
+msgid ""
+"If your theme is loading the old Font Awesome icon library (v4), it can "
+"cause conflict with the (v5) icons of this plugin. If you are having trouble "
+"with the icons, please enable this setting for backwards compatibility"
+msgstr ""
+
+#: templates/admin.php:655
+msgid ""
+"To disable the Font Awesome library of this plugin completely, add this to "
+"your wp-config.php file"
+msgstr ""
+
+#: templates/admin.php:658
+msgid "Enable Gzip compression"
+msgstr "Gzip sıkıştırmayı etkinleştirme"
+
+#: templates/admin.php:666
+msgid ""
+"Enables gzip-compression if the visitor's browser can handle it. This will "
+"increase the performance of the plugin if you are displaying large amounts "
+"of files and it reduces bandwidth usage as well. It uses the PHP "
+"<code>ob_gzhandler()</code> callback. Please use this setting with caution. "
+"Always test if the plugin still works on the Front-End as some servers are "
+"already configured to gzip content!"
+msgstr ""
+"Ziyaretçinin tarayıcısı  açabilecekse gzip-sıkıstırmayı etkinleştirin. Bu   "
+"büyük miktarda dosya ile işlem yapacaksanız, eklentinin performansını "
+"artıracak ve  band genişliği kullanımını da azaltacaktır.  Bu "
+"<code>ob_gzhandler()</code>  kodunu kullanır. Lütfen ayarları dikkatle "
+"kullanın. Her zaman eklentinin ön planda hala çalışıp çalışmadığını  test "
+"edin, çünkü bazı sunucular gzip içeriği için zaten konfigüre edilmişlerdir!"
+
+#: templates/admin.php:670
+msgid "File Based Cache"
+msgstr "Dosya tabanlı Keş (Cache)"
+
+#: templates/admin.php:671
+msgid "Database Based Cache"
+msgstr "Veritabanı  Temelli Keşleme"
+
+#: templates/admin.php:675
+msgid "Nonce Validation"
+msgstr "Bir defa kullanılan sayı (Nonce) Teyidi"
+
+#: templates/admin.php:681
+msgid ""
+"The plugin uses, among others, the WordPress Nonce system to protect you "
+"against several types of attacks including CSRF. Disable this in case you "
+"are encountering a conflict with a plugin that alters this system"
+msgstr ""
+"Eklenti, diğerleri yanında, size değişik düzeydeki ataklara-CSRF dahil- "
+"karşı korumak için Wordpress Nons sistemi (Bir defa kullanılan sayı) ni "
+"kullanır. Bu sistemi değiştiren bir eklenti çatışmalara neden oluyorsa onu "
+"devre dışı bırakın"
+
+#: templates/admin.php:686
+msgid "Syncronize via WP-Cron"
+msgstr "Wp-Cron aracılığıyla senkronize et"
+
+#: templates/admin.php:692
+msgid ""
+"Use WP-Cron to synchronize the cache of the plugin with the linked cloud "
+"account. If you are using tens of shortcodes and encounter performance "
+"issues, try to disable this setting"
+msgstr ""
+"Eklentinin keş belleğini  bağlantılı olan bulut hesabıyla senkronize etmek "
+"için WP-Cron kulan.  Eğer  onlarca kısakod kullanıyor ve performans "
+"sorunları yaşıyorsanız, bu ayarları devre dışı bırakmaya çalışın"
+
+#: templates/admin.php:694
+msgid ""
+"As WP-Cron does not run continuously, you can increase the loading "
+"performance by creating a Cron job via your server configuration panel!"
+msgstr ""
+"WP-Cron devamlı olarak çalışmadığı için, sunucunuzun konfigirasyon "
+"panelinden  bir Cron işi oluşturarark  yükleme performansını "
+"artırabilirsiniz!"
+
+#: templates/admin.php:694
+msgid "More information"
+msgstr "Daha fazla bilgi"
+
+#: templates/admin.php:697
+msgid "Download method"
+msgstr "Yükleme yöntemi"
+
+#: templates/admin.php:698
+msgid ""
+"Select the method that should be used to download your files. Default is to "
+"redirect the user to a temporarily url on Google Server. If you want to use "
+"your server as a proxy to the Google Server just set it to Download via "
+"Server"
+msgstr ""
+"Dosyalarınızı yüklemek için kullanılacak metotları seçin. Varsayılan  metat "
+"kullanıcıyı  Google  Sunucu üzerindeki  geçici bir dosyaya yönlendirmektir.  "
+"Sunucunuzu Google sunucusuna bir proxy olarak kullanmak istiyorsanız ayarı  "
+"Sunucu aracılığıyla  indirme yap şeklinde ayarlayıp bırakın"
+
+#: templates/admin.php:700
+msgid "Redirect to download url (fast)"
+msgstr "İndirme URL(hızlı) sine Yönlendirme"
+
+#: templates/admin.php:701
+msgid "Use your Server as proxy (slow)"
+msgstr "Sunucunuzu proxy olarak kullanma (Yavaş)"
+
+#: templates/admin.php:704
+msgid "Shortlinks API"
+msgstr "Kısabağlantılar API'si"
+
+#: templates/admin.php:705
+msgid "Select which Url Shortener Service you want to use"
+msgstr "Hangi URL Kısaltma hizmetini kullanacağınızı seçin"
+
+#: templates/admin.php:715
+msgid "Sign up for Shorte.st"
+msgstr "Shorte.st için   giriş işlemler iyapın"
+
+#: templates/admin.php:717
+msgid "API token"
+msgstr "API   programcığı (Token)"
+
+#: templates/admin.php:722
+msgid "Sign up for Bitly"
+msgstr "Bitly için  üyelik işlemlerini başlatın"
+
+#: templates/admin.php:724
+msgid "Bitly login"
+msgstr "Bitly  Giriş işlemi"
+
+#: templates/admin.php:727
+msgid "Bitly apiKey"
+msgstr "Bitly apiKey"
+
+#: templates/admin.php:732
+msgid "Sign up for Rebrandly"
+msgstr "Rebrandly için üyelik işlemleri"
+
+#: templates/admin.php:734
+msgid "Rebrandly apiKey"
+msgstr "Rebrandly apiKey"
+
+#: templates/admin.php:737
+msgid "Rebrandly Domain (optional)"
+msgstr "Rebrandly Domain (İsteğe Bağlı)"
+
+#: templates/admin.php:740
+msgid "Rebrandly WorkSpace ID (optional)"
+msgstr "Rebrandly WorkSpace ID (isteğe bağlı)"
+
+#: templates/admin.php:753
+msgid "ReCaptcha V3"
+msgstr "ReCaptcha V3"
+
+#: templates/admin.php:756
+msgid ""
+"reCAPTCHA protects you against spam and other types of automated abuse. With "
+"this reCAPTCHA (V3) integration module, you can block abusive downloads of "
+"your files by bots. Create your own credentials via the link below."
+msgstr ""
+"reCAPTCHA sizi spam ve diğer otomatik suistimal türlerine karşı korur. Bu "
+"reCAPTCHA (V3) entegrasyon modülüyle, dosyalarınızın kötü niyetli "
+"indirilmesini botlarla engelleyebilirsiniz. Aşağıdaki bağlantıyı kullanarak "
+"kendi kimlik bilgilerinizi oluşturun."
+
+#: templates/admin.php:758
+msgid "Site Key"
+msgstr ""
+
+#: templates/admin.php:761
+msgid "Secret Key"
+msgstr ""
+
+#: templates/admin.php:768
+msgid "Video Advertisements (IMA/VAST)"
+msgstr "Video Reklamları (IMA / VAST)"
+
+#: templates/admin.php:770
+msgid ""
+"The mediaplayer of the plugin supports VAST XML advertisments to offer "
+"monetization options for your videos. You can enable advertisments for the "
+"complete site and per Media Player shortcode. Currently, this plugin only "
+"supports Linear elements with MP4"
+msgstr ""
+"Eklentinin mediatörü, videolarınız için para kazanma seçenekleri sunan VAST "
+"XML reklamlarını destekliyor. Tüm site ve Media Player kısa koduna göre "
+"reklamları etkinleştirebilirsiniz. Şu anda, bu eklenti yalnızca MP4'lü "
+"Doğrusal öğeleri destekliyor"
+
+#: templates/admin.php:773
+msgid "Leave empty to disable Ads"
+msgstr "Reklamları devre dışı bırakmak için boş bırakın"
+
+#: templates/admin.php:776 templates/tinymce_popup.php:875
+msgid ""
+"If you are unable to see the example VAST url below, please make sure you do "
+"not have an ad blocker enabled."
+msgstr ""
+
+#: templates/admin.php:781 templates/tinymce_popup.php:880
+msgid "Enable Skip Button"
+msgstr "Atla Düğmesini Etkinleştir"
+
+#: templates/admin.php:790 templates/tinymce_popup.php:888
+msgid "Skip button visible after (seconds)"
+msgstr "Atla düğmesi (saniye) sonra görünür"
+
+#: templates/admin.php:792 templates/tinymce_popup.php:890
+msgid ""
+"Allow user to skip advertisment after after the following amount of seconds "
+"have elapsed"
+msgstr ""
+"Kullanıcının, aşağıdaki saniye sürelerinin dolmasından sonra reklamı "
+"atlamasına izin ver"
+
+#: templates/admin.php:806
+msgid "Download Notifications"
+msgstr "Uyarıları İndir"
+
+#: templates/admin.php:809
+msgid "Subject download notification"
+msgstr "Konu yükleme uyarıları"
+
+#: templates/admin.php:812
+msgid "Subject zip notification"
+msgstr "Konu zip Uyarısı"
+
+#: templates/admin.php:815
+msgid "Template download"
+msgstr "Şablon indirme"
+
+#: templates/admin.php:830 templates/admin.php:872 templates/admin.php:914
+#: templates/admin.php:953
+msgid "Available placeholders"
+msgstr "Mevcut yertutucular"
+
+#: templates/admin.php:852
+msgid "Upload Notifications"
+msgstr "Yükleme Uyarıları"
+
+#: templates/admin.php:854
+msgid "Subject upload notification"
+msgstr "Konu yükleme uyarıları"
+
+#: templates/admin.php:857
+msgid "Template upload"
+msgstr "Şablon yükleme"
+
+#: templates/admin.php:894
+msgid "Delete Notifications"
+msgstr "Uyarıları Sil"
+
+#: templates/admin.php:896
+msgid "Subject deletion notification"
+msgstr "Konu slime uyarısı"
+
+#: templates/admin.php:898
+msgid "Template deletion"
+msgstr "Şablon silme"
+
+#: templates/admin.php:936
+msgid "Template %filelist% placeholder"
+msgstr "Şablon %filelist% yertutucu"
+
+#: templates/admin.php:938
+msgid ""
+"Template for File item in File List in the download/upload/delete "
+"notification template"
+msgstr ""
+"İndirme/yükleme/slime uyarı şablonundaki dosya Listesinde Dosya unsuru için "
+"Şablon"
+
+#: templates/admin.php:968
+msgid "Reset to default notifications"
+msgstr ""
+
+#: templates/admin.php:979
+msgid "Change Plugin Settings"
+msgstr "Eklenti Ayarları Değiştirme"
+
+#: templates/admin.php:984
+msgid "Link Users to Private Folders"
+msgstr "Kullanıcıları  Özel Klasörlere bağlama"
+
+#: templates/admin.php:989
+msgid "See Reports"
+msgstr "Raporları gör"
+
+#: templates/admin.php:994
+msgid "See Back-End Filebrowser"
+msgstr "Arka plan Dosya Gezginini   İncele"
+
+#: templates/admin.php:999
+msgid "Add Plugin Shortcodes"
+msgstr "Eklenti  kısakodları  Ekle"
+
+#: templates/admin.php:1004
+msgid "Add Direct Links"
+msgstr "Doğrudan Linkleri  Ekle"
+
+#: templates/admin.php:1009
+msgid "Embed Documents"
+msgstr "Belgeleri göm"
+
+#: templates/admin.php:1023
+msgid "Log Events"
+msgstr "Günlük Olayları"
+
+#: templates/admin.php:1030
+msgid "Register all plugin events"
+msgstr "Tüm eklenti etkinliklerini kaydet"
+
+#: templates/admin.php:1033
+msgid "Summary Email"
+msgstr ""
+
+#: templates/admin.php:1040
+msgid "Email a summary of all the events that are logged with the plugin"
+msgstr ""
+
+#: templates/admin.php:1044
+msgid "Interval"
+msgstr ""
+
+#: templates/admin.php:1045
+msgid "Please select the interval the summary needs to be send"
+msgstr ""
+
+#: templates/admin.php:1047
+msgid "Every day"
+msgstr ""
+
+#: templates/admin.php:1048
+msgid "Weekly"
+msgstr ""
+
+#: templates/admin.php:1049
+msgid "Monthly"
+msgstr ""
+
+#: templates/admin.php:1052 templates/tinymce_popup.php:1187
+msgid "Recipients"
+msgstr "Alıcı"
+
+#: templates/admin.php:1053
+msgid "Send the summary to the following email address(es)"
+msgstr ""
+
+#: templates/admin.php:1059
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: templates/admin.php:1066
+msgid ""
+"Would you like to see some statistics about your files? Use-your-Drive can "
+"send all download/upload events to Google Analytics"
+msgstr ""
+"Dosyanız hakkında bazı istatistikleri görmek istermisiniz? Use-your-Drive  "
+"bütün indirme/yükleme olaylarını  Google Analytics'e gönderir"
+
+#: templates/admin.php:1066
+#, php-format
+msgid ""
+"If you enable this feature, please make sure you already added your %s "
+"Google Analytics web tracking %s code to your site."
+msgstr ""
+
+#: templates/admin.php:1081 templates/admin_network.php:200
+msgid "Support & Documentation"
+msgstr "Destek ve Dokumanlar"
+
+#: templates/admin.php:1083 templates/admin_network.php:202
+msgid ""
+"Check the documentation of the plugin in case you encounter any problems or "
+"are looking for support."
+msgstr ""
+"Herhangi bir problemle karşılaşmanız durumunda veya bir destek ihtiyacınız "
+"olduğu zaman eklenti dokumanlarını inceleyiniz."
+
+#: templates/admin.php:1084 templates/admin_network.php:203
+msgid "Open Documentation"
+msgstr "Dokumanları  Açın"
+
+#: templates/admin.php:1141
+msgid "Select your image"
+msgstr "Fotoğrafınızı  seçin"
+
+#: templates/admin.php:1143
+msgid "Use this Image"
+msgstr "Bu fotoğrafı kullanın"
+
+#: templates/admin_dashboard.php:7
+msgid "Clear all Statistics"
+msgstr "Tüm İstatistikleri Temizle"
+
+#: templates/admin_dashboard.php:17
+msgid "Total Previews"
+msgstr "Toplama Görüntüye Bakma Sayısı"
+
+#: templates/admin_dashboard.php:30
+msgid "Total Downloads"
+msgstr "Toplam İndirmeler"
+
+#: templates/admin_dashboard.php:42
+msgid "Items Shared"
+msgstr "Paylaşılan Ürünler"
+
+#: templates/admin_dashboard.php:54
+msgid "Documents Uploaded"
+msgstr "Yüklenen Belgeler"
+
+#: templates/admin_dashboard.php:67
+msgid "From"
+msgstr "Kimden"
+
+#: templates/admin_dashboard.php:69
+msgid "to"
+msgstr "kime"
+
+#: templates/admin_dashboard.php:72
+msgid "Events per Day"
+msgstr "Günlük Olaylar"
+
+#: templates/admin_dashboard.php:82
+msgid "Top 25 Downloads"
+msgstr "En fazla İndirme Yapılanlar (Top 25)"
+
+#: templates/admin_dashboard.php:87
+msgid "Document"
+msgstr "Belge"
+
+#: templates/admin_dashboard.php:88
+msgid "Total"
+msgstr "Toplam"
+
+#: templates/admin_dashboard.php:97
+msgid "Top 25 Users with most Downloads"
+msgstr "En fazla  indirme yapan ilk 25 kullanıcı"
+
+#: templates/admin_dashboard.php:113
+msgid "All Events"
+msgstr "Bütün olaylar"
+
+#: templates/admin_dashboard.php:118 templates/admin_dashboard.php:202
+msgid "Description"
+msgstr "Tanımlama"
+
+#: templates/admin_dashboard.php:119 templates/admin_dashboard.php:203
+msgid "Date"
+msgstr "Tarih"
+
+#: templates/admin_dashboard.php:120 templates/admin_dashboard.php:204
+msgid "Event"
+msgstr "Olay"
+
+#: templates/admin_dashboard.php:123 templates/admin_dashboard.php:207
+msgid "Location"
+msgstr "Yer"
+
+#: templates/admin_dashboard.php:124 templates/admin_dashboard.php:208
+msgid "Page"
+msgstr "Sayfa"
+
+#: templates/admin_dashboard.php:125 templates/admin_dashboard.php:209
+msgid "Extra"
+msgstr "Ekstra"
+
+#: templates/admin_dashboard.php:139
+msgid "Visit Profile"
+msgstr "Ziyaret Profili"
+
+#: templates/admin_dashboard.php:156
+msgid "Previews"
+msgstr "Önizlemeler"
+
+#: templates/admin_dashboard.php:197
+msgid "Logged Events"
+msgstr "Kayıt Altına Alınan Olaylar"
+
+#: templates/admin_network.php:57
+msgid "Network Wide Authorization"
+msgstr ""
+
+#: templates/frontend.php:7 templates/gallery.php:6
+msgid "Back to our first folder"
+msgstr "İlk Klasöre Geri Dönüş"
+
+#: templates/frontend.php:10 templates/gallery.php:9
+msgid "Loading..."
+msgstr "Yükleniyor..."
+
+#: templates/frontend.php:20 templates/gallery.php:19 templates/search.php:5
+msgid "Search"
+msgstr "Arama"
+
+#: templates/frontend.php:20 templates/gallery.php:19
+msgid "Search filenames"
+msgstr "Dosya Adlarını Araştır"
+
+#: templates/frontend.php:20 templates/gallery.php:19
+msgid "and within contents"
+msgstr "ve içerik içinde"
+
+#: templates/frontend.php:23 templates/gallery.php:26
+msgid "Options"
+msgstr "Seçenekler"
+
+#: templates/frontend.php:28 templates/frontend.php:29
+msgid "Thumbnails view"
+msgstr "Küçükresim (Thumbnails) Görüntüleme"
+
+#: templates/frontend.php:32 templates/frontend.php:33
+msgid "List view"
+msgstr "Liste Olarak Görüntüleme"
+
+#: templates/frontend.php:51 templates/gallery.php:46
+msgid "Download all"
+msgstr "Hepsini İndir"
+
+#: templates/frontend.php:52 templates/gallery.php:47
+msgid "Download selected"
+msgstr "Seçili OLanları  İndir"
+
+#: templates/frontend.php:64 templates/gallery.php:59
+msgid "Delete selected"
+msgstr "Seçilenleri İndir"
+
+#: templates/frontend.php:69
+msgid "Share folder"
+msgstr "Klasör Paylax"
+
+#: templates/frontend.php:73 templates/gallery.php:63
+msgid "No options..."
+msgstr "Seçenek Yok..."
+
+#: templates/frontend.php:112 templates/tinymce_popup.php:740
+msgid "Size"
+msgstr "Ölçü"
+
+#: templates/frontend.php:118 templates/tinymce_popup.php:748
+msgid "Date modified"
+msgstr "Değiştirme Tarihi"
+
+#: templates/noaccess.php:6
+msgid "Your account doesn't have the right permissions to use this"
+msgstr "Hesabınız bunu kullanmaya izinli değil"
+
+#: templates/noaccess.php:6
+msgid "Contact the webmaster if you would like to have access"
+msgstr "Erişimde bulunmak istiyorsanız  WebMaster ile irtibata geçiniz"
+
+#: templates/notifications/event_summary.php:191
+#: templates/notifications/lost_authorization.php:191
+msgid "Hi there!"
+msgstr ""
+
+#: templates/notifications/event_summary.php:199
+#, php-format
+msgid ""
+"This is the latest summary of all the activites that are logged since %s"
+msgstr ""
+
+#: templates/notifications/event_summary.php:227
+msgid "No downloads found in this period"
+msgstr ""
+
+#: templates/notifications/event_summary.php:287
+msgid "No activities found in this period"
+msgstr ""
+
+#: templates/notifications/event_summary.php:352
+#, php-format
+msgid "View more activites (%s left)"
+msgstr ""
+
+#: templates/notifications/event_summary.php:354
+msgid "View all activites"
+msgstr ""
+
+#: templates/notifications/lost_authorization.php:234
+msgid "Authorize the plugin!"
+msgstr "Plugin'i yetkilendirin!"
+
+#: templates/search.php:5
+msgid "Search for files"
+msgstr "Dosyaları ara"
+
+#: templates/search.php:5
+msgid "and content"
+msgstr "ve içeriklerini"
+
+#: templates/system_information.php:27
+msgid "WordPress environment"
+msgstr ""
+
+#: templates/system_information.php:32
+msgid "WordPress address (URL)"
+msgstr ""
+
+#: templates/system_information.php:33
+msgid "The root URL of your site."
+msgstr ""
+
+#: templates/system_information.php:37
+msgid "Site address (URL)"
+msgstr ""
+
+#: templates/system_information.php:38
+msgid "The homepage URL of your site."
+msgstr ""
+
+#: templates/system_information.php:42
+msgid "Use-your-Drive version"
+msgstr ""
+
+#: templates/system_information.php:43
+msgid "The version of Use-your-Drive installed on your site."
+msgstr ""
+
+#: templates/system_information.php:47
+msgid "WordPress version"
+msgstr "WordPress Versiyonu"
+
+#: templates/system_information.php:48
+msgid "The version of WordPress installed on your site."
+msgstr ""
+
+#: templates/system_information.php:67
+#, php-format
+msgid "%1$s - There is a newer version of WordPress available (%2$s)"
+msgstr ""
+
+#: templates/system_information.php:75
+msgid "WordPress multisite"
+msgstr ""
+
+#: templates/system_information.php:76
+msgid "Whether or not you have WordPress Multisite enabled."
+msgstr ""
+
+#: templates/system_information.php:80
+msgid "WordPress memory limit"
+msgstr ""
+
+#: templates/system_information.php:81
+msgid "The maximum amount of memory (RAM) that your site can use at one time."
+msgstr ""
+
+#: templates/system_information.php:86
+#, php-format
+msgid "%1$s - We recommend setting memory to at least 256MB. See: %2$s"
+msgstr ""
+
+#: templates/system_information.php:86
+msgid "Increasing memory allocated to PHP"
+msgstr ""
+
+#: templates/system_information.php:94
+msgid "WordPress debug mode"
+msgstr ""
+
+#: templates/system_information.php:95
+msgid "Displays whether or not WordPress is in Debug Mode."
+msgstr ""
+
+#: templates/system_information.php:105
+msgid "WordPress cron"
+msgstr ""
+
+#: templates/system_information.php:106
+msgid "Displays whether or not WP Cron Jobs are enabled."
+msgstr ""
+
+#: templates/system_information.php:116
+msgid "Language"
+msgstr ""
+
+#: templates/system_information.php:117
+msgid "The current language used by WordPress. Default = English"
+msgstr ""
+
+#: templates/system_information.php:121
+msgid "External object cache"
+msgstr ""
+
+#: templates/system_information.php:122
+msgid "Displays whether or not WordPress is using an external object cache."
+msgstr ""
+
+#: templates/system_information.php:139
+msgid "Server environment"
+msgstr ""
+
+#: templates/system_information.php:144
+msgid "Server info"
+msgstr ""
+
+#: templates/system_information.php:145
+msgid "Information about the web server that is currently hosting your site."
+msgstr ""
+
+#: templates/system_information.php:149
+msgid "PHP version"
+msgstr "PHP Versiyonu"
+
+#: templates/system_information.php:150
+msgid "The version of PHP installed on your hosting server."
+msgstr ""
+
+#: templates/system_information.php:156
+msgid "How to update your PHP version"
+msgstr ""
+
+#: templates/system_information.php:160
+msgid ""
+"Use-your-Drive will run under this version of PHP, however, it has reached "
+"end of life. We recommend using PHP version 7.2 or above for greater "
+"performance and security."
+msgstr ""
+
+#: templates/system_information.php:162
+msgid ""
+"We recommend using PHP version 7.2 or above for greater performance and "
+"security."
+msgstr ""
+
+#: templates/system_information.php:173
+msgid "PHP post max size"
+msgstr ""
+
+#: templates/system_information.php:174
+msgid "The largest filesize that can be contained in one post."
+msgstr ""
+
+#: templates/system_information.php:178
+msgid "PHP time limit"
+msgstr ""
+
+#: templates/system_information.php:179
+msgid ""
+"The amount of time (in seconds) that your site will spend on a single "
+"operation before timing out (to avoid server lockups)"
+msgstr ""
+
+#: templates/system_information.php:183
+msgid "PHP max input vars"
+msgstr ""
+
+#: templates/system_information.php:184
+msgid ""
+"The maximum number of variables your server can use for a single function to "
+"avoid overloads."
+msgstr ""
+
+#: templates/system_information.php:188
+msgid "cURL version"
+msgstr ""
+
+#: templates/system_information.php:189
+msgid "The version of cURL installed on your server."
+msgstr ""
+
+#: templates/system_information.php:195
+msgid "Max upload size"
+msgstr ""
+
+#: templates/system_information.php:196
+msgid ""
+"The largest filesize that can be uploaded to your WordPress installation."
+msgstr ""
+
+#: templates/system_information.php:200
+msgid "Default timezone is UTC"
+msgstr ""
+
+#: templates/system_information.php:201
+msgid "The default timezone for your server."
+msgstr ""
+
+#: templates/system_information.php:206
+#, php-format
+msgid "Default timezone is %s - it should be UTC"
+msgstr ""
+
+#: templates/system_information.php:214
+msgid "cURL"
+msgstr "cURL"
+
+#: templates/system_information.php:215
+msgid "We use cURL and fopen to communicate with API services."
+msgstr ""
+
+#: templates/system_information.php:221
+msgid ""
+"Your server does not cURL enabled - The plugin cannot communicate with the "
+"API service. Contact your hosting provider."
+msgstr ""
+
+#: templates/system_information.php:228
+msgid "GZip (zlib) is used to compress the output of the plugin."
+msgstr ""
+
+#: templates/system_information.php:235
+#, php-format
+msgid ""
+"Your server does not support the %s function - this is required to compress "
+"the output of the plugin."
+msgstr ""
+
+#: templates/system_information.php:241
+msgid "Multibyte string"
+msgstr ""
+
+#: templates/system_information.php:242
+msgid ""
+"Multibyte String (mbstring) is used to convert character encoding, like for "
+"emails or converting characters to lowercase."
+msgstr ""
+
+#: templates/system_information.php:249
+#, php-format
+msgid ""
+"Your server does not support the %s functions - this is required for better "
+"character encoding. Some fallbacks will be used instead for it."
+msgstr ""
+
+#: templates/system_information.php:256
+msgid ""
+"Portable advisory file locking (flock) is used to for the caching mechanism."
+msgstr ""
+
+#: templates/system_information.php:263
+#, php-format
+msgid ""
+"Your server does not support the %s function - this is required for the "
+"caching mechanisms. Please enable this function to prevent caching problems."
+msgstr ""
+
+#: templates/system_information.php:270
+msgid ""
+"This extension (ZipArchive) is used when creating zip files while "
+"downloading multiple files at once."
+msgstr ""
+
+#: templates/system_information.php:277
+#, php-format
+msgid ""
+"Your server does not support the %s function - this is required for creating "
+"zip files."
+msgstr ""
+
+#: templates/system_information.php:312
+msgid "Security"
+msgstr ""
+
+#: templates/system_information.php:317
+msgid "Secure connection (HTTPS)"
+msgstr ""
+
+#: templates/system_information.php:318
+msgid "Is the connection to your store secure?"
+msgstr ""
+
+#: templates/system_information.php:326
+#, php-format
+msgid ""
+"Your store is not using HTTPS. <a href=\"%s\" target=\"_blank\">Learn more "
+"about HTTPS and SSL Certificates</a>."
+msgstr ""
+
+#: templates/system_information.php:333
+msgid "Hide errors from visitors"
+msgstr ""
+
+#: templates/system_information.php:334
+msgid ""
+"Error messages can contain sensitive information about your store "
+"environment. These should be hidden from untrusted visitors."
+msgstr ""
+
+#: templates/system_information.php:339
+msgid "Error messages should not be shown to visitors."
+msgstr ""
+
+#: templates/system_information.php:356
+msgid "You can use the plugin in WooCommerce for your Digital Products."
+msgstr ""
+
+#: templates/system_information.php:360 templates/system_information.php:373
+#: templates/system_information.php:386 templates/system_information.php:399
+#: templates/system_information.php:413
+msgid "Not active"
+msgstr ""
+
+#: templates/system_information.php:369
+msgid ""
+"You can use the plugin in the Product Documents extension of WooCommerce."
+msgstr ""
+
+#: templates/system_information.php:382
+msgid "You can use the plugin in Gravity Forms."
+msgstr ""
+
+#: templates/system_information.php:395
+msgid ""
+"The Gravity PDF integrations allow you to store your Gravity Forms "
+"submissions directly in the cloud."
+msgstr ""
+
+#: templates/system_information.php:408
+msgid "You can use the plugin in Contact Form 7."
+msgstr ""
+
+#: templates/system_information.php:428
+msgid "Theme"
+msgstr ""
+
+#: templates/system_information.php:434
+msgid "The name of the current active theme."
+msgstr ""
+
+#: templates/system_information.php:439
+msgid "The installed version of the current active theme."
+msgstr ""
+
+#: templates/system_information.php:443
+msgid "Author URL"
+msgstr ""
+
+#: templates/system_information.php:444
+msgid "The theme developers URL."
+msgstr ""
+
+#: templates/system_information.php:448
+msgid "Child theme"
+msgstr ""
+
+#: templates/system_information.php:449
+msgid "Displays whether or not the current theme is a child theme."
+msgstr ""
+
+#: templates/system_information.php:463
+msgid "Parent theme name"
+msgstr ""
+
+#: templates/system_information.php:464
+msgid "The name of the parent theme."
+msgstr ""
+
+#: templates/system_information.php:468
+msgid "Parent theme version"
+msgstr ""
+
+#: templates/system_information.php:469
+msgid "The installed version of the parent theme."
+msgstr ""
+
+#: templates/system_information.php:473
+msgid "Parent theme author URL"
+msgstr ""
+
+#: templates/system_information.php:474
+msgid "The parent theme developers URL."
+msgstr ""
+
+#: templates/system_information.php:485
+msgid "Active plugins"
+msgstr ""
+
+#: templates/system_information.php:497
+msgid "Visit plugin homepage"
+msgstr ""
+
+#: templates/system_information.php:502
+msgid "Network enabled"
+msgstr ""
+
+#: templates/system_information.php:511
+#, php-format
+msgid "by %s"
+msgstr "%s tarafından"
+
+#: templates/tinymce_popup.php:75
+msgid "Insert direct Links"
+msgstr "Doğrudan Linkleri  Yerleştir"
+
+#: templates/tinymce_popup.php:78
+msgid "Embed files"
+msgstr "Dosyaları göm"
+
+#: templates/tinymce_popup.php:110 templates/tinymce_popup.php:112
+msgid "Get raw Shortcode"
+msgstr "Ham kısakodları  Getir"
+
+#: templates/tinymce_popup.php:110
+msgid "Create Shortcode"
+msgstr "Kısakodları Oluştur"
+
+#: templates/tinymce_popup.php:112
+msgid "Raw"
+msgstr "Ham"
+
+#: templates/tinymce_popup.php:113 templates/tinymce_popup.php:120
+#: templates/tinymce_popup.php:122 templates/tinymce_popup.php:124
+msgid "Insert Shortcode"
+msgstr "Kısa kodları Yerleştir"
+
+#: templates/tinymce_popup.php:116
+msgid "Insert Links"
+msgstr "Linkleri yerleştir"
+
+#: templates/tinymce_popup.php:118
+msgid "Embed Files"
+msgstr "Dosyaları Göm"
+
+#: templates/tinymce_popup.php:135
+msgid "Please note that the embedded files need to be public (with link)"
+msgstr ""
+"Lütfen,  gömülü dosyaların herkesin erişimine açık olması gerekmektedir "
+"(Link'le birlikte)"
+
+#: templates/tinymce_popup.php:189
+msgid "Shortcode Options"
+msgstr "Kısa Kod Seçenekleri"
+
+#: templates/tinymce_popup.php:192 templates/tinymce_popup.php:254
+msgid "Folders"
+msgstr "Klasörler"
+
+#: templates/tinymce_popup.php:194 templates/tinymce_popup.php:728
+msgid "Sorting"
+msgstr "Düzene Koyma"
+
+#: templates/tinymce_popup.php:196 templates/tinymce_popup.php:900
+msgid "Exclusions"
+msgstr "İstisnalar"
+
+#: templates/tinymce_popup.php:197 templates/tinymce_popup.php:219
+#: templates/tinymce_popup.php:924
+msgid "Upload Box"
+msgstr "Yükleme Kutusu"
+
+#: templates/tinymce_popup.php:199 templates/tinymce_popup.php:1207
+msgid "File Manipulation"
+msgstr "Dosyaya Müdahale"
+
+#: templates/tinymce_popup.php:200 templates/tinymce_popup.php:346
+#: templates/tinymce_popup.php:932 templates/tinymce_popup.php:1276
+#: templates/tinymce_popup.php:1283
+msgid "User Permissions"
+msgstr "Kullanıcı İzinleri"
+
+#: templates/tinymce_popup.php:211
+msgid "Plugin Mode"
+msgstr "Eklenti Modu"
+
+#: templates/tinymce_popup.php:212
+msgid "Select how you want to use Use-your-Drive in your post or page"
+msgstr "Use-your-Drive'ı  posta ve sayfalarınızda nasıl kullanacağınız seçin"
+
+#: templates/tinymce_popup.php:215
+msgid "File browser"
+msgstr "Dosya Yöneticisi"
+
+#: templates/tinymce_popup.php:224
+msgid "Photo gallery"
+msgstr "Foto Galeri"
+
+#: templates/tinymce_popup.php:228
+msgid "Audio player"
+msgstr "Ses Oynatıcısı"
+
+#: templates/tinymce_popup.php:232
+msgid "Video player"
+msgstr "Vidyo Oynatıcısı"
+
+#: templates/tinymce_popup.php:236
+msgid "Search Box"
+msgstr "Arama Kutusu"
+
+#: templates/tinymce_popup.php:243
+msgid ""
+"Don't forget to check the Upload Permissions on the User Permissions tab"
+msgstr "Kullanıcı sekmesindeki Yükleme İzinlerini  kontrol etmeyi unutmayınız"
+
+#: templates/tinymce_popup.php:243
+msgid "By default, only logged-in users can upload files"
+msgstr "Varsayılan olarak sadece giriş yapan kullanıcılar dosya yükleyebilir"
+
+#: templates/tinymce_popup.php:257
+msgid "Use single cloud account"
+msgstr ""
+
+#: templates/tinymce_popup.php:263
+msgid ""
+"Use a folder from one of the linked account. Disabling this option allows "
+"your users to navigate through the folders of all your linked accounts"
+msgstr ""
+
+#: templates/tinymce_popup.php:268
+msgid "Select start Folder"
+msgstr "Başlangıç Klasörünü Seç"
+
+#: templates/tinymce_popup.php:269
+msgid ""
+"Select which folder should be used as starting point, or in case the Smart "
+"Client Area is enabled should be used for the Private Folders"
+msgstr ""
+"Başlangıç noktası olarak hangi klasörün kullanılacağına karar ver  veya  "
+"Akıllı Müşteri Alanı'nın etkinleştirildiği durumlarda  Özel Klasörler için "
+"kullanılmalıdır"
+
+#: templates/tinymce_popup.php:269
+msgid "Users will not be able to navigate outside this folder"
+msgstr "Kullanıcılar bu klasör dışında gezinme yapamazlar"
+
+#: templates/tinymce_popup.php:334
+msgid "Smart Client Area"
+msgstr "Akıllı Müşteri Alanı"
+
+#: templates/tinymce_popup.php:336
+msgid "Use Private Folders"
+msgstr "Özel Klasörleri Kullan"
+
+#: templates/tinymce_popup.php:344
+#, php-format
+msgid ""
+"The plugin can easily and securily share documents on your %s with your "
+"users/clients"
+msgstr ""
+"Eklenti sizin %s  nınızda kullanıcılarızın/müşterilerinizle kolayca ve "
+"güvenli bir şekilde belgeleri paylaşabilir"
+
+#: templates/tinymce_popup.php:345
+msgid ""
+"This allows your clients to preview, download and manage their documents in "
+"their own private folder"
+msgstr ""
+"Bu  müşterilerinizi kendi belgelerini kendi özel klasöründe inceleme, "
+"indirme ve yönetmesine imkan verir"
+
+#: templates/tinymce_popup.php:346
+#, php-format
+msgid "Specific permissions can always be set via %s"
+msgstr "Özel izinler %s aracılığıyla  ayarlanabilir"
+
+#: templates/tinymce_popup.php:348
+msgid "The Smart Client Area can be useful in some situations, for example"
+msgstr "Akıllı Müşteri Alanı bazı durumlarda faydalı olabilir, örneğin"
+
+#: templates/tinymce_popup.php:350
+msgid "You want to share documents with your clients privately"
+msgstr "Belgelerinizi müşterilerinizle mahrem olarak paylaşmak istiyorsunuz"
+
+#: templates/tinymce_popup.php:351
+msgid "You want your clients, users or guests upload files to their own folder"
+msgstr ""
+"Müşteri, kullanıcı veya misafirlerin kendi  klasörlerine yükleme yapmasını "
+"istiyorsunuz"
+
+#: templates/tinymce_popup.php:352
+msgid ""
+"You want to give your customers a private folder already filled with some "
+"files directly after they register"
+msgstr ""
+"Müşterilerinize daha önceden içinde dosyalar bulunan bir  özel klasörü kayıt "
+"olmalarının hemen ardından vermek istiyorsunuz"
+
+#: templates/tinymce_popup.php:358
+msgid "Mode"
+msgstr "Mod"
+
+#: templates/tinymce_popup.php:359
+msgid ""
+"Do you want to link your users manually to their Private Folder or should "
+"the plugin handle this automatically for you"
+msgstr ""
+"Kullanıcılarınızı manuel olarak Özel Klasörlerine bağlamak mı istiyorsunuz "
+"yoksa eklenti sizin için otomatik olarak kullanmalı mı?"
+
+#: templates/tinymce_popup.php:369
+#, php-format
+msgid "I will link the users manually via %sthis page%s"
+msgstr ""
+"Kullanıcıları  manuel olarak  %sbusayfa%s aracılığıyla bağlamak istiyorum"
+
+#: templates/tinymce_popup.php:373
+msgid ""
+"Let the plugin automatically manage the Private Folders for me in the folder "
+"I have selected above"
+msgstr ""
+"Eklenti otomatik olarak  Özel Klasörleri yukarda seçmiş olduğum klasörde "
+"benim için yönetsin"
+
+#: templates/tinymce_popup.php:377
+msgid "Template Folder"
+msgstr "Şablon Klasörü"
+
+#: templates/tinymce_popup.php:384
+msgid ""
+"Newly created Private Folders can be prefilled with files from a template"
+msgstr "Yeni oluşturulan Özel Klasörler  bir şablondan  önceden doldurulabilir"
+
+#: templates/tinymce_popup.php:384
+msgid ""
+"The content of the template folder selected will be copied to the user folder"
+msgstr "Şablon klasörünün  içeriği  kullanıcı klasörüne kopyalanabilir"
+
+#: templates/tinymce_popup.php:443
+msgid "Plugin container width"
+msgstr "Eklenti konteynirinin genişliği"
+
+#: templates/tinymce_popup.php:444
+msgid "Set max width for the Use-your-Drive container"
+msgstr "Use-your-Drive konteyniri için maksimum genişliği seç"
+
+#: templates/tinymce_popup.php:444 templates/tinymce_popup.php:450
+msgid "You can use pixels or percentages, eg '360px', '480px', '70%'"
+msgstr ""
+"Pixel veya yüzde olarak seçim yapabilirsiniz, ör: '360px', '480px', '70%' "
+"gibi"
+
+#: templates/tinymce_popup.php:444 templates/tinymce_popup.php:450
+#: templates/tinymce_popup.php:691
+msgid "Leave empty for default value"
+msgstr "Varsayılan değer için alanı boş bırak"
+
+#: templates/tinymce_popup.php:449
+msgid "Plugin container height"
+msgstr "Eklenit konteynır yüksekliği"
+
+#: templates/tinymce_popup.php:450
+msgid "Set max height for the Use-your-Drive container"
+msgstr "Use-your-Drive konteynırı için maksimum yüksekiği ayarlı"
+
+#: templates/tinymce_popup.php:454
+msgid "Custom CSS Class"
+msgstr "Özel CSS Klası"
+
+#: templates/tinymce_popup.php:455
+msgid ""
+"Add your own custom classes to the plugin container. Multiple classes can be "
+"added seperated by a whitespace"
+msgstr ""
+"Kendi özel  düzenlediğiniz klasları eklenti konteynirina ekle. Farklı "
+"klaslar  bir boşlukla ayrılarak eklenebilir"
+
+#: templates/tinymce_popup.php:460
+msgid "Media Player Skin"
+msgstr "Medya oynatıcı skin'i"
+
+#: templates/tinymce_popup.php:481
+msgid "Mediaplayer Buttons"
+msgstr "Mediaplayer Düğmeleri"
+
+#: templates/tinymce_popup.php:482
+msgid "Set which buttons (if supported) should be visible in the mediaplayer"
+msgstr "Ortamdayken hangi düğmelerin (destekleniyorsa) görüneceğini ayarlayın"
+
+#: templates/tinymce_popup.php:518
+msgid "Show Playlist"
+msgstr "Playlisti Göster"
+
+#: templates/tinymce_popup.php:526
+msgid "Playlist open on start"
+msgstr "Oynatma listesi başlangıçta açık"
+
+#: templates/tinymce_popup.php:534
+msgid "Playlist opens on top of player"
+msgstr "Oynatma listesi oyuncunun tepesinde açılıyor"
+
+#: templates/tinymce_popup.php:542
+msgid "Display thumbnails"
+msgstr "Minyatür"
+
+#: templates/tinymce_popup.php:548
+msgid "Show thumbnails of your files in the Playlist"
+msgstr "Oynatma Listesinde dosyalarınızın küçük resimlerini gösterin"
+
+#: templates/tinymce_popup.php:548
+msgid ""
+"The plugin show the thumbnail provided by the cloud server or you can use "
+"your own one"
+msgstr ""
+"Eklenti, bulut sunucusu tarafından sağlanan küçük resmi gösterir veya "
+"kendinizinkini kullanabilirsiniz."
+
+#: templates/tinymce_popup.php:548
+msgid ""
+"If you want to use your own thumbnail, add a *.png or *.jpg file with the "
+"same name in the same folder. You can also add a cover with the name of the "
+"folder to show the cover for all files"
+msgstr ""
+"Kendi küçük resminizi kullanmak istiyorsanız, aynı klasörde aynı ada sahip "
+"bir * .png veya * .jpg dosyası ekleyin. Tüm dosyaların kapağını göstermek "
+"için klasörün adını da içeren bir kapak ekleyebilirsiniz."
+
+#: templates/tinymce_popup.php:548
+msgid "If no cover is available, a placeholder will be used"
+msgstr "Hiçbir kapak mevcut değilse, bir yertutucu kullanılabilir"
+
+#: templates/tinymce_popup.php:550 templates/tinymce_popup.php:636
+msgid "Show last modified date"
+msgstr "En son değiştirilen tarihi göster"
+
+#: templates/tinymce_popup.php:557
+msgid "Download Button"
+msgstr "İndirme Butonu"
+
+#: templates/tinymce_popup.php:564
+msgid "Purchase Button"
+msgstr "Satınalma Butonu"
+
+#: templates/tinymce_popup.php:572
+msgid "Link to webshop"
+msgstr "Web Dükkanına bağlantı"
+
+#: templates/tinymce_popup.php:579
+msgid "File Browser view"
+msgstr "Dosya Gezgini Görüntüsü"
+
+#: templates/tinymce_popup.php:585
+msgid "Grid/Thumbnail View"
+msgstr "Izgara/Küçükresim Görüntüsü"
+
+#: templates/tinymce_popup.php:589
+msgid "List View"
+msgstr "Liste Görüntüsü"
+
+#: templates/tinymce_popup.php:594
+msgid "Show header"
+msgstr "Başlığı (Header) Göster"
+
+#: templates/tinymce_popup.php:602
+msgid "Show refresh button"
+msgstr "Tazeleme butonunu göster"
+
+#: templates/tinymce_popup.php:608
+msgid ""
+"Add a refresh button in the header so users can refresh the file list and "
+"pull changes"
+msgstr ""
+"Başlıkta bir tazeleme butonu ekleyerek kullanıcıların  dosya listesini "
+"güncelemelerini ve değişiklikleri çekmelerini sağlayın"
+
+#: templates/tinymce_popup.php:610
+msgid "Breadcrumb text for top folder"
+msgstr "Üst klasör için Breadcrumb metni"
+
+#: templates/tinymce_popup.php:616
+msgid "Show columnnames"
+msgstr "Sütun adlarını göster"
+
+#: templates/tinymce_popup.php:622
+msgid ""
+"Display the columnnames of the date and filesize in the List View of the "
+"File Browser"
+msgstr ""
+"Tarih ve dosya büyüklüğü sütun isimlerini Dosya Tarayacısının Liste "
+"görüntüsünde göster"
+
+#: templates/tinymce_popup.php:626
+msgid "Show file size"
+msgstr "Dosya Büyüklüğünü göster"
+
+#: templates/tinymce_popup.php:632
+msgid "Display or Hide column with file sizes in List view"
+msgstr ""
+"Liste görüntüsünde sütunları dosya büyüklüğü ile birlikte gizle veya göster"
+
+#: templates/tinymce_popup.php:642
+msgid "Display or Hide column with last modified date in List view"
+msgstr ""
+"Liste görünümünde sütunları  en son değişiklik yapılan tarihle birlikte "
+"gizle veya göster"
+
+#: templates/tinymce_popup.php:648
+msgid "Show file extension"
+msgstr "Dosya uzantılarını göster"
+
+#: templates/tinymce_popup.php:654
+msgid "Display or Hide the file extensions"
+msgstr "Dosya uzantılarını gizle veya göster"
+
+#: templates/tinymce_popup.php:656
+msgid "Show files"
+msgstr "Dosyaları göster"
+
+#: templates/tinymce_popup.php:662
+msgid "Display or Hide files"
+msgstr "Dosyaları göster veya gizle"
+
+#: templates/tinymce_popup.php:665
+msgid "Show folders"
+msgstr "Klasörleri göster"
+
+#: templates/tinymce_popup.php:671
+msgid "Display or Hide child folders"
+msgstr "Yavru Klasörleri gizle veya göster"
+
+#: templates/tinymce_popup.php:674
+msgid "Amount of files"
+msgstr "Dosyaların miktarı"
+
+#: templates/tinymce_popup.php:676
+msgid "Number of files to show"
+msgstr "Gösterilecek dosya sayısı"
+
+#: templates/tinymce_popup.php:676
+msgid "Can be used for instance to only show the last 5 updated documents"
+msgstr "Örneğin son güncellenen 5 dosyalı göstermek için kullanılabilir"
+
+#: templates/tinymce_popup.php:676
+msgid "Leave this field empty or set it to -1 for no limit"
+msgstr ""
+"Bu alanı boş bırak veya  sınırsız sayıyı göstermek için -1'e ayarını gir"
+
+#: templates/tinymce_popup.php:682
+msgid "Show file names"
+msgstr "Dosya isimlerini göster"
+
+#: templates/tinymce_popup.php:688
+msgid "Display or Hide the file names in the gallery"
+msgstr "Galerideki dosya isimlerini göster veya gizle"
+
+#: templates/tinymce_popup.php:690
+msgid "Gallery row height"
+msgstr "Galeri satır yüksekliği"
+
+#: templates/tinymce_popup.php:691
+msgid "The ideal height you want your grid rows to be"
+msgstr "Izgara satırlarının olabileceği en ideal yükseklik"
+
+#: templates/tinymce_popup.php:691
+msgid ""
+"It won't set it exactly to this as plugin adjusts the row height to get the "
+"correct width"
+msgstr ""
+"Doğru genişliği  elde etmek için eklenti satır yüksekliğini ayarladığı için "
+"buna tam olarak ayarlanamaz"
+
+#: templates/tinymce_popup.php:694
+msgid "Number of images lazy loaded"
+msgstr "Tembel yükleme yapılan fotoğrafların sayısı"
+
+#: templates/tinymce_popup.php:695
+msgid "Number of images to be loaded each time"
+msgstr "Her seferinde yüklenebilecek fotoğraf sayısı"
+
+#: templates/tinymce_popup.php:695
+msgid "Set to 0 to load all images at once"
+msgstr "Bütün fotoğrafları bir seferde yüklemek için değeri 0'a getirin"
+
+#: templates/tinymce_popup.php:699
+msgid "Show Folder Thumbnails in Gallery"
+msgstr "Galeride küçükresimleri(Thumbnails) göster"
+
+#: templates/tinymce_popup.php:705
+msgid "Do you want to show thumbnails for the Folders in the gallery mode?"
+msgstr "Galeri modunda klasörlerin  küçük resimleri göstermesi istiyormusunuz?"
+
+#: templates/tinymce_popup.php:705
+msgid ""
+"Please note, when enabled the loading performance can drop proportional to "
+"the number of folders present in the Gallery"
+msgstr ""
+"Lütfen, etkinleştirildiğinde  performansın Galerideki mevcut klasör sayısına "
+"bağlı olarak  düşeceğini unutmayın"
+
+#: templates/tinymce_popup.php:708
+msgid "Slideshow"
+msgstr "Slide Gösterimi"
+
+#: templates/tinymce_popup.php:716
+msgid "Enable or disable the Slideshow mode in the Lightbox"
+msgstr "Lightbox'ta Slide gösterimini etkinleştir veya iptal et"
+
+#: templates/tinymce_popup.php:717
+msgid "Delay between cycles (ms)"
+msgstr "Saykıllar arasındaki gecikme"
+
+#: templates/tinymce_popup.php:718
+msgid "Delay between cycles in milliseconds, the default is 5000"
+msgstr ""
+"Saykıllar arasındaki gecikme milisaniye olara, varsayılan değer 5000 dir"
+
+#: templates/tinymce_popup.php:730
+msgid "Sort field"
+msgstr "Alanı düzenle"
+
+#: templates/tinymce_popup.php:744
+msgid "Date of creation"
+msgstr "Oluşturma Tarihi"
+
+#: templates/tinymce_popup.php:752
+msgid "Shuffle/Random"
+msgstr "Karıştır/Rastgele"
+
+#: templates/tinymce_popup.php:756
+msgid "Sort order"
+msgstr "Sıralamayı düzenle"
+
+#: templates/tinymce_popup.php:763
+msgid "Ascending"
+msgstr "Artacak şekilde"
+
+#: templates/tinymce_popup.php:767
+msgid "Descending"
+msgstr "Azalacak Şekilde"
+
+#: templates/tinymce_popup.php:777
+msgid "Allow Preview"
+msgstr "Ön izlemeye izin ver"
+
+#: templates/tinymce_popup.php:786
+msgid "Inline Preview"
+msgstr "Satıriçinde Önizleme"
+
+#: templates/tinymce_popup.php:792
+msgid "Open preview inside a lightbox or open in a new window"
+msgstr "Önizlemeyi lightbox içinde veya  yeni bir pencerede aç"
+
+#: templates/tinymce_popup.php:796
+msgid "Enable Google pop out Button"
+msgstr "Google pop out butonunu etkinleştir"
+
+#: templates/tinymce_popup.php:802
+msgid ""
+"Activate the Google Pop Out button which is visible in the inline preview "
+"for a couple of file formats"
+msgstr ""
+"Birkaç dosya formatı için satır içi önizlemede görünen Google Pop Out "
+"düğmesini etkinleştirin"
+
+#: templates/tinymce_popup.php:804
+msgid "Lightbox navigation"
+msgstr "Lightbox gezinti"
+
+#: templates/tinymce_popup.php:810
+msgid ""
+"Navigate through your documents in the lightbox. Disable when each document "
+"should be shown individually without navigation arrows"
+msgstr ""
+
+#: templates/tinymce_popup.php:818
+msgid "Allow Searching"
+msgstr "Arama'ya izin ver"
+
+#: templates/tinymce_popup.php:824
+msgid ""
+"The search function allows your users to find files by filename and content "
+"(when files are indexed)"
+msgstr ""
+"Arama fonksiyonu kullanıcılarınızı dosyaları dosya adlarına veya içeriğe "
+"bakarak bulmalarını sağlar (Dosyalar önceden indekslenmişsse)"
+
+#: templates/tinymce_popup.php:828
+msgid "Perform Full-Text search"
+msgstr "Tam metin arama yap"
+
+#: templates/tinymce_popup.php:841
+msgid "Allow ZIP Download"
+msgstr "ZIP indermeye izin ver"
+
+#: templates/tinymce_popup.php:847
+msgid "Allow users to download multiple files at once"
+msgstr "Kullanıcıların  çoklu dosya indirmesine izin ver"
+
+#: templates/tinymce_popup.php:852
+msgid "Auto Play"
+msgstr "Otomatik Oynatma"
+
+#: templates/tinymce_popup.php:857
+msgid ""
+"Autoplay is generally not recommended as it is seen as a negative user "
+"experience. It is also disabled in many browsers"
+msgstr ""
+"Olumsuz bir kullanıcı deneyimi olarak görüldüğü için otomatik oynatma "
+"genellikle önerilmez. Ayrıca birçok tarayıcıda devre dışı bırakılmıştır."
+
+#: templates/tinymce_popup.php:862
+msgid "Enable Video Advertisements"
+msgstr "Video Reklamları Etkinleştir"
+
+#: templates/tinymce_popup.php:867
+msgid ""
+"The mediaplayer of the plugin supports VAST XML advertisments to offer "
+"monetization options for your videos. You can enable advertisments for the "
+"complete site on the Advanced tab of the plugin settings page and per "
+"shortcode. Currently, this plugin only supports Linear elements with MP4"
+msgstr ""
+"Eklentinin mediatörü, videolarınız için para kazanma seçenekleri sunan VAST "
+"XML reklamlarını destekliyor. Sitenin tamamındaki reklamları, eklenti "
+"ayarları sayfasının Gelişmiş sekmesinde ve her bir kod için "
+"etkinleştirebilirsiniz. Şu anda, bu eklenti yalnızca MP4'lü Doğrusal öğeleri "
+"destekliyor"
+
+#: templates/tinymce_popup.php:902
+msgid "Only show files with those extensions"
+msgstr "Sadece şu uzantılardaki  dosyaları göster"
+
+#: templates/tinymce_popup.php:903 templates/tinymce_popup.php:911
+#: templates/tinymce_popup.php:954
+msgid "Add extensions separated with | e.g. (jpg|png|gif)"
+msgstr "Uzantılarak  | ayracıyla ekle ör: (jpg|png|gif)"
+
+#: templates/tinymce_popup.php:903 templates/tinymce_popup.php:911
+msgid "Leave empty to show all files"
+msgstr "Bütün dosyaları göstermek için boş bırak"
+
+#: templates/tinymce_popup.php:906
+msgid "Only show the following files or folders"
+msgstr "Sadece aşağıdaki dosyaları veya klasörleri göster"
+
+#: templates/tinymce_popup.php:907 templates/tinymce_popup.php:915
+msgid ""
+"Add files or folders by name or Google Drive ID separated with | e.g. (file1."
+"jpg|long folder name)"
+msgstr ""
+"Dosyaları veya klasörleri  isim olarak ekle veya Google Drive Kimlik No'su "
+"ile  ayracını kullanar ekle | Örneğin: (dosya1.jpg uzun dosya ismi)"
+
+#: templates/tinymce_popup.php:907 templates/tinymce_popup.php:915
+msgid "Wildcards like * and ? are allowed"
+msgstr ""
+
+#: templates/tinymce_popup.php:910
+msgid "Hide files with those extensions"
+msgstr "Şu eklentilerdeki dosyaları gizle"
+
+#: templates/tinymce_popup.php:914
+msgid "Hide the following files or folders"
+msgstr "Aşağıdaki dosyaları veya klasörleri gizle"
+
+#: templates/tinymce_popup.php:926
+msgid "Allow Upload"
+msgstr "Yüklemeye izin ver"
+
+#: templates/tinymce_popup.php:932
+msgid "Allow users to upload files"
+msgstr "Kullanıcıların  dosya yüklemesine izin ver"
+
+#: templates/tinymce_popup.php:932
+#, php-format
+msgid "You can select which Users Roles should be able to upload via %s"
+msgstr ""
+"Hangi Kullanıcı Rollerinin  %s aracılığıyla yükleme yapması gerektiğini "
+"seçebilirsiniz"
+
+#: templates/tinymce_popup.php:936
+msgid "Allow folder upload"
+msgstr "Klasör yüklemeye izin ver"
+
+#: templates/tinymce_popup.php:942
+msgid "Adds an Add Folder button to the upload form if the browser supports it"
+msgstr "Tarayıcınız destekliyorsa  yükleme butonuna  Klasör ekle  butonu ekler"
+
+#: templates/tinymce_popup.php:945
+msgid "Overwrite existing files"
+msgstr "Mevcut dosyaların üzerine yaz"
+
+#: templates/tinymce_popup.php:951
+msgid "Overwrite already existing files or auto-rename the new uploaded files"
+msgstr ""
+"Mevcut dosayaların üzerine yaz veya  yeni yüklenen dosyaları n isimlerini "
+"otomatik olarak yenile"
+
+#: templates/tinymce_popup.php:953
+msgid "Restrict file extensions"
+msgstr "Dosya uzantılaını kısıtla"
+
+#: templates/tinymce_popup.php:954 templates/tinymce_popup.php:958
+#: templates/tinymce_popup.php:969 templates/tinymce_popup.php:980
+msgid "Leave empty for no restriction"
+msgstr "Kısıtlama yapmak için boş bırakın"
+
+#: templates/tinymce_popup.php:957
+msgid "Max uploads per session"
+msgstr "Her bir oturum için maximum yükleme sayısı"
+
+#: templates/tinymce_popup.php:958
+msgid "Number of maximum uploads per upload session"
+msgstr "Herbir yükleme oturumu için maksimum yükleme sayısı"
+
+#: templates/tinymce_popup.php:961
+msgid "Minimum file size"
+msgstr "Minimum dosya boyutu"
+
+#: templates/tinymce_popup.php:969
+msgid "Min filesize (e.g. 1 MB) for uploading"
+msgstr "Yüklemek için minimum dosya boyutu (örneğin 1 MB)"
+
+#: templates/tinymce_popup.php:972
+msgid "Maximum file size"
+msgstr "Maksimum dosya büyüklüğü"
+
+#: templates/tinymce_popup.php:980
+msgid "Max filesize for uploading"
+msgstr "Yüklemek için maksimum dosya boyutu"
+
+#: templates/tinymce_popup.php:981
+msgid "No limit"
+msgstr "Limit yok"
+
+#: templates/tinymce_popup.php:984
+msgid "Encryption"
+msgstr "Şifreleme"
+
+#: templates/tinymce_popup.php:990
+msgid ""
+"Use the powerful 256-bit AES Crypt encryption to securely store your files "
+"in the cloud"
+msgstr ""
+"Dosyalarınızı bulutta güvenli bir şekilde saklamak için güçlü 256-bit AES "
+"Crypt şifrelemesini kullanın"
+
+#: templates/tinymce_popup.php:990
+msgid "The encryption takes place on your server before the files are uploaded"
+msgstr "Şifreleme, dosyalar yüklenmeden önce sunucunuzda gerçekleşir."
+
+#: templates/tinymce_popup.php:990
+msgid "You can decrypt the files with a tool like: "
+msgstr "Dosyaların şifresini aşağıdaki gibi bir araçla çözebilirsiniz:"
+
+#: templates/tinymce_popup.php:992
+msgid "Passphrase"
+msgstr "Parola"
+
+#: templates/tinymce_popup.php:997
+msgid "Convert to Google Docs when possible"
+msgstr "Mümkünse google doc formatına çevir"
+
+#: templates/tinymce_popup.php:1005
+msgid "Convert following mimetypes"
+msgstr "Aşağıdaki mime tiplerini başak formata çevir"
+
+#: templates/tinymce_popup.php:1167
+msgid "Download email notification"
+msgstr "Eposta uyarılarını indir"
+
+#: templates/tinymce_popup.php:1174
+msgid "Upload email notification"
+msgstr "Eposta uyarılarını yükle"
+
+#: templates/tinymce_popup.php:1180
+msgid "Delete email notification"
+msgstr "Eposta uyarılarını sil"
+
+#: templates/tinymce_popup.php:1188
+msgid ""
+"On which email address would you like to receive the notification? You can "
+"use <code>%admin_email%</code>, <code>%user_email%</code> (user that "
+"executes the action) and <code>%linked_user_email%</code> (Private Folders "
+"owners)"
+msgstr ""
+"Hangi e-posta adresinde bildirimi almak istersiniz? Sen kullanabilirsiniz "
+"<code>%admin_email%</code> , <code>%user_email%</code> ve (aksiyon yürütür "
+"kullanıcı) <code>%linked_user_email%</code> (Özel Klasörler sahipleri)"
+
+#: templates/tinymce_popup.php:1192
+#, php-format
+msgid ""
+"%s can be used to send notications to the owner(s) of the Private Folder"
+msgstr ""
+
+#: templates/tinymce_popup.php:1192
+#, php-format
+msgid ""
+"When using this placeholder in combination with automatically linked Private "
+"Folders, the %sName Template%s should contain %s"
+msgstr ""
+
+#: templates/tinymce_popup.php:1192
+msgid "I.e. the Private Folder name needs to contain the emailaddress"
+msgstr ""
+
+#: templates/tinymce_popup.php:1195
+msgid "Skip notification of the user that executes the action"
+msgstr "İşlemi gerçekleştiren kullanıcının bildirimini atla"
+
+#: templates/tinymce_popup.php:1210
+msgid "Allow Sharing"
+msgstr "Paylaşımı etkinleştir"
+
+#: templates/tinymce_popup.php:1216
+msgid "Allow users to generate permanent shared links to the files"
+msgstr "Kullanıcıların dosyalara kalıcı paylaşım linki üretmesine müsaade et"
+
+#: templates/tinymce_popup.php:1218
+msgid "Edit descriptions"
+msgstr "Tanımlamaları düzenle"
+
+#: templates/tinymce_popup.php:1225
+msgid "Rename files and folders"
+msgstr "Dosyaları veya  klasörleri yeniden adlandır"
+
+#: templates/tinymce_popup.php:1232
+msgid "Move files and folders"
+msgstr "Dosyaları  veay klasörleri  taşı"
+
+#: templates/tinymce_popup.php:1239
+msgid "Delete files and folders"
+msgstr "Dosyaları veya klasörleri sil"
+
+#: templates/tinymce_popup.php:1247
+msgid "Delete to trash"
+msgstr "Çöp kutusuna gönder"
+
+#: templates/tinymce_popup.php:1256
+msgid "Create new folders"
+msgstr "Yeni klasöler oluştur"
+
+#: templates/tinymce_popup.php:1265
+msgid "Edit Google Docs and Office documents"
+msgstr ""
+
+#: templates/tinymce_popup.php:1276
+#, php-format
+msgid "Select via %s which User Roles are able to perform the actions"
+msgstr ""
+"Eylemleri yerine getirmek için hangi kullanıcı rollerinin %s aracılığıyla seç"
+
+#: templates/tinymce_popup.php:1288
+msgid "Who can see the plugin"
+msgstr "Eklentileri kimler görebilir"
+
+#: templates/tinymce_popup.php:1296
+msgid "Who can download"
+msgstr "Kim  indirme yapabilir"
+
+#: templates/tinymce_popup.php:1306
+msgid "Who can upload"
+msgstr "Kim  yükleme yapabilir"
+
+#: templates/tinymce_popup.php:1316
+msgid "Who can share content"
+msgstr "Kim  içeriği paylaşabilir"
+
+#: templates/tinymce_popup.php:1326
+msgid "Who can edit content"
+msgstr "İçeriği kim düzenleyebilir"
+
+#: templates/tinymce_popup.php:1336
+msgid "Who can edit descriptions"
+msgstr "Kim tanımlamaları düzenleyebilir"
+
+#: templates/tinymce_popup.php:1346
+msgid "Who can rename files"
+msgstr "Kim dosyaları yeniden adlandırabilir"
+
+#: templates/tinymce_popup.php:1356
+msgid "Who can rename folders"
+msgstr "Kim klasörleri yeniden adlandırabilir"
+
+#: templates/tinymce_popup.php:1366
+msgid "Who can move files"
+msgstr "Kim dosyaları taşıyabilir"
+
+#: templates/tinymce_popup.php:1376
+msgid "Who can move folders"
+msgstr "Kim klasörleri taşıyabilir"
+
+#: templates/tinymce_popup.php:1386
+msgid "Who can delete files"
+msgstr "Kim dosyaları silebilir"
+
+#: templates/tinymce_popup.php:1396
+msgid "Who can delete folders"
+msgstr "Kim klasörleri silebilir"
+
+#: templates/tinymce_popup.php:1406
+msgid "Who can create new folders"
+msgstr "Kim yeni klasörleri oluşturabilir"
+
+#: templates/uploadform.php:13
+msgid "Drag your files here"
+msgstr "Dosyaları buraya sürükle"
+
+#: templates/uploadform.php:26
+msgid "... or find documents on your device"
+msgstr "..veya  cihazınızdaki  belgeleri bul"
+
+#: templates/uploadform.php:28
+msgid "Add files"
+msgstr "Dosyaları ilave et"
+
+#: templates/uploadform.php:33
+msgid "Upload folder"
+msgstr "Klasörleri yükle"
+
+#: templates/uploadform.php:60
+msgid "Min file size: "
+msgstr "Min dosya boyutu:"
+
+#: templates/uploadform.php:62
+msgid "Max file size: "
+msgstr "Maksimum dosya boyutu: "
+
+#: templates/uploadform.php:67
+msgid "Allowed formats: "
+msgstr "İzin verilen formatlar "
+
+#: use-your-drive.php:627
+msgid "Download latest package"
+msgstr "Yüklemeniz gerekir"
+
+#: use-your-drive.php:627
+msgid "Documentation"
+msgstr "Belgeler"
+
+#: use-your-drive.php:696
+msgid "Hang on. Waiting for the files..."
+msgstr "Dayan. Dosyalar bekliyorum ..."
+
+#: use-your-drive.php:697
+msgid "Processing..."
+msgstr "İşlem yapıyor..."
+
+#: use-your-drive.php:698
+msgid "Success"
+msgstr "Başarı"
+
+#: use-your-drive.php:699 use-your-drive.php:706
+msgid "Error"
+msgstr "Hata"
+
+#: use-your-drive.php:700
+msgid "Waiting"
+msgstr "Bekliyor"
+
+#: use-your-drive.php:702
+msgid "Uploading..."
+msgstr "Yükleme yapılıyor..."
+
+#: use-your-drive.php:703
+msgid "Uploading to Server"
+msgstr "Sunucuya Yükleme"
+
+#: use-your-drive.php:704
+msgid "Uploading to Cloud"
+msgstr "Dosyalarınızı Sunucuya Yüklüyorum"
+
+#: use-your-drive.php:705
+msgid "Converting"
+msgstr "Dönüştürüyor"
+
+#: use-your-drive.php:709
+msgid "Cancel"
+msgstr "İptal et"
+
+#: use-your-drive.php:711
+msgid "Move"
+msgstr "Taşı"
+
+#: use-your-drive.php:712
+msgid "Copy"
+msgstr ""
+
+#: use-your-drive.php:713
+msgid "Save"
+msgstr "Kaydet"
+
+#: use-your-drive.php:714
+msgid "Create zip file"
+msgstr "Zip dosyası oluştur"
+
+#: use-your-drive.php:715
+msgid "Select account"
+msgstr "Hesap seç"
+
+#: use-your-drive.php:716
+msgid "Copy to clipboard"
+msgstr "Panoya kopyala"
+
+#: use-your-drive.php:717
+msgid "Do you really want to delete:"
+msgstr "Gerçekten silmek istiyormusunuz:"
+
+#: use-your-drive.php:718
+msgid "Do you really want to delete these files?"
+msgstr "Gerçekten  bu dosyaları  silmek istiyormusunuz?"
+
+#: use-your-drive.php:719
+msgid ""
+"That doesn't work. Are there any illegal characters (<>:\"/\\|?*) in the "
+"filename?"
+msgstr ""
+"Bu işe yaramıyor. Dosya adında geçersiz karakterler var mı (<>: \"/ \\ |? *)?"
+
+#: use-your-drive.php:721
+msgid "Rename to:"
+msgstr "Şu şekilde ismini değiştir:"
+
+#: use-your-drive.php:722
+msgid "Oops! This shouldn't happen... Try again!"
+msgstr "Bir dakika! Bu olmamalıydı...Tekrar deneyin!"
+
+#: use-your-drive.php:724
+msgid "New folder"
+msgstr "Yeni Dosya"
+
+#: use-your-drive.php:725
+msgid "No files found or selected"
+msgstr "Hiçbir dosya bulunmadı veya seçilmedi"
+
+#: use-your-drive.php:726
+msgid "Creating zip file"
+msgstr "Zip dosyası oluşturuluyor"
+
+#: use-your-drive.php:727
+msgid "Share file"
+msgstr "Dosya paylaş"
+
+#: use-your-drive.php:728
+msgid "Creating shared link..."
+msgstr "Paylaşılan link oluşturuluyor.."
+
+#: use-your-drive.php:731
+msgid "This content failed to load"
+msgstr "Bu içerik yüklenmesi tamamlanmadı"
+
+#: use-your-drive.php:732
+msgid "This image failed to load"
+msgstr "Bu fotoğrafın yüklenmesi tamamlanmadı"
+
+#: use-your-drive.php:733
+msgid "Start slideshow"
+msgstr "Slide gösterisini başlat"
+
+#: use-your-drive.php:734
+msgid "Stop slideshow"
+msgstr "Slide gösterisiin bitir"
+
+#: use-your-drive.php:735
+msgid "Not yet linked to a folder"
+msgstr "Henüz bir klasöre bağlantı yapılmadı"
+
+#: use-your-drive.php:737
+msgid "File type not allowed"
+msgstr "İzin verilmeyen dosya türü"
+
+#: use-your-drive.php:738
+msgid "File is too large"
+msgstr "Dosya aşırı büyük"
+
+#: use-your-drive.php:740
+msgid "Still Waiting?"
+msgstr "Hala bekliyorum?"
+
+#: use-your-drive.php:740
+msgid ""
+"If the document doesn't open, you are probably trying to access a protected "
+"file which requires you to be logged in on Google."
+msgstr ""
+"Belge açılmazsa, muhtemelen Google’da oturum açmanızı gerektiren korumalı "
+"bir dosyaya erişmeye çalışıyorsunuzdur."
+
+#: use-your-drive.php:740
+msgid "Try to open the file in a new window."
+msgstr "Dosyayı yeni bir pencerede açmayı deneyin."
+
+#: use-your-drive.php:747
+msgid "Details"
+msgstr "Detaylar"
+
+#: use-your-drive.php:950
+msgid "Please browse to the page to see this content"
+msgstr "Bu içeriği görmek için lütfen sayfaya göz atın"
+
+#: use-your-drive.php:995
+msgid ""
+"ACTION REQUIRED: WP Cloud Plugin lost authorization to Google Drive account"
+msgstr "GEREKLİ EYLEM: WP Cloud Eklentisi Google Drive hesabına yetki vermedi"
+
+#: use-your-drive.php:1030
+msgid "Enjoying Use-your-Drive?"
+msgstr "Use-your-Drive' dan memnunmusunuz?"
+
+#: use-your-drive.php:1032
+msgid "Not really"
+msgstr "Pek sayılmaz"
+
+#: use-your-drive.php:1033
+msgid "Yes!"
+msgstr "Evet, şu anda Google'a fopen ile erişebiliyoruz"
+
+#: use-your-drive.php:1038
+msgid "Great! How about a review, then?"
+msgstr "Harika! Peki ya incelemeye ne dersin?"
+
+#: use-your-drive.php:1040 use-your-drive.php:1048
+msgid "No, thanks"
+msgstr "Hayır, teşekkürler"
+
+#: use-your-drive.php:1041 use-your-drive.php:1049
+msgid "Ok, sure!"
+msgstr "Tabii olur!"
+
+#: use-your-drive.php:1046
+msgid "Would you mind giving us some feedback?"
+msgstr "Bize biraz geri bildirim verir misiniz?"
+
+#: use-your-drive.php:1537
+msgid "Once every 20 minutes"
+msgstr "Her 20 dakikada bir"
+
+#~ msgid "Use-your-Drive has encountered an error"
+#~ msgstr "Use-Your-Drive  bir hatayla karşılaştı"
+
+#~ msgid "Error Details"
+#~ msgstr "Hata detayları"
+
+#~ msgid "(Re) Authorize the Plugin!"
+#~ msgstr "Eklentiye yeniden yetkilendirin!"
+
+#~ msgid ""
+#~ "Use-your-Drive is succesfully authorized and linked with Google account:"
+#~ msgstr ""
+#~ "Use-your-Drive  başarılı bir şekilde yetkilendirildi ve  Google "
+#~ "hesabınıza bağlandı.:"
+
+#~ msgid "Plugin isn't linked to your Drive... Please Authorize!"
+#~ msgstr "Eklenti Drive hesabınıza bağanmadı… Lütfen yetkilendiriniz!"
+
+#~ msgid "Authorization"
+#~ msgstr "Yetkilendirme"
+
+#~ msgid "Plugin version"
+#~ msgstr "Plugun Versiyonu"
+
+#~ msgid "Memory limit"
+#~ msgstr "Hafıza limiti"
+
+#~ msgid "cURL PHP extension"
+#~ msgstr "cURL PHP uzantısı"
+
+#~ msgid ""
+#~ "You have the cURL PHP extension installed and we can access Google with "
+#~ "cURL"
+#~ msgstr ""
+#~ "CURL PHP uzantısının yüklediniz ve şu anda Google'a cURL ile erişim "
+#~ "sağlıyoruz"
+
+#~ msgid ""
+#~ "You don't have the cURL PHP extension installed (couldn't find function "
+#~ "\"curl_init\"), please enable or install this extension"
+#~ msgstr ""
+#~ "Yüklenmiş bir cURL PHP uzantınız yok ( \"curl_init\" fonksiyonunu "
+#~ "bulamıyor), lütfen  uzantıyı yükleyin ve etkinleştirin"
+
+#~ msgid "Is allow_url_fopen enabled?"
+#~ msgstr "Acaba allaw_url _fopen  etkinleştirildimi?"
+
+#~ msgid "Yes, we can access Google with fopen"
+#~ msgstr "Evet, şu anda Google'a fopen ile erişebiliyoruz"
+
+#~ msgid "No, we can't access Google with fopen"
+#~ msgstr "Hayır, Goole'a fopen ile erişim sağlayamıyoruz"
+
+#~ msgid "Version Google Api Client"
+#~ msgstr "Google Api Client Versiyonu"
+
+#~ msgid "Before version 1.0.0"
+#~ msgstr "Versiyon 1.0.0'dan önce"
+
+#~ msgid ""
+#~ "Another plugin is loading an old Google Client library. Use-your-Drive "
+#~ "isn't compatible with this version."
+#~ msgstr ""
+#~ "Eski Google Kullanıca kütüphanesine başka bir eklenti yükleniyor.  Use-"
+#~ "your-Dirve bu versiyon ile uyumlu değil."
+
+#~ msgid "Is TMP directory writable?"
+#~ msgstr "TMP klasöre yazılabilirmi?"
+
+#~ msgid "TMP directory"
+#~ msgstr "TMP Klasörü"
+
+#~ msgid "isn't writable. You are not able to upload files to Drive."
+#~ msgstr "yazılabilir değil. Dosyaları Drive'a yükleme yetkiniz yok."
+
+#~ msgid "Make sure TMP directory is writable"
+#~ msgstr "TMP klasörünün yeniden yazılabilir olduğunu kontrol ediniz"
+
+#~ msgid "TMP directory is writable"
+#~ msgstr "TMP klasörü yazılabilir"
+
+#~ msgid "Is CACHE directory writable?"
+#~ msgstr "CACHE klasörü yazılabilirmi?"
+
+#~ msgid "CACHE directory"
+#~ msgstr "CACHE klasörü"
+
+#~ msgid "isn't writable. The gallery will load very slowly."
+#~ msgstr "yazılabilir değil. Galeri çok yavaş yüklenecek."
+
+#~ msgid "Make sure CACHE directory is writable"
+#~ msgstr "CACHE klasörünün yazılabilir olduğunu kontrol ediniz"
+
+#~ msgid "CACHE directory is now writable"
+#~ msgstr "CACHE klasörü yazılabilir değil"
+
+#~ msgid "CACHE directory is writable"
+#~ msgstr "CACHE klasörü yazılabilir"
+
+#~ msgid "Is CACHE-index file writable?"
+#~ msgstr "CACHE-index dosyazı yazılabilirmi?"
+
+#~ msgid "-index file"
+#~ msgstr "-indeks dosyası"
+
+#~ msgid "Make sure CACHE-index file is writable"
+#~ msgstr "CACHE-index dosyasının yazılabilir olduğundan emin olun"
+
+#~ msgid "CACHE-index file is now writable"
+#~ msgstr "CACHE-index  dosyası şimdi yazılabilir konumda"
+
+#~ msgid "CACHE-index file is writable"
+#~ msgstr "CACHE-index dosyası yazılabilir"
+
+#~ msgid "Is THUMBNAIL directory writable?"
+#~ msgstr "THUMBNAIL klasörü yazılabilirmi?"
+
+#~ msgid "THUMBNAIL directory"
+#~ msgstr "THUMBNAIL klasörü"
+
+#~ msgid ""
+#~ "isn't writable. Thumbnails of Google Doc files will not always properly."
+#~ msgstr ""
+#~ "yazılabilir değil. Google Doc dosyalarının Thumbnail  resimleri her zaman "
+#~ "düzgün olarak..."
+
+#~ msgid "Make sure THUMBNAIL directory is writable"
+#~ msgstr "THUMBNAIL klasörünün yazılabilir olduğundan emin olun"
+
+#~ msgid "THUMBNAIL directory is now writable"
+#~ msgstr "THUMBNAIL klasörün yazılabilir değil"
+
+#~ msgid "THUMBNAIL directory is writable"
+#~ msgstr "THUMBNAIL klasörü yazılabilir değil"
+
+#~ msgid "You can use the ZIP function"
+#~ msgstr "ZIP fonksiyonunu kullanabilirsiniz"
+
+#~ msgid "Download files as ZIP"
+#~ msgstr "Dosyaları ZIP olarak indirin"
+
+#~ msgid "You cannot download files as ZIP"
+#~ msgstr "Dosyaları ZIP olarak indiremezsiniz"
+
+#~ msgid "mbstring extension enabled?"
+#~ msgstr "mbstring uzantısı etkinleştirildimi?"
+
+#~ msgid ""
+#~ "The required mbstring extension is not enabled on your server. Please "
+#~ "enable this extension."
+#~ msgstr ""
+#~ "Gerekli olan mbstring uzantısı sunucunuzda etkinleştirilmedi. Lütfen bu "
+#~ "uzantıyı etkinleştirin."
+
+#~ msgid "You can AES256 encrypt files during upload"
+#~ msgstr "AES256, yükleme sırasında dosyaları şifreleyebilir"
+
+#~ msgid "Upload Encryption"
+#~ msgstr "Şifrelemeyi Yükle"
+
+#~ msgid "You cannot AES256 encrypt files during upload"
+#~ msgstr "AES256, yükleme sırasında dosyaları şifreleyemez"
+
+#~ msgid "Gravity Forms integration"
+#~ msgstr "Gravity Formları entegrasyonu"
+
+#~ msgid "You have Gravity Forms ("
+#~ msgstr "Gravitiy Formlarına sahipsiniz("
+
+#~ msgid "Contact Form integration"
+#~ msgstr "İletişim Formu (Contact Form) entegrasyonu"
+
+#~ msgid ""
+#~ "You have Contact Form 7 installed, but this version is not supported. "
+#~ "Please update Contact Form 7 to the latest version if you want to use "
+#~ "this plugin in combination with Contact Form"
+#~ msgstr ""
+#~ "Contact Form 7'yü yüklemişssiniz, ancak, bu versiyon desteklenmemektedir. "
+#~ "Lütfen Contact Form 7'yi  İletişim Formu (Contact Form) ile birlikte "
+#~ "kullanacaksanız, lütfen  son versiyona yükseltiniz"
+
+#~ msgid "You can use Use-your-Drive in WooCommerce ("
+#~ msgstr "Use-your-Drive eklentisini WooCommerce ile kullanabilirsiniz ("
+
+#~ msgid "You have WooCommerce ("
+#~ msgstr "WooCommerce'e sahipsiniz ("
+
+#~ msgid "Guest"
+#~ msgstr "Misafir"
+
+#~ msgid "A guest"
+#~ msgstr "Bir misafir"
+
+#~ msgid ""
+#~ "Please activate your copy in order to have direct access to the latest "
+#~ "updates and to get support"
+#~ msgstr ""
+#~ "Lütfen en son güncellemelere erişmek ve destek hizmetlerinden faydalanmak "
+#~ "için doğrudan erişim için  ürününüzü etkinleştirin"
+
+#~ msgid "Check for Updates"
+#~ msgstr "Güncellemeleri kontrol ediniz"
+
+#~ msgid "Failed to move entry"
+#~ msgstr "Girdiyi taşıma işlemi başarısız"
+
+#~ msgid "You are not authorized to move items in this directory"
+#~ msgstr "Bu klasörde dosyaları taşıma yetkiniz yok"
+
+#~ msgid "You are not authorized to move this file or folder"
+#~ msgstr "Bu dosyayı veya klasörü taşımaya yetkili değilsiniz"
+
+#~ msgid "You are not authorized to move folder"
+#~ msgstr "Bu klasörü atşımaya yetkili değilsiniz"
+
+#~ msgid "You are not authorized to move this file"
+#~ msgstr "Bu dosyayı taşımaya yetkili değilsiniz"
+
+#~ msgid "Entry was moved"
+#~ msgstr "Girdi taşındı"
+
+#~ msgid ""
+#~ "If your theme is already loading the FontAwesome library, it can be "
+#~ "useful to disable the library of this plugin"
+#~ msgstr ""
+#~ "Temanız zaten FontAwesome kütüphanesini yüklüyorsa, bu eklentinin "
+#~ "kütüphanesini devre dışı bırakmak yararlı olabilir"
+
+#~ msgid "Leave empty for server maximum "
+#~ msgstr "Sunucu maksimum değeri için boş bırak "
+
+#~ msgid "Please update your mediaplayer shortcode"
+#~ msgstr "Lütfen medya oynatıcınızın kısa kodunu güncelleyin"
+
+#~ msgid "Need help?"
+#~ msgstr "Yardıma ihtiyacınız varmı?"
+
+#~ msgid "Media Files"
+#~ msgstr "Medya Dosyaları"
+
+#~ msgid "Provided formats"
+#~ msgstr "Sağlanan Formatlar"
+
+#~ msgid "Select which sort of media files you will provide"
+#~ msgstr "Ne tür medya dosyası temin edeceğinizi seçin"
+
+#~ msgid ""
+#~ "You may provide the same file with different extensions to increase cross-"
+#~ "browser support"
+#~ msgstr ""
+#~ "Farklı tarayıcılar arasında desteği artırmak için  aynı dosyayı farklı "
+#~ "uzantılarla  temin edebilirsiniz"
+
+#~ msgid ""
+#~ "Do always supply a mp3 (audio) or m4v/mp4 (video)file to support all "
+#~ "browsers"
+#~ msgstr ""
+#~ "Mp3 (ses) veya M4v/mp4 (vidyo) dosyalarını bütün tarayıcıları "
+#~ "destekleyecek şekilde tedarik et"
+
+#~ msgid "Display covers"
+#~ msgstr "Kapakları Göster"
+
+#~ msgid "You can show covers of your audio files in the Audio Player"
+#~ msgstr "Ses Oynatıcıda ses dosyalaranın kapaklarını gösterebilirsiniz"
+
+#~ msgid ""
+#~ "If you would like to receive updates, please insert your Purchase code"
+#~ msgstr ""
+#~ "Güncellemeleri indirmek istiyorsanız, lütfen  alışveriş kodunu giriniz"
+
+#~ msgid "Back"
+#~ msgstr "Geri"
+
+#~ msgid "Sharing link"
+#~ msgstr "Link paylaşma"
+
+#~ msgid "Updates"
+#~ msgstr "Güncellemelr"
+
+#~ msgid "Template File line in %filelist%"
+#~ msgstr "Satır arası şablon dosyası %filelist%"
+
+#~ msgid "Visit the Use-your-Drive website"
+#~ msgstr "Use-your-Drive web sitesini ziyaret et"
+
+#~ msgid "for documentation and installation details"
+#~ msgstr "yardım belgeleri ve  yükleme detayları için"
+
+#~ msgid "Discovered a bug or just need some help with the plugin?"
+#~ msgstr ""
+#~ "Eklentide bir bug mı tespit ettiniz veya herhangi bir şekilde yardıma mı "
+#~ "ihtiyacınız var?"
+
+#~ msgid "Visit the support page"
+#~ msgstr "Destek sayfasını ziyaret et"
+
+#~ msgid "Update Required"
+#~ msgstr "Güncelleme gerkeli"
+
+#~ msgid ""
+#~ "To play the media you will need to either update your browser to a recent "
+#~ "version or update your"
+#~ msgstr ""
+#~ "Medyayı oynatmak için tarayıcınızı yeni bir versiyona güncellemeniz veya  "
+#~ "en son paketi"
+
+#~ msgid ""
+#~ "The plugin isn't yet authorized to use your Google Drive! Please (re)-"
+#~ "authorize the plugin"
+#~ msgstr ""
+#~ "Eklenti henüz Google Drive'ı kullanmak için yetkilendirilmedi! Lütfen  "
+#~ "eklentiyi yeniten yetkilendirin"
+
+#~ msgid ""
+#~ "Use-your-Drive can't access your Google Drive as the Google Drive App "
+#~ "isn't properly configurated."
+#~ msgstr ""
+#~ "Google Drive App gerektiği gibi konfigüre edilmediği için  Google "
+#~ "Drive'ınıza erişim sağlayamıyor."
+
+#~ msgid ""
+#~ "An Unexpected HTTP Error occurred during the API request.</p> <p><a href="
+#~ "\"?\" onclick=\"document.location.reload(); return false;\">Try again</a>"
+#~ msgstr ""
+#~ "API istemi esnasında beklenmeyen bir  HTTP hatası oluştu.</p> <p><a href="
+#~ "\"?\" onclick=\"document.location.reload(); return false;\">Tekrar "
+#~ "deneyin</a>"
+
+#~ msgid "An unknown error occurred"
+#~ msgstr "Bilinmeyen bir hata oluştu"
+
+#~ msgid "Couldn't connect to Google API: "
+#~ msgstr "Google API'ye bağlantı sağlanamadı: "
+
+#~ msgid "Could not start authorization: "
+#~ msgstr "Yetkilendirme başlatılamadı: "
+
+#~ msgid "You are not authorized to delete files from this directory"
+#~ msgstr "Klasörden dosya silmek için yetkili değilsiniz"
+
+#~ msgid "You are not authorized to delete this file or folder"
+#~ msgstr "Bu dosyayı veya klasörü  silmeye yetkili değilsiniz"
+
+#~ msgid "File downloaded"
+#~ msgstr "Dosya yüklendi"
+
+#~ msgid "Can't receive filelist"
+#~ msgstr "Dosya Listesini alamaz"
+
+#~ msgid "Use user specific folders"
+#~ msgstr "Kullanıcıya özgü  klasörleri kullan"
+
+#~ msgid ""
+#~ "By default guests (not logged in users) will also get their own folder"
+#~ msgstr ""
+#~ "Varsayılan olarak misafirler (login olmayan kullanıcılar) kendilerine "
+#~ "tahsis edilen bir klasöre erişebilirler"
+
+#~ msgid ""
+#~ "Remove 'Guest' from View Roles on the 'User Permissions' tab to prevent "
+#~ "guests to use the plugin"
+#~ msgstr ""
+#~ "Misafirlerin eklentiyi kullanmasını engellemek için 'Kullanıcı İzinleri' "
+#~ "sekmesinden \"Misafir\"i kaldır"
+
+#~ msgid "Use a template folder"
+#~ msgstr "Bir şablon klasörü kullan"
+
+#~ msgid "Select the template folder"
+#~ msgstr "Şablon klasörünü seç"
+
+#~ msgid "Who can access all user folders"
+#~ msgstr "Kullanıcı klasörlerine kim ereşibelir"
+
+#~ msgid ""
+#~ "The mediaplayer will decided, based on the provided formats, if the user "
+#~ "will have a HTML5 player or a Flash Player"
+#~ msgstr ""
+#~ "Kullanıcı HTML5 oyantıcısı veya bir Flash oynatıcısına sahipse medya "
+#~ "oynatıcı  temin edilen formatlara bağlı olarak belirlenecektir"
+
+#~ msgid "Automatically start playing"
+#~ msgstr "Oynatmayı otomatik olarak başlat"
+
+#~ msgid "Autoplay - Automatically start playing"
+#~ msgstr "Autoplay- Oynatmayı otomatik olarak başlat"
+
+#~ msgid "with thumbnails in a grid"
+#~ msgstr "izgaradaki küçükresimlerle birlikte"
+
+#~ msgid "In a file list"
+#~ msgstr "Dosya listesinde"
+
+#~ msgid "Root breadcrumb title"
+#~ msgstr "Kök breadcrumb ismi"
+
+#~ msgid "Display refresh button"
+#~ msgstr "Tazeleme butonunu göster"
+
+#~ msgid "Display files in folder"
+#~ msgstr "Klasördeki dosyaları göster"
+
+#~ msgid "Display child folders in folder"
+#~ msgstr "Klasördeki yavru klasörleri göster"
+
+#~ msgid "Do you want to display a column with the file size?"
+#~ msgstr "Bir sütunu dosya büyüklüğü ile bilikte göstermek istiyormusunuz?"
+
+#~ msgid "Display date last modified"
+#~ msgstr "En son değiştirilen tarihi göster"
+
+#~ msgid "Sort files and folders by their properties"
+#~ msgstr "Dosyaları ve klasörleri  onların özelliklerine göre sırala"
+
+#~ msgid "Search only on filename"
+#~ msgstr "Sadece dosya isimleri üzerinde araştırma yap"
+
+#~ msgid "Search on filename and contents"
+#~ msgstr "Dosya isimleri ve içerikleri hakkında araştırma yap"
+
+#~ msgid "Force a 'Save as' Dialog on downloading file"
+#~ msgstr "İndirilen dosyada \"Save as\" diyalogunun çıkmasını zorla"
+
+#~ msgid "Enable ZIP-download"
+#~ msgstr "ZIP yüklemesini etkinleştir"
+
+#~ msgid "Include upload form"
+#~ msgstr "Yükleme formunu  dahil et"
+
+#~ msgid "Limit upload by extension"
+#~ msgstr "Yüklemeyi uzantıya bağla olarak sınırla"
+
+#~ msgid "How to calculate?"
+#~ msgstr "Nasıl hesaplama yapacaksınız?"
+
+#~ msgid ""
+#~ "Would you like to receive a notification email when someone downloads a "
+#~ "file?"
+#~ msgstr "Birisi bir dosya yüklediğinde bir uyarı maili almak istermisiniz?"
+
+#~ msgid ""
+#~ "Would you like to receive a notification email when someone uploads a "
+#~ "file?"
+#~ msgstr "Birisi dosya yüklediğinde bir email  uyarısı almak istermisiniz?"
+
+#~ msgid ""
+#~ "Would you like to receive a notification email when someone deletes a "
+#~ "file?"
+#~ msgstr "Birisi dosyaları silerse bir uyarı maili almak istermisiniz?"
+
+#~ msgid "Send notification to"
+#~ msgstr "Uyarı mesajlarını şuraya gönder"
+
+#~ msgid ""
+#~ "Use-your-Drive uses Wordpress Roles to determine how an user can use the "
+#~ "plugin"
+#~ msgstr ""
+#~ "Use-your-Drive  kullanıcıların eklentiyi nasıl kullanabilecekleri "
+#~ "konusunda Wordpress Rollerini kullanır"
+
+#~ msgid "Should it be possible to rename files and folders?"
+#~ msgstr "Dosyaları veya klasörleri yeniden adlandırmak mümkün olmalımı?"
+
+#~ msgid "Should it be possible to delete files and folders?"
+#~ msgstr "Dosyaları veya klasörleri silmek mümkün olmalımı?"
+
+#~ msgid "Who can view"
+#~ msgstr "Kim görebilir"
+
+#~ msgid "Select which WordPress Roles can view and use the plugin"
+#~ msgstr "Eklentiye hangi Wordpress Rollerinin görüp kullanabileceğini seç"
+
+#~ msgid "Insert"
+#~ msgstr "Araya Ekle"
+
+#~ msgid "Embed"
+#~ msgstr "Göm"
+
+#~ msgid "Notify email templates"
+#~ msgstr "Email şablonlarını bildir"
+
+#~ msgid ""
+#~ "If you created your own Google Drive App, please enter your settings below"
+#~ msgstr ""
+#~ "Kendi Google Drive Uygulaması geliştirdiyseniz, lütfen ayarlarınızı "
+#~ "aşağıya girin"
+
+#~ msgid "How do I create a Google DriveApp?"
+#~ msgstr "Bir Google Drive Uygulamasını nasıl oluşturabilirim?"
+
+#~ msgid "You can use"
+#~ msgstr "Kullanabilirsiniz"
+
+#~ msgid ""
+#~ "To make things easier for you, we added a <u>Shortcode button</u> in the "
+#~ "MCE editor"
+#~ msgstr ""
+#~ "Sizin için işleri kolaylaştırmak üzere , MCE' editörüne <u>Shortcode "
+#~ "button</u>  butonunu ekledik"
+
+#~ msgid "Overview of your system settings"
+#~ msgstr "Sistem ayarlarının genel analizi"
+
+#~ msgid "Requested item isn't allowed"
+#~ msgstr "İstenen maddeye müsaade edilmedi"
+
+#~ msgid "Couldn't create zip file"
+#~ msgstr "Zip dosyası oluşturamıyor"
+
+#~ msgid "Load more..."
+#~ msgstr "Daha fazla yükle..."
+
+#~ msgid "Drive Upload"
+#~ msgstr "Drive yükleme"
+
+#~ msgid "File(s) deleted on your Google Drive"
+#~ msgstr "Google Drive'daki  silinen dosya(lar)"
+
+#~ msgid "Limit by extension"
+#~ msgstr "Uzantıyla sınırla"
+
+#~ msgid "Start uploading automatically (no start/cancel buttons)"
+#~ msgstr "Yüklemeyi otomatik olarak başlat (başlat/iptal et butonu yok)"
+
+#~ msgid "Start upload"
+#~ msgstr "Yüklemeyi başlat"
+
+#~ msgid "Cancel upload"
+#~ msgstr "Yüklemeyi iptal et"
+
+#~ msgid "Max. "
+#~ msgstr "Maksimum. "
+
+#~ msgid "Filelist"
+#~ msgstr "Dosya Listesi"
+
+#~ msgid "Photogallery"
+#~ msgstr "Foto Galeri"
+
+#~ msgid "You can link the folders"
+#~ msgstr "Dosyaları  bağlayabilirsiniz"
+
+#~ msgid "Files with thumbnails in a grid"
+#~ msgstr "Izgaradaki küçükresimli (thumbnails) dosyalar"
+
+#~ msgid "Show folders breadcrumb"
+#~ msgstr "Klasörleri Breadcrumb olarak göster"
+
+#~ msgid "Sort files and folders by:"
+#~ msgstr "Dosyaları ve klasörleri şuna göre sırala:"
+
+#~ msgid "Show download button (zip-archive)"
+#~ msgstr "İndirme butonunu göster (zip-arşivi)"
+
+#~ msgid "Show share button"
+#~ msgstr "Paylaşım butonlarını gösterd"
+
+#~ msgid "Media files"
+#~ msgstr "Medya dosyaları"
+
+#~ msgid "Do always supply a mp3 file to support all browsers"
+#~ msgstr "Bütün tarayıcıları desteklemek için mp3 dosyası tedarik et"
+
+#~ msgid "Do always supply a m4v/mp4 file to support all browsers"
+#~ msgstr ""
+#~ "Bütün tarayıcıları desteklemek için  bir m4v/mp4 dosyası  tedarik et"
+
+#~ msgid "Allow download - Show direct link to media file"
+#~ msgstr "İndirmeye izin ver- Medya dosyalarına doğrudan link ver"
+
+#~ msgid "Sort order:"
+#~ msgstr "Düzenlemeyi etkinleşti:"
+
+#~ msgid "Filelist options"
+#~ msgstr "Dosya listesi seçenekleri"
+
+#~ msgid "Show files in folder"
+#~ msgstr "Klasörlerin içinde dosyaları göster"
+
+#~ msgid "Gallery options"
+#~ msgstr "Galeri seçenekleri"
+
+#~ msgid "Don't stretch last row to fit grid width"
+#~ msgstr "Son satırı ızgara genişliğine uymak için  genişletme"
+
+#~ msgid "Shuffle images"
+#~ msgstr "Fotoğrafları karıştır"
+
+#~ msgid "Include files or folders (only show these items)"
+#~ msgstr "Dosyaları veya klasörleri dahil et (sadece bu  unsurları göster)"
+
+#~ msgid "Exclude files or folders"
+#~ msgstr "Dosyaları ve klasörleri hariç tut"
+
+#~ msgid "Edit files &amp; folders"
+#~ msgstr "Dosyaları ve klasörleri düzenle"
+
+#~ msgid "Files &amp; folders can be renamed"
+#~ msgstr "Dosyalar&amp; klasörler yeniden adlandırılabilir"
+
+#~ msgid "Files &amp; folders can be deleted"
+#~ msgstr "Dosyalar &amp; klasörler silinebilir"
+
+#~ msgid "Can add new folders"
+#~ msgstr "Yeni butonunu ekle"
+
+#~ msgid "User management"
+#~ msgstr "Kullanıcı yönetimi"
+
+#~ msgid "Rename files & folders"
+#~ msgstr "Dosyaları ve klasörleri yeniden adlandır"
+
+#~ msgid "Delete files & folders"
+#~ msgstr "Dosyaları ve klasörleri sil"
+
+#~ msgid "Add folders"
+#~ msgstr "Klasör ekle"
+
+#~ msgid "Note"
+#~ msgstr "Not"
+
+#~ msgid "Remove 'Guest' from View Roles to disable guests to use the plugin"
+#~ msgstr ""
+#~ "Misafirlerin Eklentiyi kullanmasını önlemek için \"Misafir\"i  Görüntülem "
+#~ "Rolleri listesinden çıkar"
+
+#~ msgid "See and edit all user folders"
+#~ msgstr "Bütün kullanıcı klasörlerini seç ve düzenle"
+
+# Translated by Dr.Ramazan ALTINOK
+# Ankara, Turkey
+#~ msgid "Select template folder"
+#~ msgstr "Şablon klasörünü seç"

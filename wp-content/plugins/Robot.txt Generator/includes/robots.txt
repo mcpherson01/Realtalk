@@ -1,0 +1,9 @@
+User-Agent: NinjaBot
+Allow: /
+
+User-Agent: ia_archiver
+Disallow: /
+
+Allow: /Users
+Disallow: /Admin
+

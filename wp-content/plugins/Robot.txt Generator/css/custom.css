@@ -1,0 +1,26 @@
+body{
+    background-color: #e9e9e9;
+}
+.generate_button{
+    background: white;
+    color: #080808;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: solid 1px silver;
+}
+.generate_button:hover{
+    background: #298cad !important;
+    color:white !important;
+}
+.rad{
+    border-radius: 0 !important;
+}
+hr.line {
+    width: 80%;
+    border: 0;
+    height: 1px;
+    background: #298cad;
+    background-image: linear-gradient(to right, #ccc, #298cad, #ccc);
+}
+
+

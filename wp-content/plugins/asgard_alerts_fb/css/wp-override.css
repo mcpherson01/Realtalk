@@ -1,0 +1,35 @@
+p {
+  margin: 0;
+}
+
+#wpcontent {
+  padding-left: 0;
+}
+
+#wpfooter {
+  display: none;
+}
+
+.wp-admin select {
+  padding: 0 20px;
+  line-height: 44px;
+  height: 44px;
+}
+
+.hidden {
+  display: block;
+}
+
+.wp-core-ui .button {
+  border: none;
+  box-shadow: none;
+  min-height: auto;
+}
+
+.wp-core-ui select {
+  padding: 0 20px;
+  border-radius: 200px;
+  border: 1px solid #e7e8f3;
+  background: #fff;
+  font-size: 11px;
+}
