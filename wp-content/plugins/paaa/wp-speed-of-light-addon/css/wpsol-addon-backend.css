@@ -1,0 +1,266 @@
+ul.exclude-files, ul.exclude-files li {
+    padding: 0 !important;
+}
+
+ul.wpsol-exclude-files-tabs {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+    width: 100%;
+    float:left;
+}
+
+ul.wpsol-exclude-files-tabs li {
+    text-align: center;
+    line-height: normal;
+    color: #222;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 0 !important;
+    padding: 6px !important;
+    width: 24%;
+    background-color: #ededed;
+    margin-right: -4px;
+}
+
+ul.wpsol-exclude-files-tabs li.active {
+    background: #2095F2;
+    color: #fff;
+}
+
+.tab-content-exclude {
+    display: none;
+    margin-top: 15px;
+}
+
+.tab-content-exclude.active {
+    display: inherit;
+}
+
+span.wpsol-exclude-files-search-button {
+    font-size: 20px;
+    padding: 2px;
+    border: 1px solid #ededed;
+    border-left: none;
+    width: 30px;
+    height: 27px;
+    background-color: #E8E9EB;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top : 14px;
+    margin-left: -5px;
+    position: relative;
+}
+span.wpsol-exclude-files-search-button.dashicons-search:before{
+    font-size: 25px;
+    position: absolute;
+    top: 1px;
+    left: 3px;
+}
+span.wpsol-exclude-files-search-button:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+    border-left: none;
+}
+input.wpsol-exclude-files-search-input{
+    margin-top: 14px;
+    padding : 5px !important;
+    border-radius: unset;
+}
+
+a.wpsol-exclude-files-btn{
+    padding: 0 10px 0 10px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+a.wpsol-exclude-files-btn:focus {
+    outline: none;
+}
+
+a.wpsol-exclude-files-btn:hover,a.wpsol-exclude-files-btn:active,a.wpsol-exclude-files-btn:visited{
+    color: #ffffff;
+}
+a.wpsol-exclude-files-btn span.exc-icon{
+    vertical-align: middle;
+    margin: 0 4px 4px 0;
+}
+
+
+/********************************/
+
+/** Jack up the font size on the tooltips **/
+
+.ui-tooltip {
+    font-size: 120%;
+    line-height: 125%;
+}
+
+/** jQuery UI Dialog overrides **/
+
+.noPadding.ui-dialog .ui-dialog-content {
+    padding: 0;
+}
+
+.noTitle .ui-dialog-titlebar {
+    display: none;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: none;
+    text-align: center;
+}
+
+/** Auto scanner display status **/
+
+#wpsol-scanning-caption {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    width: 100%;
+    padding-left: 4px;
+    height: 18px;
+    color: #999999;
+    font-style: italic;
+}
+
+
+/** Progress bar **/
+#wpsol-progress{
+    border : none;
+    background-color: #eeeeee;
+    border-bottom: #eeeeee;
+}
+.ui-progressbar {
+    position: relative;
+}
+#wpsol-progress-loading{
+    position: absolute;
+    left: 50%;
+    color: #ffffff;
+    top: 2px;
+    font-weight: bold;
+    /*text-shadow: 1px 1px 0 #fff;*/
+}
+
+
+/*
+Exclude files content
+ */
+#excludes-tab table{
+    border-collapse: collapse;
+}
+#excludes-tab table thead{
+    font-weight: bold;
+    font-size: 15px;
+}
+#excludes-tab table tr td{
+    padding: 2px 2px 5px 2px;
+}
+#excludes-tab table tbody tr td span{
+    padding: 10px;
+}
+#excludes-tab table tr td span.wpsol-filename-extension-js,.wpsol-exclude-files-tabs .wpsol-exclude-file-js.active{
+    background-color: #FECF2F;
+    color: #fff;
+}
+#excludes-tab table tr td span.wpsol-filename-extension-css,.wpsol-exclude-files-tabs .wpsol-exclude-file-css.active{
+    background-color: #27A8DE;
+    color: #fff;
+}
+#excludes-tab table tr td span.wpsol-filename-extension-font,.wpsol-exclude-files-tabs .wpsol-exclude-file-font.active{
+    background-color: #7AD03A;
+    color: #fff;
+}
+#excludes-tab tfoot.exclude-pagination tr td ul li{
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    background-color: #fff;
+    cursor: pointer;
+}
+#excludes-tab tfoot.exclude-pagination tr td ul li.choose{
+    background: #2095F2;
+    color: #FFFFFF;
+    cursor: default;
+}
+
+.exclude-pagination tr td{
+    text-align: center;
+}
+
+#wpsol-addon-scan-folders{
+    position: fixed;
+}
+
+/*
+Popup exclude file minification
+ */
+#wpsol_check_exclude_file_modal{
+    display: block;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+
+}
+#wpsol_check_exclude_file_modal .check-minify-icon i{
+    font-size: 110px;
+    color: #F8BE8C;
+}
+
+#wpsol_check_exclude_file_modal .check-minify-title h2{
+    color: #575757;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: none;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    line-height: 60px;
+    display: block;
+}
+
+#wpsol_check_exclude_file_modal .check-minify-content{
+    margin-bottom: 30px;
+    padding: 5px 15px 0 15px;
+    font-size: 17px;
+    text-align: center;
+    font-weight: 300;
+    float: none;
+    line-height: normal;
+    color: #555;
+}
+#wpsol_check_exclude_file_modal .check-minify-sucess .scan-file-popup-btn{
+    width: 150px;
+    color: #ffffff;
+    border: 0;
+    box-shadow: none;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 3px;
+    padding:10px 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+#wpsol_check_exclude_file_modal .check-minify-sucess .cancel{
+    color: #555;
+    background-color: #ffffff;
+}
+#wpsol_check_exclude_file_modal .check-minify-sucess .agree{
+    font-size: 16px;
+    background-color: #FF8726;
+    text-transform: uppercase;
+    border: 1px solid #ff8726;
+}
+
