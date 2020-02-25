@@ -1,0 +1,19 @@
+.hp-destinations-loading {
+    width: 85%;
+    height: 32vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hp-destinations-loading svg {
+    height: 50px;
+}
+
+.hp-destinations-loading .hp-text {
+    font-size: 13px;
+}
+
+.hp-destinations-loading .hp-icon-with-text {
+    color: #53a8ff;
+}

@@ -1,8 +1,0 @@
-<wpml-config>
-	<admin-texts>
-		<key name="13floor_date_format"/>
-		<key name="13floor_seo_home_titletext"/>
-		<key name="13floor_seo_home_descriptiontext"/>
-		<key name="13floor_seo_home_keywordstext"/>
-	</admin-texts>
-</wpml-config>

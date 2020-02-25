@@ -1,0 +1,62 @@
+.destination-component {
+    white-space: nowrap;
+}
+.hp-destination-condition .destination-component {
+    width: 220px;
+}
+
+.hp-destination-target .destination-component {
+    width: 250px;
+}
+
+.hp-destination-component-button {
+    width: inherit;
+    overflow-x: hidden;
+}
+
+div .hp-select-search__control {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #dce4e4;
+}
+
+div .hp-select-search__control--is-focused {
+    box-shadow: none;
+    border-bottom: 1px solid #4456df;
+}
+
+.hp-destination-condition:hover,
+.hp-destination-target:hover {
+    transition: background 0.5s;
+    background: #d8e5ec52;
+    border-radius: 7px;
+}
+
+@media (max-width: 999px) {
+    .hp-destination-id,
+    .hp-destination-separator,
+    .hp-destination-actions {
+        display: none !important;
+    }
+    
+    .hp-url-destination {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: auto;
+        width: 100%;
+    }
+
+    .hp-panel-window-types .hp-url-destination {
+        justify-content: initial;
+    }
+
+    .hp-destination-target .destination-component,
+    .hp-destination-condition .destination-component {
+        width: auto !important;
+    }
+
+    .hp-destination-component-button-name {
+        font-size: 14px !important;
+    }
+}

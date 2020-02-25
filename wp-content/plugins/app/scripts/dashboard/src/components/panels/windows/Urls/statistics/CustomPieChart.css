@@ -1,0 +1,8 @@
+.hp-pie-chart .recharts-surface {
+    transform: scale(1.2);
+    margin-left: 17%;
+}
+
+.hp-pie-chart-chart {
+    margin-left: -40px;
+}

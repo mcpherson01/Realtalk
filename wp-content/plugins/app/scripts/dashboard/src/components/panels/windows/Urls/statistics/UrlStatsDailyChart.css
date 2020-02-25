@@ -1,0 +1,19 @@
+.hp-url-stats-daily-chart {
+    margin-top: 40px;
+}    
+
+.recharts-cartesian-axis-tick-value {
+    fill: #bfc9cc
+}
+
+line.recharts-cartesian-axis-tick-line {
+    display: none;
+}
+
+line.recharts-cartesian-axis-line {
+    display: none;
+}
+
+path.recharts-curve.recharts-area-curve {
+    stroke-width: 3px;
+}

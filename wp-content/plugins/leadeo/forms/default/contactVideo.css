@@ -1,0 +1,511 @@
+/* Juro */
+
+body{
+	font-family: 'Roboto', sans-serif;
+	background-color: #000000;
+}
+
+.container{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.my_section {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.base {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+iframe{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+}
+
+.made_with_leadeo_id {
+	color: #fff;
+	text-shadow: 1px 1px 2px #000;
+	float: right;
+	position: relative;
+	display: none;
+	margin-right: 5px;
+}
+
+.base_contact .content{
+	background: #000;
+}
+
+.base_contact .my_form_id {
+	left: 0;
+	width: 70%;
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.base_contact .v-overlay{
+	background: rgba(228,56,52,0.6);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+  	left: 0;
+  	top: 0;
+}
+
+.base_contact .close_id {
+	float: right;
+	margin-right: 15px;
+	cursor:pointer;
+}
+
+.base_contact .textout{
+	color: #fff;
+	font-size: 36px;
+	font-weight: 300;
+	line-height: 60px;
+	display: block;
+	padding: 10px 0;
+}
+
+.base_contact .textout.cu{
+	background: #E43834;
+  	margin-left: -17px;
+ 	padding-left: 17px;
+  	width: calc(100% + 34px);
+}
+
+@media (max-width: 660px) {
+	.base_contact .textout {
+		font-size: 26px;
+		line-height: 28px;
+	}
+
+	.base_contact .input{
+		height: 44px !important;
+	}
+
+	.base_contact .input_field{
+		height: 44px !important;
+		line-height: 44px !important;
+	}
+
+	.base_contact .input.message-part{
+		padding: 0;
+		height: 44px;
+	}
+
+	.base_contact .login {
+		display: inline-block !important;
+		font-size: 16px !important;
+		height: 34px !important;
+	}
+}
+
+@media (max-width: 362px) {
+	.base_contact .textout {
+		font-size: 20px;
+	}
+	.base_contact .textout:not(.cu) {
+		padding-top: 15px;
+	}
+	.base_contact .textout.cu {
+		height: 40px;
+		padding-top: 7px;
+
+	}
+
+
+}
+
+.base_contact .input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 2px 0;
+	height: 60px;
+	border-radius: 5px;
+	background: #fff;
+	margin-left: 0;
+	width: 100%;
+	vertical-align: top;
+}
+
+.base_contact .input.message-part{
+	height: 60px;
+}
+
+@media (max-width: 362px) {
+	.base_contact .input.message-part{
+		height: 72px;
+	}
+}
+
+.base_contact .input_field {
+	position: relative;
+	display: block;
+	float: right;
+	width: 60%;
+	height: 60px;
+	border: none;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #00BEA4;
+	-webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+@media (max-width: 520px) {
+	.base_contact .input,
+	.base_contact .input_field,
+	.base_contact .textout.cu {
+		height: 36px;
+	} /* textarea has its own height set rule via dedicated class */
+
+	.base_contact .textout {
+		line-height: normal;
+	}
+	.base_contact .textout.cu {
+		padding-top: 10px;
+	}
+
+	.base_contact .input.message-part{
+		height: 72px;
+	}
+
+	.base_contact .login {
+		display: inline-block !important;
+		font-size: 16px !important;
+		height: 34px !important;
+	}
+}
+
+
+.base_contact .input_field:focus {
+	outline: none;
+}
+
+.base_contact .graphic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	fill: none;
+}
+
+.base_contact .icon {
+	color: #ddd;
+	font-size: 150%;
+}
+
+.base_contact .input-juro {
+	overflow: hidden;
+}
+
+.base_contact .input_field-juro {
+	position: absolute;
+	z-index: 100;
+	width: 100%;
+	background: transparent;
+	font-size: 14px;
+	color: #606060;
+	padding: 0 20px;
+}
+
+.base_contact .input_field-juro-textarea {
+    height: 268px;
+}
+
+.base_contact .input_field-juro::-webkit-input-placeholder { /* WebKit browsers */
+	color: #606060;
+}
+
+.base_contact .subject{
+	width: 100%;
+}
+
+.base_contact .message-part{
+	width: 100%;
+	padding-top: 12px;
+}
+
+.base_contact textarea{
+	resize: none;
+}
+
+.base_contact .login{
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 24px;
+  border: none;
+  height: 54px;
+  color: #202020;
+  font-size: 20px;
+  background-color: #FCD734;
+  border-radius: 5px;
+  transition: border-bottom .3s;
+}
+
+@media (max-width: 352px) {
+	.base_contact .login {
+		font-size: 16px;
+		height: 34px;
+	}
+}
+
+.base_contact .login i {
+	font-size: 16px;
+  	top: -1px;
+  	position: relative;
+}
+
+/* ----------- opt -------------- */
+
+.base_opt .content{
+	background-color: #202020;
+	/*width: 100%;*/
+}
+
+.base_opt .my_form_id {
+	left: 0;
+	width: 33%;
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	/*position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 66.66666%;
+	max-width: 500px;*/
+}
+
+.base_opt .v-overlay{
+	background: rgba(228,56,52,0.6);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+
+.base_opt .close_id {
+	float: right;
+	margin-right: 24px;
+	cursor:pointer;
+	width: 10%;
+}
+
+.base_opt .title-text{
+	background-color: #E43834;
+	margin-left: -30px;
+	width: calc(100% + 60px);
+	height: 68px;
+	display: block;
+	color: #fff;
+	font-size: 24px;
+	padding-left: 30px;
+	line-height: 68px;
+	position: relative;
+}
+
+.base_opt .title-it_id {
+	position: absolute;
+	width: calc(90% - 60px);
+	float: left;
+}
+
+.base_opt .text-it{
+	color: #fff;
+	font-size: 24px;
+	margin-top: 15px;
+	position: relative;
+	display: block;
+}
+
+@media (max-width: 660px) {
+	.base_opt .title-text, .base_opt .title-it_id, .base_opt .text-it {
+		font-size: 26px;
+	}
+}
+
+@media (max-width: 362px) {
+	.base_opt .title-text, .base_opt .title-it_id, .base_opt .text-it {
+		font-size: 20px;
+	}
+	/*.base_opt .text-it {
+		padding-top: 15px;
+	}*/
+	.base_opt .title-it_id {
+		height: 40px;
+		/*padding-top: 7px;*/
+	}
+}
+
+
+.base_opt .input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	margin: 1em;
+	height: 80px;
+	border-radius: 5px;
+	background: #fff;
+	margin-left: 0;
+	width: 100%;
+	vertical-align: top;
+}
+
+.base_opt .input.message-part{
+	height: 280px;
+}
+
+@media (max-width: 362px) {
+	.base_opt .input.message-part{
+		height: 152px;
+	}
+}
+
+.base_opt .input_field {
+	position: relative;
+	display: block;
+	float: right;
+	width: 60%;
+	height: 80px;
+	border: none;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #00BEA4;
+	-webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+@media (max-width: 520px) {
+	.base_opt .input,
+	.base_opt .input_field,
+	.base_opt .base_opt .title-it_id {
+		height: 50px;
+	} /* textarea has its own height set rule via dedicated class */
+
+	/*.base_opt .title-text, .base_opt .title-it_id, .base_opt .text-it {
+		line-height: normal;
+	}
+	.base_opt .title-it_id {
+		padding-top: 10px;
+	}*/
+}
+
+.base_opt .input_field:focus {
+	outline: none;
+}
+
+.base_opt .graphic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	fill: none;
+}
+
+.base_opt .icon {
+	color: #ddd;
+	font-size: 150%;
+}
+
+.base_opt .input-juro {
+	overflow: hidden;
+}
+
+.base_opt .input_field-juro {
+	position: absolute;
+	z-index: 100;
+	width: 100%;
+	background: transparent;
+	font-size: 14px;
+	color: #606060;
+	padding: 0 20px;
+}
+
+.base_opt .input_field-juro::-webkit-input-placeholder { /* WebKit browsers */
+	color: #606060;
+}
+
+.base_opt .subject{
+	width: 100%;
+}
+
+.base_opt .message-part{
+	width: 100%;
+	padding-top: 12px;
+}
+
+.base_opt textarea{
+	resize: none;
+}
+
+.base_opt .login{
+	display: block;
+	width: 100%;
+	margin-bottom: 24px;
+	border: none;
+	height: 78px;
+	color: #202020;
+	font-size: 20px;
+	background-color: #FCD734;
+	border-radius: 5px;
+	transition: border-bottom .3s;
+}
+
+@media (max-width: 352px) {
+	.base_opt .login {
+		font-size: 16px;
+		height: 55px;
+	}
+}
+
+.base_opt .login i {
+	font-size: 16px;
+	top: -1px;
+	position: relative;
+}
+
+
+@media (max-width: 768px){
+	.base_opt .title-text, .base_opt .title-it_id, .base_opt .text-it{
+		font-size: 16px;
+	}
+
+	.base_opt .my_form_id{
+		width: 90%;
+	}
+
+	.base_opt .login{
+		height: 44px;
+	}
+
+	.base_opt .input{
+		height: 44px;
+	}
+
+	.base_opt .input_field{
+		height: 44px;
+	}
+}
+
+@media (max-width: 520px){
+	.base_opt .title-text{
+		height: 32px;
+		line-height: 32px;
+	}
+}

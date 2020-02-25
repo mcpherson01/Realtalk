@@ -1,0 +1,146 @@
+#highwaypro-dashboard .hp-url-content-header-title {
+    margin-top: 0;
+    font-size: 21px;
+    line-height: 26px;
+    font-weight: 500;
+    color: #394b60;
+    margin-bottom: -1px;
+}
+
+#highwaypro-dashboard .hp-url-content-header {
+    display: flex;
+    align-items: center;
+}
+
+#highwaypro-dashboard .hp-url-content-header-type {
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 12px;
+    color: #efc52c;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+#highwaypro-dashboard .hp-url-content-header-type .hp-icon {
+    margin-right: 6px;
+}
+
+#highwaypro-dashboard .hp-url-content-header-type svg {
+    width: 17px;
+    height: 17px;
+}
+
+#highwaypro-dashboard .hp-url-content-header-type svg path:not([fill="none"]) {
+    fill: #f7c709;
+}
+
+#highwaypro-dashboard .hp-url-content-header .hp-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#highwaypro-dashboard .hp-url-content-header-path-and-url input {
+    font-size: 19px;
+    font-family: "manrope";
+    font-weight: 500;
+    color: #3f91ff;
+    padding-top: 1px;
+}
+
+#highwaypro-dashboard .hp-url-content-header-path-and-url .hp-url-content-header-name input {
+    color: #3c5162;
+}
+
+#highwaypro-dashboard .hp-url-content-header-path-and-url label {
+    color: #91a6c3;
+}
+
+#highwaypro-dashboard .hp-url-content-header-path-and-url [class^='MuiInputBase']::before, 
+#highwaypro-dashboard .hp-url-content-header-path-and-url [class*='MuiInputBase']::before {
+    border-bottom: 2px solid rgba(86, 100, 105, 0.16) !important;
+}
+
+#highwaypro-dashboard .hp-url-content-header-path [class^='MuiFormControl-root'], 
+#highwaypro-dashboard .hp-url-content-header-path [class*='MuiFormControl-root'] {
+    margin-top: 11px;
+}
+
+#highwaypro-dashboard .hp-url-content-header-path,
+#highwaypro-dashboard .hp-url-content-header-base-path {
+    display: inline-block;
+}
+
+#highwaypro-dashboard  .hp-url-content-header-base-path {
+    margin-bottom: 8px;
+}
+
+#highwaypro-dashboard .hp-url-content-header-path {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 25px;
+}
+
+#highwaypro-dashboard .hp-url-content-header-base-path div {
+    font-size: 17px !important;
+    color: #6781a4 !important;
+    padding-right: 2px;
+    font-weight: 500 !important;
+}
+
+#highwaypro-dashboard .hp-url-content-header-path-and-url input,
+#highwaypro-dashboard .hp-url-content-header-base-path div {
+    line-height: 18px;
+    font-weight: 500 !important;
+}
+
+
+#highwaypro-dashboard .hp-id-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 17px;
+}
+
+#highwaypro-dashboard .hp-id-icon svg {
+    height: 38px;
+}
+
+#highwaypro-dashboard .hp-id-icon svg g path.hp-bottom {
+    fill: #aac0d4;
+}
+
+#highwaypro-dashboard .hp-id-icon svg g path.hp-top {
+    fill: #569fff;
+}
+
+#highwaypro-dashboard .hp-id-icon svg text {
+    font-size: 21px;
+    fill: #fff;
+}
+
+#highwaypro-dashboard .hp-final-url {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    color: #356395c7;
+    font-size: 13px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+}
+
+#highwaypro-dashboard .hp-view {
+    margin-left: 10px;
+    color: #fafbfc;
+    text-decoration: none;
+    background: #1d81e8;
+    border: 1px solid #207eff;
+    border-radius: 6px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 19px;
+    font-weight: 700;
+    /*border-top-left-radius: 0;
+    border-bottom-left-radius: 0;*/
+}

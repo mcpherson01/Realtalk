@@ -1,9 +1,0 @@
-<wpml-config>
-	<admin-texts>
-		<key name="tidalforce_date_format"/>
-		<key name="tidalforce_abouttext"/>
-		<key name="tidalforce_seo_home_titletext"/>
-		<key name="tidalforce_seo_home_descriptiontext"/>
-		<key name="tidalforce_seo_home_keywordstext"/>
-	</admin-texts>
-</wpml-config>

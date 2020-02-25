@@ -1,0 +1,120 @@
+.hp-create-url {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background: transparent;
+    visibility: hidden;
+}
+
+.hp-create-url .hp-content {
+    transform: translate(0, -110%);
+    width: 95%;
+    margin: 0 2.5%;
+    padding: 16px 19px 0px 19px;
+    background: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: all 0.55s ease;
+    overflow: hidden;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 97%;
+    margin: 0 2.5%;
+    box-shadow: rgba(129, 153, 177, 0.26) 0px 2px 10px 0px, 6px 8px 40px 5px #75899c26;
+}
+
+.hp-create-url.--active {
+    visibility: visible;
+}
+
+.hp-create-url.--active .hp-content {
+    transform: translate(0, 0);
+}
+
+.hp-create-url h1 {
+    font-size: 14.7px;
+    font-weight: 600;
+    color: #5c728f;
+    margin-top: 4px;
+    width: 100%;
+    text-align: center;
+}
+
+.hp-create-url form > div:first-child {
+    margin-top: 0;
+}
+
+[class^='MuiInputAdornment'], 
+[class*=' MuiInputAdornment'] {
+    ont-size: 11.8px;
+    color: #4aafff;
+    margin-right: 4px;
+}
+
+.hp-create-url-buttons {
+    margin-top: 20px;
+    margin-left: -19px;
+    margin-right: -18px;
+    /* border: 1px solid #247ef8; */
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+}
+
+.hp-create-url-buttons .hp-cancel-button {
+    border-color: #a8b3bb;
+    color: #818b92;
+
+        border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    color: #5d7a92;
+    box-shadow: none;
+    border-top: 1px solid #7d93a759;
+}
+
+.hp-create-url-buttons .hp-create-button {
+    border-left: 1px solid #267ef8;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: 1px solid #247ef8;
+    /* border-bottom: 0; */
+    /* border-right: 0; */
+    /* background: #4594ff; */
+    /* color: #e7eef7; */
+    box-shadow: -1px -1px 6px #247ef85e;
+}
+
+.hp-create-url .hp-url-type-menu {
+    margin-top: 16px;
+    margin-bottom: 10px;
+    min-width: 160px;
+}
+
+.hp-domainbase p {
+    font-size: 13px !important;
+    color: #38a7ff !important;
+    margin: 0 !important;
+    margin-right: -6px !important;
+}
+
+button.hp-button.--style-line.hp-cancel-button, button.hp-button.--style-line.hp-create-button {
+    border: none;
+    box-shadow: none;
+    color: #2d86ff;
+    font-size: 14px;
+    border-top: 1px solid #83afee40;
+    border-radius: 0;
+}
+
+button.hp-button.--style-line.hp-cancel-button {
+    color: #84a1c7;
+}
+
+button.hp-button.--style-line.hp-create-button {
+    border-bottom-right-radius: 8px;
+    /* border: 1px solid #3689ff21; */
+    /* border-top: 1px solid #3689ff; */
+    background: #247ef817;
+}

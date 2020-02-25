@@ -1,0 +1,120 @@
+/* CSS Document */
+
+#nex-forms .ui-nex-forms-container  .input-field label {
+ color: #9e9e9e;
+}
+/* label focus color */
+#nex-forms .ui-nex-forms-container  .input-field input[type=text]:focus + label,
+#nex-forms .ui-nex-forms-container  .input-field textarea:focus + label {
+ color: #795548 !important;
+}
+/* label underline focus color */
+#nex-forms .ui-nex-forms-container  .input-field input[type=text],
+#nex-forms .ui-nex-forms-container  .input-field textarea{
+	/*border-bottom: 1px solid #9e9e9e !important;*/
+}
+#nex-forms .ui-nex-forms-container  .input-field input[type=text]:focus,
+#nex-forms .ui-nex-forms-container  .input-field textarea:focus {
+ border-bottom: 1px solid #795548 !important;
+ box-shadow: 0 1px 0 0 #795548 !important;
+}
+
+
+/* ICONS */
+/* icon prefix focus color */
+#nex-forms .ui-nex-forms-container  .input-field .prefix {
+ color: #9e9e9e;
+}
+#nex-forms .ui-nex-forms-container  .input-field .prefix.active {
+ color: #795548 !important;
+}
+
+
+/* RADIOS */
+
+#nex-forms .ui-nex-forms-container  [type="radio"]:checked + label::after, #nex-forms .ui-nex-forms-container  .with-gap[type="radio"]:checked + label::before, #nex-forms .ui-nex-forms-container  .with-gap[type="radio"]:checked + label::after {
+   /* border: 2px solid #795548;*/
+   border: 2px solid #795548 !important;
+}
+
+#nex-forms .ui-nex-forms-container  [type="radio"]:checked + label::after, #nex-forms .ui-nex-forms-container  .with-gap[type="radio"]:checked + label::after {
+	background-color: #795548 !important;
+}
+
+/* CHECKS */
+
+#nex-forms .ui-nex-forms-container  [type="checkbox"] + label::before, #nex-forms .ui-nex-forms-container  [type="checkbox"]:not(.filled-in) + label::after {
+	border: 2px solid #9e9e9e !important;
+}
+#nex-forms .ui-nex-forms-container  [type="checkbox"]:checked + label::before{
+	border-color: transparent #795548 #795548 transparent !important;
+}
+
+
+/* SELECTS */
+#nex-forms .ui-nex-forms-container  .dropdown-content li > a, #nex-forms .ui-nex-forms-container  .dropdown-content li > span{
+	color:#795548 !important;
+}
+
+
+/* BUTTONS */
+#nex-forms .mb-btn{
+	 background-color: #795548 !important;
+	 color: #fff !important;
+}
+
+/* modal popup */
+#nex-forms .modal .modal-header {
+    background: #795548 ;
+}
+
+/* PANELS */
+#nex-forms .ui-nex-forms-container  .panel .panel-heading {
+	background:#795548;
+}
+
+
+
+/* DO NOT EDIT */
+/* valid color */
+#nex-forms .ui-nex-forms-container  .input-field input[type=text].valid,
+#nex-forms .ui-nex-forms-container  .input-field textarea.valid  {
+ border-bottom: 1px solid #795548 !important;
+ box-shadow: 0 1px 0 0 #795548 !important;
+}
+/* invalid color */
+#nex-forms .ui-nex-forms-container  .input-field input[type=text].invalid,
+#nex-forms .ui-nex-forms-container  .input-field textarea.invalid {
+ border-bottom: 1px solid #795548 !important;
+ box-shadow: 0 1px 0 0 #795548 !important;
+}
+
+/* SLIDERS */
+#nex-forms .ui-slider-range {
+    background: #795548 !important;
+    border: none;
+    border-radius: 0 !important;
+}
+
+.noUi-target.noUi-horizontal .noUi-tooltip{
+	background: #795548 !important;
+}
+#nex-forms .nex-submit.btn.the_input_element{
+    background: #795548;
+    color: #fff;
+    border-color: #795548;
+}
+
+
+/* DATEPICKER */
+.dtp div.dtp-date, .dtp div.dtp-time{
+	background:#BA988B none repeat scroll 0 0 !important;
+}
+.dtp .p10 > a {
+    color: #795548 !important;
+}
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header,
+.dtp table.dtp-picker-days tr > td > a.selected,
+.dtp-buttons .btn{
+	background: #795548 none repeat scroll 0 0 !important;
+}

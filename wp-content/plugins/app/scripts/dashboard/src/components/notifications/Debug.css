@@ -1,0 +1,18 @@
+.hp-debug {
+    /*background-color: #e3eaec45;*/
+    border-radius: 5px;
+    padding: 10px 14px;
+    color: #3c3c40;
+    font-weight: 600;
+    border: 2px solid #ebeff1;
+}
+
+.hp-debug .hp-more-info-message{
+    color: rgba(66, 71, 74, 0.78);
+    margin: 0;
+}
+
+.hp-more-info-type {
+    margin-top: 10px;
+    color: #c1c9ce;
+}

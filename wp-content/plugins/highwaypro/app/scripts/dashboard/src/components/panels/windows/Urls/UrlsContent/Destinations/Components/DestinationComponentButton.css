@@ -1,0 +1,35 @@
+.hp-destination-component-button {
+    background: none;
+    border: none;
+    text-align: left;
+}
+
+.hp-destination-component-button:hover {
+    cursor: pointer;
+}
+
+.hp-destination-component-button-type {
+    margin: 0;
+    text-transform: capitalize;
+    font-size: 12.7px;
+    color: #738095;
+    font-weight: 600;
+    font-family: manrope;
+    -webkit-font-smoothing: antialiased;
+}
+
+.hp-destination-component-button-name {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 500;
+    color: #deb100;
+}
+
+.hp-destination-component-button-value {
+    margin: 0;
+    color: #3c4b60;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    -webkit-font-smoothing: antialiased;
+}

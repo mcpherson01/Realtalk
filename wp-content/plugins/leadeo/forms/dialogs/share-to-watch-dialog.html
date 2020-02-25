@@ -1,0 +1,26 @@
+<div id="base_X" class="base_watch_dialog base" data-real-base-number="" data-no-validation="0" data-no-submit-binding="0">
+    <style type="text/css">
+        #base_X .dialog-container {background-color: [data:form_background_color];}
+        #base_X .dialog-container__caption-container span.content {color: [data:font_color]; [data:font_css]}
+        #base_X .dialog-container__button-container i {background-color: [data:button_color]; color: [data:font_button_color]}
+        #base_X .dialog-container__caption-container span.close_id {background-color: [data:form_background_color]; color: [data:font_color];}
+        <!-- IF fixed_width -->#base_X .dialog-container{width: [data:width]; max-width: 100%;}<!-- /IF fixed_width -->
+		<!-- IF fixed_height -->
+		#base_X .dialog-container {min-height: [data:height];}
+		#base_X .dialog-container__caption-container {min-height: [data:min_height];}
+		<!-- /IF fixed_height -->
+    </style>
+    <div class="dialog-container">
+        <!-- IF allow_skip --><span id="close" class="close_id">[x]</span><!-- /IF allow_skip -->
+        <div class="dialog-container__caption-container">
+            <span class="content">[data:form_text]</span>
+        </div>
+        <div class="dialog-container__button-container">
+            <div class="vertical-align-middle">
+                <i class="fa fa-facebook-square"></i>
+                <i class="fa fa-twitter-square"></i>
+                <i class="fa fa-linkedin-square"></i>
+            </div>
+        </div>
+    </div>
+</div><!-- /base_X -->

@@ -1,9 +1,0 @@
-<wpml-config>
-	<admin-texts>
-		<key name="inreview_date_format"/>
-		<key name="inreview_quote_text"/>
-		<key name="inreview_seo_home_titletext"/>
-		<key name="inreview_seo_home_descriptiontext"/>
-		<key name="inreview_seo_home_keywordstext"/>
-	</admin-texts>
-</wpml-config>

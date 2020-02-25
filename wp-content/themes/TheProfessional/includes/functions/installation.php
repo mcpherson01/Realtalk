@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/theprofessional/readme.html" target="_blank"><?php esc_html_e( 'Read Professional Documentation', $themename ); ?></a>

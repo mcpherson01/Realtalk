@@ -20,7 +20,7 @@ class AtomFeed {
 	 * Stores Links
 	 * @var array
 	 * @access public
-	 */s
+	 */
     var $links = array();
     /**
      * Stores Categories

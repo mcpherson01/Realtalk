@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/evid/readme.html" target="_blank"><?php esc_html_e( 'Read eVid Documentation', $themename ); ?></a>

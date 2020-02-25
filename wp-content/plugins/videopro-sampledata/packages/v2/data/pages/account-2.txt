@@ -1,2 +1,0 @@
-[ms-membership-account]<hr />
-[ms-membership-logout]

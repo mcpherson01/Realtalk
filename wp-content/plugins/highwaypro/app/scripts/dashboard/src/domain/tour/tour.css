@@ -1,0 +1,76 @@
+.popover.tour-tour {
+    box-shadow: 2px 2px 100px 10px #7c95a61a, 4px 7px 35px -1px #234b7240;
+    border-color: #c3d5e1;
+    font-family: manrope;
+    padding: 0 !important;
+    min-width: 220px;
+    z-index: 1000000 !important;
+}
+
+.popover-container {
+    border-radius: 7px;
+    overflow: hidden;
+}
+
+.popover.tour-tour .popover-title {
+    border-bottom: 0;
+    background: white;
+    padding: 13px 17px 0px 17px;
+    color: #3f4c56;
+    font-size: 14px;
+}
+
+.popover.tour-tour .popover-content {
+    padding: 15px 17px;
+    font-size: 13px;
+    line-height: 19px;
+    color: #475564;
+}
+
+.popover.tour-tour .popover-navigation {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.popover.tour-tour .btn-next {
+    width: 60%;
+    border: none;
+    background: #4598ff;
+    color: white;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding: 7px 0;
+    display: inline-block;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    color: #f2f8ff;
+}
+
+.popover.tour-tour .btn-end {
+        flex: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-color: transparent;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #a1b7cd;
+    font-weight: 500;
+}
+
+.popover.tour-tour .btn:only-child {
+    width: 100%;
+}
+
+.tour-backdrop {
+    background: #1d1f229e !important;
+}
+
+.popover.right>.arrow {
+    margin-left: 0;
+}

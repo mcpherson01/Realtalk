@@ -1,0 +1,71 @@
+.hp-url-destinations {
+    display: inline-block;
+}
+
+.hp-url-destinations-box {
+    position: relative;
+    border: 1px solid #d8e4e791;
+    border-radius: 14px;
+    /*box-shadow: 2px 7px 50px -15px #0000004a;*/
+    box-shadow: rgba(129, 153, 177, 0.26) 0px 2px 10px 0px, 6px 8px 40px 5px #75899c26;
+}
+
+.hp-url-destinations.--full-width {
+    width: 100%;
+}
+
+.hp-url-destinations.--border-thin {
+    border-width: 1px;
+}
+
+.hp-url-destinations.--border-none {
+    border-width: 0;
+}
+
+.hp-panel-window-urls .hp-url-destinations {
+    margin-top: 30px !important;
+    max-width: 100%;
+}
+
+.hp-url-destinations-arrow {
+        position: absolute;
+    top: -29px;
+    left: 80px;
+    transform: rotate(90deg);
+}
+
+.hp-url-destinations-arrow svg path:not([fill="none"]) {
+    fill: #facb11;
+}
+
+.hp-url-destinations-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6d8099;
+    position: absolute;
+    top: -11px;
+    margin: 0;
+    margin-left: 110px;
+    transform: translate(0, -95%);
+}
+
+.hp-destination-actions {
+    margin-left: 20px;
+}
+
+.hp-destination-actions svg path:not([fill="none"]){
+    fill: #959ca0;
+}
+
+.hp-url-destination.--no-destinations .hp-content {
+    margin: 0 auto;
+}
+
+.hp-add-new-destination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    padding-top: 28px;
+}

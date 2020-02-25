@@ -1,0 +1,45 @@
+.hp-url-content {
+    width: 100%;
+    padding: 2% 2.9%;
+    margin: .55%;
+    margin-top: 0;
+    max-height: 100vh;
+    overflow-y: scroll;
+    background: #ffffffd9;
+    border-radius: 10px;
+    box-shadow: -5px -5px 61px -15px #1d45660d;
+    position: relative;
+    /*z-index: 1011;*/
+}
+
+.hp-content-no-item-selected{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.hp-content-no-item-selected svg {
+    height: 52px;
+    transform: rotate(270deg);
+}
+
+.hp-content-no-item-selected .hp-icon-with-text .hp-icon-text-title {
+    font-size: 15px;
+}
+
+.hp-content-no-item-selected .hp-icon-with-text p {
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+#highwaypro-dashboard .hp-side-bar-footer-button {
+    position: absolute;
+    bottom: 0;
+    line-height: 20px;
+}
+
+@media (max-width: 999px) {
+    .hp-url-content {
+        padding: 4.5% 5%;
+    }
+}

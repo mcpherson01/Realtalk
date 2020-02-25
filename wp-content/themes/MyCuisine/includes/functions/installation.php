@@ -1,1 +1,0 @@
-<a href="http://www.elegantthemes.com/gallery/mycuisine/readme.html" target="_blank"><?php esc_html_e( 'Read MyCuisine Documentation', $themename ); ?></a>

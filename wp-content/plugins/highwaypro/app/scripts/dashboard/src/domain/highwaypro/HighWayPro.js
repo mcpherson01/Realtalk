@@ -1,0 +1,1 @@
+export const HighWayPro = Object.assign(window.HighWayPro, {});

@@ -1,9 +1,0 @@
-span.sf-sub-indicator {padding-left: 2px;}
-div#header { z-index: 2; position: relative; }
-div#featured-slider { z-index: 1; position: relative; }
-
-ul#top-menu li ul li.dropdown-bottom { background-color: none !important; background: transparent url(images/dropdown-bottom-bg.png) no-repeat !important; }
-
-ul#top-menu { position: relative; zoom: 1; }
-
-input[type="text"], input.text, input.title, textarea, select { margin: 0px; }

@@ -1,0 +1,384 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DCPA-plugin\n"
+"POT-Creation-Date: 2019-07-11 16:49+0300\n"
+"PO-Revision-Date: 2019-07-11 16:49+0300\n"
+"Last-Translator: \n"
+"Language-Team: https://premium.divcoder.com\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__\n"
+"X-Poedit-SearchPath-0: index.php\n"
+"X-Poedit-SearchPath-1: functions/DCPA-functions.php\n"
+"X-Poedit-SearchPath-2: admin/admin.php\n"
+"X-Poedit-SearchPath-3: admin/editor.php\n"
+"X-Poedit-SearchPath-4: admin/index.php\n"
+"X-Poedit-SearchPath-5: admin/styles.php\n"
+
+#: admin/admin.php:24
+msgid "Progress Ads Plugin - Dashboard"
+msgstr ""
+
+#: admin/admin.php:29 admin/editor.php:19 admin/index.php:14
+#: admin/styles.php:24
+msgid "Dashboard"
+msgstr ""
+
+#: admin/admin.php:30 admin/editor.php:20 admin/index.php:16
+#: admin/styles.php:25
+msgid "Editor"
+msgstr ""
+
+#: admin/admin.php:31 admin/editor.php:21 admin/index.php:18
+#: admin/styles.php:26 index.php:96
+msgid "Settings"
+msgstr ""
+
+#: admin/admin.php:40 admin/index.php:12
+msgid "Progress Ads"
+msgstr ""
+
+#: admin/admin.php:50
+msgid "Activate the Progress Ads plugin on the website."
+msgstr ""
+
+#: admin/admin.php:57 functions/DCPA-functions.php:244
+msgid "Progress Bar"
+msgstr ""
+
+#: admin/admin.php:67
+msgid "Show Progress Bar on Website."
+msgstr ""
+
+#: admin/admin.php:72
+msgid "Modal (POPUP)"
+msgstr ""
+
+#: admin/admin.php:82
+msgid "Show Modal Box (popup) on Website."
+msgstr ""
+
+#: admin/admin.php:87
+msgid "Logged in Users"
+msgstr ""
+
+#: admin/admin.php:95
+msgid "Hide Progress Bar for logged in users."
+msgstr ""
+
+#: admin/admin.php:106
+msgid "Hide Modal Box (popup) for logged in users."
+msgstr ""
+
+#: admin/admin.php:116
+msgid "Post Types"
+msgstr ""
+
+#: admin/admin.php:124 admin/admin.php:136 admin/admin.php:147
+#: admin/admin.php:159
+#, php-format
+msgid "Enable ads on %s"
+msgstr ""
+
+#: admin/admin.php:124
+msgid "Homepage"
+msgstr ""
+
+#: admin/admin.php:136
+msgid "Archives"
+msgstr ""
+
+#: admin/admin.php:147
+msgid "Search Pages"
+msgstr ""
+
+#: admin/admin.php:159
+msgid "404 Pages"
+msgstr ""
+
+#: admin/admin.php:175
+msgid "Enable ads on"
+msgstr ""
+
+#: admin/admin.php:200 admin/editor.php:52 admin/styles.php:269
+msgid "How would you rate this plugin?"
+msgstr ""
+
+#: admin/admin.php:216 admin/editor.php:68 admin/styles.php:285
+msgid "Rate this plugin!"
+msgstr ""
+
+#: admin/editor.php:14
+msgid "Progress Ads Plugin - Editor"
+msgstr ""
+
+#: admin/editor.php:28
+msgid "You can edit advertisement space in this editor."
+msgstr ""
+
+#: admin/editor.php:38 admin/styles.php:255
+msgid "Please enable the plugin from the Progress Ads Dashboard page."
+msgstr ""
+
+#: admin/styles.php:19
+msgid "Progress Ads Plugin - Settings"
+msgstr ""
+
+#: admin/styles.php:35
+msgid "Progress Bar Settings"
+msgstr ""
+
+#: admin/styles.php:38
+msgid "Progress Bar Style"
+msgstr ""
+
+#: admin/styles.php:42
+msgid "Default"
+msgstr ""
+
+#: admin/styles.php:43
+msgid "Striped"
+msgstr ""
+
+#: admin/styles.php:44
+msgid "Flat"
+msgstr ""
+
+#: admin/styles.php:45
+msgid "Flat with Animation"
+msgstr ""
+
+#: admin/styles.php:46
+msgid "Fire and Water"
+msgstr ""
+
+#: admin/styles.php:47
+msgid "Cutter"
+msgstr ""
+
+#: admin/styles.php:48
+msgid "Space"
+msgstr ""
+
+#: admin/styles.php:49
+msgid "Dashed Line"
+msgstr ""
+
+#: admin/styles.php:50
+msgid "Sunshine"
+msgstr ""
+
+#: admin/styles.php:51
+msgid "Waves"
+msgstr ""
+
+#: admin/styles.php:52
+msgid "Soft"
+msgstr ""
+
+#: admin/styles.php:55
+msgid "Select the style of the Progress Bar."
+msgstr ""
+
+#: admin/styles.php:60
+msgid "Progress Bar Position"
+msgstr ""
+
+#: admin/styles.php:64
+msgid "Top"
+msgstr ""
+
+#: admin/styles.php:65
+msgid "Bottom"
+msgstr ""
+
+#: admin/styles.php:68
+msgid "Select the position of the Progress Bar."
+msgstr ""
+
+#: admin/styles.php:73
+msgid "Progress Bar Color"
+msgstr ""
+
+#: admin/styles.php:78
+msgid "Select the color of the progress bar."
+msgstr ""
+
+#: admin/styles.php:83
+msgid "Progress Color with Advertisement"
+msgstr ""
+
+#: admin/styles.php:88
+msgid "Select the color of the progress during the ad."
+msgstr ""
+
+#: admin/styles.php:93
+msgid "Progress Bar Background Color"
+msgstr ""
+
+#: admin/styles.php:98
+msgid "Select the background color of the progress bar."
+msgstr ""
+
+#: admin/styles.php:103
+msgid "Progress Bar Height"
+msgstr ""
+
+#: admin/styles.php:108
+#, php-format
+msgid "Select the height %s of the progress bar."
+msgstr ""
+
+#: admin/styles.php:108
+msgid "(px)"
+msgstr ""
+
+#: admin/styles.php:115
+msgid "Modal Box (POPUP) Settings"
+msgstr ""
+
+#: admin/styles.php:118
+msgid "Modal Place"
+msgstr ""
+
+#: admin/styles.php:123
+msgid ""
+"Adjust the ad starting place. (eg.) 0 - top of page, 50 - middle of page, 80 "
+"- bottom of page"
+msgstr ""
+
+#: admin/styles.php:128
+msgid "Modal Impression Freq. (seconds format)"
+msgstr ""
+
+#: admin/styles.php:133
+msgid ""
+"Adjust the ad impression frequency. If you want the user to see an ad every "
+"1 hour, type in seconds:"
+msgstr ""
+
+#: admin/styles.php:134
+msgid "If you don't want to limit, leave blank."
+msgstr ""
+
+#: admin/styles.php:139
+msgid "Modal (Popup) Background Color"
+msgstr ""
+
+#: admin/styles.php:144
+msgid "Select the background color of the ad page."
+msgstr ""
+
+#: admin/styles.php:149
+msgid "Ad Skip Type"
+msgstr ""
+
+#: admin/styles.php:153
+msgid "Close Button"
+msgstr ""
+
+#: admin/styles.php:154
+msgid "Countdown Button"
+msgstr ""
+
+#: admin/styles.php:157
+msgid "Choose how to skip the ad."
+msgstr ""
+
+#: admin/styles.php:162
+msgid "Countdown Button Text"
+msgstr ""
+
+#: admin/styles.php:167
+msgid "Adjust the button text. (eg.) Skip Ad"
+msgstr ""
+
+#: admin/styles.php:172
+msgid "Countdown Standby Text"
+msgstr ""
+
+#: admin/styles.php:177
+msgid "Adjust the standby text. (eg.) Please wait..."
+msgstr ""
+
+#: admin/styles.php:182
+msgid "Countdown Remaining Text"
+msgstr ""
+
+#: admin/styles.php:187
+msgid "Adjust the ad remaining time text. (eg.) seconds remaining"
+msgstr ""
+
+#: admin/styles.php:192
+msgid "Countdown Timing"
+msgstr ""
+
+#: admin/styles.php:197
+msgid "Set the wait time for ads. (eg.) 5"
+msgstr ""
+
+#: admin/styles.php:204
+msgid "Close Button Color"
+msgstr ""
+
+#: admin/styles.php:209
+msgid "Select the background color of the Close Button."
+msgstr ""
+
+#: admin/styles.php:214
+msgid "Close Button Text Color"
+msgstr ""
+
+#: admin/styles.php:219
+msgid "Select the color of the Close Buton Text."
+msgstr ""
+
+#: admin/styles.php:224
+msgid "Close Button Position"
+msgstr ""
+
+#: admin/styles.php:228
+msgid "Top - Right"
+msgstr ""
+
+#: admin/styles.php:229
+msgid "Top - Left"
+msgstr ""
+
+#: admin/styles.php:230
+msgid "Bottom - Right"
+msgstr ""
+
+#: admin/styles.php:231
+msgid "Bottom - Left"
+msgstr ""
+
+#: admin/styles.php:234
+msgid "Select the position of the Close Button."
+msgstr ""
+
+#: admin/styles.php:239
+msgid "Progress Bar after Ads"
+msgstr ""
+
+#: admin/styles.php:249
+msgid "Remove the Progress Bar after the ads."
+msgstr ""
+
+#: functions/DCPA-functions.php:191
+msgid "Please wait..."
+msgstr ""
+
+#: functions/DCPA-functions.php:244 functions/DCPA-functions.php:248
+#, php-format
+msgid "Hide %s for this post."
+msgstr ""
+
+#: functions/DCPA-functions.php:248
+msgid "Modal Box (POPUP)"
+msgstr ""

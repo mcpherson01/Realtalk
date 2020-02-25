@@ -1,0 +1,8 @@
+.hp-buzz {
+    transition: all 0.15s ease-out;
+    z-index: 1000;
+}
+
+.hp-buzz.--active {
+    /*transform: scale(1.10);*/
+}

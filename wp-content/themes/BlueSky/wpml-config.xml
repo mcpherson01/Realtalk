@@ -1,8 +1,0 @@
-<wpml-config>
-	<admin-texts>
-		<key name="bluesky_date_format"/>
-		<key name="bluesky_seo_home_titletext"/>
-		<key name="bluesky_seo_home_descriptiontext"/>
-		<key name="bluesky_seo_home_keywordstext"/>
-	</admin-texts>
-</wpml-config>

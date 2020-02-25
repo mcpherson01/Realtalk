@@ -1,1 +1,0 @@
- <span class="datearchive blog--layout--contents"> <?php esc_html_e("on","mayosis"); ?> <?php echo esc_html(get_the_date()); ?></span>
