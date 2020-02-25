@@ -1,0 +1,634 @@
+/*************************************************************
+[TABLE OF CONTENTS]
+
+- BACKGROUND
+- LOADING ELEMENTS WRAPPER
+- CLOSE BUTTON
+- IMAGE
+- ICON
+- LOADING SENTENCE
+- WIDGETS
+- INDIVIDUAL ICONS
+- ICON ANIMATIONS + SPEED + SIZES
+- FADE-OUT + HIDE ANIMATIONS
+- LOADING ELEMENTS SLIDE-IN
+- NPROGRESS INTEGRATION
+- Z-INDEXES
+- MISC
+*************************************************************/
+
+
+/*
+* BACKGROUND
+*************************************************************/
+/* the background */
+.bonfire-pageloader-background {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+    width:100vw;
+	height:100vh;
+	margin:0;
+	padding:0;
+	
+	/* default background color */
+	background-color:#202021;
+}
+/* the background image*/
+.bonfire-pageloader-background-image {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+    width:100vw;
+	height:100vh;
+	margin:0;
+	padding:0;
+    opacity:.2;
+    -webkit-transform:translate3d(0,0,0);
+    transform:translate3d(0,0,0);
+}
+
+
+/*
+* LOADING ELEMENTS WRAPPER
+*************************************************************/
+.pageloader-elements-wrapper {
+    display:block;
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    opacity:1;
+}
+
+
+/*
+* CLOSE BUTTON
+*************************************************************/
+.pageloader-close {	
+    position:fixed;
+    top:10px;
+    right:10px;
+    padding:5px;
+    opacity:0;
+    cursor:pointer;
+    pointer-events:none;
+
+    color:#fff;
+    font-family:'Muli',arial,tahoma,verdana;
+    font-weight:700;
+    font-size:13px;
+    text-align:right;
+
+    -webkit-transform:translateY(-10px);
+    -moz-transform:translateY(-10px);
+    transform:translateY(-10px);
+
+    transition:all .5s ease 0s;
+    -moz-transition:all .5s ease 0s;
+    -webkit-transition:all .5s ease 0s;
+
+    /* remove the flickering effect of a tapped link when on a touch device */
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.pageloader-close-active {
+    opacity:1;
+    pointer-events:auto;
+
+    -webkit-transform:translateY(0);
+    -moz-transform:translateY(0);
+    transform:translateY(0);
+
+    transition:all .5s ease;
+    -moz-transition:all .5s ease;
+    -webkit-transition:all .5s ease;
+}
+
+
+/*
+* IMAGE
+*************************************************************/
+.pageloader-image-wrapper {
+    position:fixed;
+    width:100%;
+    height:100%;
+    display:table;
+    top:0;
+    left:0;
+    opacity:1;
+}
+.pageloader-image-inner {
+    display:table-cell;
+}
+.pageloader-image {
+    position:relative;
+    display:inline-block;
+}
+/* never let the loading image go beyond screen boundaries */
+.pageloader-image img {
+    max-width:95%;
+    min-width:0;
+    height:auto;
+}
+/* fade animation */
+@keyframes pulsateAnimation {
+    0%  { opacity:1; }
+    55%  { opacity:.15; }
+    100% { opacity:1; }
+}
+
+
+/*
+* ICON
+*************************************************************/
+.pageloader-icon-wrapper {
+    position:fixed;
+    top:0;
+    left:0;
+    display:table;
+    width:100%;
+    height:100%;
+    opacity:1;
+}
+.pageloader-icon-inner {
+    display:table-cell;
+}
+.pageloader-icon {
+    position:relative;
+    display:inline-block;
+}
+
+
+/*
+* LOADING SENTENCE
+*************************************************************/
+.pageloader-sentence-wrapper {
+    position:fixed;
+    top:0;
+    left:0;
+    display:table;
+    width:100%;
+    height:100%;
+    opacity:1;
+
+	font-family:'Muli',arial,tahoma,verdana;
+	font-weight:600;
+	font-size:14px;
+	color:#fff;
+	text-align:center;
+    cursor:default;
+}
+.pageloader-sentence-inner {
+    display:table-cell;
+}
+.pageloader-sentence {
+    position:relative;
+    top:0;
+    left:0;
+    right:0;
+    display:none;
+}
+
+
+/*
+* INDIVIDUAL ICONS
+*************************************************************/
+.pageloader-widgets-wrapper {
+    position:relative;
+}
+
+
+/*
+* INDIVIDUAL ICONS
+*************************************************************/
+/* ICON 4, 7, 8 animation */
+@keyframes spinBasic {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ICON 1 */
+@keyframes loader1rect1 {
+    10% {
+        height: 6px;
+        transform: translateY(0);
+    }
+    20%,
+    40% {
+        height: 15px;
+        transform: translateY(-4.5px);
+    }
+    50%,
+    100% {
+        height: 6px;
+        transform: translateY(0);
+    }
+}
+@keyframes loader1rect2 {
+    30% {
+        height: 6px;
+        transform: translateY(0);
+    }
+    40%,
+    60% {
+        height: 15px;
+        transform: translateY(-4.5px);
+    }
+    70%,
+    100% {
+        height: 6px;
+        transform: translateY(0);
+    }
+}
+@keyframes loader1rect3 {
+    50% {
+        height: 6px;
+        transform: translateY(0);
+    }
+    60%,
+    80% {
+        height: 15px;
+        transform: translateY(-4.5px);
+    }
+    90%,
+    100% {
+        height: 6px;
+        transform: translateY(0);
+    }
+}
+.loader1 rect {
+    animation-timing-function: steps(100, end);
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.loader1 rect:nth-child(1) {
+    animation-name: loader1rect1;
+}
+.loader1 rect:nth-child(2) {
+    animation-name: loader1rect2;
+}
+.loader1 rect:nth-child(3) {
+    animation-name: loader1rect3;
+}
+
+/* ICON 2 */
+@keyframes loader2dot1 {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-15px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes loader2dot2 {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(15px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.loader2 svg {
+    overflow: visible;
+}
+.loader2 svg circle:first-of-type {
+    animation: loader2dot1 .8s linear infinite;
+}
+.loader2 svg circle:last-of-type {
+    left: 0;
+    animation: loader2dot2 .8s linear infinite;
+}
+
+/* ICON 3 */
+@keyframes loader3path {
+    10% {
+        width: 8px;
+        opacity: 1;
+    }
+    30% {
+        width: 23px;
+        x: 0;
+    }
+    50% {
+        width: 8px;
+        x: 15;
+    }
+    70% {
+        width: 23px;
+        x: 15;
+    }
+    90% {
+        width: 8px;
+        x: 30;
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        x: 30;
+    }
+}
+.loader3 svg rect {
+    opacity: 0;
+    animation: loader3path 2s ease-in-out infinite;
+}
+
+/* ICON 4 */
+.loader4 svg {
+    animation: 2s linear spinBasic infinite;
+}
+
+/* ICON 5 */
+@keyframes loader5 {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        stroke-width: 2;
+    }
+    60% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(5);
+        stroke-width: 0;
+    }
+}
+.loader5 svg circle {
+    transform-origin: center center;
+    transform: scale(1);
+    animation: loader5 1.5s linear infinite;
+}
+
+/* ICON 6 (animations in pageloader.php) */
+.loader6 svg {
+    overflow: visible;
+}
+.loader6 circle:first-of-type {
+    transform-origin: 5px center;
+    animation: loader6dot1 1.5s ease infinite;
+}
+.loader6 circle:nth-child(2) {
+    transform-origin: center;
+    animation: loader6dot2 1.5s ease infinite;
+}
+.loader6 circle:nth-child(3) {
+    transform-origin: 35px center;
+    animation: loader6dot3 1.5s ease infinite;
+}
+
+/* ICON 7 */
+.loader7 svg {
+  animation: 2s linear spinBasic infinite;
+}
+
+/* ICON 8 */
+.loader8 svg {
+    animation: 2s linear spinBasic infinite;
+}
+
+/* ICON 9 */
+@keyframes loader9svg {
+    0%,
+    25% {
+        transform: rotate(0deg);
+    }
+    45%,
+    100% {
+        transform: rotate(-180deg);
+    }
+}
+@keyframes loader9dot {
+    0% {
+        transform: rotate(0deg);
+    }
+    20%,
+    50% {
+        transform: rotate(180deg);
+    }
+    70%,
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.loader9 svg {
+    overflow: visible;
+    transform-origin: center center;
+    animation: 2.5s linear loader9svg infinite;
+}
+.loader9 svg circle:nth-of-type(2),
+.loader9 svg circle:nth-of-type(3) {
+    transform-origin: 26.5px center;
+    animation: 2.5s linear loader9dot infinite;
+}
+
+/* ICON 10 */
+@keyframes rotateWithBoost {
+    0% {
+        transform: rotate(0deg);
+    }
+    60% {
+        transform: rotate(180deg);
+    }
+    90%,
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes loader10dot1 {
+    0%,
+    45% {
+        cx: 6;
+        cy: 6;
+    }
+    55%,
+    80% {
+        cx: 2;
+        cy: 2;
+    }
+    90%,
+    100% {
+        cx: 6;
+        cy: 6;
+    }
+}
+@keyframes loader10dot2 {
+    0%,
+    45% {
+        cx: 6;
+        cy: 24;
+    }
+    55%,
+    80% {
+        cx: 2;
+        cy: 28;
+    }
+    90%,
+    100% {
+        cx: 6;
+        cy: 24;
+    }
+}
+@keyframes loader10dot3 {
+    0%,
+    45% {
+        cx: 24;
+        cy: 6;
+    }
+    55%,
+    80% {
+        cx: 28;
+        cy: 2;
+    }
+    90%,
+    100% {
+        cx: 24;
+        cy: 6;
+    }
+}
+@keyframes loader10dot4 {
+    0%,
+    45% {
+        cx: 24;
+        cy: 24;
+    }
+    55%,
+    80% {
+        cx: 28;
+        cy: 28;
+    }
+    90%,
+    100% {
+        cx: 24;
+        cy: 24;
+    }
+}
+.loader10 svg {
+    overflow: visible;
+    animation: 1.5s rotateWithBoost linear infinite;
+}
+.loader10 svg circle:first-of-type {
+    animation: 1.5s loader10dot1 linear infinite;
+}
+.loader10 svg circle:nth-of-type(2) {
+    animation: 1.5s loader10dot2 linear infinite;
+}
+.loader10 svg circle:nth-of-type(3) {
+    animation: 1.5s loader10dot3 linear infinite;
+}
+.loader10 svg circle:last-of-type {
+    animation: 1.5s loader10dot4 linear infinite;
+}
+
+
+/*
+* FADE-OUT + HIDE ANIMATIONS
+*************************************************************/
+/* icon/image hide */
+.bonfire-pageloader-icon-hide {
+    opacity:0;
+    left:-1000%;
+}
+/* background fade-out/hide */
+.bonfire-pageloader-hide {
+    opacity:0 !important;
+    left:-1000% !important;
+}
+
+
+/*
+* LOADING ELEMENTS SLIDE-IN
+*************************************************************/
+@keyframes loading-elements-slide-in {
+    from {
+        opacity:0;
+        -webkit-transform:translateY(25px);
+        -moz-transform:translateY(25px);
+        transform:translateY(25px);
+        }
+    to {
+        opacity:1;
+        -webkit-transform:translateY(0px);
+        -moz-transform:translateY(0px);
+        transform:translateY(0px);
+        }
+}
+
+
+/*
+* NPROGRESS INTEGRATION
+*************************************************************/
+#nprogress-wrapper {
+    position:fixed;
+    display:table;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+#nprogress-inner {
+    display:table-cell;
+}
+#nprogress {
+    position:relative;
+    display:inline-block;
+    width:100%;
+    overflow:hidden;
+}
+#nprogress .bar {
+    width:100%;
+    height:100%;
+}
+
+
+/*
+* Z-INDEXES
+*************************************************************/
+.bonfire-pageloader-background {
+    z-index:99999995;
+}
+.bonfire-pageloader-background-image {
+    z-index:99999996;
+}
+#nprogress-wrapper {
+    z-index:99999997;
+}
+.pageloader-elements-wrapper {
+    z-index:99999998;
+}
+.pageloader-image-wrapper,
+.pageloader-icon-wrapper,
+.pageloader-sentence-wrapper,
+.pageloader-widgets-wrapper {
+    z-index:99999998;
+}
+.pageloader-close {	
+    z-index:99999999;
+}
+
+
+/*
+* MISC
+*************************************************************/
+/* hide PageLoader if so specified */
+.pageloader-hide { display:none; }
+.pageloader-hide-pointer-events { pointer-events:none; }

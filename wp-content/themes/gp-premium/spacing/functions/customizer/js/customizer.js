@@ -1,10 +1,11 @@
-function generate_spacing_live_update( name, id, selector, property, negative, divide, media ) {
+function generate_spacing_live_update( name, id, selector, property, negative, divide, media, unit ) {
 	settings = typeof settings !== 'undefined' ? settings : 'generate_spacing_settings';
 	wp.customize( settings + '[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
 			negative = typeof negative !== 'undefined' ? negative : false;
 			media = typeof media !== 'undefined' ? media : '';
 			divide = typeof divide !== 'undefined' ? divide : false;
+			unit = typeof unit !== 'undefined' ? unit : 'px';
 
 			// Get new value
 			newval = ( divide ) ? newval / 2 : newval;
@@ -55,7 +56,7 @@ function generate_spacing_live_update( name, id, selector, property, negative, d
 			// Check if media query
 			media_query = ( '' !== media ) ? 'media="' + media + '"' : '';
 
-			jQuery( 'head' ).append( '<style id="' + name + '" ' + media_query + '>' + selector + '{' + property + ':' + negative + newval + 'px;}</style>' );
+			jQuery( 'head' ).append( '<style id="' + name + '" ' + media_query + '>' + selector + '{' + property + ':' + negative + newval + unit +';}</style>' );
 			setTimeout(function() {
 				jQuery( 'style#' + name ).not( ':last' ).remove();
 			}, 50 );
@@ -76,10 +77,15 @@ generate_spacing_live_update( 'top_bar_left', 'top_bar_left', '.inside-top-bar',
 /**
  * Header padding
  */
-generate_spacing_live_update( 'header_top', 'header_top', '.inside-header', 'padding-top' );
-generate_spacing_live_update( 'header_right', 'header_right', '.inside-header', 'padding-right' );
-generate_spacing_live_update( 'header_bottom', 'header_bottom', '.inside-header', 'padding-bottom' );
-generate_spacing_live_update( 'header_left', 'header_left', '.inside-header', 'padding-left' );
+generate_spacing_live_update( 'header_top', 'header_top', '.inside-header', 'padding-top', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'header_right', 'header_right', '.inside-header', 'padding-right', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'header_bottom', 'header_bottom', '.inside-header', 'padding-bottom', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'header_left', 'header_left', '.inside-header', 'padding-left', false, false, gp_spacing.desktop );
+
+generate_spacing_live_update( 'mobile_header_top', 'mobile_header_top', '.inside-header', 'padding-top', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_header_right', 'mobile_header_right', '.inside-header', 'padding-right', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_header_bottom', 'mobile_header_bottom', '.inside-header', 'padding-bottom', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_header_left', 'mobile_header_left', '.inside-header', 'padding-left', false, false, gp_spacing.mobile );
 
 /**
  * Content padding
@@ -106,6 +112,11 @@ generate_spacing_live_update( 'content-margin-right', 'content_right', '.one-con
 generate_spacing_live_update( 'content-margin-left', 'content_left', '.one-container.left-sidebar .site-main,.one-container.both-left .site-main', 'margin-left' );
 generate_spacing_live_update( 'content-margin-right-both', 'content_right', '.one-container.both-sidebars .site-main', 'margin-right' );
 generate_spacing_live_update( 'content-margin-left-both', 'content_left', '.one-container.both-sidebars .site-main', 'margin-left' );
+
+/* Content element separator */
+
+generate_spacing_live_update( 'content_element_separator_top', 'content_element_separator', '.post-image, .page-content, .entry-content, .entry-summary, footer.entry-meta', 'margin-top', false, false, false, 'em' );
+generate_spacing_live_update( 'content_element_separator_bottom', 'content_element_separator', '.post-image-above-header .inside-article div.featured-image, .post-image-above-header .inside-article div.post-image', 'margin-bottom', false, false, false, 'em' );
 
 /**
  * Featured image padding
@@ -136,20 +147,21 @@ var menu_items = '.main-navigation .main-nav ul li a,\
 				.main-navigation .mobile-bar-items a';
 
 // Menu item width
-generate_spacing_live_update( 'menu_item_padding_left', 'menu_item', menu_items, 'padding-left', false, false, gp_spacing.desktop );
-generate_spacing_live_update( 'menu_item_padding_right', 'menu_item', menu_items, 'padding-right', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'menu_item_padding_left', 'menu_item', menu_items + ', .slideout-navigation button.slideout-exit', 'padding-left', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'menu_item_padding_right', 'menu_item', menu_items + ', .slideout-navigation button.slideout-exit', 'padding-right', false, false, gp_spacing.desktop );
 
 // Tablet menu item width
 //generate_spacing_live_update( 'tablet_menu_item_padding_left', 'tablet_menu_item', menu_items, 'padding-left', false, false, gp_spacing.tablet );
 //generate_spacing_live_update( 'tablet_menu_item_padding_right', 'tablet_menu_item', menu_items, 'padding-right', false, false, gp_spacing.tablet );
 
 // Mobile menu item width
-generate_spacing_live_update( 'mobile_menu_item_padding_left', 'mobile_menu_item', menu_items, 'padding-left', false, false, gp_spacing.mobile );
-generate_spacing_live_update( 'mobile_menu_item_padding_right', 'mobile_menu_item', menu_items, 'padding-right', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_menu_item_padding_left', 'mobile_menu_item', '.menu-toggle,.main-navigation .mobile-bar-items a', 'padding-left', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_menu_item_padding_right', 'mobile_menu_item', '.menu-toggle,.main-navigation .mobile-bar-items a', 'padding-right', false, false, gp_spacing.mobile );
 
 // Menu item height
 generate_spacing_live_update( 'menu_item_height', 'menu_item_height', menu_items, 'line-height', false, false, gp_spacing.desktop );
-generate_spacing_live_update( 'navigation_logo_height', 'menu_item_height', '.main-navigation .navigation-logo img', 'height', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'navigation_logo_height', 'menu_item_height', '.main-navigation .navigation-logo img, .main-navigation .site-logo img', 'height', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'nav_title_height', 'menu_item_height', '.navigation-branding .main-title', 'line-height', false, false, gp_spacing.desktop );
 generate_spacing_live_update( 'mobile_header_logo_height', 'menu_item_height', '.mobile-header-navigation .mobile-header-logo img', 'height', false, false, gp_spacing.desktop );
 
 //generate_spacing_live_update( 'tablet_menu_item_height', 'tablet_menu_item_height', menu_items, 'line-height', false, false, gp_spacing.tablet );
@@ -157,7 +169,8 @@ generate_spacing_live_update( 'mobile_header_logo_height', 'menu_item_height', '
 //generate_spacing_live_update( 'tablet_mobile_header_logo_height', 'tablet_menu_item_height', '.mobile-header-navigation .mobile-header-logo img', 'height', false, false, gp_spacing.tablet );
 
 generate_spacing_live_update( 'mobile_menu_item_height', 'mobile_menu_item_height', menu_items, 'line-height', false, false, gp_spacing.mobile );
-generate_spacing_live_update( 'mobile_navigation_logo_height', 'mobile_menu_item_height', '.main-navigation .site-logo.navigation-logo img', 'height', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_navigation_logo_height', 'mobile_menu_item_height', '.main-navigation .site-logo.navigation-logo img, .main-navigation .site-logo img, .main-navigation .navigation-branding img', 'height', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_nav_title_height', 'menu_item_height', '.navigation-branding .main-title', 'line-height', false, false, gp_spacing.mobile );
 generate_spacing_live_update( 'mobile_mobile_header_logo_height', 'mobile_menu_item_height', '.mobile-header-navigation .site-logo.mobile-header-logo img', 'height', false, false, gp_spacing.mobile );
 
 // Off canvas menu item height
@@ -182,11 +195,9 @@ wp.customize( 'generate_spacing_settings[off_canvas_menu_item_height]', function
 generate_spacing_live_update( 'sub_menu_item_height_top', 'sub_menu_item_height', '.main-navigation .main-nav ul ul li a', 'padding-top' );
 generate_spacing_live_update( 'sub_menu_item_height_right', 'menu_item', '.main-navigation .main-nav ul ul li a', 'padding-right', false, false, gp_spacing.desktop );
 //generate_spacing_live_update( 'tablet_sub_menu_item_height_right', 'tablet_menu_item', '.main-navigation .main-nav ul ul li a', 'padding-right', false, false, gp_spacing.tablet );
-generate_spacing_live_update( 'mobile_sub_menu_item_height_right', 'mobile_menu_item', '.main-navigation .main-nav ul ul li a', 'padding-right', false, false, gp_spacing.mobile );
 generate_spacing_live_update( 'sub_menu_item_height_bottom', 'sub_menu_item_height', '.main-navigation .main-nav ul ul li a', 'padding-bottom' );
 generate_spacing_live_update( 'sub_menu_item_height_left', 'menu_item', '.main-navigation .main-nav ul ul li a', 'padding-left', false, false, gp_spacing.desktop );
 //generate_spacing_live_update( 'tablet_sub_menu_item_height_left', 'tablet_menu_item', '.main-navigation .main-nav ul ul li a', 'padding-left', false, false, gp_spacing.tablet );
-generate_spacing_live_update( 'mobile_sub_menu_item_height_left', 'mobile_menu_item', '.main-navigation .main-nav ul ul li a', 'padding-left', false, false, gp_spacing.mobile );
 generate_spacing_live_update( 'sub_menu_item_offset', 'menu_item_height', '.main-navigation ul ul', 'top' );
 
 /**
@@ -194,14 +205,6 @@ generate_spacing_live_update( 'sub_menu_item_offset', 'menu_item_height', '.main
  */
 generate_spacing_live_update( 'dropdown_menu_arrow', 'menu_item', '.menu-item-has-children .dropdown-menu-toggle', 'padding-right', false, false, gp_spacing.desktop );
 //generate_spacing_live_update( 'tablet_dropdown_menu_arrow', 'tablet_menu_item', '.menu-item-has-children .dropdown-menu-toggle', 'padding-right', false, false, gp_spacing.tablet );
-generate_spacing_live_update( 'mobile_dropdown_menu_arrow', 'mobile_menu_item', '.menu-item-has-children .dropdown-menu-toggle', 'padding-right', false, false, gp_spacing.mobile );
-
-/**
- * Main sub-navigation RTL arrow spacing
- */
-generate_spacing_live_update( 'rtl_dropdown_submenu_arrow', 'menu_item', '.rtl .main-navigation .main-nav ul li.menu-item-has-children > a', 'padding-right', false, false, gp_spacing.desktop );
-generate_spacing_live_update( 'tablet_rtl_dropdown_submenu_arrow', 'tablet_menu_item', '.rtl .main-navigation .main-nav ul li.menu-item-has-children > a', 'padding-right', false, false, gp_spacing.tablet );
-generate_spacing_live_update( 'mobile_rtl_dropdown_submenu_arrow', 'mobile_menu_item', '.rtl .main-navigation .main-nav ul li.menu-item-has-children > a', 'padding-right', false, false, gp_spacing.mobile );
 
 /**
  * Main sub-navigation arrow spacing
@@ -225,9 +228,9 @@ wp.customize( 'generate_spacing_settings[sticky_menu_item_height]', function( va
 			newval = wp.customize('generate_spacing_settings[menu_item_height]').get();
 		}
 
-		jQuery( 'head' ).append( '<style id="sticky_menu_item_height" media="' + gp_spacing.tablet + ',' + gp_spacing.desktop + '">.main-navigation.sticky-navigation-transition .main-nav > ul > li > a,.sticky-navigation-transition .menu-toggle,.main-navigation.sticky-navigation-transition .mobile-bar-items a{line-height:' + newval + 'px;}</style>' );
-		jQuery( 'head' ).append( '<style id="sticky_menu_item_logo_height" media="' + gp_spacing.tablet + ',' + gp_spacing.desktop + '">.main-navigation.sticky-navigation-transition .navigation-logo.site-logo img{height:' + newval + 'px;}</style>' );
-		jQuery( 'head' ).append( '<style id="sticky_menu_item_height_transition">.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a,.main-navigation .navigation-logo img{transition:0s;}</style>' );
+		jQuery( 'head' ).append( '<style id="sticky_menu_item_height" media="' + gp_spacing.tablet + ',' + gp_spacing.desktop + '">.main-navigation.sticky-navigation-transition .main-nav > ul > li > a,.sticky-navigation-transition .menu-toggle,.main-navigation.sticky-navigation-transition .mobile-bar-items a, .main-navigation.sticky-navigation-transition .navigation-branding .main-title{line-height:' + newval + 'px;}</style>' );
+		jQuery( 'head' ).append( '<style id="sticky_menu_item_logo_height" media="' + gp_spacing.tablet + ',' + gp_spacing.desktop + '">.main-navigation.sticky-navigation-transition .navigation-logo.site-logo img, .main-navigation.sticky-navigation-transition .navigation-branding img{height:' + newval + 'px;}</style>' );
+		jQuery( 'head' ).append( '<style id="sticky_menu_item_height_transition">.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a,.main-navigation .navigation-logo img,.main-navigation .navigation-branding img{transition:0s;}</style>' );
 		setTimeout(function() {
 			jQuery( 'style#sticky_menu_item_height' ).not( ':last' ).remove();
 			jQuery( 'style#sticky_menu_item_logo_height' ).not( ':last' ).remove();
@@ -241,7 +244,7 @@ wp.customize( 'generate_spacing_settings[sticky_menu_item_height]', function( va
 wp.customize( 'generate_spacing_settings[menu_item_height]', function( value ) {
 	value.bind( function( newval ) {
 
-		jQuery( 'head' ).append( '<style id="menu_item_height_transition">.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a,.main-navigation .navigation-logo img{transition:0s;}</style>' );
+		jQuery( 'head' ).append( '<style id="menu_item_height_transition">.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a,.main-navigation .navigation-logo img, .main-navigation .navigation-branding > *{transition:0s;}</style>' );
 		setTimeout(function() {
 			jQuery( 'style#menu_item_height_transition' ).remove();
 		}, 200 );
@@ -252,7 +255,7 @@ wp.customize( 'generate_spacing_settings[menu_item_height]', function( value ) {
 wp.customize( 'generate_spacing_settings[off_canvas_menu_item_height]', function( value ) {
 	value.bind( function( newval ) {
 
-		jQuery( 'head' ).append( '<style id="off_canvas_menu_item_height_transition">.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a,.main-navigation .navigation-logo img{transition:0s;}</style>' );
+		jQuery( 'head' ).append( '<style id="off_canvas_menu_item_height_transition">.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a,.main-navigation .navigation-logo img, .main-navigation .navigation-branding > *{transition:0s;}</style>' );
 		setTimeout(function() {
 			jQuery( 'style#off_canvas_menu_item_height_transition' ).remove();
 		}, 200 );
@@ -263,18 +266,28 @@ wp.customize( 'generate_spacing_settings[off_canvas_menu_item_height]', function
 /**
  * Widget padding
  */
-generate_spacing_live_update( 'widget_top', 'widget_top', '.widget-area .widget, .one-container .widget-area .widget', 'padding-top' );
-generate_spacing_live_update( 'widget_right', 'widget_right', '.widget-area .widget, .one-container .widget-area .widget', 'padding-right' );
-generate_spacing_live_update( 'widget_bottom', 'widget_bottom', '.widget-area .widget, .one-container .widget-area .widget', 'padding-bottom' );
-generate_spacing_live_update( 'widget_left', 'widget_left', '.widget-area .widget, .one-container .widget-area .widget', 'padding-left' );
+generate_spacing_live_update( 'widget_top', 'widget_top', '.widget-area .widget, .one-container .widget-area .widget', 'padding-top', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'widget_right', 'widget_right', '.widget-area .widget, .one-container .widget-area .widget', 'padding-right', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'widget_bottom', 'widget_bottom', '.widget-area .widget, .one-container .widget-area .widget', 'padding-bottom', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'widget_left', 'widget_left', '.widget-area .widget, .one-container .widget-area .widget', 'padding-left', false, false, gp_spacing.desktop );
+
+generate_spacing_live_update( 'mobile_widget_top', 'mobile_widget_top', '.widget-area .widget', 'padding-top', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_widget_right', 'mobile_widget_right', '.widget-area .widget', 'padding-right', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_widget_bottom', 'mobile_widget_bottom', '.widget-area .widget', 'padding-bottom', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_widget_left', 'mobile_widget_left', '.widget-area .widget', 'padding-left', false, false, gp_spacing.mobile );
 
 /**
  * Footer widget area
  */
-generate_spacing_live_update( 'footer_widget_container_top', 'footer_widget_container_top', '.footer-widgets', 'padding-top' );
-generate_spacing_live_update( 'footer_widget_container_right', 'footer_widget_container_right', '.footer-widgets', 'padding-right' );
-generate_spacing_live_update( 'footer_widget_container_bottom', 'footer_widget_container_bottom', '.footer-widgets', 'padding-bottom' );
-generate_spacing_live_update( 'footer_widget_container_left', 'footer_widget_container_left', '.footer-widgets', 'padding-left' );
+generate_spacing_live_update( 'footer_widget_container_top', 'footer_widget_container_top', '.footer-widgets', 'padding-top', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'footer_widget_container_right', 'footer_widget_container_right', '.footer-widgets', 'padding-right', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'footer_widget_container_bottom', 'footer_widget_container_bottom', '.footer-widgets', 'padding-bottom', false, false, gp_spacing.desktop );
+generate_spacing_live_update( 'footer_widget_container_left', 'footer_widget_container_left', '.footer-widgets', 'padding-left', false, false, gp_spacing.desktop );
+
+generate_spacing_live_update( 'mobile_footer_widget_container_top', 'mobile_footer_widget_container_top', '.footer-widgets', 'padding-top', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_footer_widget_container_right', 'mobile_footer_widget_container_right', '.footer-widgets', 'padding-right', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_footer_widget_container_bottom', 'mobile_footer_widget_container_bottom', '.footer-widgets', 'padding-bottom', false, false, gp_spacing.mobile );
+generate_spacing_live_update( 'mobile_footer_widget_container_left', 'mobile_footer_widget_container_left', '.footer-widgets', 'padding-left', false, false, gp_spacing.mobile );
 
 /**
  * Footer

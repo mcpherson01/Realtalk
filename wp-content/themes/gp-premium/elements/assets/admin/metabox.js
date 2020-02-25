@@ -181,8 +181,8 @@ jQuery(document).ready(function( $ ) {
 					$.each( objects, function( key, value ) {
 						object_select.append( $( '<option>', {
 							value: value.id,
-							label: value.name,
-							text: value.name
+							label: elements.showID && value.id ? value.name + ': ' + value.id : value.name,
+							text: elements.showID && value.id ? value.name + ': ' + value.id : value.name,
 						} ) );
 					} );
 
@@ -383,6 +383,4 @@ jQuery(document).ready(function( $ ) {
 			$( '#_generate_hero_background_position option[value="center bottom"]' ).attr( 'disabled', false );
 		}
 	} );
-
-	$('.tip').tipr();
 } );

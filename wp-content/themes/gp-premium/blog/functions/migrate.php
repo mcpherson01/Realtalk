@@ -18,26 +18,15 @@ function generate_blog_update_visibility_settings() {
 
 	// A lot of the defaults changed, so lets put the old defaults here
 	$defaults = array(
-		'excerpt_length' => '55',
-		'read_more' => __( 'Read more','generate-blog' ),
 		'masonry' => 'false',
 		'masonry_width' => 'width2',
 		'masonry_most_recent_width' => 'width4',
-		'masonry_load_more' => __( '+ More','generate-blog' ),
-		'masonry_loading' => __( 'Loading...','generate-blog' ),
 		'post_image' => 'true',
-		'post_image_position' => '',
-		'post_image_alignment' => 'post-image-aligned-center',
-		'post_image_width' => '',
-		'post_image_height' => '',
 		'date' => 'true',
 		'author' => 'true',
 		'categories' => 'true',
 		'tags' => 'true',
 		'comments' => 'true',
-		'column_layout' => 0,
-		'columns' => '50',
-		'featured_column' => 0
 	);
 
 	// Get our spacing settings
@@ -119,6 +108,9 @@ function generate_blog_update_visibility_settings() {
 
 		$new_settings[ 'page_post_image_position' ] = $page_header_settings[ 'page_header_position' ];
 	}
+
+	unset( $blog_settings['masonry_width'] );
+	unset( $blog_settings['masonry_most_recent_width'] );
 
 	$update_settings = wp_parse_args( $new_settings, $blog_settings );
 	update_option( 'generate_blog_settings', $update_settings );

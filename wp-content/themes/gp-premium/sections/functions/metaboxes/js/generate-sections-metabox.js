@@ -135,7 +135,7 @@ var Generate_Sections = {
             });
 
             this.changeInsertText();
-            this.tinyMCEsettings();
+            //this.tinyMCEsettings();
             this.render();
         },
 
@@ -155,46 +155,6 @@ var Generate_Sections = {
             }
         },
 
-
-        /**
-         * Merge the default TinyMCE settings
-         */
-        tinyMCEsettings: function() {
-            var init_settings = '';
-
-            if ( typeof tinyMCEPreInit == "object" && "mceInit" in tinyMCEPreInit && "content" in tinyMCEPreInit.mceInit ) {
-                init_settings = tinyMCEPreInit.mceInit.content;
-            } else if ( typeof wp.editor.getDefaultSettings !== "undefined" ) {
-                init_settings = wp.editor.getDefaultSettings().tinymce;
-            } else {
-                init_settings = this.tmc_defaults
-            }
-
-            // get the #content"s quicktags settings or use default
-            var qt_settings = typeof tinyMCEPreInit == "object" && "qtInit" in tinyMCEPreInit && "content" in tinyMCEPreInit.qtInit ? tinyMCEPreInit.qtInit.content : this.qt_defaults;
-
-            var _this = this;
-            var custom_settings = {
-                selector: "#generate-sections-editor",
-                wp_autoresize_on: false,
-                cache_suffix: "",
-                min_height: 400,
-                wpautop: true,
-                indent: false,
-                toolbar1: "formatselect,bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,wp_more,spellchecker,wp_adv",
-                toolbar2: "strikethrough,hr,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help",
-                max_height: 500
-            }
-
-            // merge our settings with WordPress" and store for later use
-            this.tmc_settings = $.extend({}, init_settings, custom_settings);
-
-            this.qt_settings = $.extend({}, qt_settings, {
-                id: "generate-sections-editor"
-            });
-        },
-
-
         /**
          * Assembles the UI from loaded template.
          * @internal Obviously, if the template fail to load, our modal never launches.
@@ -205,8 +165,7 @@ var Generate_Sections = {
 
             // Build the base window and backdrop, attaching them to the $el.
             // Setting the tab index allows us to capture focus and redirect it in Application.preserveFocus
-            this.$el.attr("tabindex", "0")
-                .html(this.template);
+            this.$el.attr("tabindex", "0").html(this.template);
 
             // Handle any attempt to move focus out of the modal.
             //jQuery(document).on("focusin", this.preserveFocus);
@@ -224,13 +183,59 @@ var Generate_Sections = {
 
             this.selected();
             this.colorPicker();
-            this.startTinyMCE();
+            //this.startTinyMCE();
+			this.launchEditor();
 
             // Set focus on the modal to prevent accidental actions in the underlying page
             this.$el.focus();
 
             return this;
         },
+
+		launchEditor: function() {
+			var id = this.ui.panels.find( ".generate-sections-editor-wrap" ).find( 'textarea' ).attr( 'id' ),
+				customButtonsContainer = this.ui.panels.find( '.generate-sections-editor-wrap' ).find( '#custom-media-buttons' );
+
+			customButtonsContainer.find( '.insert-media' ).remove();
+			var customButtons = customButtonsContainer.html();
+			customButtonsContainer.remove();
+
+			var init_settings = true;
+
+            if ( typeof tinyMCEPreInit == "object" && "mceInit" in tinyMCEPreInit && "content" in tinyMCEPreInit.mceInit ) {
+                init_settings = tinyMCEPreInit.mceInit.content;
+            } else if ( typeof window.wpEditorL10n !== "undefined" ) {
+                init_settings = window.wpEditorL10n.tinymce.settings;
+            } else {
+				init_settings = this.tmc_defaults;
+			}
+
+			var custom_settings = {
+                wp_autoresize_on: false,
+                cache_suffix: "",
+                min_height: 400,
+            }
+
+			init_settings = $.extend({}, init_settings, custom_settings);
+
+			var qt_settings = true;
+
+			if ( typeof tinyMCEPreInit == "object" && "qtInit" in tinyMCEPreInit && "content" in tinyMCEPreInit.qtInit ) {
+				qt_settings = tinyMCEPreInit.qtInit.content;
+			} else {
+				qt_settings = this.qt_defaults;
+			}
+
+			wp.sectionsEditor.initialize( id, {
+				tinymce: init_settings,
+				quicktags: qt_settings,
+				mediaButtons: true
+			} );
+
+			var buttonsElement = this.ui.panels.find( '#wp-generate-sections-editor-wrap' ).find( '.wp-media-buttons' );
+			buttonsElement.attr( 'id', 'custom-media-buttons' );
+			$( customButtons ).appendTo( buttonsElement );
+		},
 
         /**
          * Make the menu mobile-friendly
@@ -341,45 +346,6 @@ var Generate_Sections = {
          */
         colorPicker: function() {
             this.$el.find(".generate-sections-color").wpColorPicker();
-        },
-
-        /**
-         * Start TinyMCE on the textarea
-         */
-        startTinyMCE: function() {
-
-            // set the default editor
-            this.ui.panels.find("#wp-generate-sections-editor-wrap").addClass(generate_sections_metabox_i18n.default_editor);
-
-            // remove tool buttons if richedit disabled
-            if (!generate_sections_metabox_i18n.user_can_richedit) {
-                this.ui.panels.find(".wp-editor-tabs").remove();
-            }
-
-            // add our copy to the collection in the tinyMCEPreInit object because switch editors
-            if (typeof tinyMCEPreInit == 'object') {
-                tinyMCEPreInit.mceInit["generate-sections-editor"] = this.tmc_settings;
-                tinyMCEPreInit.qtInit["generate-sections-editor"] = this.qt_settings;
-				tinyMCEPreInit.mceInit["generate-sections-editor"].wp_keep_scroll_position = false;
-            }
-
-            try {
-
-                var rich = (typeof tinyMCE != "undefined");
-
-                // turn on the quicktags editor
-                quicktags(this.qt_settings);
-
-                // attempt to fix problem of quicktags toolbar with no buttons
-                QTags._buttonsInit();
-
-                if (rich !== false) {
-                    // turn on tinyMCE
-					tinyMCE.init(this.tmc_settings);
-                }
-
-            } catch (e) {}
-
         },
 
         /**

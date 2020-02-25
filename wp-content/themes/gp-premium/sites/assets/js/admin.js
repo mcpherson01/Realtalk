@@ -1,119 +1,5 @@
 jQuery( document ).ready( function($) {
 
-	function setup_site( _this ) {
-		var site_box = _this.closest( '.site-box' );
-		var site_data = site_box.data( 'site-data' );
-
-		if ( ! site_box.hasClass( 'data-loaded' ) ) {
-			// Prevent duplicate setup.
-			site_box.addClass( 'data-loaded' );
-
-			$.ajax({
-				type: 'POST',
-				url: generate_sites_params.ajaxurl,
-				data: {
-					action: 'generate_setup_site_' + site_data.slug,
-					nonce: generate_sites_params.nonce,
-				},
-				success: function( data ) {
-					console.log(data);
-
-					if ( data.options ) {
-						site_box.find( '.theme-options.loading' ).hide();
-						site_box.find( '.theme-options.loading' ).next().text( generate_sites_params.theme_options_exist ).fadeIn();
-					} else {
-						site_box.find( '.theme-options.loading' ).hide();
-						site_box.find( '.theme-options' ).next().text( generate_sites_params.no_theme_options ).fadeIn();
-						site_box.find( '.step-overview .right button' ).attr( 'disabled', 'disabled' );
-						site_box.find( '.site-content-description' ).remove();
-					}
-
-					if ( data.content ) {
-						site_box.find( '.site-content.loading' ).hide();
-						site_box.find( '.site-content.loading' ).next().text( generate_sites_params.site_content_exists ).fadeIn();
-
-						if ( data.plugins ) {
-							site_box.find( '.plugin-area' ).fadeIn();
-						}
-					} else {
-						site_box.find( '.site-content-description' ).remove();
-					}
-
-					if ( data.modules ) {
-						$.each( data.modules, function( name, key ) {
-							site_box.find( '.required-modules ul' ).append( '<li>' + name + '</li>' );
-						} );
-					} else {
-						site_box.find( '.required-modules' ).hide();
-					}
-
-					if ( data.widgets ) {
-						site_box.find( '.site-content-description .site-action' ).attr( 'data-widgets', true );
-					} else {
-						site_box.find( '.site-content-description .site-action' ).attr( 'data-widgets', false );
-					}
-
-					if ( data.plugins ) {
-						$.ajax( {
-							type: 'POST',
-							url: generate_sites_params.ajaxurl,
-							data: {
-								action: 'generate_check_plugins_' + site_data.slug,
-								nonce: generate_sites_params.nonce,
-								data: site_box.data( 'site-data' ),
-							},
-							success: function( data ) {
-								console.log( data );
-								site_box.find( '.checking-for-plugins.loading' ).hide();
-								site_box.find( '.site-content-description .site-action' ).attr( 'data-plugins', JSON.stringify( data.plugin_data ) );
-
-								$.each( data.plugin_data, function( index, value ) {
-									var slug = value.slug.substring( 0, value.slug.indexOf( '/' ) );
-
-									if ( 'elementor' === slug ) {
-										site_box.find( '.elementor-last-step' ).show();
-									}
-
-									if ( value.repo && ! value.installed ) {
-										site_box.find( '.automatic-plugins' ).fadeIn();
-										site_box.find( '.automatic-plugins ul' ).append( '<li data-slug="' + slug + '">' + value.name + '</li>' );
-									} else if ( value.installed || value.active ) {
-										site_box.find( '.installed-plugins' ).fadeIn();
-										site_box.find( '.installed-plugins ul' ).append( '<li class="plugin-installed" data-slug="' + slug + '">' + value.name + '</li>' );
-									} else {
-										site_box.find( '.manual-plugins' ).fadeIn();
-										site_box.find( '.manual-plugins ul' ).append( '<li>' + value.name + '</li>' );
-									}
-								} );
-
-								if ( $.isEmptyObject( data.plugin_data ) ) {
-									site_box.find( '.no-plugins' ).fadeIn();
-								}
-
-								site_box.find( '.step-overview .loading' ).hide();
-								site_box.find( '.step-overview .right button' ).show();
-							},
-							error: function( data ) {
-								console.log( data );
-								_this.closest( '.site-box' ).find( '.site-message' ).hide();
-								_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
-							}
-						} );
-					} else {
-						site_box.find( '.step-overview .loading' ).hide();
-						site_box.find( '.step-overview .right button' ).show();
-					}
-				},
-				error: function( data ) {
-					console.log( data );
-					site_box.removeClass( 'data-loaded' );
-					_this.closest( '.site-box' ).find( '.loading' ).hide();
-					_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
-				}
-			});
-		}
-	}
-
 	var bLazy = new Blazy({
 	    selector: '.lazyload',
 		success: function(ele){
@@ -124,7 +10,7 @@ jQuery( document ).ready( function($) {
 	/**
 	 * Demo sites
 	 */
-	$( '.preview-site' ).on( 'click', function( e ) {
+	$( '.site-box .preview-site' ).on( 'click', function( e ) {
 		e.preventDefault();
 		var _this = $( this );
 		var site_box = _this.closest( '.site-box' );
@@ -138,7 +24,6 @@ jQuery( document ).ready( function($) {
 		});
 
 		site_box.find( '.site-demo' ).show().addClass( 'open' );
-		setup_site( _this );
 	} );
 
 	$( '.site-demo .close-demo' ).on( 'click', function( e ) {
@@ -165,10 +50,15 @@ jQuery( document ).ready( function($) {
 		$( '.site-demo' ).hide().removeClass( 'open' );
 
 		if ( ! $( '.generatepress-sites' ).hasClass( 'site-open' ) ) {
+			var this_site = $( this ).closest( '.site-box' );
+
 			$( '.generatepress-sites' ).addClass( 'site-open' );
-			$( '.page-builder-group' ).hide();
-			$( this ).closest( '.site-box' ).siblings().hide();
-			$( this ).closest( '.site-box' ).find( '.step-one' ).hide().next().show();
+			$( '.library-filters' ).hide();
+			var screenshot = this_site.find( '.site-card-screenshot img' ).attr( 'src' );
+
+			this_site.find( '.site-overview-screenshot img' ).attr( 'src', screenshot );
+			this_site.siblings().hide();
+			this_site.find( '.step-one' ).hide().next().show();
 		}
 	} );
 
@@ -177,21 +67,15 @@ jQuery( document ).ready( function($) {
 	 */
 	$( '.site-box .close' ).on( 'click', function( e ) {
 		e.preventDefault();
-		var site = $( '.site-box' );
-		var page_builder = $( '.generatepress-sites' ).attr( 'data-page-builder' );
+		var siteBox = $( '.site-box' ),
+			page_builder = $( '.generatepress-sites' ).attr( 'data-page-builder' );
 
-		site.find( '.steps' ).hide();
-		site.find( '.step-one' ).fadeIn().css( 'display', '' );
-		$( '.generatepress-sites .complete' ).hide();
-		$( '.site-action:not(.import-options)' ).show();
-		site.find( '.error-message' ).hide();
-
-		$( '.site-action.import-content' ).attr( 'disabled', 'disabled' );
-		$( '.confirm-content-import' ).prop( 'checked', false );
+		siteBox.find( '.steps' ).hide();
+		siteBox.find( '.step-one' ).fadeIn().css( 'display', '' );
 
 		$( '.generatepress-sites' ).removeClass( 'site-open' );
-		$( '.page-builder-group' ).show();
-		$( this ).closest( '.site-box' ).siblings( page_builder ).fadeIn( 'fast' );
+		$( '.library-filters' ).show();
+		siteBox.siblings( page_builder ).fadeIn( 'fast' );
 
 		bLazy.revalidate();
 	} );
@@ -205,11 +89,16 @@ jQuery( document ).ready( function($) {
 			next_site = $( '.generatepress-sites' ).find( '.site-box' + page_builder ).first();
 		}
 
+		var screenshot = next_site.find( '.site-card-screenshot img' ).attr( 'data-src' );
+
+		if ( ! screenshot ) {
+			screenshot = next_site.find( '.site-card-screenshot img' ).attr( 'src' );
+		}
+
 		if ( this_site.parent().hasClass( 'site-open' ) ) {
 			this_site.hide();
 			next_site.show().find( '.step-one' ).hide().next().show();
-
-			setup_site( next_site );
+			next_site.find( '.site-overview-screenshot img' ).attr( 'src', screenshot );
 		}
 
 		if ( this_site.find( '.site-demo' ).hasClass( 'open' ) ) {
@@ -224,8 +113,6 @@ jQuery( document ).ready( function($) {
 			});
 
 			next_site.find( '.site-demo' ).show().addClass( 'open' );
-
-			setup_site( next_site );
 		}
 	} );
 
@@ -238,11 +125,16 @@ jQuery( document ).ready( function($) {
 			prev_site = $( '.generatepress-sites' ).find( '.site-box' + page_builder ).last();
 		}
 
+		var screenshot = prev_site.find( '.site-card-screenshot img' ).attr( 'data-src' );
+
+		if ( ! screenshot ) {
+			screenshot = prev_site.find( '.site-card-screenshot img' ).attr( 'src' );
+		}
+
 		if ( this_site.parent().hasClass( 'site-open' ) ) {
 			this_site.hide();
 			prev_site.show().find( '.step-one' ).hide().next().show();
-
-			setup_site( prev_site );
+			prev_site.find( '.site-overview-screenshot img' ).attr( 'src', screenshot );
 		}
 
 		if ( this_site.find( '.site-demo' ).hasClass( 'open' ) ) {
@@ -257,63 +149,58 @@ jQuery( document ).ready( function($) {
 			});
 
 			prev_site.find( '.site-demo' ).show().addClass( 'open' );
-
-			setup_site( prev_site );
 		}
 	} );
 
-	$( '.site-details' ).on( 'click', function( e ) {
-		var _this = $( this );
+	$( '.site-box .site-details' ).on( 'click', function( e ) {
+		var _this = $( this ),
+			siteBox = _this.closest( '.site-box' ),
+			step = _this.closest( '.steps' ),
+			screenshot = step.find( '.site-card-screenshot img' ).attr( 'data-src' );
 
-		setup_site( _this );
+		if ( ! screenshot ) {
+			screenshot = step.find( '.site-card-screenshot img' ).attr( 'src' );
+		}
 
 		$( '.generatepress-sites' ).addClass( 'site-open' );
-		$( '.page-builder-group' ).hide();
+		$( '.library-filters' ).hide();
+
 		_this.closest( '.site-box' ).siblings().hide();
-		var step = _this.closest( '.steps' );
 		step.hide();
 		step.next().fadeIn( 'fast' );
-	} );
-
-	$( '.next-step' ).on( 'click', function( e ) {
-		e.preventDefault();
-		var step = $( this ).closest( '.steps' );
-		step.hide();
-		step.next().show();
-	} );
-
-	$( '.start-over' ).on( 'click', function( e ) {
-		e.preventDefault();
-		var site = $( this ).closest( '.site-box' );
-		site.find( '.steps' ).hide();
-		site.find( '.step-one' ).next().show();
-		$( '.generatepress-sites .complete' ).hide();
-		$( '.site-action.import-options' ).hide();
-		$( '.site-action:not(.import-options)' ).show();
-		site.find( '.error-message' ).hide();
-
-		$( '.site-action.import-content' ).attr( 'disabled', 'disabled' );
-		$( '.confirm-content-import' ).prop( 'checked', false );
+		siteBox.find( '.site-overview-screenshot img' ).attr( 'src', screenshot );
 	} );
 
 	$( '.confirm-content-import' ).on( 'change', function() {
+		var siteBox = $( this ).closest( '.site-box' );
+
 		if ( $( this ).is( ':checked' ) ) {
-			$( 'input.import-content' ).attr( 'disabled', false );
-			$( '.confirm-content-replace-container' ).show();
+			siteBox.find( 'input.import-content' ).attr( 'disabled', false );
 		} else {
-			$( 'input.import-content' ).attr( 'disabled', 'disabled' );
-			$( '.confirm-content-replace-container' ).hide();
+			siteBox.find( 'input.import-content' ).attr( 'disabled', 'disabled' );
 		}
 	} );
 
-	$( '.page-builder-group a' ).on( 'click', function( e ) {
+	$( '.confirm-options-import' ).on( 'change', function() {
+		var siteBox = $( this ).closest( '.site-box' );
+
+		if ( $( this ).is( ':checked' ) ) {
+			siteBox.find( 'input.backup-options' ).attr( 'disabled', false );
+			siteBox.find( 'input.import-options' ).attr( 'disabled', false );
+		} else {
+			siteBox.find( 'input.backup-options' ).attr( 'disabled', 'disabled' );
+			siteBox.find( 'input.import-options' ).attr( 'disabled', 'disabled' );
+		}
+	} );
+
+	$( '.page-builder-group' ).on( 'change', function( e ) {
 		e.preventDefault();
 
 		var _this = $( this ),
-			filter = _this.data( 'filter' );
+			filter = _this.val();
 
-		_this.siblings().removeClass( 'active' );
-		_this.addClass( 'active' );
+		// _this.siblings().removeClass( 'active' );
+		// _this.addClass( 'active' );
 
 		if ( '' == filter ) {
 			$( '.site-box' ).show();
@@ -327,33 +214,140 @@ jQuery( document ).ready( function($) {
 		bLazy.revalidate();
 	} );
 
+	var setup_demo_content = function( _this ) {
+		var site_box = _this.closest( '.site-box' );
+		var site_data = site_box.data( 'site-data' );
+
+		if ( ! site_box.hasClass( 'data-content-loaded' ) ) {
+			// Prevent duplicate setup.
+			site_box.addClass( 'data-content-loaded' );
+
+			$.ajax({
+				type: 'POST',
+				url: generate_sites_params.ajaxurl,
+				data: {
+					action: 'generate_setup_demo_content_' + site_data.slug,
+					nonce: generate_sites_params.nonce,
+				},
+				success: function( data ) {
+					console.log(data);
+
+					if ( data.content ) {
+						if ( data.widgets ) {
+							site_box.find( '.site-action.import-content' ).attr( 'data-widgets', true );
+						} else {
+							site_box.find( '.site-action.import-content' ).attr( 'data-widgets', false );
+						}
+
+						if ( data.plugins ) {
+							$.ajax( {
+								type: 'POST',
+								url: generate_sites_params.ajaxurl,
+								data: {
+									action: 'generate_check_plugins_' + site_data.slug,
+									nonce: generate_sites_params.nonce,
+									data: site_box.data( 'site-data' ),
+								},
+								success: function( data ) {
+									console.log( data );
+									site_box.find( '.site-plugins' ).hide();
+									site_box.find( '.plugin-area' ).show();
+									site_box.find( '.site-action.import-content' ).attr( 'data-plugins', JSON.stringify( data.plugin_data ) );
+
+									$.each( data.plugin_data, function( index, value ) {
+										var slug = value.slug.substring( 0, value.slug.indexOf( '/' ) );
+
+										if ( value.repo && ! value.installed ) {
+											site_box.find( '.automatic-plugins' ).fadeIn();
+											site_box.find( '.automatic-plugins ul' ).append( '<li data-slug="' + slug + '">' + value.name + '</li>' );
+										} else if ( value.installed || value.active ) {
+											site_box.find( '.installed-plugins' ).fadeIn();
+											site_box.find( '.installed-plugins ul' ).append( '<li class="plugin-installed" data-slug="' + slug + '">' + value.name + '</li>' );
+										} else {
+											site_box.find( '.manual-plugins' ).fadeIn();
+											site_box.find( '.manual-plugins ul' ).append( '<li>' + value.name + '</li>' );
+										}
+									} );
+
+									if ( $.isEmptyObject( data.plugin_data ) ) {
+										site_box.find( '.no-plugins' ).fadeIn();
+									}
+
+									site_box.find( '.loading' ).hide();
+									site_box.find( '.site-action.import-content' ).show();
+									site_box.find( '.confirm-content-import-message' ).show();
+									site_box.find( '.skip-content-import' ).show();
+								},
+								error: function( data ) {
+									console.log( data );
+									site_box.find( '.site-message' ).hide();
+									site_box.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
+									siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+									siteBox.find( '.theme-options .number' ).css( 'opacity', '1' );
+								}
+							} );
+						} else {
+							site_box.find( '.loading' ).hide();
+							site_box.find( '.site-action.import-content' ).show();
+							site_box.find( '.confirm-content-import-message' ).show();
+							site_box.find( '.skip-content-import' ).show();
+						}
+					} else {
+						site_box.find( '.loading' ).hide();
+						site_box.find( '.demo-content .big-loader' ).css( 'opacity', '0' );
+						site_box.find( '.demo-content .number' ).css( 'opacity', '1' ).addClass( 'step-complete' );
+						_this.next( 'input' ).show();
+
+						setTimeout( function() {
+							site_box.find( '.import-complete .number' ).css( 'opacity', '1' ).addClass( 'step-complete' );
+						}, 500 );
+					}
+
+
+				},
+				error: function( data ) {
+					console.log( data );
+					site_box.removeClass( 'data-loaded' );
+					site_box.find( '.loading' ).hide();
+					site_box.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
+				}
+			});
+		}
+	};
+
 	/**
 	 * Backup options.
 	 */
-	$( '.backup-options' ).on( 'click', function(e) {
+	$( '.site-box .backup-options' ).on( 'click', function(e) {
 		e.preventDefault();
-		var _this = $( this );
-		_this.hide();
-		_this.siblings( '.loading' ).show();
 
+		var _this = $( this ),
+			siteBox = _this.closest( '.site-box' );
+
+		_this.hide();
+		siteBox.find( '.confirm-backup-options' ).hide();
 		backup_options( _this );
 	} );
 
 	/**
 	 * Backup and import theme options.
 	 */
-	$( '.import-options' ).on( 'click', function(e) {
+	$( '.site-box .import-options' ).on( 'click', function( e ) {
 		e.preventDefault();
-		var _this = $( this );
-		_this.hide();
-		_this.next( '.loading' ).show();
 
+		var _this = $( this );
+
+		_this.hide();
+		_this.closest( '.site-box' ).find( '.confirm-backup-options' ).hide();
 		import_options( _this );
 	} );
 
 	function backup_options( _this ) {
-		_this.closest( '.site-overview-details' ).find( '.site-message' ).text( generate_sites_params.backing_up_options ).show();
-		var data = _this.closest( '.site-box' ).data( 'site-data' );
+		var siteBox = _this.closest( '.site-box' )
+			data = siteBox.data( 'site-data' );
+
+		siteBox.find( '.site-message' ).text( generate_sites_params.backing_up_options );
+		siteBox.find( '.loading' ).show();
 
 		$.ajax( {
 			type: 'POST',
@@ -365,25 +359,24 @@ jQuery( document ).ready( function($) {
 			success: function( data ) {
 				download( data, 'generatepress-options-backup.json', 'application/json' );
 
-				_this.siblings( '.loading' ).hide();
-				_this.siblings( '.loading' ).next( '.complete' ).fadeIn();
-
-				setTimeout( function() {
-					_this.siblings( '.loading' ).next( '.complete' ).hide();
-					_this.next( 'input' ).show();
-				}, 500 );
+				siteBox.find( '.loading' ).hide();
+				_this.next( 'input' ).show();
 			},
 			error: function( data ) {
 				console.log( data );
-				_this.closest( '.site-box' ).find( '.loading' ).hide();
-				_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
+				siteBox.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
 			}
 		} );
 	}
 
 	function import_options( _this ) {
-		_this.closest( '.site-overview-details' ).find( '.site-message' ).text( generate_sites_params.importing_options ).show();
-		var data = _this.closest( '.site-box' ).data( 'site-data' );
+		var siteBox = _this.closest( '.site-box' ),
+			data = siteBox.data( 'site-data' );
+
+		siteBox.find( '.site-message' ).text( generate_sites_params.importing_options );
+		siteBox.find( '.loading' ).show();
+		siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '1' );;
+		siteBox.find( '.theme-options .number' ).css( 'opacity', '0' );
 
 		$.ajax( {
 			type: 'POST',
@@ -393,22 +386,48 @@ jQuery( document ).ready( function($) {
 				nonce: generate_sites_params.nonce,
 			},
 			success: function( data ) {
-				console.log( 'Options imported.' );
-				_this.hide();
-				_this.next( '.loading' ).hide();
-				_this.next( '.loading' ).next( '.complete' ).fadeIn();
+				if ( 'undefined' !== typeof data.success && ! data.success ) {
+					siteBox.find( '.loading' ).hide();
+					siteBox.find( '.error-message' ).html( data.data ).show();
+					siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+					siteBox.find( '.theme-options .number' ).css( 'opacity', '1' );
+					return;
+				}
 
-				setTimeout( function() {
-					_this.closest( '.steps' ).hide().next( '.steps' ).show();
-				}, 1000 );
+				console.log( 'Options imported.' );
+
+				_this.hide();
+				siteBox.find( '.loading' ).hide();
+				siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+				siteBox.find( '.theme-options .number' ).css( 'opacity', '1' ).addClass( 'step-complete' );
+
+				siteBox.find( '.site-message' ).text( generate_sites_params.checking_demo_content );
+				siteBox.find( '.loading' ).show();
+				setup_demo_content( _this );
 			},
 			error: function( data ) {
 				console.log( data );
-				_this.closest( '.site-box' ).find( '.loading' ).hide();
-				_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
+				siteBox.find( '.loading' ).hide();
+				siteBox.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
+				siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+				siteBox.find( '.theme-options .number' ).css( 'opacity', '1' );
 			}
 		} );
 	}
+
+	$( '.site-box' ).on( 'click', '.skip-content-import a', function(e) {
+		e.preventDefault();
+
+		var _this = $( this ),
+			siteBox = _this.closest( '.site-box' );
+
+		siteBox.find( '.skip-content-import' ).hide();
+		siteBox.find( '.demo-content' ).css( 'opacity', '0.5' );
+		siteBox.find( '.confirm-content-import-message' ).hide();
+		siteBox.find( '.action-buttons input' ).hide();
+		siteBox.find( '.action-buttons input.view-site' ).show();
+		siteBox.find( '.import-complete .number' ).css( 'opacity', '1' ).addClass( 'step-complete' );
+	} );
 
 	/**
 	 * Install and activate plugins.
@@ -416,18 +435,23 @@ jQuery( document ).ready( function($) {
 	 */
 	$( '.site-box' ).on( 'click', '.import-content', function(e) {
 		e.preventDefault();
-		var _this = $( this );
+
+		var _this = $( this )
+			siteBox = _this.closest( '.site-box' ),
+			plugins = _this.data( 'plugins' ),
+			plugin_text = siteBox.find( '.automatic-plugins li' );
+
 		_this.hide();
-		_this.next( '.loading' ).show();
+		siteBox.find( '.skip-content-import' ).hide();
+		siteBox.find( '.loading' ).show();
+		siteBox.find( '.confirm-content-import-message' ).hide();
+		siteBox.find( '.demo-content .big-loader' ).css( 'opacity', '1' );
+		siteBox.find( '.demo-content .number' ).css( 'opacity', '0' );
 
-		var plugins = _this.data( 'plugins' );
-
-		_this.closest( '.site-box' ).attr( 'data-plugins', JSON.stringify( plugins ) );
-
-		var plugin_text = _this.closest( '.site-box' ).find( '.automatic-plugins li' );
+		siteBox.attr( 'data-plugins', JSON.stringify( plugins ) );
 
 		if ( ! $.isEmptyObject( plugins ) ) {
-			_this.closest( '.site-box' ).find( '.site-message' ).text( generate_sites_params.installing_plugins ).show();
+			siteBox.find( '.site-message' ).text( generate_sites_params.installing_plugins );
 
 			$.each( plugins, function( index, value ) {
 				var plugin_slug = value.slug.split('/')[0];
@@ -435,6 +459,10 @@ jQuery( document ).ready( function($) {
 				var plugin_row = plugin_text.filter( function () {
 					return $( this ).attr( 'data-slug' ) == plugin_slug;
 				} );
+
+				if ( 'elementor' === plugin_slug ) {
+					siteBox.find( '.replace-elementor-urls' ).show();
+				}
 
 				if ( ! value.installed ) {
 					plugin_row.find( '.loading' ).show();
@@ -494,8 +522,10 @@ jQuery( document ).ready( function($) {
 	} );
 
 	function activate_plugins( _this ) {
-		_this.closest( '.site-box' ).find( '.site-message' ).text( generate_sites_params.activating_plugins ).show();
-		var data = _this.closest( '.site-box' ).data( 'site-data' );
+		var siteBox = _this.closest( '.site-box' ),
+			data = siteBox.data( 'site-data' );
+
+		siteBox.find( '.site-message' ).text( generate_sites_params.activating_plugins );
 
 		setTimeout( function() {
 			$.ajax( {
@@ -511,16 +541,20 @@ jQuery( document ).ready( function($) {
 				},
 				error: function( data ) {
 					console.log( data );
-					_this.closest( '.site-box' ).find( '.loading' ).hide();
-					_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
+					siteBox.find( '.loading' ).hide();
+					siteBox.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
+					siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+					siteBox.find( '.theme-options .number' ).css( 'opacity', '1' );
 				}
 			} );
 		}, 250 );
 	}
 
 	function download_content( _this ) {
-		_this.closest( '.site-box' ).find( '.site-message' ).text( generate_sites_params.downloading_content ).show();
-		var data = _this.closest( '.site-box' ).data( 'site-data' );
+		var siteBox = _this.closest( '.site-box' ),
+			data = siteBox.data( 'site-data' );
+
+		siteBox.find( '.site-message' ).text( generate_sites_params.downloading_content );
 
 		$.ajax( {
 			type: 'POST',
@@ -536,15 +570,20 @@ jQuery( document ).ready( function($) {
 			},
 			error: function( data ) {
 				console.log( data );
-				_this.closest( '.site-box' ).find( '.loading' ).hide();
-				_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
+
+				siteBox.find( '.loading' ).hide();
+				siteBox.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
+				siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+				siteBox.find( '.theme-options .number' ).css( 'opacity', '1' );
 			}
 		} );
 	}
 
 	function import_content( _this ) {
-		_this.closest( '.site-box' ).find( '.site-message' ).text( generate_sites_params.importing_content ).show();
-		var data = _this.closest( '.site-box' ).data( 'site-data' );
+		var siteBox = _this.closest( '.site-box' ),
+			data = siteBox.data( 'site-data' );
+
+		siteBox.find( '.site-message' ).text( generate_sites_params.importing_content );
 
 		$.ajax( {
 			type: 'POST',
@@ -560,8 +599,11 @@ jQuery( document ).ready( function($) {
 			},
 			error: function( data ) {
 				console.log( data );
-				_this.closest( '.site-box' ).find( '.loading' ).hide();
-				_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
+
+				siteBox.find( '.loading' ).hide();
+				siteBox.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
+				siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+				siteBox.find( '.theme-options .number' ).css( 'opacity', '1' );
 			}
 		} );
 	}
@@ -571,8 +613,10 @@ jQuery( document ).ready( function($) {
 	 * Comes last, as options may be dependent on plugins.
 	 */
 	function import_site_options( _this ) {
-		_this.closest( '.site-box' ).find( '.site-message' ).text( generate_sites_params.importing_site_options ).show();
-		var data = _this.closest( '.site-box' ).data( 'site-data' );
+		var siteBox = _this.closest( '.site-box' ),
+			data = siteBox.data( 'site-data' );
+
+		siteBox.find( '.site-message' ).text( generate_sites_params.importing_site_options );
 
 		setTimeout( function() {
 			$.ajax( {
@@ -591,22 +635,22 @@ jQuery( document ).ready( function($) {
 
 					} else {
 
-						setTimeout( function() {
-							_this.next( '.loading' ).hide();
-							_this.closest( '.site-box' ).find( '.site-message' ).hide();
-							_this.next( '.loading' ).next( '.complete' ).fadeIn();
-						}, 250 );
-
-						setTimeout( function() {
-							_this.closest( '.steps' ).hide().next( '.steps' ).show();
-						}, 1000 );
+						siteBox.find( '.loading' ).hide();
+						siteBox.find( '.site-message' ).hide();
+						siteBox.find( '.demo-content .big-loader' ).css( 'opacity', '0' );
+						siteBox.find( '.demo-content .number' ).css( 'opacity', '1' ).addClass( 'step-complete' );
+						_this.next( 'input' ).show();
+						siteBox.find( '.import-complete .number' ).css( 'opacity', '1' ).addClass( 'step-complete' );
 
 					}
 				},
 				error: function( data ) {
 					console.log( data );
-					_this.closest( '.site-box' ).find( '.loading' ).hide();
-					_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
+
+					siteBox.find( '.loading' ).hide();
+					siteBox.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
+					siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+					siteBox.find( '.theme-options .number' ).css( 'opacity', '1' );
 				}
 			} );
 		}, 250 );
@@ -616,8 +660,10 @@ jQuery( document ).ready( function($) {
 	 * Import widgets.
 	 */
 	 function import_widgets( _this ) {
-		 _this.closest( '.site-box' ).find( '.site-message' ).text( generate_sites_params.importing_widgets ).show();
-		 var data = _this.closest( '.site-box' ).data( 'site-data' );
+		 var siteBox = _this.closest( '.site-box' ),
+ 			data = siteBox.data( 'site-data' );
+
+		 siteBox.find( '.site-message' ).text( generate_sites_params.importing_widgets );
 
 		 setTimeout( function() {
  			$.ajax( {
@@ -630,22 +676,31 @@ jQuery( document ).ready( function($) {
  				success: function( data ) {
  					console.log( data );
 
- 					setTimeout( function() {
- 						_this.next( '.loading' ).hide();
- 						_this.closest( '.site-box' ).find( '.site-message' ).hide();
- 						_this.next( '.loading' ).next( '.complete' ).fadeIn();
- 					}, 250 );
-
- 					setTimeout( function() {
- 						_this.closest( '.steps' ).hide().next( '.steps' ).show();
- 					}, 1000 );
+					siteBox.find( '.loading' ).hide();
+					siteBox.find( '.site-message' ).hide();
+					siteBox.find( '.demo-content .big-loader' ).css( 'opacity', '0' );
+					siteBox.find( '.demo-content .number' ).css( 'opacity', '1' ).addClass( 'step-complete' );
+					_this.next( 'input' ).show();
+					siteBox.find( '.import-complete .number' ).css( 'opacity', '1' ).addClass( 'step-complete' );
  				},
  				error: function( data ) {
  					console.log( data );
-					_this.closest( '.site-box' ).find( '.loading' ).hide();
-					_this.closest( '.site-box' ).find( '.error-message' ).text( data.status + ' ' + data.statusText ).show();
- 				}
+
+					siteBox.find( '.loading' ).hide();
+					siteBox.find( '.error-message' ).html( data.status + ' ' + data.statusText + ' <a href="https://docs.generatepress.com/article/error-codes-importing/" target="_blank" rel="noopener">[?]</a>' ).show();
+					siteBox.find( '.theme-options .big-loader' ).css( 'opacity', '0' );
+					siteBox.find( '.theme-options .number' ).css( 'opacity', '1' );
+				}
  			} );
  		}, 250 );
 	 }
+
+	 /**
+	  * View our completed site.
+	  */
+	 $( '.site-box .view-site' ).on( 'click', function( e ) {
+	 	e.preventDefault();
+
+	 	window.location.href = generate_sites_params.home_url;
+	 } );
 } );

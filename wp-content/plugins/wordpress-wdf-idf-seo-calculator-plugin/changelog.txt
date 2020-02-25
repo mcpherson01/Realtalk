@@ -1,0 +1,18 @@
+Version 1.0.5  (2019-11-7)
+  - Bugfixing
+
+Version 1.0.4  (2015-03-12)
+  - Bugfixing
+
+Version 1.0.3  (2013-09-30)
+  - Added more Google domains
+
+Version 1.0.2  (2013-09-20)
+  - Better error messages
+
+Version 1.0.1  (2013-07-08)
+  - Added NL Google Domain
+  - Bugfixing
+
+Version 1.0.0  (2013-07-05)
+  - Initial release of WDF*IDF Top10 Calculator

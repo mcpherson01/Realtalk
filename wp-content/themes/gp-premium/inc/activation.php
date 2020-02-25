@@ -82,7 +82,7 @@ if ( ! function_exists( 'generate_license_errors' ) ) {
 }
 
 if ( ! function_exists( 'generate_super_package_addons' ) ) {
-	add_action( 'generate_inside_options_form', 'generate_super_package_addons', 5 );
+	add_action( 'generate_options_items', 'generate_super_package_addons', 5 );
 	/**
 	 * Build the area that allows us to activate and deactivate modules.
 	 *
@@ -105,6 +105,12 @@ if ( ! function_exists( 'generate_super_package_addons' ) ) {
 			'Typography' => 'generate_package_typography',
 			'WooCommerce' => 'generate_package_woocommerce',
 		);
+
+		if ( version_compare( PHP_VERSION, '5.4', '>=' ) && ! defined( 'GENERATE_DISABLE_SITE_LIBRARY' ) ) {
+			$addons['Site Library'] = 'generate_package_site_library';
+		}
+
+		ksort( $addons );
 
 		$addon_count = 0;
 		foreach ( $addons as $k => $v ) {
@@ -203,13 +209,18 @@ if ( ! function_exists( 'generate_multi_activate' ) ) {
 
 			$name = ( isset( $_POST['generate_addon_checkbox'] ) ) ? $_POST['generate_addon_checkbox'] : '';
 			$option = ( isset( $_POST['generate_addon_checkbox'] ) ) ? $_POST['generate_mass_activate'] : '';
+			$autoload = null;
 
 			if ( isset( $_POST['generate_addon_checkbox'] ) ) {
 
 				if ( 'deactivate-selected' == $option ) {
 					foreach ( $name as $id ) {
 						if ( 'activated' == get_option( $id ) ) {
-							update_option( $id, '' );
+							if ( 'generate_package_site_library' === $id ) {
+								$autoload = false;
+							}
+
+							update_option( $id, '', $autoload );
 						}
 					}
 				}
@@ -217,7 +228,11 @@ if ( ! function_exists( 'generate_multi_activate' ) ) {
 				if ( 'activate-selected' == $option ) {
 					foreach ( $name as $id ) {
 						if ( 'activated' !== get_option( $id ) ) {
-							update_option( $id, 'activated' );
+							if ( 'generate_package_site_library' === $id ) {
+								$autoload = false;
+							}
+
+							update_option( $id, 'activated', $autoload );
 						}
 					}
 				}
@@ -256,6 +271,10 @@ if ( ! function_exists( 'generate_activate_super_package_addons' ) ) {
 			'WooCommerce' => 'generate_package_woocommerce',
 		);
 
+		if ( version_compare( PHP_VERSION, '5.4', '>=' ) && ! defined( 'GENERATE_DISABLE_SITE_LIBRARY' ) ) {
+			$addons['Site Library'] = 'generate_package_site_library';
+		}
+
 		foreach( $addons as $k => $v ) :
 
 			if ( isset( $_POST[$v . '_activate_package'] ) ) {
@@ -270,7 +289,13 @@ if ( ! function_exists( 'generate_activate_super_package_addons' ) ) {
 					return;
 				}
 
-				update_option( $v, 'activated' );
+				$autoload = null;
+
+				if ( 'generate_package_site_library' === $v ) {
+					$autoload = false;
+				}
+
+				update_option( $v, 'activated', $autoload );
 				wp_safe_redirect( admin_url( 'themes.php?page=generate-options&generate-message=addon_activated' ) );
 				exit;
 			}
@@ -303,6 +328,10 @@ if ( ! function_exists( 'generate_deactivate_super_package_addons' ) ) {
 			'WooCommerce' => 'generate_package_woocommerce',
 		);
 
+		if ( version_compare( PHP_VERSION, '5.4', '>=' ) && ! defined( 'GENERATE_DISABLE_SITE_LIBRARY' ) ) {
+			$addons['Site Library'] = 'generate_package_site_library';
+		}
+
 		foreach( $addons as $k => $v ) :
 
 			if ( isset( $_POST[$v . '_deactivate_package'] ) ) {
@@ -317,7 +346,13 @@ if ( ! function_exists( 'generate_deactivate_super_package_addons' ) ) {
 					return;
 				}
 
-				update_option( $v, 'deactivated' );
+				$autoload = null;
+
+				if ( 'generate_package_site_library' === $v ) {
+					$autoload = false;
+				}
+
+				update_option( $v, 'deactivated', $autoload );
 				wp_safe_redirect( admin_url('themes.php?page=generate-options&generate-message=addon_deactivated' ) );
 				exit;
 			}

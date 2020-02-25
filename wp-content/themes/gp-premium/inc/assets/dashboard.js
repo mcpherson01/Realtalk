@@ -1,7 +1,7 @@
 jQuery( document ).ready(function( $ ) {
 	$( '#generate-select-all' ).on( 'click', function( event ) {
 		if ( this.checked ) {
-			$( '.addon-checkbox' ).each( function() {
+			$( '.addon-checkbox:not(:disabled)' ).each( function() {
 				this.checked = true;
 			});
 		} else {

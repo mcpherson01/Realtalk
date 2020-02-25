@@ -39,12 +39,6 @@ add_filter( 'generate_dashboard_tabs', 'generate_sites_dashboard_tab' );
  * @return array New tabs.
  */
 function generate_sites_dashboard_tab( $tabs ) {
-	$sites = get_transient( 'generatepress_sites' );
-
-	if ( empty( $sites ) || ! is_array( $sites ) ) {
-		return $tabs;
-	}
-
 	$tabs['Sites'] = array(
 		'name' => __( 'Site Library', 'gp-premium' ),
 		'url' => admin_url( 'themes.php?page=generatepress-site-library' ),
@@ -88,6 +82,100 @@ function generate_site_library_fix_menu() {
 	remove_submenu_page( 'themes.php', 'generatepress-site-library' );
 }
 
+add_action( 'admin_enqueue_scripts', 'generate_sites_do_enqueue_scripts' );
+/**
+ * Add our scripts for the site library.
+ *
+ * @since 1.8
+ */
+function generate_sites_do_enqueue_scripts() {
+	wp_enqueue_script(
+		'generate-sites-admin',
+		GENERATE_SITES_URL . 'assets/js/admin.js',
+		array( 'jquery', 'wp-util', 'updates', 'generate-sites-blazy' ),
+		GP_PREMIUM_VERSION,
+		true
+	);
+
+	wp_enqueue_script(
+		'generate-sites-download',
+		GENERATE_SITES_URL . 'assets/js/download.js',
+		array( 'jquery', 'generate-sites-admin' ),
+		GP_PREMIUM_VERSION,
+		true
+	);
+
+	wp_enqueue_script(
+		'generate-sites-blazy',
+		GENERATE_SITES_URL . 'assets/js/blazy.min.js',
+		array(),
+		GP_PREMIUM_VERSION,
+		true
+	);
+
+	wp_localize_script(
+		'generate-sites-admin',
+		'generate_sites_params',
+		array(
+			'ajaxurl'					=> admin_url( 'admin-ajax.php' ),
+			'nonce'						=> wp_create_nonce( 'generate_sites_nonce' ),
+			'importing_options'			=> __( 'Importing options', 'gp-premium' ),
+			'backing_up_options'		=> __( 'Backing up options', 'gp-premium' ),
+			'checking_demo_content'		=> __( 'Checking demo content', 'gp-premium' ),
+			'downloading_content'		=> __( 'Downloading content', 'gp-premium' ),
+			'importing_content'			=> __( 'Importing content', 'gp-premium' ),
+			'importing_site_options'	=> __( 'Importing site options', 'gp-premium' ),
+			'importing_widgets'			=> __( 'Importing widgets', 'gp-premium' ),
+			'activating_plugins'		=> __( 'Activating plugins', 'gp-premium' ),
+			'installing_plugins'		=> __( 'Installing plugins', 'gp-premium' ),
+			'automatic_plugins'			=> __( 'Automatic', 'gp-premium' ),
+			'manual_plugins'			=> __( 'Manual', 'gp-premium' ),
+			'home_url'					=> home_url(),
+		)
+	);
+
+	wp_enqueue_style(
+		'generate-sites-admin',
+		GENERATE_SITES_URL . 'assets/css/admin.css',
+		array(),
+		GP_PREMIUM_VERSION
+	);
+
+	wp_enqueue_style(
+		'generate-premium-dashboard',
+		plugin_dir_url( dirname(__FILE__) ) . 'inc/assets/dashboard.css',
+		array(),
+		GP_PREMIUM_VERSION
+	);
+}
+
+add_filter( 'admin_body_class', 'generate_sites_do_admin_body_classes' );
+/**
+ * Add a body class while in the Site Library.
+ *
+ * @since 1.8
+ *
+ * @param array Current body classes.
+ * @return array Existing and our new body classes
+ */
+function generate_sites_do_admin_body_classes( $classes ) {
+	if ( generate_is_sites_dashboard() ) {
+		$classes .= ' generate-sites';
+	}
+
+	return $classes;
+}
+
+add_action( 'generate_inside_site_library_container', 'generate_sites_add_tabs_wrapper_open', 4 );
+/**
+ * Add an opening wrapper element for our Dashboard tabs and page builder links.
+ *
+ * @since 1.8
+ */
+function generate_sites_add_tabs_wrapper_open() {
+	echo '<div class="site-library-tabs-wrapper">';
+}
+
 /**
  * Adds our Site dashboard container.
  *
@@ -109,15 +197,62 @@ function generate_sites_container() {
 			</div>
 		</div>
 		<div class="site-library-container">
-			<?php do_action( 'generate_inside_site_library_container' ); ?>
+			<?php
+			do_action( 'generate_inside_site_library_container' );
 
-			<div class="page-builder-group" data-filter-group="page-builder">
-				<a href="#" class="active" data-filter=""><?php _e( 'All', 'gp-premium' ); ?></a>
-				<a href="#" data-filter="beaver-builder"><?php _e( 'Beaver Builder', 'gp-premium' ); ?></a>
-				<a href="#" data-filter="elementor"><?php _e( 'Elementor', 'gp-premium' ); ?></a>
-				<a href="#" data-filter="no-page-builder"><?php _e( 'No Page Builder', 'gp-premium' ); ?></a>
+			$site_data = get_transient( 'generatepress_sites' );
+			$page_builders = array();
+
+			foreach ( (array) $site_data as $data ) {
+				if ( isset( $data['page_builder'][0] ) ) {
+					$page_builder = $data['page_builder'][0];
+					$page_builder_id = str_replace( ' ', '-', strtolower( $page_builder ) );
+
+					if ( 'no-page-builder' !== $page_builder_id ) {
+						$page_builders[ $page_builder_id ] = $page_builder;
+					}
+				}
+			}
+
+			echo '<div class="library-filters">';
+
+			if ( ! empty( $page_builders ) ) : ?>
+				<div class="page-builder-filter">
+					<label for="page-builder" class="page-builder-label"><?php _e( 'Page Builder:', 'gp-premium' ); ?></label>
+					<div class="filter-select">
+						<select id="page-builder" class="page-builder-group" data-filter-group="page-builder" data-page-builder=".no-page-builder">
+							<option value="no-page-builder"><?php _e( 'None', 'gp-premium' ); ?></option>
+							<?php
+							foreach( $page_builders as $id => $name ) {
+								printf(
+									'<option value="%1$s">%2$s</option>',
+									$id,
+									$name
+								);
+							}
+							?>
+						</select>
+					</div>
+				</div>
+			<?php else : ?>
+				<div class="page-builder-filter">
+					<label for="page-builder" class="page-builder-label"><?php _e( 'Page Builder:', 'gp-premium' ); ?></label>
+					<div class="filter-select">
+						<select id="page-builder" class="page-builder-group" data-filter-group="page-builder" data-page-builder=".no-page-builder">
+							<option value="no-page-builder"><?php _e( 'None', 'gp-premium' ); ?></option>
+							<option value="beaver-builder"><?php _e( 'Beaver Builder', 'gp-premium' ); ?></option>
+							<option value="elementor"><?php _e( 'Elementor', 'gp-premium' ); ?></option>
+						</select>
+					</div>
+				</div>
+			<?php endif; ?>
+
 			</div>
-			<div class="generatepress-sites generatepress-admin-block" id="sites" data-page-builder="">
+
+			</div> <!-- .site-library-tabs-wrapper -->
+			<?php // The opening wrapper for this is in generate_sites_add_tabs_wrapper_open() ?>
+
+			<div class="generatepress-sites generatepress-admin-block" id="sites" data-page-builder=".no-page-builder">
 				<?php do_action( 'generate_inside_sites_container' ); ?>
 			</div>
 
@@ -491,6 +626,8 @@ function generatepress_sites_init() {
 					'page_builder'	=> $site['page_builder'],
 					'min_version'	=> $site['min_version'],
 					'uploads_url'	=> $site['uploads_url'],
+					'plugins'		=> $site['plugins'],
+					'documentation'	=> $site['documentation'],
 				);
 			}
 
@@ -534,6 +671,7 @@ function generatepress_sites_output() {
 	$sites = get_transient( 'generatepress_sites' );
 
 	if ( empty( $sites ) || ! is_array( $sites ) ) {
+		add_action( 'generate_inside_sites_container', 'generatepress_sites_no_results_error' );
 		return;
 	}
 
@@ -544,4 +682,20 @@ function generatepress_sites_output() {
 	foreach( $sites as $site ) {
 		new GeneratePress_Site( $site );
 	}
+}
+
+/**
+ * Show an error message when no sites exist.
+ *
+ * @since 1.8.2
+ */
+function generatepress_sites_no_results_error() {
+	printf(
+		'<div class="no-site-library-results">
+			%1$s <a href="%3$s" target="_blank" rel="noopener noreferrer">%2$s</a>
+		</div>',
+		__( 'No sites found.', 'gp-premium' ),
+		__( 'Why?', 'gp-premium' ),
+		'https://docs.generatepress.com/article/site-library-unavailable/'
+	);
 }

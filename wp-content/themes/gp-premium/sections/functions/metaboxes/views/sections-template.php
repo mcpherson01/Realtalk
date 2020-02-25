@@ -107,42 +107,52 @@ function generate_sections_print_templates() {
 		<div data-id="content" class="panel generate-section-content">
 
 			<div class="gs-grid-100 section-title">
-					<label for="title"><?php _e( 'Section Label', 'gp-premium' );?></label>
+				<label for="title"><?php _e( 'Section Label', 'gp-premium' );?></label>
 
-					<p>
-						<input type="text" name="title" placeholder="{{{ generate_sections_metabox_i18n.default_title }}}" id="title" value="{{{ data.title }}}"/>
-					</p>
-				</div>
+				<p>
+					<input type="text" name="title" placeholder="{{{ generate_sections_metabox_i18n.default_title }}}" id="title" value="{{{ data.title }}}"/>
+				</p>
+			</div>
 
-			<div class="gs-grid-100 wp-core-ui wp-editor-wrap">
+			<?php if ( version_compare( get_bloginfo( 'version' ), '5.0', '<' ) ) : ?>
+				<div class="gs-grid-100 wp-core-ui wp-editor-wrap">
 
-				<div class="postarea wp-editor-expand">
+					<div class="postarea wp-editor-expand">
 
-					<div id="wp-generate-sections-editor-wrap" class="wp-core-ui wp-editor-wrap">
+						<div id="wp-generate-sections-editor-wrap" class="wp-core-ui wp-editor-wrap old-sections-js">
 
-						<div id="wp-generate-sections-editor-editor-tools" class="wp-editor-tools hide-if-no-js">
+							<div id="wp-generate-sections-editor-editor-tools" class="wp-editor-tools hide-if-no-js">
 
-							<div class="wp-media-buttons">
-								<button type="button" class="button insert-media add_media generate-sections-add-media" data-editor="generate-sections-editor"><span class="wp-media-buttons-icon"></span><?php _e( 'Add Media', 'gp-premium' );?></button>
-								<?php do_action( 'media_buttons' ); ?>
+								<div class="wp-media-buttons">
+									<button type="button" class="button insert-media add_media generate-sections-add-media" data-editor="generate-sections-editor"><span class="wp-media-buttons-icon"></span><?php _e( 'Add Media', 'gp-premium' );?></button>
+									<?php do_action( 'media_buttons' ); ?>
+								</div>
+
+								<div class="wp-editor-tabs">
+									<button type="button" id="content-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="generate-sections-editor"><?php _e( 'Visual', 'gp-premium' ); ?></button>
+									<button type="button" id="content-html" class="wp-switch-editor switch-html" data-wp-editor-id="generate-sections-editor"><?php _ex( 'Text', 'Name for the Text editor tab (formerly HTML)', 'gp-premium' ); ?></button>
+								</div>
+
+							</div><!-- .wp-editor-tools -->
+
+							<div class="wp-editor-container">
+								<textarea id="generate-sections-editor" class="wp-editor-area" autocomplete="off" cols="40" name="content">{{{ data.content }}}</textarea>
 							</div>
 
-							<div class="wp-editor-tabs">
-								<button type="button" id="content-tmce" class="wp-switch-editor switch-tmce" data-wp-editor-id="generate-sections-editor"><?php _e( 'Visual', 'gp-premium' ); ?></button>
-								<button type="button" id="content-html" class="wp-switch-editor switch-html" data-wp-editor-id="generate-sections-editor"><?php _ex( 'Text', 'Name for the Text editor tab (formerly HTML)', 'gp-premium' ); ?></button>
-							</div>
-
-						</div><!-- .wp-editor-tools -->
-
-						<div class="wp-editor-container">
-							<textarea id="generate-sections-editor" class="wp-editor-area" autocomplete="off" cols="40" name="content">{{{ data.content }}}</textarea>
 						</div>
 
 					</div>
 
 				</div>
+			<?php else : ?>
+				<div class="gs-grid-100 generate-sections-editor-wrap">
+					<div id="custom-media-buttons">
+						<?php do_action( 'media_buttons' ); ?>
+					</div>
 
-			</div>
+					<textarea id="generate-sections-editor" class="wp-editor-area" autocomplete="off" cols="40" name="content">{{{ data.content }}}</textarea>
+				</div>
+			<?php endif; ?>
 		</div>
 
 	</script>

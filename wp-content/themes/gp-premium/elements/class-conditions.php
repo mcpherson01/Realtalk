@@ -55,7 +55,7 @@ class GeneratePress_Conditions {
 
 		foreach ( $post_types as $post_type_slug => $post_type ) {
 
-			if ( in_array( $post_type_slug, array( 'fl-builder-template', 'fl-theme-layout' ) ) ) {
+			if ( in_array( $post_type_slug, array( 'fl-theme-layout' ) ) ) {
 				continue;
 			}
 
@@ -99,9 +99,13 @@ class GeneratePress_Conditions {
 					$post_type->labels->singular_name,
 				), '', $taxonomy->labels->singular_name );
 
-				$types[ $post_type_slug . '_archive' ]['locations']['taxonomy:' . $taxonomy_slug] = sprintf( esc_html_x( '%1$s %2$s Archive', '%1$s is post type label. %2$s is taxonomy label.', 'gp-premium' ), $post_type->labels->singular_name, $label );
+				if ( isset( $types[ $post_type_slug . '_archive' ]['locations'] ) ) {
+					$types[ $post_type_slug . '_archive' ]['locations']['taxonomy:' . $taxonomy_slug] = sprintf( esc_html_x( '%1$s %2$s Archive', '%1$s is post type label. %2$s is taxonomy label.', 'gp-premium' ), $post_type->labels->singular_name, $label );
+				}
 
-				$types[ $post_type_slug ]['locations'][$post_type_slug . ':taxonomy:' . $taxonomy_slug] = esc_html( $post_type->labels->singular_name . ' ' . $label );
+				if ( isset( $types[ $post_type_slug ]['locations'] ) ) {
+					$types[ $post_type_slug ]['locations'][$post_type_slug . ':taxonomy:' . $taxonomy_slug] = esc_html( $post_type->labels->singular_name . ' ' . $label );
+				}
 			}
 		}
 

@@ -129,14 +129,26 @@ a#generate-add-section, a#generate-delete-sections {
     padding: 10px 20px;
 }
 
-#wp-generate-sections-editor-wrap .wp-media-buttons > * {
+#wp-generate-sections-editor-wrap.old-sections-js .wp-media-buttons > * {
 	display:none;
 }
 
-#wp-generate-sections-editor-wrap .wp-media-buttons > .generate-sections-add-media,
-#wp-generate-sections-editor-wrap .wp-media-buttons > .su-generator-button,
-#wp-generate-sections-editor-wrap .wp-media-buttons > .envira-gallery-choose-gallery,
-#wp-generate-sections-editor-wrap .wp-media-buttons > .gridable-insert-row-button {
+#wp-generate-sections-editor-wrap.old-sections-js .wp-media-buttons > .generate-sections-add-media,
+#wp-generate-sections-editor-wrap.old-sections-js .wp-media-buttons > .su-generator-button,
+#wp-generate-sections-editor-wrap.old-sections-js .wp-media-buttons > .envira-gallery-choose-gallery,
+#wp-generate-sections-editor-wrap.old-sections-js .wp-media-buttons > .gridable-insert-row-button {
+	display: inline-block;
+}
+
+#custom-media-buttons > * {
+	display: none;
+}
+
+#custom-media-buttons > .insert-media,
+#custom-media-buttons > .su-generator-button,
+#custom-media-buttons > .envira-gallery-choose-gallery,
+#custom-media-buttons > .gridable-insert-row-button,
+#custom-media-buttons > .bfa-iconpicker {
 	display: inline-block;
 }
 
@@ -304,8 +316,8 @@ body.generate-modal-open { overflow: hidden; }
 .generate-sections-modal .media-frame-content .panel { display: none; padding: 2em; }
 .generate-sections-modal .media-frame-content .panel.active { display: block; }
 .generate-sections-modal .media-frame-content .panel .section-title input { width:100%;padding:10px; }
-.generate-sections-modal .media-frame-content .panel .html-active .mce-panel { display: none; }
-.generate-sections-modal .media-frame-content .panel .html-active .wp-editor-area { display: block !important; min-height: 300px; }
+.generate-sections-modal .media-frame-content .panel .old-sections-js.html-active .mce-panel { display: none; }
+.generate-sections-modal .media-frame-content .panel .old-sections-js.html-active .wp-editor-area { display: block !important; min-height: 300px; }
 .generate-sections-modal .media-frame-content .panel .mce-wp-dfw, .generate-sections-modal .media-frame-content .panel .qt-dfw { display: none; }
 .generate-sections-modal .media-frame-content .panel .generate-sections-remove-image { display: none; }
 

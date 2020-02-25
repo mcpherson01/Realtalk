@@ -63,6 +63,46 @@ $wp_customize->add_setting( 'generate_spacing_settings[footer_widget_container_l
 	)
 );
 
+// Footer widget area padding top
+$wp_customize->add_setting( 'generate_spacing_settings[mobile_footer_widget_container_top]',
+	array(
+		'default' => $defaults['mobile_footer_widget_container_top'],
+		'type' => 'option',
+		'sanitize_callback' => 'absint',
+		'transport' => 'postMessage'
+	)
+);
+
+// Footer widget area padding right
+$wp_customize->add_setting( 'generate_spacing_settings[mobile_footer_widget_container_right]',
+	array(
+		'default' => $defaults['mobile_footer_widget_container_right'],
+		'type' => 'option',
+		'sanitize_callback' => 'absint',
+		'transport' => 'postMessage'
+	)
+);
+
+// Footer widget area padding bottom
+$wp_customize->add_setting( 'generate_spacing_settings[mobile_footer_widget_container_bottom]',
+	array(
+		'default' => $defaults['mobile_footer_widget_container_bottom'],
+		'type' => 'option',
+		'sanitize_callback' => 'absint',
+		'transport' => 'postMessage'
+	)
+);
+
+// Footer widget area padding left
+$wp_customize->add_setting( 'generate_spacing_settings[mobile_footer_widget_container_left]',
+	array(
+		'default' => $defaults['mobile_footer_widget_container_left'],
+		'type' => 'option',
+		'sanitize_callback' => 'absint',
+		'transport' => 'postMessage'
+	)
+);
+
 // Make use of the Footer widget area padding settings
 $wp_customize->add_control(
 	new GeneratePress_Spacing_Control(
@@ -73,10 +113,14 @@ $wp_customize->add_control(
 			'label'      => esc_html__( 'Footer Widget Area Padding', 'gp-premium' ),
 			'section'    => $footer_section,
 			'settings'   => array(
-				'top'    => 'generate_spacing_settings[footer_widget_container_top]',
-				'right'  => 'generate_spacing_settings[footer_widget_container_right]',
-				'bottom' => 'generate_spacing_settings[footer_widget_container_bottom]',
-				'left'   => 'generate_spacing_settings[footer_widget_container_left]'
+				'desktop_top'    => 'generate_spacing_settings[footer_widget_container_top]',
+				'desktop_right'  => 'generate_spacing_settings[footer_widget_container_right]',
+				'desktop_bottom' => 'generate_spacing_settings[footer_widget_container_bottom]',
+				'desktop_left'   => 'generate_spacing_settings[footer_widget_container_left]',
+				'mobile_top'    => 'generate_spacing_settings[mobile_footer_widget_container_top]',
+				'mobile_right'  => 'generate_spacing_settings[mobile_footer_widget_container_right]',
+				'mobile_bottom' => 'generate_spacing_settings[mobile_footer_widget_container_bottom]',
+				'mobile_left'   => 'generate_spacing_settings[mobile_footer_widget_container_left]'
 			),
 			'element'	 => 'footer_widget_area',
 			'priority'   => 99
@@ -134,10 +178,10 @@ $wp_customize->add_control(
 			'label'      => esc_html__( 'Footer Padding', 'gp-premium' ),
 			'section'    => $footer_section,
 			'settings'   => array(
-				'top'    => 'generate_spacing_settings[footer_top]',
-				'right'  => 'generate_spacing_settings[footer_right]',
-				'bottom' => 'generate_spacing_settings[footer_bottom]',
-				'left'   => 'generate_spacing_settings[footer_left]'
+				'desktop_top'    => 'generate_spacing_settings[footer_top]',
+				'desktop_right'  => 'generate_spacing_settings[footer_right]',
+				'desktop_bottom' => 'generate_spacing_settings[footer_bottom]',
+				'desktop_left'   => 'generate_spacing_settings[footer_left]'
 			),
 			'element'	 => 'footer',
 			'priority'   => 105

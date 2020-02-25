@@ -74,10 +74,24 @@ class GeneratePress_Site {
 	protected $minimum_version;
 
 	/**
-	 * Get the uploads URL.
+	 * Plugins.
 	 *
-	 * @var int|string
+	 * @var array
 	 */
+	protected $plugins;
+
+	/**
+	 * Documentation URL.
+	 *
+	 * @var string
+	 */
+	protected $documentation;
+
+	/**
+	* Get the uploads URL.
+	*
+	* @var int|string
+	*/
 	protected $uploads_url;
 
 	/**
@@ -105,6 +119,8 @@ class GeneratePress_Site {
 			'page_builder'	=> array(),
 			'uploads_url'	=> array(),
 			'min_version'	=> GP_PREMIUM_VERSION,
+			'plugins'		=> '',
+			'documentation'	=> '',
 		) );
 
 		$this->helpers = new GeneratePress_Sites_Helper();
@@ -121,18 +137,20 @@ class GeneratePress_Site {
 			return;
 		}
 
-		$this->name 		= $config['name'];
-		$this->slug			= str_replace( ' ', '_', strtolower( $this->name ) );
-		$this->preview_url 	= $config['preview_url'];
-		$this->author_name	= $config['author_name'];
-		$this->author_url	= $config['author_url'];
-		$this->description	= $config['description'];
-		$this->icon			= $config['icon'];
-		$this->screenshot	= $config['screenshot'];
-		$this->page_builder = $config['page_builder'];
-		$this->min_version	= $config['min_version'];
-		$this->uploads_url	= $config['uploads_url'];
-		$this->installable	= true;
+		$this->name 			= $config['name'];
+		$this->slug				= str_replace( ' ', '_', strtolower( $this->name ) );
+		$this->preview_url 		= $config['preview_url'];
+		$this->author_name		= $config['author_name'];
+		$this->author_url		= $config['author_url'];
+		$this->description		= $config['description'];
+		$this->icon				= $config['icon'];
+		$this->screenshot		= $config['screenshot'];
+		$this->page_builder 	= $config['page_builder'];
+		$this->min_version		= $config['min_version'];
+		$this->uploads_url		= $config['uploads_url'];
+		$this->plugins			= $config['plugins'];
+		$this->documentation 	= $config['documentation'];
+		$this->installable		= true;
 
 		if ( empty( $this->min_version ) ) {
 			$this->min_version = GP_PREMIUM_VERSION;
@@ -143,7 +161,7 @@ class GeneratePress_Site {
 		}
 
 		add_action( 'generate_inside_sites_container',						array( $this, 'build_box' ) );
-		add_action( "wp_ajax_generate_setup_site_{$this->slug}",			array( $this, 'setup_site' ), 10, 0 );
+		add_action( "wp_ajax_generate_setup_demo_content_{$this->slug}",	array( $this, 'setup_demo_content' ), 10, 0 );
 		add_action( "wp_ajax_generate_check_plugins_{$this->slug}",			array( $this, 'check_plugins' ), 10, 0 );
 		add_action( "wp_ajax_generate_backup_options_{$this->slug}",		array( $this, 'backup_options' ), 10, 0 );
 		add_action( "wp_ajax_generate_import_options_{$this->slug}",		array( $this, 'import_options' ), 10, 0 );
@@ -165,35 +183,51 @@ class GeneratePress_Site {
 	 */
 	public function site_details() {
 
-		printf( '<div class="site-screenshot">
-					%1$s
-						<img src="%2$s" alt="%3$s" />
-					%4$s
+		printf( '<div class="site-screenshot site-overview-screenshot">
+					<img src="" alt="%s" />
 				</div>',
-				$this->preview_url ? '<a class="preview-site" href="' . esc_url( $this->preview_url ) . '" target="_blank">' : '',
-				esc_url( $this->directory . $this->screenshot ),
-				esc_attr( $this->name ),
-				$this->preview_url ? '</a>' : ''
+				esc_attr( $this->name )
 		);
 
-		printf( '<div class="site-description">
-					<h3>
-						%1$s
-					</h3>
-					<span class="author-name">
-						<a href="%2$s" target="_blank" rel="noopener">
-							%3$s
-						</a>
-					</span>
+		?>
+
+		<div class="site-description">
+			<?php if ( $this->documentation ) : ?>
+				<div class="site-documentation">
+					<h3><?php _e( 'Documentation', 'gp-premium' ); ?></h3>
 					<p>
-						%4$s
+						<?php _e( 'Learn how to customize this site.', 'gp-premium' ); ?>
+						<a href="<?php echo esc_url( $this->documentation ); ?>" target="_blank" rel="noopener"><?php _e( 'View documentation', 'gp-premium' ); ?> &rarr;</a>
 					</p>
-				</div>',
-				$this->name,
-				esc_url( $this->author_url ),
-				$this->author_name,
-				$this->description
-		);
+				</div>
+			<?php endif; ?>
+
+			<div class="library-help">
+				<h3><?php _e( 'Using the Site Library', 'gp-premium' ); ?></h3>
+
+				<p>
+					<?php _e( 'Learn more about using the site library.', 'gp-premium' ); ?>
+					<a href="https://docs.generatepress.com/article/using-the-site-library/" target="_blank" rel="noopener"><?php _e( 'View instructions', 'gp-premium' ); ?> &rarr;</a>
+				</p>
+			</div>
+
+			<?php if ( $this->author_name && 'GeneratePress' !== $this->author_name ) : ?>
+				<div class="site-author">
+					<h3><?php _e( 'Site Author', 'gp-premium' ); ?></h3>
+					<p>
+						<?php
+							printf(
+								__( '%s is brought to you by ', 'gp-premium' ),
+								$this->name
+							);
+						?>
+						<a href="<?php echo esc_url( $this->author_url ); ?>" target="_blank" rel="noopener"><?php echo $this->author_name; ?></a>.
+					</p>
+				</div>
+			<?php endif; ?>
+		</div>
+
+		<?php
 
 	}
 
@@ -208,6 +242,7 @@ class GeneratePress_Site {
 			<button title="<?php esc_attr_e( 'Previous Site', 'gp-premium' ); ?>" class="prev"><span class="screen-reader-text"><?php esc_html_e( 'Previous', 'gp-premium' ); ?></span></button>
 			<button title="<?php esc_attr_e( 'Next Site', 'gp-premium' ); ?>" class="next"><span class="screen-reader-text"><?php esc_html_e( 'Next', 'gp-premium' ); ?></span></button>
 			<button title="<?php esc_attr_e( 'Close', 'gp-premium' ); ?>" class="close"><span class="screen-reader-text"><?php esc_html_e( 'Close', 'gp-premium' ); ?></span></button>
+			<button title="<?php esc_attr_e( 'Preview', 'gp-premium' ); ?>" class="preview-site"><?php _e( 'Preview', 'gp-premium' ); ?></button>
 		</div>
 		<?php
 	}
@@ -219,11 +254,41 @@ class GeneratePress_Site {
 	 */
 	public function loading_icon() {
 		?>
-		<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-			<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"/>
-			<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z">
-				<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"/>
-			</path>
+		<svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" stroke="#000">
+		    <g fill="none" fill-rule="evenodd" stroke-width="2">
+		        <circle cx="22" cy="22" r="1">
+		            <animate attributeName="r"
+		                begin="0s" dur="1.8s"
+		                values="1; 20"
+		                calcMode="spline"
+		                keyTimes="0; 1"
+		                keySplines="0.165, 0.84, 0.44, 1"
+		                repeatCount="indefinite" />
+		            <animate attributeName="stroke-opacity"
+		                begin="0s" dur="1.8s"
+		                values="1; 0"
+		                calcMode="spline"
+		                keyTimes="0; 1"
+		                keySplines="0.3, 0.61, 0.355, 1"
+		                repeatCount="indefinite" />
+		        </circle>
+		        <circle cx="22" cy="22" r="1">
+		            <animate attributeName="r"
+		                begin="-0.9s" dur="1.8s"
+		                values="1; 20"
+		                calcMode="spline"
+		                keyTimes="0; 1"
+		                keySplines="0.165, 0.84, 0.44, 1"
+		                repeatCount="indefinite" />
+		            <animate attributeName="stroke-opacity"
+		                begin="-0.9s" dur="1.8s"
+		                values="1; 0"
+		                calcMode="spline"
+		                keyTimes="0; 1"
+		                keySplines="0.3, 0.61, 0.355, 1"
+		                repeatCount="indefinite" />
+		        </circle>
+		    </g>
 		</svg>
 		<?php
 	}
@@ -238,6 +303,7 @@ class GeneratePress_Site {
 		$site_data = array(
 			'slug'			=> $this->slug,
 			'preview_url' 	=> $this->preview_url,
+			'plugins'		=> $this->plugins,
 		);
 
 		$page_builders = array();
@@ -256,7 +322,6 @@ class GeneratePress_Site {
 			<div class="steps step-one">
 				<div class="site-info">
 					<div class="site-description">
-						<a href="<?php echo esc_url( $this->author_url ); ?>" target="_blank" rel="noopener"><span class="author-name"><?php echo $this->author_name; ?></span></a>
 						<h3><a class="site-details" href="#"><?php echo $this->name; ?></a></h3>
 						<?php
 						if ( $this->description ) {
@@ -265,8 +330,10 @@ class GeneratePress_Site {
 						?>
 
 						<?php if ( $this->installable ) : ?>
-							<button class="button preview-site"><?php _e( 'Preview', 'gp-premium' ); ?></button>
-							<button class="button-primary site-details"><?php _e( 'Details', 'gp-premium' ); ?></button>
+							<div class="site-card-buttons">
+								<button class="button preview-site"><?php _e( 'Preview', 'gp-premium' ); ?></button>
+								<button class="button-primary site-details"><?php _e( 'Details', 'gp-premium' ); ?></button>
+							</div>
 						<?php else : ?>
 							<span class="version-required-message">
 								<?php printf( _x( 'Requires GP Premium %s', 'required version number', 'gp-premium' ), $this->min_version ); ?>
@@ -275,7 +342,7 @@ class GeneratePress_Site {
 					</div>
 				</div>
 
-				<div class="site-screenshot">
+				<div class="site-screenshot site-card-screenshot">
 					<img class="lazyload" src="<?php echo GENERATE_SITES_URL; ?>/assets/images/screenshot.png" data-src="<?php echo esc_url( $this->directory . $this->screenshot ); ?>" alt="" />
 				</div>
 
@@ -287,283 +354,154 @@ class GeneratePress_Site {
 
 			<div class="steps step-overview" style="display: none;">
 				<div class="step-information">
-					<?php $this->site_controls(); ?>
-					<h3 style="margin-bottom: 0;"><?php _e( 'Overview', 'gp-premium' ); ?></h3>
+					<h1 style="margin-bottom: 0;">
+						<?php printf(
+							__( 'Welcome to %s.', 'gp-premium' ),
+							$this->name
+						); ?>
+					</h1>
 
-					<div class="separator"></div>
+					<p><?php echo $this->description; ?></p>
 
-					<h3><?php _e( 'Theme Options', 'gp-premium' ); ?></h3>
-					<div class="theme-options loading">
-						<?php $this->loading_icon(); ?>
-					</div>
-					<p style="display:none;"></p>
+					<div class="action-area">
+						<div class="action-buttons">
+							<?php echo $this->action_button(); ?>
 
-					<div class="site-content-description">
-						<div class="separator"></div>
-						<h3><?php _e( 'Site Content', 'gp-premium' ); ?><span class="step-note"><?php _e( 'Optional', 'gp-premium' ); ?></span></h3>
-						<div class="site-content loading">
-							<?php $this->loading_icon(); ?>
-						</div>
-						<p style="display:none;"></p>
-
-						<div class="plugin-area" style="display:none;">
-							<h4><?php _e( 'Plugins', 'gp-premium' ); ?></h4>
-							<div class="checking-for-plugins loading">
+							<div class="loading" style="display: none;">
+								<span class="site-message"></span>
 								<?php $this->loading_icon(); ?>
 							</div>
 
-							<div class="automatic-plugins" style="display:none">
-								<p><?php _e( 'The following plugins can be installed and activated automatically.', 'gp-premium' ); ?></p>
-								<ul></ul>
+							<span class="error-message" style="display: none;"><a href="#">[?]</a></span>
+						</div>
+
+						<div class="important-note confirm-content-import-message" style="display: none;">
+							<label>
+								<input id="confirm-content-import" name="confirm-content-import" class="confirm-content-import" type="checkbox" />
+								<?php _e( 'I understand that this step will add content, site options, menus, widgets and plugins to my site. It can not be automatically undone.', 'gp-premium' ); ?>
+							</label>
+						</div>
+
+						<?php if ( GeneratePress_Sites_Helper::do_options_exist() ) : ?>
+							<div class="important-note confirm-backup-options">
+								<label>
+									<input id="confirm-options-import" name="confirm-options-import" class="confirm-options-import" type="checkbox" />
+									<?php _e( 'I understand that this step will overwrite my Customizer settings. It is recommended that you only use the Site Library on a fresh site.', 'gp-premium' ); ?>
+								</label>
 							</div>
-
-							<div class="installed-plugins" style="display:none">
-								<p><?php _e( 'The following plugins are already installed.', 'gp-premium' ); ?></p>
-								<ul></ul>
-							</div>
-
-							<div class="manual-plugins" style="display:none;">
-								<p><?php _e( 'The following plugins need to be installed and activated manually.', 'gp-premium' ); ?></p>
-								<ul></ul>
-							</div>
-
-							<div class="no-plugins" style="display: none;">
-								<p><?php _e( 'No plugins necessary.', 'gp-premium' ); ?></p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="site-overview-details">
-					<div class="actions">
-						<div class="left">
-							<?php if ( $this->preview_url ) { ?>
-								<a class="button preview-site" href="<?php echo esc_url( $this->preview_url ); ?>" target="_blank"><?php _e( 'Preview', 'gp-premium' ); ?></a>
-							<?php } ?>
-						</div>
-						<div class="right">
-							<span class="error-message" style="display: none;"></span>
-
-							<div class="loading">
-								<span class="site-message"><?php _e( 'Gathering data', 'gp-premium' ); ?></span>
-								<?php $this->loading_icon(); ?>
-							</div>
-
-							<button style="display: none;" class="button-primary next-step"><?php _e( 'Get Started', 'gp-premium' ); ?></button>
-						</div>
+						<?php endif; ?>
 					</div>
 
-					<?php $this->site_details(); ?>
+					<div class="site-step-details">
+						<div class="theme-options">
+							<span class="number"></span>
+							<span class="big-loader"><?php $this->loading_icon(); ?></span>
 
-				</div>
-			</div>
-
-			<div class="steps" style="display: none;">
-				<div class="step-information">
-					<?php $this->site_controls(); ?>
-					<h3><?php _e( 'GeneratePress Options', 'gp-premium' ); ?></h3>
-
-					<div class="separator"></div>
-
-					<p><?php _e( 'This step will backup your current theme options, then import the new ones.', 'gp-premium' ); ?></p>
-
-					<div class="required-modules">
-						<p><?php _e( 'The following GP Premium modules will be activated:', 'gp-premium' ); ?></p>
-						<ul></ul>
-					</div>
-				</div>
-
-				<div class="site-overview-details">
-					<div class="actions">
-						<div class="left">
-							<button class="button start-over"><?php _e( 'Go Back', 'gp-premium' ); ?></button>
-						</div>
-						<div class="right">
-							<form method="post">
-								<span class="error-message" style="display: none;"></span>
-
-								<?php submit_button(
-									__( 'Backup Options', 'gp-premium' ),
-									'button-primary backup-options site-action',
-									'submit',
-									false,
-									array(
-										'id' => ''
-									)
-								); ?>
-
-								<?php submit_button(
-									__( 'Import Options', 'gp-premium' ),
-									'button-primary import-options site-action',
-									'submit',
-									false,
-									array(
-										'id' => '',
-										'style' => 'display:none'
-									)
-								); ?>
-
-								<div class="loading" style="display: none;">
-									<span class="site-message" style="display: none;"></span>
-									<?php $this->loading_icon(); ?>
-								</div>
-
-								<span class="complete" style="display: none;"></span>
-							</form>
-						</div>
-					</div>
-					<?php $this->site_details(); ?>
-				</div>
-			</div>
-
-			<div class="steps site-content-description" style="display: none;">
-				<div class="step-information">
-					<?php $this->site_controls(); ?>
-					<h3><?php _e( 'Content', 'gp-premium' ); ?><span class="step-note"><?php _e( 'Optional', 'gp-premium' ); ?></span></h3>
-
-					<div class="separator"></div>
-
-					<div class="important-note">
-						<label>
-							<input id="confirm-content-import" name="confirm-content-import" class="confirm-content-import" type="checkbox" />
-							<?php _e( 'I understand that this step will add content, site options, menus, widgets and plugins to my site.', 'gp-premium' ); ?>
-						</label>
-					</div>
-
-					<p>
-						<?php
-						printf(
-							__( 'For best results, only install this demo content on fresh sites with no content. If you have already installed another GeneratePress Site, be sure to %s by deleting the content, plugins and menus that it added.', 'gp-premium' ),
-							sprintf(
-								'<a href="https://docs.generatepress.com/article/removing-imported-site/" target="_blank" rel="noopener">%s</a>',
-								__( 'clean it up', 'gp-premium' )
-							)
-						);
-						?>
-					</p>
-					<p><?php _e( 'You can <a href="#" class="next-step">skip</a> this step if you already have content and do not want the demo content imported.', 'gp-premium' ); ?></p>
-
-					<div class="plugin-area" style="display:none;">
-						<div class="checking-for-plugins loading">
-							<?php $this->loading_icon(); ?>
+							<h3><?php _e( 'Theme Options', 'gp-premium' ); ?></h3>
+							<p><?php _e( 'Options set in the Customizer of the theme.', 'gp-premium' ); ?></p>
 						</div>
 
-						<div class="automatic-plugins" style="display:none">
-							<p><?php _e( 'The following plugins can be installed and activated automatically.', 'gp-premium' ); ?></p>
-							<ul></ul>
-						</div>
+						<div class="demo-content">
+							<span class="number"></span>
+							<span class="big-loader"><?php $this->loading_icon(); ?></span>
 
-						<div class="installed-plugins" style="display:none">
-							<p><?php _e( 'The following plugins are already installed.', 'gp-premium' ); ?></p>
-							<ul></ul>
-						</div>
-
-						<div class="manual-plugins" style="display:none;">
-							<p><?php _e( 'The following plugins need to be installed and activated manually.', 'gp-premium' ); ?></p>
-							<ul></ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="site-overview-details">
-					<div class="actions">
-						<div class="left">
-							<?php submit_button( __( 'Skip', 'gp-premium' ), 'button next-step', 'submit', false, array( 'id' => '' ) ); ?>
-						</div>
-						<div class="right">
-							<form method="post">
-								<span class="error-message" style="display: none;"></span>
-
-								<?php
-								submit_button(
-									__( 'Import Content', 'gp-premium' ),
-									'button-primary import-content site-action',
-									'submit',
-									false,
-									array(
-										'id' => '',
-										'disabled' => 'disabled'
-									)
-								);
-								?>
-
-								<div class="loading" style="display: none;">
-									<span class="site-message" style="display: none;"></span>
-									<?php $this->loading_icon(); ?>
-								</div>
-
-								<span class="complete" style="display: none;"></span>
-							</form>
-						</div>
-					</div>
-					<?php $this->site_details(); ?>
-				</div>
-			</div>
-
-			<div class="steps last-step" style="display: none;">
-				<div class="step-information">
-					<?php $this->site_controls(); ?>
-
-					<?php
-					if ( function_exists( 'wp_get_upload_dir' ) ) {
-						$uploads_url = wp_get_upload_dir();
-					} else {
-						$uploads_url = wp_upload_dir( null, false );
-					}
-
-					$uploads_url = $uploads_url['baseurl'];
-
-					if ( $this->uploads_url ) : ?>
-						<div class="elementor-last-step" style="display: none;">
-							<h3><?php _e( 'One more thing!', 'gp-premium' ); ?></h3>
-							<p><?php _e( 'Since you are using Elementor, you need to replace the imported image URLs.', 'gp-premium' ); ?> <a title="<?php _e( 'Learn more', 'gp-premium' ); ?>" href="https://docs.generatepress.com/article/replacing-urls-in-elementor/" target="_blank" rel="noopener">[?]</a></p>
-
+							<h3 id="demo-content"><?php _e( 'Demo Content', 'gp-premium' ); ?><span class="skip-content-import" style="display: none;"><a href="#"><?php _e( 'Skip this step', 'gp-premium' ); ?> &rarr;</a></span></h3>
 							<p>
-								<?php printf(
-									__( 'Go to %s, enter the below URLs and click the "Replace URL" button.', 'gp-premium' ),
-									'<a href="' . admin_url( 'admin.php?page=elementor-tools#tab-replace_url' ) . '" target="_blank" rel="noopener">Elementor > Tools > Replace URLs</a>'
-								) ?>
+								<?php _e( 'Things like pages, menus, widgets and plugins.', 'gp-premium' ); ?>
 							</p>
 
-							<ul>
-								<li><?php _e( 'Old URL', 'gp-premium' ); ?>: <?php echo $this->uploads_url; ?></li>
-								<li><?php _e( 'New URL', 'gp-premium' ); ?>: <?php echo $uploads_url; ?></li>
-							</ul>
+							<?php if ( $this->plugins ) :
+								$plugins = json_decode( $this->plugins, true );
+
+								if ( ! empty( $plugins ) ) :
+									?>
+									<div class="site-plugins">
+										<p><?php _e( 'This site uses the following plugins.', 'gp-premium' ); ?></p>
+										<ul>
+											<?php foreach( $plugins as $name => $id ) {
+												printf(
+													'<li>%s</li>',
+													$name
+												);
+											} ?>
+										</ul>
+									</div>
+									<?php
+								endif;
+							endif; ?>
+
+							<div class="plugin-area">
+								<div class="no-plugins" style="display: none;">
+									<p><?php _e( 'No plugins required.', 'gp-premium' ); ?></p>
+								</div>
+
+								<div class="automatic-plugins" style="display:none">
+									<p><?php _e( 'The following plugins can be installed and activated automatically.', 'gp-premium' ); ?></p>
+									<ul></ul>
+								</div>
+
+								<div class="installed-plugins" style="display:none">
+									<p><?php _e( 'The following plugins are already installed.', 'gp-premium' ); ?></p>
+									<ul></ul>
+								</div>
+
+								<div class="manual-plugins" style="display:none;">
+									<p><?php _e( 'The following plugins need to be installed and activated manually.', 'gp-premium' ); ?></p>
+									<ul></ul>
+								</div>
+							</div>
 						</div>
-					<?php endif; ?>
 
-					<h3><?php _e( 'All done!', 'gp-premium' ); ?></h3>
-					<p><?php _e( 'Your site is ready to go!', 'gp-premium' ); ?></p>
+						<div class="import-complete">
+							<span class="number"></span>
+							<span class="big-loader"><?php $this->loading_icon(); ?></span>
 
-					<?php if ( $this->author_name ) : ?>
-						<p class="author-credit-byline">
-							<?php printf( __( 'Crafted with %s by', 'gp-premium' ), '<span class="dashicons dashicons-heart"></span>' ); ?>
-						</p>
-
-						<span class="author-credit">
+							<h3 id="import-complete"><?php _e( 'All Done', 'gp-premium' ); ?></h3>
+							<p><?php _e( 'Your site is ready to go!', 'gp-premium' ); ?></p>
 							<?php
-							printf( '%1$s%2$s%3$s',
-								$this->author_url ? '<a href="' . $this->author_url . '" target="_blank">' : '',
-								$this->author_name,
-								$this->author_url ? '</a>' : ''
-							);
+							$plugins_array = json_decode( $this->plugins, true );
+
+							if ( $this->uploads_url && is_array( $plugins_array ) && in_array( 'elementor/elementor.php', $plugins_array ) ) :
+								if ( function_exists( 'wp_get_upload_dir' ) ) {
+									$uploads_url = wp_get_upload_dir();
+								} else {
+									$uploads_url = wp_upload_dir( null, false );
+								}
+
+								$uploads_url = $uploads_url['baseurl'];
+
+								if ( $this->uploads_url ) : ?>
+									<div class="replace-elementor-urls" style="display: none;">
+										<h4><?php _e( 'Additional Cleanup', 'gp-premium' ); ?></h4>
+										<p><?php _e( 'This site is using Elementor which means you will want to replace the imported image URLs.', 'gp-premium' ); ?> <a title="<?php _e( 'Learn more', 'gp-premium' ); ?>" href="https://docs.generatepress.com/article/replacing-urls-in-elementor/" target="_blank" rel="noopener">[?]</a></p>
+
+										<p>
+											<?php printf(
+												__( 'Go to %s, enter the below URLs and click the "Replace URL" button.', 'gp-premium' ),
+												'<a href="' . admin_url( 'admin.php?page=elementor-tools#tab-replace_url' ) . '" target="_blank" rel="noopener">Elementor > Tools > Replace URLs</a>'
+											) ?>
+										</p>
+
+										<div class="elementor-urls">
+											<label for="old-url"><?php _e( 'Old URL', 'gp-premium' ); ?></label>
+											<input id="old-url" type="text" value="<?php echo $this->uploads_url; ?>" />
+
+											<label for="new-url"><?php _e( 'New URL', 'gp-premium' ); ?></label>
+											<input id="new-url" type="text" value="<?php echo $uploads_url; ?>" />
+										</div>
+									</div>
+								<?php
+								endif;
+							endif;
 							?>
-						</span>
-					<?php endif; ?>
+						</div>
+					</div>
 				</div>
 
 				<div class="site-overview-details">
-					<div class="actions">
-						<div class="left">
-							<button class="button start-over"><?php _e( 'Start Over', 'gp-premium' ); ?></button>
-						</div>
-						<div class="right">
-							<a href="<?php echo esc_url( site_url() ); ?>" class="button-primary"><?php _e( 'View Site', 'gp-premium' ); ?></a>
-						</div>
-					</div>
+					<?php $this->site_controls(); ?>
 					<?php $this->site_details(); ?>
 				</div>
-
 			</div>
 
 			<div class="site-demo" style="display: none;">
@@ -585,6 +523,57 @@ class GeneratePress_Site {
 		</div>
 	<?php
 
+	}
+
+	public function action_button() {
+
+		$options = GeneratePress_Sites_Helper::do_options_exist();
+
+		submit_button(
+			__( 'Backup Options', 'gp-premium' ),
+			'button-primary backup-options site-action',
+			'submit',
+			false,
+			array(
+				'id' => '',
+				'disabled' => 'disabled',
+				'style' => ! $options ? 'display: none;' : '',
+			)
+		);
+
+		submit_button(
+			__( 'Import Options', 'gp-premium' ),
+			'button-primary import-options site-action',
+			'submit',
+			false,
+			array(
+				'id' => '',
+				'style' => $options ? 'display:none' : '',
+			)
+		);
+
+		submit_button(
+			__( 'Import Content', 'gp-premium' ),
+			'button-primary import-content site-action',
+			'submit',
+			false,
+			array(
+				'id' => '',
+				'disabled' => 'disabled',
+				'style' => 'display: none;',
+			)
+		);
+
+		submit_button(
+			__( 'View Your Site', 'gp-premium' ),
+			'button-primary view-site',
+			'submit',
+			false,
+			array(
+				'id' => '',
+				'style' => 'display: none;',
+			)
+		);
 	}
 
 	/**
@@ -625,9 +614,9 @@ class GeneratePress_Site {
 	/**
 	 * Tells our JS which files exist.
 	 *
-	 * @since 1.6
+	 * @since 1.8
 	 */
-	public function setup_site() {
+	public function setup_demo_content() {
 
 		check_ajax_referer( 'generate_sites_nonce', 'nonce' );
 
@@ -637,14 +626,7 @@ class GeneratePress_Site {
 
 		$settings = GeneratePress_Sites_Helper::get_options( $this->directory . 'options.json' );
 
-		$data['modules'] = $settings['modules'];
 		$data['plugins'] = $settings['plugins'];
-
-		if ( GeneratePress_Sites_Helper::file_exists( $this->directory . 'options.json' ) ) {
-			$data['options'] = true;
-		} else {
-			$data['options'] = false;
-		}
 
 		if ( GeneratePress_Sites_Helper::file_exists( $this->directory . 'content.xml' ) ) {
 			$data['content'] = true;
@@ -675,6 +657,10 @@ class GeneratePress_Site {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
+		}
+
+		if ( ! GeneratePress_Sites_Helper::file_exists( $this->directory . 'options.json' ) ) {
+			wp_send_json_error( __( 'No theme options exist.', 'gp-premium' ) );
 		}
 
 		$settings = GeneratePress_Sites_Helper::get_options( $this->directory . 'options.json' );
@@ -944,25 +930,6 @@ class GeneratePress_Site {
 
 		// Clear page builder cache.
 		GeneratePress_Sites_Helper::clear_page_builder_cache();
-
-		// if ( class_exists( 'Code_Snippets' ) && function_exists( '_code_snippets_save_imported_snippets' ) ) {
-		// 	if ( ! GeneratePress_Sites_Helper::file_exists( $this->directory . 'code-snippets.json' ) ) {
-		// 		return;
-		// 	}
-		//
-		// 	$data = GeneratePress_Sites_Helper::get_options( $this->directory . 'code-snippets.json' );
-		//
-		// 	$snippets = array();
-		//
-		// 	/* Reformat the data into snippet objects */
-		// 	foreach ( $data['snippets'] as $snippet ) {
-		// 		$snippet = new Code_Snippet( $snippet );
-		// 		$snippet->active = true;
-		// 		$snippets[] = $snippet;
-		// 	}
-		//
-		// 	_code_snippets_save_imported_snippets( $snippets, null, 'replace' );
-		// }
 
 		wp_send_json( __( 'Site options imported', 'gp-premium' ) );
 

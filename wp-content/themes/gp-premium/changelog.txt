@@ -1,5 +1,96 @@
 == changelog ==
 
+= 1.8.2 =
+* Elements: Use Page Hero site title color for mobile header site title
+* Menu Plus: Give mobile header site title more left spacing
+* Menu Plus: Fix nav search icon in sticky navigation when using nav branding in Firefox
+* Site Library: Show Site Library tab even if no sites exist
+* Site Library: Show an error message in Site Library if no sites exist
+* Typography: Remove reference to generate_get_navigation_location() function
+* WooCommerce: Remove quantity field arrows when using quantity buttons in Firefox
+* WooCommerce: Remove extra border when loading quantity buttons
+* WooCommerce: Use get_price_html() is sticky add to cart panel
+
+= 1.8.1 =
+* Menu Plus: Revert sticky nav duplicate ID fix due to Cyrillic script bug
+
+= 1.8 =
+* Blog: Apply columns filter to masonry grid sizer
+* Colors: Merge Footer Widgets and Footer controls in Color panel
+* Colors: Remove edit_theme_options capability to Customizer controls (set by default)
+* Disable Elements: Make sure mobile header is disabled when primary navigation is disabled
+* Elements: Add content width option in Layout Element
+* Elements: Fix mobile header logo when mobile menu toggled
+* Elements: Add generate_page_hero_location filter
+* Elements: Add generate_elements_show_object_ids filter to show IDs in Display Rule values
+* Elements: Prevent merged header wrap from conflicting with Elementor controls
+* Elements: Change Container tab name to Content
+* Elements: Add woocommerce_share option to Hooks
+* Elements: Improve WPML compatibility
+* Elements: Improve Polylang compatibility
+* Elements: Prevent PHP notices when adding taxonomy locations to non-existent archives
+* Elements: Add generate_mobile_cart_items hook to hook list
+* Elements: Add generate_element_post_id filter
+* Elements: Escape HTML elements inside Element textarea
+* Elements: Add Beaver Builder templates to the Display Rules
+* Menu Plus: Add mobile header breakpoint option
+* Menu Plus: Add off canvas overlay option
+* Menu Plus: Add navigation as header option
+* Menu Plus: Remove navigation logo option if navigation as header set
+* Menu Plus: Add sticky navigation logo option
+* Menu Plus: Allow site title in mobile header instead of logo
+* Menu Plus: Add option to move exit button inside the off canvas panel
+* Menu Plus: Change Slideout Navigation name to Off Canvas Panel
+* Menu Plus: Only re-focus after slideout close on escape key
+* Menu Plus: Give close slideout event a name so it can be removed
+* Menu Plus: Remove invalid transition-delay
+* Menu Plus: Improve slideout overlay transition
+* Menu Plus: Add mobile open/close icons to GPP font
+* Menu Plus: Allow dynamic widget classes in off canvas panel (fixes WC range slider widget issue)
+* Menu Plus: Basic compatibility with future SVG icons
+* Menu Plus: Prevent duplicate IDs when sticky navigation is cloned
+* Secondary Nav: Add dropdown direction option
+* Secondary Nav: Basic compatibility with future SVG icons
+* Sections: Fix section editor issues in WP 5.0
+* Sections: Show Better Font Awesome icon in editor
+* Sites: Re-design UI
+* Sites: Add option to activate as a module like all the other modules
+* Sites: Don't show backup options button if no options exist
+* Sites: Make JS action classes more specific to the site library
+* Sites: Set mime types of content.xml and widgets.wie
+* Spacing: Add header padding option for mobile
+* Spacing: Add widget padding option for mobile
+* Spacing: Add footer widgets padding option for mobile
+* Spacing: Add content separator option
+* Spacing: Apply mobile menu item width to mobile bar only
+* WooCommerce: Add option for mini cart in the menu
+* WooCommerce: Add option to open off overlay panel on add to cart
+* WooCommerce: Add option to open sticky add to cart panel on single products
+* WooCommerce: Add option to add +/- buttons to the quantity fields
+* WooCommerce: Add option to show number of items in cart menu item
+* WooCommerce: Add option to choose single product image area width
+* WooCommerce: Add color options for price slider widget
+* WooCommerce: Use CSS grid for the product archives
+* WooCommerce: Horizontally align add to cart buttons
+* WooCommerce: Re-design the cart widget
+* WooCommerce: Tighten up product info spacing
+* WooCommerce: Improve product tab design to look more like tabs
+* WooCommerce: Simplify single product image display
+* WooCommerce: Use flexbox for quantity/add to cart alignment
+* WooCommerce: Improve rating star styles
+* WooCommerce: Use product alignment setting for related/upsell products
+* WooCommerce: Remove bottom margin from product image
+* WooCommerce: Organize colors in the Customizer
+* WooCommerce: Remove title attribute from menu cart item
+* WooCommerce: Improve coupon field design
+* WooCommerce: Improve result count/ordering styling
+* WooCommerce: Add gap around WC single product images
+* WooCommerce: Remove arrow from checkout button
+* WooCommerce: Hide view cart link on add to cart click
+* WooCommerce: Organize CSS
+* Introduce in-Customizer shortcuts
+* Add generate_disable_customizer_shortcuts filter
+
 = 1.7.8 =
 * Sites: Prevent future compatibility issues with Elementor by removing automatic URL replacement
 

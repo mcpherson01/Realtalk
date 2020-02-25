@@ -211,6 +211,10 @@ select.select-type:hover {
 	background-color: #fafafa;
 }
 
+.dark-mode select.select-type:hover {
+	background-color: #23282d;
+}
+
 .element-metabox-tabs li:not([data-tab="display-rules"]):not([data-tab="internal-notes"]),
 .generate-elements-settings:not([data-tab="display-rules"]):not([data-tab="internal-notes"]) {
 	display: none;
@@ -418,4 +422,19 @@ body .select2-container--default .select2-selection--single {
 
 .select2-results__option[role="list"] {
     padding: 0;
+}
+
+#generate_premium_elements #_generate_content_width {
+    width: 65px;
+    vertical-align: middle;
+}
+
+#_generate_content_width + span {
+    border: 1px solid #ddd;
+    height: 26px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 26px;
+    padding: 0 10px;
+    margin-left: -6px;
 }

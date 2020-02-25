@@ -81,10 +81,10 @@ gp_premium_typography_live_update( 'top_bar_font_transform', '.top-bar', 'text-t
 /**
  * Site title font size, weight and transform
  */
-gp_premium_typography_live_update( 'site_title_font_size', '.main-title', 'font-size', 'px', gp_typography.desktop );
-gp_premium_typography_live_update( 'mobile_site_title_font_size', '.main-title', 'font-size', 'px', gp_typography.mobile );
-gp_premium_typography_live_update( 'site_title_font_weight', '.main-title', 'font-weight' );
-gp_premium_typography_live_update( 'site_title_font_transform', '.main-title', 'text-transform' );
+gp_premium_typography_live_update( 'site_title_font_size', '.main-title, .navigation-branding .main-title', 'font-size', 'px', gp_typography.desktop );
+gp_premium_typography_live_update( 'mobile_site_title_font_size', '.main-title, .navigation-branding .main-title', 'font-size', 'px', gp_typography.mobile );
+gp_premium_typography_live_update( 'site_title_font_weight', '.main-title, .navigation-branding .main-title', 'font-weight' );
+gp_premium_typography_live_update( 'site_title_font_transform', '.main-title, .navigation-branding .main-title', 'text-transform' );
 
 /**
  * Site description font size, weight and transform
@@ -101,6 +101,12 @@ gp_premium_typography_live_update( 'navigation_font_size', '.main-navigation a, 
 gp_premium_typography_live_update( 'mobile_navigation_font_size', '.main-navigation:not(.slideout-navigation) a, .menu-toggle', 'font-size', 'px', gp_typography.mobile );
 gp_premium_typography_live_update( 'navigation_font_weight', '.main-navigation a, .menu-toggle', 'font-weight' );
 gp_premium_typography_live_update( 'navigation_font_transform', '.main-navigation a, .menu-toggle', 'text-transform' );
+
+/**
+ * Site title when in navigation.
+ */
+ gp_premium_typography_live_update( 'navigation_site_title_font_size', '.navigation-branding .main-title', 'font-size', 'px', gp_typography.desktop );
+ gp_premium_typography_live_update( 'mobile_navigation_site_title_font_size', '.navigation-branding .main-title', 'font-size', 'px', gp_typography.mobile );
 
 /**
  * Secondary navigation font size, weight and transform

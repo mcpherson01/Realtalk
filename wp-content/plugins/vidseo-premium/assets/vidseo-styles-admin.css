@@ -1,0 +1,567 @@
+/* Tooltip container */
+.vidseo-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.vidseo-tooltip .vidseo-tooltiptext {
+    visibility: hidden;
+    width: 570px;
+    background-color: #444444;
+	font-size: 14px;
+    color: #fff;
+    text-align: left;
+    padding: 10px 15px;
+    border-radius: 6px;
+    position: absolute;
+	top: -12px;
+    left: 190%; 
+    z-index: 1;
+}
+.vidseo-tooltip:hover .vidseo-tooltiptext {
+    visibility: visible;
+}
+.vidseo-tooltip .vidseo-tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #444444 transparent transparent;
+}
+
+/* The alert message box */
+.vidseo-alert {
+    padding: 15px;
+	border-radius: 0px;
+    margin: 10px 0 5px;
+	font-size: 15px;
+    line-height: 150%;
+	color: #fff;
+}
+.vidseo-alert a {
+    color: #fff;
+	font-weight: 700;
+	text-decoration: none;
+	border-bottom: 1px dotted;
+}
+.vidseo-alert.vidseo-success {
+    background-color: #6BBD6E;
+}
+.vidseo-alert.vidseo-warning {
+    background-color: #FFAA2C;
+}
+.vidseo-alert.vidseo-info {
+    background-color: #47A8F5;
+}
+.vidseo-alert.danger {
+    background-color: #6BBD6E;
+}
+.vidseo-note {
+    background-color: #eee;
+    padding: 5px 20px;
+    border-radius: 0px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+#poststuff .vidseo-note h2 {
+    padding: 10px 0 0;
+    font-size: 20px;
+}
+#poststuff .vidseo-note ul {
+    padding: 10px 0;
+}
+#poststuff .vidseo-note ul li {
+    list-style-type: square;
+    margin-left: 18px;
+}
+#poststuff .vidseo-note .vidseo-code {
+    background-color: #ddd;
+    padding: 10px;
+}
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
+}
+.vidseo-containter {
+    font-size: 15px;
+}
+.vidseo-containter p {
+    font-size: 15px;
+}
+.vidseo-containter .vidseo-field {
+    /* width: 100%; */
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 0px;
+	background-color: #fff;
+    box-sizing: border-box;
+}
+.vidseo-containter .vidseo-field.readonly {
+    background: #eee;
+}
+
+.vidseo-faq {
+	margin-top: 20px;
+}
+.faq-container {
+	margin: 8px 0;
+	padding: 12px 20px;
+	border-radius: 0px;
+	background-color: #fff;
+    box-shadow: 5px 5px 5px #eee;
+	box-sizing: border-box;
+}
+.vidseo-q {
+	font-weight: 700;
+	line-height: 140%;
+	margin: 10px 0;
+}
+.vidseo-a {
+	line-height: 140%;
+	margin: 10px 0;
+}
+
+.vidseo-column {
+    float: left;
+	padding: 10px 0;
+}
+.vidseo-column.col-9 {
+    width: 75%;
+}
+.vidseo-column.col-8 {
+    width: 66.66666666666667%;
+}
+.vidseo-column.col-6 {
+    width: 50%;
+}
+.vidseo-column.col-4 {
+    width: 33.33333333333333%;
+}
+.vidseo-column.col-3 {
+    width: 25%;
+}
+.vidseo-column.col-12 {
+    width: 100%;
+}
+
+.vidseo-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.vidseo-label {
+	font-weight: 700;
+	line-height: 180%;
+}
+.vidseo-label:after {
+	content: ":";
+}
+
+.vidseo-main {
+	padding: 5px 20px 15px;
+	background-color: #fcfcfc;
+	border-radius: 0px;
+    box-shadow: 5px 5px 5px #eee;
+    font-size: 15px;
+}
+.vidseo-sidebar {
+	width: 100%;
+	padding: 0 0 0 7px;
+	box-sizing: border-box;
+}
+.vidseo-sidebar .box {
+	background-color: #fcfcfc;
+    box-shadow: 5px 5px 5px #eee;
+	padding: 5px 20px;
+	margin-bottom: 7px;
+	box-sizing: border-box;
+	border-radius: 0px;
+}
+.vidseo-sidebar .box p {
+	font-size: 14px;
+}
+.vidseo-btn {
+    background-color: #6BBD6E;
+    border: none;
+    color: #fff;
+	width: 100%;
+    padding: 12px 20px;
+	box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	border-radius: 0px;
+}
+.vidseo-btn:hover {
+    background-color: #3c963f;
+	color: #fff;
+}
+.vidseo-a li {
+   list-style-type: square;
+   margin-left: 18px;
+   padding: 5px;
+}
+.vidseo-main li {
+    list-style-type: square;
+    margin-left: 18px;
+    padding: 0px;
+ }
+.vidseo-tooltip-link {
+    color: #fff;
+    float: right!important;
+}
+
+/* Notice */
+.vidseo-notice {
+    padding: 10px;
+}
+.vidseo-p, .vidseo-form-notice, .vidseo-field-notice, .vidseo-btn-notice, .vidseo-clear-notice {
+    display: inline-block;
+}
+.vidseo-field-notice {
+    padding: 7px;
+    border: 2px solid #ddd;
+    border-radius: 0px;
+	background-color: #fff;
+    box-sizing: border-box;
+}
+.vidseo-btn-notice {
+    background-color: #6BBD6E;
+    border: none;
+    color: #fff;
+    padding: 8px;
+	border-radius: 0px;
+}
+
+/* The switch - the box around the slider */
+.vidseo-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .vidseo-switch input {display:none;}
+  
+  .vidseo-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e1e1e1;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .vidseo-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+     border-radius: 0px!important;
+  }
+  
+  input:checked + .vidseo-slider {
+    background-color: #6BBD6E;
+  }
+  
+  input:focus + .vidseo-slider {
+    box-shadow: 0 0 0px #6BBD6E;
+  }
+  
+  input:checked + .vidseo-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  .vidseo-slider.vidseo-disabled {
+    background-color: #bbb;
+  }
+  .vidseo-slider.vidseo-disabled:before {
+    background-color: #f5f5f5;
+  }
+
+  .vidseo-slider.vidseo-round {
+    border-radius: 0px;
+  }
+  
+  .vidseo-slider.vidseo-round:before {
+    border-radius: 0%;
+  }
+
+  
+/* Radio Switch Buttons */
+.vidseo-switch-radio {
+    overflow: hidden;
+    display: inline;
+}
+.vidseo-switch-radio:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.switch-title {
+  margin-bottom: 6px;
+}
+
+.vidseo-switch-radio input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+
+.vidseo-switch-radio label {
+  float: left;
+  background-color: #e1e1e1;
+  color: #777;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: none;
+  padding: 12px 15px;
+  min-width: 150px;
+  /*border: 1px solid #449447;*/
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition:    all 0.5s ease-in-out;
+  -ms-transition:     all 0.5s ease-in-out;
+  -o-transition:      all 0.5s ease-in-out;
+  transition:         all 0.5s ease-in-out;
+}
+.misc-pub-section .vidseo-switch-radio label {
+    min-width: 50px;
+}
+.vidseo-switch-radio label:hover {
+    cursor: pointer;
+}
+
+.vidseo-switch-radio input:checked + label {
+  background-color: #6BBD6E;
+  color: #fff;
+}
+.vidseo-switch-radio label:first-of-type {
+  border-radius: 0px 0 0 0px;
+  border-right: none;
+}
+.vidseo-switch-radio label:last-of-type {
+  border-radius: 0 0px 0px 0;
+}
+.vidseo-switch-radio input:checked + label:last-of-type {
+  background-color: #aaa;
+}
+.vidseo-switch-radio label.vidseo-disabled {
+    background-color: #cbcbcb;
+    color: #666;
+}
+.vidseo-switch-radio input:checked + label.vidseo-youtube {
+    background-color: #c4302b;
+}
+.vidseo-switch-radio input:checked + label.vidseo-vimeo {
+    background-color: #00adef;
+}
+
+.vidseo-switch-radio .vidseo-tooltip {
+    margin-top: 8px;
+    margin-left: 3px;
+    
+}
+.vidseo-switch-radio .vidseo-tooltip .vidseo-tooltiptext {
+    width: 400px;
+	font-size: 12px;
+    padding: 10px 15px;
+}
+
+.vidseo-area {
+    width: 100%;
+    height: 250px;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.link-box {
+    /*background-color: #60dabf;*/
+    background-color: #fff;
+    margin: 5px;
+    padding: 5px 20px 20px;
+    border-radius: 0px;
+}
+.link-box h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    border-bottom:  1px solid;
+    padding-bottom:  15px;
+    margin-bottom: 0;
+}
+.link-box img {
+    float: left; 
+    width: 75px; 
+    margin-right: 8px; 
+    /*border: 1px solid #ddd;*/
+}
+.link-btn {
+    display: block;
+    background-color: #0073aa;
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 0px;
+}
+.vidseo-overlay {
+    position: relative;
+    display: block;
+    margin-bottom: 4px
+}
+.vidseo-overlay-bg {
+    position: absolute;
+    /*background-color: rgba(20, 111, 91, 0.8);*/
+    background-color: rgba(70, 70, 70, 0.8);
+    width: 99%;
+    height: 100%;
+    border-radius: 0px;
+    margin-left: 5px;
+}
+.vidseo-overlay-bg h2 {
+	font-size: 30px;
+	color: #f1f1f1;
+	text-transform: uppercase;
+	text-align: center;
+	margin-top: 210px;
+}
+.vidseo-overlay-bg h2 span {
+	padding-right: 10px;
+	font-size: 36px!important;
+}
+.vidseo-meter { 
+    height: 25px;  /* Can be anything */
+    position: relative;
+    margin: 0 0 20px 0; /* Just for demo spacing */
+    background: #ededed;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 160%;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 0px;
+}
+.vidseo-meter > span {
+    display: block;
+    height: 100%;
+    background-color: #6BBD6E;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+}
+.vidseo-meter > span:after, .vidseo-animate > span > span {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-image: 
+       -webkit-gradient(linear, 0 0, 100% 100%, 
+          color-stop(.25, rgba(255, 255, 255, .2)), 
+          color-stop(.25, transparent), color-stop(.5, transparent), 
+          color-stop(.5, rgba(255, 255, 255, .2)), 
+          color-stop(.75, rgba(255, 255, 255, .2)), 
+          color-stop(.75, transparent), to(transparent)
+       );
+    background-image: 
+        -moz-linear-gradient(
+          -45deg, 
+          rgba(255, 255, 255, .2) 25%, 
+          transparent 25%, 
+          transparent 50%, 
+          rgba(255, 255, 255, .2) 50%, 
+          rgba(255, 255, 255, .2) 75%, 
+          transparent 75%, 
+          transparent
+       );
+    z-index: 1;
+    background-size: 50px 50px;
+    -webkit-background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    animation: move 2s linear infinite;
+    -webkit-animation: move 2s linear infinite;
+       -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+           -moz-border-radius-topright: 8px;
+        -moz-border-radius-bottomright: 8px;
+               border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        -webkit-border-top-left-radius: 20px;
+     -webkit-border-bottom-left-radius: 20px;
+            -moz-border-radius-topleft: 20px;
+         -moz-border-radius-bottomleft: 20px;
+                border-top-left-radius: 20px;
+             border-bottom-left-radius: 20px;
+    overflow: hidden;
+}
+
+.vidseo-animate > span:after {
+    display: none;
+}
+@keyframes move {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 50px 50px;
+    }
+}
+@-webkit-keyframes move {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 50px 50px;
+    }
+}
+.vidseo-nostripes > span > span, .vidseo-nostripes > span:after {
+    animation: none;
+    -webkit-animation: none;
+    background-image: none;
+}
+
+.vidseo-containter .dashicons {
+	font-size: 30px;
+	margin-top: -7px;
+	margin-right: 1px;
+}
+
+h2.vidseo_heading {
+    text-transform: uppercase;
+    background-color: #eee;
+    padding: 15px;
+}
+
+.vidseo-main ul {
+    margin-left: 10px;
+}

@@ -537,17 +537,6 @@ var generateOffside = offside( '.slideout-navigation', {
 			document.querySelector( '.main-navigation .menu-toggle' ).setAttribute( 'aria-expanded', false );
 		}
 
-		if ( window.document.documentElement.clientWidth <= 768 ) {
-			if ( body.classList.contains( 'slideout-mobile' ) || body.classList.contains( 'slideout-both' ) ) {
-				document.querySelector( '.main-navigation .menu-toggle' ).focus();
-			}
-		} else {
-			if ( body.classList.contains( 'slideout-desktop' ) || body.classList.contains( 'slideout-both' ) ) {
-				document.querySelector( '.slideout-toggle a' ).focus();
-				document.activeElement.blur();
-			}
-		}
-
 		if ( body.classList.contains( 'dropdown-hover' ) ) {
 			var dropdownItems = document.querySelector( '.main-navigation:not(.slideout-navigation)' ).querySelectorAll( 'li.menu-item-has-children' );
 			for ( var i = 0; i < dropdownItems.length; i++ ) {
@@ -579,16 +568,19 @@ for ( var i = 0; i < closeElements.length; i++ ) {
  * @since 1.7
  */
 var slideoutLinks = document.querySelectorAll( '.slideout-navigation ul a' );
-for ( var i = 0; i < slideoutLinks.length; i++ ) {
-	slideoutLinks[i].addEventListener( 'click', function( e ) {
-		var url = this.getAttribute( 'href' );
 
-		if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
-			setTimeout( function() {
-				generateOffside.close();
-			}, 200 );
-		}
-	} );
+var closeOffsideOnAction = function() {
+	var url = this.getAttribute( 'href' );
+
+	if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
+		setTimeout( function() {
+			generateOffside.close();
+		}, 200 );
+	}
+};
+
+for ( var i = 0; i < slideoutLinks.length; i++ ) {
+	slideoutLinks[i].addEventListener( 'click', closeOffsideOnAction, false );
 };
 
 document.addEventListener( 'keyup', function( e ) {
@@ -596,6 +588,18 @@ document.addEventListener( 'keyup', function( e ) {
 		e = e || window.event;
 		if ( e.keyCode == 27 ) {
 			generateOffside.close();
+			var body = document.body;
+
+			if ( window.document.documentElement.clientWidth <= 768 ) {
+				if ( body.classList.contains( 'slideout-mobile' ) || body.classList.contains( 'slideout-both' ) ) {
+					document.querySelector( '.main-navigation .menu-toggle' ).focus();
+				}
+			} else {
+				if ( body.classList.contains( 'slideout-desktop' ) || body.classList.contains( 'slideout-both' ) ) {
+					document.querySelector( '.slideout-toggle a' ).focus();
+					document.activeElement.blur();
+				}
+			}
 		}
 	}
 } );

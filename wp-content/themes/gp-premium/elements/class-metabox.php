@@ -95,17 +95,16 @@ class GeneratePress_Elements_Metabox {
 					'custom_image' => __( 'Custom Image', 'gp-premium' ),
 					'fallback_image' => __( 'Fallback Image', 'gp-premium' ),
 					'choose' => __( 'Choose...', 'gp-premium' ),
+					'showID' => apply_filters( 'generate_elements_show_object_ids', false ),
 				) );
 
 				wp_enqueue_style( 'generate-elements-metabox', plugin_dir_url( __FILE__ ) . 'assets/admin/metabox.css', array(), GP_PREMIUM_VERSION );
+				wp_enqueue_style( 'generate-elements-balloon', plugin_dir_url( __FILE__ ) . 'assets/admin/balloon.css', array(), GP_PREMIUM_VERSION );
 
 				wp_enqueue_media();
 				wp_enqueue_script( 'wp-color-picker' );
 				wp_enqueue_style( 'wp-color-picker' );
 				wp_enqueue_script( 'wp-color-picker-alpha', plugin_dir_url( __FILE__ ) . 'assets/admin/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), GP_PREMIUM_VERSION );
-
-				wp_enqueue_style( 'generate-tipso', plugin_dir_url( __FILE__ ) . 'assets/admin/tipr.css', array(), GP_PREMIUM_VERSION );
-				wp_enqueue_script( 'generate-tipso', plugin_dir_url( __FILE__ ) . 'assets/admin/tipr.js', array( 'jquery', 'generate-elements-metabox' ), GP_PREMIUM_VERSION );
 
 				if ( function_exists( 'wp_add_inline_script' ) && function_exists( 'generate_get_default_color_palettes' ) ) {
 					// Grab our palette array and turn it into JS
@@ -168,7 +167,7 @@ class GeneratePress_Elements_Metabox {
 		<?php endif; ?>
 
 		<div class="element-settings <?php echo $type_chosen ? $type : 'no-element-type'; ?>">
-			<textarea id="generate-element-content" name="_generate_element_content"><?php echo get_post_meta( get_the_ID(), '_generate_element_content', true ); ?></textarea>
+			<textarea id="generate-element-content" name="_generate_element_content"><?php echo esc_textarea( get_post_meta( get_the_ID(), '_generate_element_content', true ) ); ?></textarea>
 
 			<ul class="element-metabox-tabs">
 				<li data-type="header" <?php echo 'header' === $type ? 'class="is-selected" ' : ''; ?>data-tab="hero">
@@ -209,9 +208,9 @@ class GeneratePress_Elements_Metabox {
 					</li>
 				<?php endif; ?>
 
-				<li data-type="layout" data-tab="container">
+				<li data-type="layout" data-tab="content">
 					<a href="#">
-						<?php _e( 'Container', 'gp-premium' ); ?>
+						<?php _e( 'Content', 'gp-premium' ); ?>
 					</a>
 				</li>
 
@@ -332,7 +331,7 @@ class GeneratePress_Elements_Metabox {
 					<tr class="generate-element-row">
 						<td class="generate-element-row-heading">
 							<label for="_generate_hero_custom_classes"><?php _e( 'Element Classes', 'gp-premium' ); ?></label>
-							<span class="tip" data-tip="<?php esc_attr_e( 'Add custom classes to the Page Hero element.', 'gp-premium' ); ?>">?</span>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Add custom classes to the Page Hero element.', 'gp-premium' ); ?>" data-balloon-pos="down">?</span>
 						</td>
 						<td class="generate-element-row-content">
 							<input type="text" name="_generate_hero_custom_classes" id="_generate_hero_custom_classes" value="<?php echo esc_attr( get_post_meta( get_the_ID(), '_generate_hero_custom_classes', true ) ); ?>" />
@@ -576,7 +575,7 @@ class GeneratePress_Elements_Metabox {
 					<tr class="generate-element-row requires-background-image" <?php echo ! $background_image ? 'style="display: none;"' : ''; ?>>
 						<td class="generate-element-row-heading">
 							<label for="_generate_hero_disable_featured_image"><?php _e( 'Disable Featured Image', 'gp-premium' ); ?></label>
-							<span class="tip" data-tip="<?php esc_attr_e( 'Disable the featured image on posts with this hero area.', 'gp-premium' ); ?>">?</span>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Disable the featured image on posts with this hero area.', 'gp-premium' ); ?>" data-balloon-pos="down">?</span>
 						</td>
 						<td class="generate-element-row-content">
 							<input type="checkbox" name="_generate_hero_disable_featured_image" id="_generate_hero_disable_featured_image" value="true" <?php checked( get_post_meta( get_the_ID(), '_generate_hero_disable_featured_image', true ), 'true' ); ?> />
@@ -586,7 +585,7 @@ class GeneratePress_Elements_Metabox {
 					<tr class="generate-element-row requires-background-image" <?php echo ! $background_image ? 'style="display: none;"' : ''; ?>>
 						<td class="generate-element-row-heading">
 							<label for="_generate_hero_background_overlay"><?php _e( 'Background Overlay', 'gp-premium' ); ?></label>
-							<span class="tip" data-tip="<?php esc_attr_e( 'Use the background color as a background overlay.', 'gp-premium' ); ?>">?</span>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Use the background color as a background overlay.', 'gp-premium' ); ?>" data-balloon-pos="down">?</span>
 						</td>
 						<td class="generate-element-row-content">
 							<input type="checkbox" name="_generate_hero_background_overlay" id="_generate_hero_background_overlay" value="true" <?php checked( get_post_meta( get_the_ID(), '_generate_hero_background_overlay', true ), 'true' ); ?> />
@@ -637,7 +636,7 @@ class GeneratePress_Elements_Metabox {
 					<tr class="generate-element-row">
 						<td class="generate-element-row-heading">
 							<label for="_generate_site_header_merge"><?php _e( 'Merge with Content', 'gp-premium' ); ?></label>
-							<span class="tip" data-tip="<?php esc_attr_e( 'Place your site header on top of the element below it.', 'gp-premium' ); ?>">?</span>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Place your site header on top of the element below it.', 'gp-premium' ); ?>" data-balloon-pos="down">?</span>
 						</td>
 						<td class="generate-element-row-content">
 							<select id="_generate_site_header_merge" name="_generate_site_header_merge">
@@ -651,7 +650,7 @@ class GeneratePress_Elements_Metabox {
 					<tr class="generate-element-row requires-header-merge" <?php echo ! $merge ? 'style="display: none;"' : ''; ?>>
 						<td class="generate-element-row-heading">
 							<label for="_generate_site_header_height"><?php _e( 'Offset Site Header Height', 'gp-premium' ); ?></label>
-							<span class="tip" data-tip="<?php esc_attr_e( 'Add to the top padding of your Page Hero to prevent overlapping.', 'gp-premium' ); ?>">?</span>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Add to the top padding of your Page Hero to prevent overlapping.', 'gp-premium' ); ?>" data-balloon-pos="down">?</span>
 						</td>
 						<td class="generate-element-row-content">
 
@@ -1081,7 +1080,7 @@ class GeneratePress_Elements_Metabox {
 				</body>
 			</table>
 
-			<table class="generate-elements-settings" data-type="layout" data-tab="container">
+			<table class="generate-elements-settings" data-type="layout" data-tab="content">
 				<tbody>
 					<tr class="generate-element-row">
 						<td class="generate-element-row-heading">
@@ -1098,16 +1097,25 @@ class GeneratePress_Elements_Metabox {
 							<div class="layout-radio-item">
 								<label for="full-width-container">
 									<input type="radio" name="_generate_content_area" id="full-width-container" <?php checked( get_post_meta( get_the_ID(), '_generate_content_area', true ), 'full-width' ); ?> value="full-width">
-									<?php esc_html_e( 'Full Width', 'gp-premium' );?>
+									<?php esc_html_e( 'Full Width (no padding)', 'gp-premium' );?>
 								</label>
 							</div>
 
 							<div class="layout-radio-item">
 								<label for="contained-container">
 									<input type="radio" name="_generate_content_area" id="contained-container" <?php checked( get_post_meta( get_the_ID(), '_generate_content_area', true ), 'contained' ); ?> value="contained">
-									<?php echo esc_html_x( 'Contained', 'Width', 'gp-premium' );?>
+									<?php echo esc_html_x( 'Contained (no padding)', 'Width', 'gp-premium' );?>
 								</label>
 							</div>
+						</td>
+					</tr>
+					<tr class="generate-element-row">
+						<td class="generate-element-row-heading">
+							<label for="_generate_content_width"><?php _e( 'Content Width', 'gp-premium' ); ?></label>
+						</td>
+						<td class="generate-element-row-content">
+							<input type="number" id="_generate_content_width" name="_generate_content_width" value="<?php echo get_post_meta( get_the_ID(), '_generate_content_width', true ); ?>">
+							<span class="unit">px</span>
 						</td>
 					</tr>
 				</tbody>
@@ -1118,7 +1126,7 @@ class GeneratePress_Elements_Metabox {
 					<tr class="generate-element-row">
 						<td class="generate-element-row-heading">
 							<label><?php _e( 'Location', 'gp-premium' ); ?></label>
-							<span class="tip" data-tip="<?php esc_attr_e( 'Choose when this element should display.', 'gp-premium' ); ?>">?</span>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Choose when this element should display.', 'gp-premium' ); ?>" data-balloon-pos="down">?</span>
 						</td>
 						<td class="generate-element-row-content">
 							<?php
@@ -1217,7 +1225,7 @@ class GeneratePress_Elements_Metabox {
 					<tr class="generate-element-row">
 						<td class="generate-element-row-heading">
 							<label><?php _e( 'Exclude', 'gp-premium' ); ?></label>
-							<span class="tip" data-tip="<?php esc_attr_e( 'Choose when this element should not display.', 'gp-premium' ); ?>">?</span>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Choose when this element should not display.', 'gp-premium' ); ?>" data-balloon-pos="down">?</span>
 						</td>
 						<td class="generate-element-row-content">
 							<?php
@@ -1316,7 +1324,7 @@ class GeneratePress_Elements_Metabox {
 					<tr class="generate-element-row">
 						<td class="generate-element-row-heading">
 							<label><?php _e( 'Users', 'gp-premium' ); ?></label>
-							<span class="tip" data-tip="<?php esc_attr_e( 'Display this element for specific user roles.', 'gp-premium' ); ?>">?</span>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Display this element for specific user roles.', 'gp-premium' ); ?>" data-balloon-pos="down">?</span>
 						</td>
 						<td class="generate-element-row-content">
 							<?php
@@ -1391,6 +1399,15 @@ class GeneratePress_Elements_Metabox {
 							</div>
 
 							<button class="button add-condition"><?php _e( 'Add User Rule', 'gp-premium' ); ?></button>
+						</td>
+					</tr>
+					<tr class="generate-element-row" <?php if ( ! function_exists( 'pll_get_post_language' ) ) echo 'style="display: none;"'; ?>>
+						<td class="generate-element-row-heading">
+							<label for="_generate_element_ignore_languages"><?php _e( 'Ignore Languages', 'gp-premium' ); ?></label>
+							<span class="tip" data-balloon="<?php esc_attr_e( 'Show this Element to all languages.', 'gp-premium' ); ?>" data-balloon-pos="up">?</span>
+						</td>
+						<td class="generate-element-row-content">
+							<input type="checkbox" name="_generate_element_ignore_languages" id="_generate_element_ignore_languages" value="true" <?php checked( get_post_meta( get_the_ID(), '_generate_element_ignore_languages', true ), 'true' ); ?> />
 						</td>
 					</tr>
 				</tbody>
@@ -1644,6 +1661,7 @@ class GeneratePress_Elements_Metabox {
 				'_generate_disable_content_title'			=> 'key',
 				'_generate_disable_footer'					=> 'key',
 				'_generate_content_area'					=> 'key',
+				'_generate_content_width'					=> 'number',
 			);
 
 			foreach ( $layout_values as $key => $type ) {
@@ -1665,6 +1683,18 @@ class GeneratePress_Elements_Metabox {
 					delete_post_meta( $post_id, $key );
 				}
 			}
+		}
+
+		$ignore_languages = false;
+
+		if ( isset( $_POST['_generate_element_ignore_languages'] ) ) {
+			$ignore_languages = sanitize_key( $_POST['_generate_element_ignore_languages'] );
+		}
+
+		if ( $ignore_languages ) {
+			update_post_meta( $post_id, '_generate_element_ignore_languages', $ignore_languages );
+		} else {
+			delete_post_meta( $post_id, '_generate_element_ignore_languages' );
 		}
 
 		// Display conditions.
@@ -1980,6 +2010,8 @@ class GeneratePress_Elements_Metabox {
 		);
 
 		if ( class_exists( 'WooCommerce' ) ) {
+			$hooks['navigation']['hooks'][] = 'generate_mobile_cart_items';
+
 			$hooks['woocommerce-global'] = array(
 				'group' => esc_attr__( 'WooCommerce - Global', 'gp-premium' ),
 				'hooks' => array(
@@ -2008,6 +2040,7 @@ class GeneratePress_Elements_Metabox {
 					'woocommerce_before_single_product_summary',
 					'woocommerce_after_single_product_summary',
 					'woocommerce_single_product_summary',
+					'woocommerce_share',
 					'woocommerce_simple_add_to_cart',
 					'woocommerce_before_add_to_cart_form',
 					'woocommerce_after_add_to_cart_form',

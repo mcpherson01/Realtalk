@@ -82,11 +82,44 @@ span.spacing-size-label {
 	font-weight: 600;
 }
 
-/* 
+/*
  * Make sure slider is 100% wide.
  * Old versions of Secondary Nav will have this set as 50%
  * so we need to set !important to overwrite that.
  */
 .customize-control.customize-control-gp-spacing-slider {
 	width: 100% !important;
+}
+
+.customize-control-generatepress-spacing .gp-spacing-control-section-title-area .dashicons {
+	cursor: pointer;
+	font-size: 11px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	color: #222;
+	text-align: center;
+	position: relative;
+	top: 2px;
+}
+
+.customize-control-generatepress-spacing .gp-spacing-control-section-title-area .dashicons:hover {
+	background: #fafafa;
+}
+
+.customize-control-generatepress-spacing .gp-spacing-control-section-title-area .dashicons.selected {
+	background: #fff;
+	color: #222;
+}
+
+.gp-spacing-control-title-info {
+	display: inline-block;
+}
+
+.gp-range-slider-controls {
+	float: right;
+}
+
+.customize-control-generatepress-spacing .gp-device-controls > span:first-child:last-child {
+	display: none;
 }

@@ -643,3 +643,21 @@ if ( ! function_exists( 'generate_ie_exportable' ) ) {
 		// A check to see if other addons can add their export button
 	}
 }
+
+/**
+ * Build our dynamic CSS.
+ *
+ * @since 1.6
+ */
+function generate_menu_plus_make_css() {
+	// Replaced by generate_do_off_canvas_css()
+}
+
+/**
+ * Enqueue our dynamic CSS.
+ *
+ * @since 1.6
+ */
+function generate_menu_plus_enqueue_dynamic_css() {
+	// No longer needed.
+}

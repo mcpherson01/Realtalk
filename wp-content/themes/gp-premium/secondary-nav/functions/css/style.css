@@ -40,6 +40,10 @@
 	width: 100%;
 }
 
+.secondary-navigation.sub-menu-left .sub-menu {
+	right: 0;
+}
+
 .dropdown-hover .secondary-navigation:not(.toggled) ul li:hover > ul,
 .dropdown-hover .secondary-navigation:not(.toggled) ul li.sfHover > ul {
 	left: auto;
@@ -54,6 +58,13 @@
 .dropdown-hover .secondary-navigation:not(.toggled) ul ul li.sfHover > ul {
 	left: 100%;
 	top: 0;
+}
+
+.dropdown-hover .secondary-navigation.sub-menu-left:not(.toggled) ul ul li:hover > ul,
+.dropdown-hover .secondary-navigation.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
+	right: 100%;
+	top: 0;
+	left: auto;
 }
 
 .secondary-nav-float-right .secondary-navigation {

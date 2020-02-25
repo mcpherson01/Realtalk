@@ -14,6 +14,7 @@ class GeneratePress_Pro_Range_Slider_Control extends WP_Customize_Control {
 
 	public $description = '';
 
+	public $sub_description = '';
 	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
 	 *
@@ -45,6 +46,7 @@ class GeneratePress_Pro_Range_Slider_Control extends WP_Customize_Control {
 		$this->json['reset_label'] = __( 'Reset', 'gp-premium' );
 
 		$this->json['description'] = $this->description;
+		$this->json['sub_description'] = $this->sub_description;
 	}
 	/**
 	 * Enqueue control related scripts/styles.
@@ -149,6 +151,10 @@ class GeneratePress_Pro_Range_Slider_Control extends WP_Customize_Control {
 					</label>
 				<# } #>
 			</div>
+
+			<# if ( data.sub_description ) { #>
+				<p class="description sub-description">{{{ data.sub_description }}}</p>
+			<# } #>
 		</div>
 		<?php
 	}

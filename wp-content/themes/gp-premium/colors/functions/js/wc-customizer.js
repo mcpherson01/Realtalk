@@ -98,6 +98,36 @@ var wc_error_message = '.woocommerce-error';
 generate_colors_live_update( 'wc_error_message_background', wc_error_message, 'background-color' );
 generate_colors_live_update( 'wc_error_message_text', wc_error_message + ', div.woocommerce-error a.button, div.woocommerce-error a.button:focus, div.woocommerce-error a.button:hover, div.woocommerce-error a, div.woocommerce-error a:focus, div.woocommerce-error a:hover', 'color' );
 
+/**
+ * Menu Mini Cart
+ */
+generate_colors_live_update( 'wc_mini_cart_background_color', '#wc-mini-cart', 'background-color' );
+generate_colors_live_update( 'wc_mini_cart_text_color', '#wc-mini-cart,#wc-mini-cart a:not(.button), #wc-mini-cart a.remove', 'color' );
+
+generate_colors_live_update( 'wc_mini_cart_button_background', '#wc-mini-cart .button.checkout', 'background-color' );
+generate_colors_live_update( 'wc_mini_cart_button_text', '#wc-mini-cart .button.checkout', 'color' );
+
+generate_colors_live_update( 'wc_mini_cart_button_background_hover', '#wc-mini-cart .button.checkout:hover, #wc-mini-cart .button.checkout:focus, #wc-mini-cart .button.checkout:active', 'background-color' );
+generate_colors_live_update( 'wc_mini_cart_button_text_hover', '#wc-mini-cart .button.checkout:hover, #wc-mini-cart .button.checkout:focus, #wc-mini-cart .button.checkout:active', 'color' );
+
+/**
+ * Sticky panel cart button
+ */
+ generate_colors_live_update( 'wc_panel_cart_background_color', '.add-to-cart-panel', 'background-color' );
+ generate_colors_live_update( 'wc_panel_cart_text_color', '.add-to-cart-panel, .add-to-cart-panel a:not(.button)', 'color' );
+
+ generate_colors_live_update( 'wc_panel_cart_button_background', '#wc-sticky-cart-panel .button', 'background-color' );
+ generate_colors_live_update( 'wc_panel_cart_button_text', '#wc-sticky-cart-panel .button', 'color' );
+
+ generate_colors_live_update( 'wc_panel_cart_button_background_hover', '#wc-sticky-cart-panel .button:hover, #wc-sticky-cart-panel .button:focus, #wc-sticky-cart-panel .button:active', 'background-color' );
+ generate_colors_live_update( 'wc_panel_cart_button_text_hover', '#wc-sticky-cart-panel .button:hover, #wc-sticky-cart-panel .button:focus, #wc-sticky-cart-panel .button:active', 'color' );
+
+/**
+ * Price slider bar
+ */
+generate_colors_live_update( 'wc_price_slider_background_color', '.woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content', 'background-color' );
+generate_colors_live_update( 'wc_price_slider_bar_color', '.woocommerce .widget_price_filter .ui-slider .ui-slider-range, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle', 'background-color' );
+
 // Archive product description text
 wp.customize( 'generate_settings[text_color]', function( value ) {
 	value.bind( function( newval ) {

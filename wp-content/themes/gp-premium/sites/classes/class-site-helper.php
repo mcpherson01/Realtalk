@@ -36,9 +36,8 @@ class GeneratePress_Sites_Helper {
 	}
 
 	public function __construct() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'admin_body_class', array( $this, 'body_class' ) );
 		add_filter( 'upload_mimes', array( $this, 'mime_types' ) );
+		add_filter( 'wp_check_filetype_and_ext', array( $this, 'check_real_mime_type' ), 10, 4 );
 		add_filter( 'wie_widget_settings_array', array( $this, 'fix_custom_menu_widget_ids' ) );
 		add_filter( 'wp_prepare_attachment_for_js', array( $this, 'add_svg_image_support' ), 10, 3 );
 
@@ -54,68 +53,6 @@ class GeneratePress_Sites_Helper {
 		if ( is_admin() ) {
 			self::includes();
 		}
-	}
-
-	/**
-	 * Add necessary scripts and styles.
-	 *
-	 * @since 1.6
-	 */
-	public static function enqueue_scripts() {
-
-		wp_enqueue_script(
-			'generate-sites-admin',
-			GENERATE_SITES_URL . 'assets/js/admin.js',
-			array( 'jquery', 'wp-util', 'updates', 'generate-sites-blazy' ),
-			GP_PREMIUM_VERSION,
-			true
-		);
-
-		wp_enqueue_script(
-			'generate-sites-download',
-			GENERATE_SITES_URL . 'assets/js/download.js',
-			array( 'jquery', 'generate-sites-admin' ),
-			GP_PREMIUM_VERSION,
-			true
-		);
-
-		wp_enqueue_script(
-			'generate-sites-blazy',
-			GENERATE_SITES_URL . 'assets/js/blazy.min.js',
-			array(),
-			GP_PREMIUM_VERSION,
-			true
-		);
-
-		wp_localize_script(
-			'generate-sites-admin',
-			'generate_sites_params',
-			array(
-				'ajaxurl'					=> admin_url( 'admin-ajax.php' ),
-				'nonce'						=> wp_create_nonce( 'generate_sites_nonce' ),
-				'backing_up_options'		=> __( 'Backing up options', 'gp-premium' ),
-				'importing_options'			=> __( 'Importing options', 'gp-premium' ),
-				'downloading_content'		=> __( 'Downloading content', 'gp-premium' ),
-				'importing_content'			=> __( 'Importing content', 'gp-premium' ),
-				'importing_site_options'	=> __( 'Importing site options', 'gp-premium' ),
-				'importing_widgets'			=> __( 'Importing widgets', 'gp-premium' ),
-				'activating_plugins'		=> __( 'Activating plugins', 'gp-premium' ),
-				'installing_plugins'		=> __( 'Installing plugins', 'gp-premium' ),
-				'automatic_plugins'			=> __( 'Automatic', 'gp-premium' ),
-				'manual_plugins'			=> __( 'Manual', 'gp-premium' ),
-				'theme_options_exist'		=> __( 'Theme options exist and can be imported.', 'gp-premium' ),
-				'no_theme_options'			=> __( 'No theme options found, please contact the site author.', 'gp-premium' ),
-				'site_content_exists'		=> __( 'Site content exists and can be imported.', 'gp-premium' ),
-			)
-		);
-
-		wp_enqueue_style(
-			'generate-sites-admin',
-			GENERATE_SITES_URL . 'assets/css/admin.css',
-			array(),
-			GP_PREMIUM_VERSION
-		);
-
 	}
 
 	/**
@@ -175,19 +112,56 @@ class GeneratePress_Sites_Helper {
 	}
 
 	/**
-	 * Adds a class to the body element if we're in the Site dashboard.
+	 * Checks to see whether options exist or not.
 	 *
-	 * @since 1.6
+	 * @since 1.8
 	 *
-	 * @param array Current body classes.
-	 * @return array Existing and our new body classes
+	 * @return bool
 	 */
-	public static function body_class( $classes ) {
-		if ( generate_is_sites_dashboard() ) {
-			$classes .= ' generate-sites';
+	public static function do_options_exist() {
+		$theme_mods = self::get_theme_mods();
+		$settings = self::get_theme_settings();
+
+		$has_data = array(
+			'mods' => array(),
+			'options' => array()
+		);
+
+		foreach ( $theme_mods as $theme_mod ) {
+			if ( get_theme_mod( $theme_mod ) ) {
+				$has_data['mods'][$theme_mod] = get_theme_mod( $theme_mod );
+			}
 		}
 
-		return $classes;
+		foreach ( $settings as $setting ) {
+			if ( get_option( $setting ) ) {
+
+				// The blog module runs a migration script on activation for now. This checks if those migrated values have been changed.
+				if ( 'generate_blog_settings' === $setting && function_exists( 'generate_blog_get_defaults' ) ) {
+					$defaults = generate_blog_get_defaults();
+					$options = get_option( $setting );
+					$diff = array();
+
+					foreach ( $options as $option => $value ) {
+						if ( $value !== $defaults[ $option ] ) {
+							$diff[ $option ] = $value;
+						}
+					}
+
+					if ( empty( $diff ) ) {
+						continue;
+					}
+				}
+
+				$has_data['options'][$setting] = get_option( $setting );
+			}
+		}
+
+		if ( ! array_filter( $has_data ) ) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -662,15 +636,9 @@ class GeneratePress_Sites_Helper {
 	 * @return array Merged types.
 	 */
 	public static function mime_types( $mimes ) {
-		$xml_type = 'text/xml';
-
-		if ( version_compare( PHP_VERSION, '7.2', '<' ) ) {
-			$xml_type = 'application/xml';
-		}
-
 		$mimes = array_merge(
 			$mimes, array(
-				'xml' => $xml_type,
+				'xml' => 'text/xml',
 				'wie' => 'text/plain',
 				'svg' => 'image/svg+xml',
 				'svgz' => 'image/svg+xml'
@@ -678,6 +646,34 @@ class GeneratePress_Sites_Helper {
 		);
 
 		return $mimes;
+	}
+
+	/**
+	 * Different MIME type of different PHP version
+	 *
+	 * Filters the "real" file type of the given file.
+	 *
+	 * @since 1.8
+	 *
+	 * @param array  $wp_check_filetype_and_ext File data array containing 'ext', 'type', and
+	 *                                          'proper_filename' keys.
+	 * @param string $file                      Full path to the file.
+	 * @param string $filename                  The name of the file (may differ from $file due to
+	 *                                          $file being in a tmp directory).
+	 * @param array  $mimes                     Key is the file extension with value as the mime type.
+	 */
+	public static function check_real_mime_type( $defaults, $file, $filename, $mimes ) {
+		if ( 'content.xml' === $filename ) {
+			$defaults['ext']  = 'xml';
+			$defaults['type'] = 'text/xml';
+		}
+
+		if ( 'widgets.wie' === $filename ) {
+			$defaults['ext']  = 'wie';
+			$defaults['type'] = 'text/plain';
+		}
+
+		return $defaults;
 	}
 
 	/**

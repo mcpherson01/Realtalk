@@ -60,6 +60,46 @@ $wp_customize->add_setting( 'generate_spacing_settings[widget_left]',
 	)
 );
 
+// Widget padding top
+$wp_customize->add_setting( 'generate_spacing_settings[mobile_widget_top]',
+	array(
+		'default' => $defaults['mobile_widget_top'],
+		'type' => 'option',
+		'sanitize_callback' => 'absint',
+		'transport' => 'postMessage'
+	)
+);
+
+// Widget padding right
+$wp_customize->add_setting( 'generate_spacing_settings[mobile_widget_right]',
+	array(
+		'default' => $defaults['mobile_widget_right'],
+		'type' => 'option',
+		'sanitize_callback' => 'absint',
+		'transport' => 'postMessage'
+	)
+);
+
+// Widget padding bottom
+$wp_customize->add_setting( 'generate_spacing_settings[mobile_widget_bottom]',
+	array(
+		'default' => $defaults['mobile_widget_bottom'],
+		'type' => 'option',
+		'sanitize_callback' => 'absint',
+		'transport' => 'postMessage'
+	)
+);
+
+// Widget padding left
+$wp_customize->add_setting( 'generate_spacing_settings[mobile_widget_left]',
+	array(
+		'default' => $defaults['mobile_widget_left'],
+		'type' => 'option',
+		'sanitize_callback' => 'absint',
+		'transport' => 'postMessage'
+	)
+);
+
 // Make use of the widget padding settings
 $wp_customize->add_control(
 	new GeneratePress_Spacing_Control(
@@ -70,17 +110,20 @@ $wp_customize->add_control(
 			'label'      => esc_html__( 'Widget Padding', 'gp-premium' ),
 			'section'    => $widget_section,
 			'settings'   => array(
-				'top'    => 'generate_spacing_settings[widget_top]',
-				'right'  => 'generate_spacing_settings[widget_right]',
-				'bottom' => 'generate_spacing_settings[widget_bottom]',
-				'left'   => 'generate_spacing_settings[widget_left]'
+				'desktop_top'    => 'generate_spacing_settings[widget_top]',
+				'desktop_right'  => 'generate_spacing_settings[widget_right]',
+				'desktop_bottom' => 'generate_spacing_settings[widget_bottom]',
+				'desktop_left'   => 'generate_spacing_settings[widget_left]',
+				'mobile_top'    => 'generate_spacing_settings[mobile_widget_top]',
+				'mobile_right'  => 'generate_spacing_settings[mobile_widget_right]',
+				'mobile_bottom' => 'generate_spacing_settings[mobile_widget_bottom]',
+				'mobile_left'   => 'generate_spacing_settings[mobile_widget_left]'
 			),
 			'element'	 => 'widget',
 			'priority'   => 99
 		)
 	)
 );
-
 
 // Left sidebar width
 $wp_customize->add_setting(

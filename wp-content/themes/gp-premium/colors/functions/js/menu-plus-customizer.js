@@ -8,7 +8,7 @@ generate_colors_live_update( 'slideout_background_color', '.main-navigation.slid
  * Primary navigation text color
  * Empty:  link_color
  */
-generate_colors_live_update( 'slideout_text_color', '.slideout-navigation.main-navigation .main-nav ul li a', 'color', '' );
+generate_colors_live_update( 'slideout_text_color', '.slideout-navigation.main-navigation .main-nav ul li a, .slideout-navigation a, .slideout-navigation', 'color', '' );
 
 /**
  * Primary navigation text color hover

@@ -29,6 +29,10 @@ if ( ! function_exists( 'generate_backgrounds_secondary_nav_customizer' ) ) {
 		// Get our defaults
 		$defaults = generate_secondary_nav_get_defaults();
 
+		if ( method_exists( $wp_customize, 'register_control_type' ) ) {
+			$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
+		}
+
 		// Get our controls
 		require_once GP_LIBRARY_DIRECTORY . 'customizer-helpers.php';
 
@@ -41,6 +45,24 @@ if ( ! function_exists( 'generate_backgrounds_secondary_nav_customizer' ) ) {
 				'description' => '',
 				'panel' => 'generate_backgrounds_panel',
 				'priority' => 21,
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_secondary_navigation_background_image_shortcuts',
+				array(
+					'section' => 'secondary_bg_images_section',
+					'element' => __( 'Secondary Navigation', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'secondary_nav_section',
+						'colors' => 'secondary_navigation_color_section',
+						'typography' => 'secondary_font_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 

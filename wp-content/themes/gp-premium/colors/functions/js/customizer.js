@@ -105,7 +105,7 @@ generate_colors_live_update( 'header_link_hover_color', '.site-header a.header-l
  * Site title color
  * Empty:  link_color
  */
-generate_colors_live_update( 'site_title_color', '.main-title a,.main-title a:hover,.main-title a:visited', 'color', '', 'link_color' );
+generate_colors_live_update( 'site_title_color', '.main-title a,.main-title a:hover,.main-title a:visited,.header-wrap .navigation-stick .main-title a, .header-wrap .navigation-stick .main-title a:hover, .header-wrap .navigation-stick .main-title a:visited', 'color', '', 'link_color' );
 
 /**
  * Site tagline color

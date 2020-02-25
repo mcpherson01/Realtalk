@@ -122,30 +122,21 @@ $wp_customize->add_setting( 'generate_spacing_settings[content_left]',
 	)
 );
 
-// Make use of the content padding settings
-$wp_customize->add_control(
-	new GeneratePress_Spacing_Control(
-		$wp_customize,
-		'content_spacing',
-		array(
-			'type' 		 => 'generatepress-spacing',
-			'label'      => esc_html__( 'Content Padding', 'gp-premium' ),
-			'section'    => $content_section,
-			'settings'   => array(
-				'top'    => 'generate_spacing_settings[content_top]',
-				'right'  => 'generate_spacing_settings[content_right]',
-				'bottom' => 'generate_spacing_settings[content_bottom]',
-				'left'   => 'generate_spacing_settings[content_left]'
-			),
-			'element'	 => 'content',
-			'priority'   => 99
-		)
-	)
+$content_padding_settings = array(
+	'desktop_top'    => 'generate_spacing_settings[content_top]',
+	'desktop_right'  => 'generate_spacing_settings[content_right]',
+	'desktop_bottom' => 'generate_spacing_settings[content_bottom]',
+	'desktop_left'   => 'generate_spacing_settings[content_left]',
 );
 
 // If mobile_content_top is set, the rest of them are too
 // We have to check as these defaults are set in the theme
 if ( isset( $defaults[ 'mobile_content_top' ] ) ) {
+	$content_padding_settings['mobile_top'] = 'generate_spacing_settings[mobile_content_top]';
+	$content_padding_settings['mobile_right']   = 'generate_spacing_settings[mobile_content_right]';
+	$content_padding_settings['mobile_bottom']  = 'generate_spacing_settings[mobile_content_bottom]';
+	$content_padding_settings['mobile_left']    = 'generate_spacing_settings[mobile_content_left]';
+
 	// Mobile content padding top
 	$wp_customize->add_setting( 'generate_spacing_settings[mobile_content_top]',
 		array(
@@ -185,25 +176,54 @@ if ( isset( $defaults[ 'mobile_content_top' ] ) ) {
 			'transport' => 'postMessage'
 		)
 	);
-
-	// Make use of the content padding settings
-	$wp_customize->add_control(
-		new GeneratePress_Spacing_Control(
-			$wp_customize,
-			'mobile_content_spacing',
-			array(
-				'type' 		 => 'generatepress-spacing',
-				'label'      => esc_html__( 'Mobile Content Padding', 'gp-premium' ),
-				'section'    => $content_section,
-				'settings'   => array(
-					'top'    => 'generate_spacing_settings[mobile_content_top]',
-					'right'  => 'generate_spacing_settings[mobile_content_right]',
-					'bottom' => 'generate_spacing_settings[mobile_content_bottom]',
-					'left'   => 'generate_spacing_settings[mobile_content_left]'
-				),
-				'element'	 => 'mobile_content',
-				'priority'   => 100
-			)
-		)
-	);
 }
+
+// Make use of the content padding settings
+$wp_customize->add_control(
+	new GeneratePress_Spacing_Control(
+		$wp_customize,
+		'content_spacing',
+		array(
+			'type' 		 => 'generatepress-spacing',
+			'label'      => esc_html__( 'Content Padding', 'gp-premium' ),
+			'section'    => $content_section,
+			'settings'   => $content_padding_settings,
+			'element'	 => 'content',
+			'priority'   => 99
+		)
+	)
+);
+
+$wp_customize->add_setting(
+	'generate_spacing_settings[content_element_separator]', array(
+		'default' => $defaults['content_element_separator'],
+		'type' => 'option',
+		'capability' => 'edit_theme_options',
+		'sanitize_callback' => 'generate_premium_sanitize_decimal_integer',
+		'transport' => 'postMessage'
+	)
+);
+
+$wp_customize->add_control(
+	new GeneratePress_Pro_Range_Slider_Control(
+		$wp_customize,
+		'generate_spacing_settings[content_element_separator]',
+		array(
+			'label' => __( 'Content Separator', 'gp-premium' ),
+			'description' => __( 'The space between the featured image, title, content and entry meta.', 'gp-premium' ),
+			'section' => $content_section,
+			'settings' => array(
+				'desktop' => 'generate_spacing_settings[content_element_separator]',
+			),
+			'choices' => array(
+				'desktop' => array(
+					'min' => 0,
+					'max' => 10,
+					'step' => .1,
+					'edit' => true,
+					'unit' => 'em',
+				),
+			),
+		)
+	)
+);

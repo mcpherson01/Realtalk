@@ -34,6 +34,7 @@ function generate_slideout_navigation_color_controls( $wp_customize ) {
 	// Add control types so controls can be built using JS
 	if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 		$wp_customize->register_control_type( 'GeneratePress_Alpha_Color_Customize_Control' );
+		$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
 	}
 
 	// Get our palettes
@@ -43,10 +44,27 @@ function generate_slideout_navigation_color_controls( $wp_customize ) {
 	$wp_customize->add_section(
 		'slideout_color_section',
 		array(
-			'title' => __( 'Slideout Navigation', 'gp-premium' ),
+			'title' => __( 'Off Canvas Panel', 'gp-premium' ),
 			'capability' => 'edit_theme_options',
 			'priority' => 73,
 			'panel' => 'generate_colors_panel',
+		)
+	);
+
+	$wp_customize->add_control(
+		new GeneratePress_Section_Shortcut_Control(
+			$wp_customize,
+			'generate_off_canvas_color_shortcuts',
+			array(
+				'section' => 'slideout_color_section',
+				'element' => __( 'Off Canvas Panel', 'gp-premium' ),
+				'shortcuts' => array(
+					'layout' => 'menu_plus_slideout_menu',
+					'typography' => 'generate_slideout_typography',
+				),
+				'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+				'priority' => 1,
+			)
 		)
 	);
 
@@ -57,7 +75,7 @@ function generate_slideout_navigation_color_controls( $wp_customize ) {
 			array(
 				'section'     => 'slideout_color_section',
 				'type'        => 'generatepress-customizer-title',
-				'title'			=> __( 'Parent Items', 'gp-premium' ),
+				'title'			=> __( 'Parent Menu Items', 'gp-premium' ),
 				'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
 			)
 		)

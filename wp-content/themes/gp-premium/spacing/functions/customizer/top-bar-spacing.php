@@ -55,10 +55,10 @@ if ( isset( $defaults[ 'top_bar_top' ] ) ) {
 				'label'      => esc_html__( 'Top Bar Padding', 'gp-premium' ),
 				'section'    => 'generate_top_bar',
 				'settings'   => array(
-					'top'    => 'generate_spacing_settings[top_bar_top]',
-					'right'  => 'generate_spacing_settings[top_bar_right]',
-					'bottom' => 'generate_spacing_settings[top_bar_bottom]',
-					'left'   => 'generate_spacing_settings[top_bar_left]'
+					'desktop_top'    => 'generate_spacing_settings[top_bar_top]',
+					'desktop_right'  => 'generate_spacing_settings[top_bar_right]',
+					'desktop_bottom' => 'generate_spacing_settings[top_bar_bottom]',
+					'desktop_left'   => 'generate_spacing_settings[top_bar_left]'
 				),
 				'element'	 => 'top_bar',
 				'priority'   => 99,

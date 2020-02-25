@@ -39,6 +39,7 @@ if ( ! function_exists( 'generate_fonts_secondary_nav_customizer' ) ) {
 		if ( method_exists( $wp_customize,'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Pro_Typography_Customize_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Pro_Range_Slider_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
 		}
 
 		// Add our section
@@ -50,6 +51,24 @@ if ( ! function_exists( 'generate_fonts_secondary_nav_customizer' ) ) {
 				'description' => '',
 				'priority' => 51,
 				'panel' => 'generate_typography_panel'
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_secondary_navigation_typography_shortcuts',
+				array(
+					'section' => 'secondary_font_section',
+					'element' => __( 'Secondary Navigation', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'secondary_nav_section',
+						'colors' => 'secondary_navigation_color_section',
+						'backgrounds' => 'secondary_bg_images_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 

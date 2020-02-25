@@ -32,15 +32,18 @@ class GeneratePress_Elements_Post_Type {
 	 * @since 1.7
 	 */
 	public function __construct() {
-		add_action( 'init', 									array( $this, 'post_type' ) );
-		add_action( 'admin_menu', 								array( $this, 'menu_item' ), 100 );
-		add_action( 'admin_head', 								array( $this, 'fix_current_item' ) );
-		add_filter( 'manage_gp_elements_posts_columns', 		array( $this, 'register_columns' ) );
-		add_action( 'manage_gp_elements_posts_custom_column',	array( $this, 'add_columns' ), 10, 2 );
-		add_action( 'restrict_manage_posts',					array( $this, 'build_element_type_filter' ) );
-		add_filter( 'pre_get_posts',							array( $this, 'filter_element_types' ) );
+		add_action( 'init', array( $this, 'post_type' ) );
 
-		self::setup_metabox();
+		if ( is_admin() ) {
+			add_action( 'admin_menu', 								array( $this, 'menu_item' ), 100 );
+			add_action( 'admin_head', 								array( $this, 'fix_current_item' ) );
+			add_filter( 'manage_gp_elements_posts_columns', 		array( $this, 'register_columns' ) );
+			add_action( 'manage_gp_elements_posts_custom_column',	array( $this, 'add_columns' ), 10, 2 );
+			add_action( 'restrict_manage_posts',					array( $this, 'build_element_type_filter' ) );
+			add_filter( 'pre_get_posts',							array( $this, 'filter_element_types' ) );
+
+			self::setup_metabox();
+		}
 	}
 
 	/**

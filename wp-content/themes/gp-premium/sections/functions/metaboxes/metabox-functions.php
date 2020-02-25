@@ -178,10 +178,19 @@ if ( ! function_exists( 'generate_sections_metabox_scripts' ) ) {
 
 				if ( function_exists( 'wp_enqueue_editor' ) ) {
 					wp_enqueue_editor();
+
+					wp_add_inline_script(
+						'editor',
+						'window.wp.sectionsEditor = window.wp.editor;',
+						'after'
+					);
 				}
 
-				// special script for dealing with repeating textareas- needs to run AFTER all the tinyMCE init scripts, so make 'editor' a requirement
-				wp_enqueue_script( 'generate-sections-metabox', plugin_dir_url( __FILE__ ) . 'js/generate-sections-metabox.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-mouse', 'jquery-ui-sortable', 'editor', 'media-upload', 'wp-color-picker' ), GENERATE_SECTIONS_VERSION, true );
+				if ( version_compare( get_bloginfo( 'version' ), '5.0', '<' ) ) {
+					wp_enqueue_script( 'generate-sections-metabox', plugin_dir_url( __FILE__ ) . 'js/generate-sections-metabox-4.9.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-mouse', 'jquery-ui-sortable', 'editor', 'media-upload', 'wp-color-picker' ), GENERATE_SECTIONS_VERSION, true );
+				} else {
+					wp_enqueue_script( 'generate-sections-metabox', plugin_dir_url( __FILE__ ) . 'js/generate-sections-metabox.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-mouse', 'jquery-ui-sortable', 'editor', 'media-upload', 'wp-color-picker' ), GENERATE_SECTIONS_VERSION, true );
+				}
 
 				if ( function_exists( 'wp_add_inline_script' ) ) {
 					if ( function_exists( 'generate_get_default_color_palettes' ) ) {

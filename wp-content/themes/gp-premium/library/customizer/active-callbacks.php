@@ -22,6 +22,24 @@ if ( ! function_exists( 'generate_mobile_header_activated' ) ) {
 	}
 }
 
+/**
+ * If we're using the mobile header, and have the logo set as the branding type.
+ *
+ * @since 1.8
+ */
+function generate_mobile_header_logo_active_callback() {
+	if ( ! function_exists( 'generate_menu_plus_get_defaults' ) ) {
+		return false;
+	}
+
+	$settings = wp_parse_args(
+		get_option( 'generate_menu_plus_settings', array() ),
+		generate_menu_plus_get_defaults()
+	);
+
+	return ( 'enable' === $settings['mobile_header'] && 'logo' === $settings['mobile_header_branding'] ) ? true : false;
+}
+
 if ( ! function_exists( 'generate_mobile_header_sticky_activated' ) ) {
 	/**
 	 * Check to see if the mobile header is activated
@@ -92,6 +110,42 @@ if ( ! function_exists( 'generate_slideout_navigation_activated' ) ) {
 
 		return ( 'false' !== $generate_menu_plus_settings[ 'slideout_menu' ] ) ? true : false;
 	}
+}
+
+/**
+ * Check whether the overlay off canvas panel is activated.
+ *
+ * @since 1.8
+ */
+function generate_is_overlay_navigation_active_callback() {
+	if ( ! function_exists( 'generate_menu_plus_get_defaults' ) ) {
+		return false;
+	}
+
+	$settings = wp_parse_args(
+		get_option( 'generate_menu_plus_settings', array() ),
+		generate_menu_plus_get_defaults()
+	);
+
+	return ( 'false' !== $settings['slideout_menu'] && 'overlay' === $settings['slideout_menu_style'] ) ? true : false;
+}
+
+/**
+ * Check whether the slideout off canvas panel is activated.
+ *
+ * @since 1.8
+ */
+function generate_is_slideout_navigation_active_callback() {
+	if ( ! function_exists( 'generate_menu_plus_get_defaults' ) ) {
+		return false;
+	}
+
+	$settings = wp_parse_args(
+		get_option( 'generate_menu_plus_settings', array() ),
+		generate_menu_plus_get_defaults()
+	);
+
+	return ( 'false' !== $settings['slideout_menu'] && 'slide' === $settings['slideout_menu_style'] ) ? true : false;
 }
 
 if ( ! function_exists( 'generate_page_header_blog_content_exists' ) ) {
@@ -500,6 +554,29 @@ function generate_premium_infinite_scroll_button_active() {
 	}
 
 	if ( ! $settings[ 'infinite_scroll_button' ] ) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
+ * Check to see if the WooCommerce menu item is active.
+ *
+ * @since 1.8
+ * @return bool Whether the cart item is active.
+ */
+function generate_premium_wc_menu_item_active() {
+	if ( ! function_exists( 'generatepress_wc_defaults' ) ) {
+		return false;
+	}
+
+	$settings = wp_parse_args(
+		get_option( 'generate_woocommerce_settings', array() ),
+		generatepress_wc_defaults()
+	);
+
+	if ( ! $settings[ 'cart_menu_item' ] ) {
 		return false;
 	}
 

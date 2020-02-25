@@ -83,15 +83,12 @@ if ( ! function_exists( 'generate_blog_add_columns_container' ) ) {
 			return;
 		}
 
-		$settings = wp_parse_args(
-			get_option( 'generate_blog_settings', array() ),
-			generate_blog_get_defaults()
-		);
+		$columns = generate_blog_get_column_count();
 
 		printf(
 			'<div class="generate-columns-container %1$s">%2$s',
 			'false' !== generate_blog_get_masonry() ? 'masonry-container are-images-unloaded' : '',
-			'false' !== generate_blog_get_masonry() ? '<div class="grid-sizer ' . esc_attr( 'grid-' . $settings['columns'] ) . ' tablet-grid-50 mobile-grid-100"></div>' : ''
+			'false' !== generate_blog_get_masonry() ? '<div class="grid-sizer ' . esc_attr( 'grid-' . esc_attr( $columns ) ) . ' tablet-grid-50 mobile-grid-100"></div>' : ''
 		);
 	}
 }

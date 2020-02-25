@@ -1,0 +1,738 @@
+# Copyright (C) 2020 DeBlocker
+# This file is distributed under the same license as the DeBlocker package.
+msgid ""
+msgstr ""
+"Project-Id-Version: DeBlocker\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:252
+msgid "Matching Method"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:254
+msgid "ALL"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:255
+msgid "ANY"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:257
+msgid "The plugin is enabled on the page if ALL the selected rules matched, or if ANY of the selected rules matched"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:262
+msgid "WordPress Content"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:265, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:288, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:298, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:328, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:356, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:382, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:405, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:428
+msgid "Ignore"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:266, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:289, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:299, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:329, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:357, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:383, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:406, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:429
+msgid "Include"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:267, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:290, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:300, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:330, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:358, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:384, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:407, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:430
+msgid "Exclude"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:272
+msgid "Select on what page types or categories the assignment should be active."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:285
+msgid "Home Page"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:296
+msgid "Menu Items"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:304
+msgid "Select the menu items to assign to."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:325
+msgid "Date & Time"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:342
+msgid "The date and time assignments use the date/time of your servers, not that of the visitors system."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:344
+msgid "Current date/time:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:353
+msgid "User Roles"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:362
+msgid "Select the user roles to assign to."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:379
+msgid "URL"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:389
+msgid "Enter (part of) the URLs to match."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:390
+msgid "Use a new line for each different match."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:402
+msgid "Devices"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:411
+msgid "Select the devices to assign to. Keep in mind that device detection is not always 100% accurate. Users can setup their device to mimic other devices."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:415
+msgid "Desktop"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:416
+msgid "Tablet"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:417
+msgid "Mobile"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:425
+msgid "Custom PHP"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:435
+msgid "Enter a piece of PHP code to evaluate. The code must return the value true or false."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/AssignmentsTab.php:437
+msgid "For instance:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:78
+msgid "CodeCanyon License"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:83
+msgid "Activated"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:88
+msgid "Not Activated"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:309
+msgid "Plugin Activation"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:315
+msgid "CodeCanyon purchase code"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:316
+msgid "Enter your CodeCanyon purchase code. Allowed only one Purchase Code per website."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:345
+msgid "Activation FAQ'S"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:349
+msgid "Where is my Purchase Code?"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:352
+msgid "The purchase code is a unique combination of characters that confirms that you bought the plugin. You can find your purchase code in "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:353
+msgid "your account"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:354
+msgid " on the CodeCanyon. Learn more about "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:355
+msgid "How to find your purchase code"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:356, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:390
+msgid " ."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:362
+msgid "Can I use one Purchase Code on multiple sites?"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:366
+msgid "No, this is prohibited by license terms. You can use the purchase code on only one website at a time. Learn more about "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:367
+msgid "Envato License"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:368
+msgid " terms. "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:374
+msgid "What are the benefits of plugin activation?"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:378
+msgid "Activation of the plugin allows you to use all the functionality of the plugin on your site. In addition, in some cases, activating the plugin allows you to access additional features and capabilities of the plugin. Also, using an authored version of the plugin, you can be sure that you will not violate the license."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:384
+msgid "What should I do if my Purchase Code does not work?"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:388
+msgid "There are several reasons why the purchase code may not work on your site. Learn more why your "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginActivation.php:389
+msgid "Purchase Code is Not Working"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginHelper.php:146, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginHelper.php:146
+msgid "Settings"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginHelper.php:147, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginHelper.php:147, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:170
+msgid "Documentation"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginHelper.php:148, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginHelper.php:148
+msgid "Plugins"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginHelper.php:169
+msgid "Rate this plugin:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginUpdater.php:352
+msgid "Please visit the plugin page on the Envato market to "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginUpdater.php:354
+msgid "download "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/PluginUpdater.php:356
+msgid "the latest version."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:74
+msgid "Operating System"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:75
+msgid "Software"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:76
+msgid "MySQL version"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:77
+msgid "PHP Version"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:78
+msgid "Write Permissions"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:79
+msgid "ZIP Installed"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:80
+msgid "cURL Installed"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:81
+msgid "DOM Installed"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:82
+msgid "XML Installed"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:84
+msgid "allow_url_fopen"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:150
+msgid "We recommend to use php 5.6 or higher"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:177, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:202, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:228, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:254, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:280, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:306
+msgid "YES"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:177, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:202, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:228, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:254, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:280, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:306
+msgid "NO"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:204
+msgid "You must enable CURL (Client URL Library) in PHP. Contact the support service of your hosting provider. They know what to do."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:230
+msgid "You must enable DOM extension (Document Object Model) in PHP. It's used for HTML processing. Contact the support service of your hosting provider. They know what to do."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:256
+msgid "You must enable XML extension in PHP. It's used for XML processing. Contact the support service of your hosting provider. They know what to do."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:282
+msgid "You need to enable allow_url_fopen directive in PHP. It's used for download updates and other data from our server. Contact the support service of your hosting provider. They know what to do."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:308
+msgid "You must enable BCMath extension (Arbitrary Precision Mathematics) in PHP. Contact the support service of your hosting provider. They know what to do."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:355
+msgid "WordPress root directory"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:363
+msgid "WordPress root uploads directory"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:369
+msgid "DeBlocker uploads directory"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:372
+msgid "Plugins directory"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:377
+msgid ".htaccess file"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:388
+msgid "There are some writing permissions issues with the following directories/files:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/ServerReporter.php:392
+msgid "All right"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:76
+msgid "General"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:81
+msgid "Assignments"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:86, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:348
+msgid "Custom CSS"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:94
+msgid "Activation"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:100
+msgid "Status"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:105
+msgid "Uninstall"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:118, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:121, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:294
+msgid "DeBlocker"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:122
+msgid "ver."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:127
+msgid "Save changes"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:133
+msgid "Plugin settings"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:166
+msgid "Helpful links"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:176
+msgid "Get help"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:180
+msgid "Rate this plugin"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:186
+msgid "More plugins"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:241
+msgid "Algorithm:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:242
+msgid "Modal Style:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:243
+msgid "Delay:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:244, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:165
+msgid "Title:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:245
+msgid "Content:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:246
+msgid "Overlay Color:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:247
+msgid "Modal Color:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:248
+msgid "Text Color:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:249
+msgid "Is it possible to close?"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:250
+msgid "Blur Content:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:251
+msgid "JavaScript Required:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:252
+msgid "JavaScript Message:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:293, wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:335
+msgid "DeBlocker Settings"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:341
+msgid "Assignments Settings"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:361
+msgid "System Requirements"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:366
+msgid "Uninstall Settings"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:397
+msgid "It Looks Like You Have AdBlocker Enabled"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:398
+msgid "Please disable AdBlock to proceed to the destination page."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/Settings.php:404
+msgid "Please Enable JavaScript in your Browser to Visit this Site."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:49
+msgid "Default"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:50
+msgid "Inline"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:51
+msgid "Random Folder"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:52
+msgid "Script Proxy"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:59
+msgid "Algorithm"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:60
+msgid "The DeBlocker supports several algorithms. Choose the most suitable for your needs. "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:61
+msgid "Read more "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:63
+msgid "about algorithms"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:65
+msgid " in the documentation."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:84
+msgid "Compact"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:85
+msgid "Compact: Upper Right Corner"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:86
+msgid "Compact: Upper Left Corner"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:87
+msgid "Compact: Bottom Right Corner"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:88
+msgid "Compact: Bottom Left Corner"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:89
+msgid "Full Screen"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:96
+msgid "Modal Style"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:97
+msgid "Deblocker modal window style."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:117
+msgid "Closable"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:118
+msgid "The user can close the window and continue browsing the site."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:141
+msgid "Delay"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:142
+msgid "Modal window will be shown after "
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:144
+msgid " milliseconds."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:166
+msgid "Modal window title."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:199
+msgid "Overlay Color"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:200
+msgid "Page overlay Background Color."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:221
+msgid "Modal Color"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:222
+msgid "Modal window Background Color."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:243
+msgid "Text Color"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:244
+msgid "Text color inside a modal window."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:265
+msgid "Blur Content"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:266
+msgid "Effects like blur or color shifting on an element's rendering before the element is displayed."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:286
+msgid "Protect if JavaScript is Disabled."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:287
+msgid "Block page content if JS is disabled."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:308
+msgid "Message to show if JavaScript is Disabled."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:329
+msgid "Add custom CSS here."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:350
+msgid "Settings saved!"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:360
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/SettingsFields.php:365
+msgid "Invalid purchase code."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/StatusTab.php:177
+msgid "Some data will be sent to our server to verify purchase and to ensure that a plugin is compatible with your install. We will never collect any confidential data. All data is stored anonymously."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/UI.php:349
+msgid "Error: Icon library not found."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/UI.php:401
+msgid "Icon Library"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/UI.php:402
+msgid "Upload SVG"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/UninstallTab.php:77
+msgid "Removal settings:"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/UninstallTab.php:101
+msgid "Delete plugin only"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/UninstallTab.php:102
+msgid "Delete plugin and settings"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/UninstallTab.php:106
+msgid "Choose which data to delete upon using the \"Delete\" action in the \"Plugins\" admin page."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/UninstallTab.php:112
+msgid "Delete plugin"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:74
+msgid "Version"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:75
+msgid "Site URL"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:76
+msgid "Home URL"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:77
+msgid "Home Path"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:78
+msgid "Plugin Path"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:79
+msgid "WP Multisite"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:80
+msgid "Max Upload Size"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:81
+msgid "Memory limit"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:82
+msgid "Permalink Structure"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:83
+msgid "Language"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:84
+msgid "Timezone"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:85
+msgid "Admin Email"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:86
+msgid "Debug Mode"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:153
+msgid "We recommend setting memory to at least 64M. For more information, ask your hosting provider."
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:197
+msgid "Yes"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:197
+msgid "No"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:303
+msgid "Plain"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:412
+msgid "Active"
+msgstr ""
+
+#: wp-content/plugins/deblocker/src/Merkulove/DeBlocker/WordPressReporter.php:412
+msgid "Inactive"
+msgstr ""

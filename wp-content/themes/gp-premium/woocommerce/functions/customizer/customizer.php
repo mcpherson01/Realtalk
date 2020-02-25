@@ -48,6 +48,7 @@ function generatepress_woocommerce_customize_register( $wp_customize ) {
 		$wp_customize->register_control_type( 'GeneratePress_Title_Customize_Control' );
 		$wp_customize->register_control_type( 'GeneratePress_Pro_Range_Slider_Control' );
 		$wp_customize->register_control_type( 'GeneratePress_Information_Customize_Control' );
+		$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
 	}
 
 	$wp_customize->add_section(
@@ -57,6 +58,23 @@ function generatepress_woocommerce_customize_register( $wp_customize ) {
 			'capability' => 'edit_theme_options',
 			'priority' => 100,
 			'panel' => 'generate_layout_panel'
+		)
+	);
+
+	$wp_customize->add_control(
+		new GeneratePress_Section_Shortcut_Control(
+			$wp_customize,
+			'generate_woocommerce_layout_shortcuts',
+			array(
+				'section' => 'generate_woocommerce_layout',
+				'element' => __( 'WooCommerce', 'gp-premium' ),
+				'shortcuts' => array(
+					'colors' => 'generate_woocommerce_colors',
+					'typography' => 'generate_woocommerce_typography',
+				),
+				'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+				'priority' => 0,
+			)
 		)
 	);
 
@@ -93,6 +111,26 @@ function generatepress_woocommerce_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'generate_woocommerce_settings[menu_mini_cart]',
+		array(
+			'default' => $defaults['menu_mini_cart'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_premium_sanitize_checkbox'
+		)
+	);
+
+	$wp_customize->add_control(
+		'generate_woocommerce_settings[menu_mini_cart]',
+		array(
+			'type' => 'checkbox',
+			'label' => __( 'Display mini cart sub-menu', 'gp-premium' ),
+			'section' => 'generate_woocommerce_layout',
+			'settings' => 'generate_woocommerce_settings[menu_mini_cart]',
+			'active_callback' => 'generate_premium_wc_menu_item_active',
+		)
+	);
+
+	$wp_customize->add_setting(
 		'generate_woocommerce_settings[cart_menu_item_icon]',
 		array(
 			'default' => $defaults['cart_menu_item_icon'],
@@ -105,7 +143,7 @@ function generatepress_woocommerce_customize_register( $wp_customize ) {
 		'generate_woocommerce_settings[cart_menu_item_icon]',
 		array(
 			'type' => 'select',
-			'label' => __( 'Icon', 'gp-premium' ),
+			'label' => __( 'Menu Item Icon', 'gp-premium' ),
 			'section' => 'generate_woocommerce_layout',
 			'choices' => array(
 				'shopping-cart' => __( 'Shopping Cart', 'gp-premium' ),
@@ -113,6 +151,30 @@ function generatepress_woocommerce_customize_register( $wp_customize ) {
 				'shopping-basket' => __( 'Shopping Basket', 'gp-premium' ),
 			),
 			'settings' => 'generate_woocommerce_settings[cart_menu_item_icon]',
+			'active_callback' => 'generatepress_wc_menu_cart_active',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'generate_woocommerce_settings[cart_menu_item_content]',
+		array(
+			'default' => $defaults['cart_menu_item_content'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_premium_sanitize_choices'
+		)
+	);
+
+	$wp_customize->add_control(
+		'generate_woocommerce_settings[cart_menu_item_content]',
+		array(
+			'type' => 'select',
+			'label' => __( 'Menu Item Content', 'gp-premium' ),
+			'section' => 'generate_woocommerce_layout',
+			'choices' => array(
+				'amount' => __( 'Amount', 'gp-premium' ),
+				'number' => __( 'Number of Items', 'gp-premium' ),
+			),
+			'settings' => 'generate_woocommerce_settings[cart_menu_item_content]',
 			'active_callback' => 'generatepress_wc_menu_cart_active',
 		)
 	);
@@ -306,6 +368,25 @@ function generatepress_woocommerce_customize_register( $wp_customize ) {
 				'right' => __( 'Right', 'gp-premium' ),
 			),
 			'settings' => 'generate_woocommerce_settings[product_archive_alignment]',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'generate_woocommerce_settings[off_canvas_panel_on_add_to_cart]',
+		array(
+			'default' => $defaults['off_canvas_panel_on_add_to_cart'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_premium_sanitize_checkbox'
+		)
+	);
+
+	$wp_customize->add_control(
+		'generate_woocommerce_settings[off_canvas_panel_on_add_to_cart]',
+		array(
+			'type' => 'checkbox',
+			'label' => __( 'Display cart panel on add to cart', 'gp-premium' ),
+			'section' => 'generate_woocommerce_layout',
+			'settings' => 'generate_woocommerce_settings[off_canvas_panel_on_add_to_cart]',
 		)
 	);
 
@@ -579,6 +660,76 @@ function generatepress_woocommerce_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'generate_woocommerce_settings[single_product_image_width]', array(
+			'default' => $defaults['single_product_image_width'],
+			'type' => 'option',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'absint'
+		)
+	);
+
+	$wp_customize->add_control(
+		new GeneratePress_Pro_Range_Slider_Control(
+			$wp_customize,
+			'gp_woocommerce_single_product_image_width',
+			array(
+				'label' => __( 'Product Image Area Width', 'gp-premium' ),
+				'section' => 'generate_woocommerce_layout',
+				'settings' => array(
+					'desktop' => 'generate_woocommerce_settings[single_product_image_width]',
+				),
+				'choices' => array(
+					'desktop' => array(
+						'min' => 10,
+						'max' => 100,
+						'step' => 5,
+						'edit' => true,
+						'unit' => '%',
+					),
+				),
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'generate_woocommerce_settings[sticky_add_to_cart_panel]',
+		array(
+			'default' => $defaults['sticky_add_to_cart_panel'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_premium_sanitize_checkbox'
+		)
+	);
+
+	$wp_customize->add_control(
+		'generate_woocommerce_settings[sticky_add_to_cart_panel]',
+		array(
+			'type' => 'checkbox',
+			'label' => __( 'Display add to cart panel on scroll', 'gp-premium' ),
+			'section' => 'generate_woocommerce_layout',
+			'settings' => 'generate_woocommerce_settings[sticky_add_to_cart_panel]',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'generate_woocommerce_settings[quantity_buttons]',
+		array(
+			'default' => $defaults['quantity_buttons'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_premium_sanitize_checkbox'
+		)
+	);
+
+	$wp_customize->add_control(
+		'generate_woocommerce_settings[quantity_buttons]',
+		array(
+			'type' => 'checkbox',
+			'label' => __( 'Display quantity buttons', 'gp-premium' ),
+			'section' => 'generate_woocommerce_layout',
+			'settings' => 'generate_woocommerce_settings[quantity_buttons]',
+		)
+	);
+
+	$wp_customize->add_setting(
 		'generate_woocommerce_settings[single_product_sale_flash]',
 		array(
 			'default' => $defaults['single_product_sale_flash'],
@@ -758,20 +909,6 @@ function generatepress_woocommerce_customize_register( $wp_customize ) {
 			'capability' => 'edit_theme_options',
 			'priority' => 200,
 			'panel' => 'generate_typography_panel'
-		)
-	);
-
-	$wp_customize->add_control(
-		new GeneratePress_Information_Customize_Control(
-			$wp_customize,
-			'generate_woocommerce_primary_button_message',
-			array(
-				'section'     => 'generate_woocommerce_colors',
-				'label'			=> __( 'Primary Button Colors','generate-woocommerce' ),
-				'description' => __( 'Primary button colors can be set <a href="#">here</a>.','generate-woocommerce' ),
-				'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
-				'priority' => 1,
-			)
 		)
 	);
 

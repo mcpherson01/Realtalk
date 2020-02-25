@@ -38,6 +38,7 @@ if ( ! function_exists( 'generate_colors_secondary_nav_customizer' ) ) {
 		if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Alpha_Color_Customize_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Title_Customize_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
 		}
 
 		// Get our palettes
@@ -51,6 +52,24 @@ if ( ! function_exists( 'generate_colors_secondary_nav_customizer' ) ) {
 				'capability' => 'edit_theme_options',
 				'priority' => 71,
 				'panel' => 'generate_colors_panel',
+			)
+		);
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_secondary_navigation_color_shortcuts',
+				array(
+					'section' => 'secondary_navigation_color_section',
+					'element' => __( 'Secondary Navigation', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'secondary_nav_section',
+						'typography' => 'secondary_font_section',
+						'backgrounds' => 'secondary_bg_images_section',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 1,
+				)
 			)
 		);
 

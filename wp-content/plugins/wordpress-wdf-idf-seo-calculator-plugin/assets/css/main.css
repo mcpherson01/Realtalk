@@ -1,0 +1,112 @@
+#wtb_idf_calculator .inside {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+#wtb_idf_calculator .plugin-header {
+    padding: 7px 15px 13px;
+}
+
+#wtb_idf_calculator .plugin-footer {
+    border-top: 3px solid #2b4e90;
+    background: white;
+    min-height: 20px;
+    padding: 20px 15px;
+}
+
+#idf-calculator-word {
+    font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 12px 0 0;
+    padding-left: 8px;
+    vertical-align: super;
+}
+
+#chart_div {
+    text-align: center;
+}
+
+.wtb-idf-ajax-loader {
+    color: #545454;
+    line-height: 18px;
+    background: url(../img/ajax-loader.gif) no-repeat right top;
+    height: 20px;
+    padding-right: 230px;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.wtb_idf_calculator_top_results_holder {
+    float: right;
+    margin-top: 6px;
+    display: block;
+}
+
+#idf-calculator-check {
+	border: 1px solid #2a508d;
+	border-bottom-color: #c0c7ce; 
+	border-top-color: #768caf; 
+	color: #fff;
+	cursor: pointer;
+    display: inline-block;
+	font-size: 12px;
+	font-weight: bold;
+	height: 38px;
+	line-height: 38px;
+	
+    text-align: center;
+    
+	
+    padding-left: 26px;
+    padding-right: 26px;
+    vertical-align: top;
+    
+	
+	
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	
+	background: #26487f; /* for non-css3 browsers */
+	background: -moz-linear-gradient(top, #2a4f8c,  #244478); /* for firefox 3.6+ */ 
+	background: -webkit-gradient(linear, left top, left bottom, from(#2a4f8c), to(#244478)); /* Safari 4+, Chrome */
+	background: -webkit-linear-gradient(left top, left bottom, #2a4f8c, #244478); /* Chrome 10+, Safari 5.1+, iOS 5+ */
+	background: -o-linear-gradient(top, #2a4f8c,#244478); /* Opera 11.10+ */
+	background: -ms-filter:"progid:DXImageTransform.Microsoft.Gradient(StartColorStr=#2a4f8c, EndColorStr=#244478, GradientType=0)";
+	background: linear-gradient(to bottom, #2a4f8c,#244478); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2a4f8c', endColorstr='#244478', GradientType='0'); /* for IE */
+}
+
+#chart_legend {
+    text-align: center;
+}
+#chart_legend1 {
+    text-align: left;
+}
+
+#chart_legend label,
+#chart_legend1 label {
+    line-height: 15px;
+    display: inline-block;
+    color: #999;
+    padding: 0 5px 5px;
+}
+
+#chart_legend label.chart-active,
+#chart_legend1 label.chart-active {
+    color: black;
+}
+
+#chart_legend label span,
+#chart_legend1 label span {
+    display: inline-block;
+    height: 11px;
+    width: 11px;
+    vertical-align: baseline;
+    margin-right: 5px;
+    background-image: url(../img/disabled.png);
+}
+#chart_legend label.chart-active span,
+#chart_legend1 label.chart-active span {
+    background-image: none;
+}

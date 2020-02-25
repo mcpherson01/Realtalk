@@ -1,1 +1,0 @@
-This plugin will ask to be Activated. Please ignore this, the plugin works without Activation.

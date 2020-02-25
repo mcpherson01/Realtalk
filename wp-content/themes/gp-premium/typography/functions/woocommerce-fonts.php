@@ -26,12 +26,30 @@ if ( ! function_exists( 'generate_typography_wc_customizer' ) ) {
 		if ( method_exists( $wp_customize,'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Pro_Range_Slider_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Pro_Typography_Customize_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Section_Shortcut_Control' );
 		}
 
 		// Bail if WooCommerce isn't activated
 		if ( ! $wp_customize->get_section( 'generate_woocommerce_typography' ) ) {
 			return;
 		}
+
+		$wp_customize->add_control(
+			new GeneratePress_Section_Shortcut_Control(
+				$wp_customize,
+				'generate_woocommerce_typography_shortcuts',
+				array(
+					'section' => 'generate_woocommerce_typography',
+					'element' => __( 'WooCommerce', 'gp-premium' ),
+					'shortcuts' => array(
+						'layout' => 'generate_woocommerce_layout',
+						'colors' => 'generate_woocommerce_colors',
+					),
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+					'priority' => 0,
+				)
+			)
+		);
 
 		// WooCommerce
 		$wp_customize->add_setting(

@@ -79,7 +79,9 @@ class GeneratePress_Hero {
 		$display = apply_filters( 'generate_header_element_display', GeneratePress_Conditions::show_data( $this->conditional, $this->exclude, $this->users ), $post_id );
 
 		if ( $display ) {
-			add_action( 'generate_after_header',	array( $this, 'build_hero' ), 9 );
+			$location = apply_filters( 'generate_page_hero_location', 'generate_after_header', $post_id );
+
+			add_action( $location,					array( $this, 'build_hero' ), 9 );
 			add_action( 'wp_enqueue_scripts', 		array( $this, 'enqueue' ), 100 );
 			add_action( 'wp', 						array( $this, 'after_setup' ), 100 );
 
@@ -318,6 +320,23 @@ class GeneratePress_Hero {
 			$css->set_selector( '.header-wrap .main-title a, .header-wrap .main-title a:hover, .header-wrap .main-title a:visited' );
 			$css->add_property( 'color', esc_attr( $options['header_title_color'] ) );
 
+			if ( ! GeneratePress_Elements_Helper::does_option_exist( 'navigation-as-header' ) ) {
+				$css->set_selector( '.header-wrap .mobile-header-navigation:not(.navigation-stick):not(.toggled) .main-title a, .header-wrap .mobile-header-navigation:not(.navigation-stick):not(.toggled) .main-title a:hover, .header-wrap .mobile-header-navigation:not(.navigation-stick):not(.toggled) .main-title a:visited' );
+				$css->add_property( 'color', esc_attr( $options['header_title_color'] ) );
+			}
+
+			if ( function_exists( 'generate_get_color_defaults' ) ) {
+				$color_settings = wp_parse_args(
+					get_option( 'generate_settings', array() ),
+					generate_get_color_defaults()
+				);
+
+				if ( GeneratePress_Elements_Helper::does_option_exist( 'navigation-as-header' ) ) {
+					$css->set_selector( '.header-wrap .toggled .main-title a, .header-wrap .toggled .main-title a:hover, .header-wrap .toggled .main-title a:visited, .header-wrap .navigation-stick .main-title a, .header-wrap .navigation-stick .main-title a:hover, .header-wrap .navigation-stick .main-title a:visited' );
+					$css->add_property( 'color', esc_attr( $color_settings['site_title_color'] ) );
+				}
+			}
+
 			$css->set_selector( '.header-wrap .site-description' );
 			$css->add_property( 'color', esc_attr( $options['header_tagline_color'] ) );
 
@@ -351,6 +370,22 @@ class GeneratePress_Hero {
 				}
 			}
 
+			if ( $options['site_logo'] && GeneratePress_Elements_Helper::does_option_exist( 'navigation-as-header' ) ) {
+				$css->set_selector( '.main-navigation .site-logo, .main-navigation.toggled .page-hero-logo, .main-navigation.navigation-stick .page-hero-logo' );
+				$css->add_property( 'display', 'none' );
+
+				$css->set_selector( '.main-navigation .page-hero-logo, .main-navigation.toggled .site-logo:not(.page-hero-logo), #mobile-header .mobile-header-logo' );
+				$css->add_property( 'display', 'block' );
+
+				if ( ! GeneratePress_Elements_Helper::does_option_exist( 'sticky-navigation-logo' ) ) {
+					$css->set_selector( '.main-navigation.navigation-stick .site-logo:not(.page-hero-logo)' );
+					$css->add_property( 'display', 'block' );
+
+					$css->set_selector( '.main-navigation.navigation-stick .page-hero-logo' );
+					$css->add_property( 'display', 'none' );
+				}
+			}
+
 			if ( $options['navigation_logo'] && GeneratePress_Elements_Helper::does_option_exist( 'sticky-navigation' ) ) {
 				$css->set_selector( '#site-navigation:not(.navigation-stick):not(.toggled) .navigation-logo:not(.page-hero-navigation-logo)' );
 				$css->add_property( 'display', 'none' );
@@ -359,7 +394,7 @@ class GeneratePress_Hero {
 				$css->add_property( 'display', 'none' );
 			}
 
-			if ( $options['mobile_logo'] && GeneratePress_Elements_Helper::does_option_exist( 'sticky-mobile-header' ) ) {
+			if ( $options['mobile_logo'] && GeneratePress_Elements_Helper::does_option_exist( 'mobile-logo' ) ) {
 				$css->set_selector( '#mobile-header:not(.navigation-stick):not(.toggled) .mobile-header-logo:not(.page-hero-mobile-logo)' );
 				$css->add_property( 'display', 'none' );
 
@@ -374,6 +409,11 @@ class GeneratePress_Hero {
 				}
 
 				$css->stop_media_query();
+			}
+
+			if ( class_exists( 'Elementor\Plugin' ) ) {
+				$css->set_selector( '.elementor-editor-active .header-wrap' );
+				$css->add_property( 'pointer-events', 'none' );
 			}
 		}
 
@@ -407,8 +447,8 @@ class GeneratePress_Hero {
 			$css->add_property( 'padding-left', absint( $options['padding_left_mobile'] ), false, esc_html( $options['padding_left_unit_mobile'] ) );
 		}
 
-		if ( GeneratePress_Elements_Helper::does_option_exist( 'site-logo' ) ) {
-			$css->set_selector( '.page-hero-logo' );
+		if ( GeneratePress_Elements_Helper::does_option_exist( 'site-logo' ) && 'merge-desktop' === $options['site_header_merge'] ) {
+			$css->set_selector( '.inside-header .page-hero-logo, .main-navigation .page-hero-logo, #mobile-header .page-hero-mobile-logo' );
 			$css->add_property( 'display', 'none' );
 		}
 
@@ -499,7 +539,7 @@ class GeneratePress_Hero {
 		}
 
 		if ( $options['site_logo'] && GeneratePress_Elements_Helper::does_option_exist( 'site-logo' ) ) {
-			if ( 'merge-desktop' === $options['site_header_merge'] ) {
+			if ( 'merge-desktop' === $options['site_header_merge'] || GeneratePress_Elements_Helper::does_option_exist( 'navigation-as-header' ) ) {
 				add_action( 'generate_after_logo', array( $this, 'add_site_logo' ) );
 			} else {
 				add_filter( 'theme_mod_custom_logo', array( $this, 'replace_logo' ) );
@@ -518,12 +558,8 @@ class GeneratePress_Hero {
 			}
 		}
 
-		if ( $options['mobile_logo'] && GeneratePress_Elements_Helper::does_option_exist( 'mobile-logo' ) ) {
-			if ( $options['site_header_merge'] && GeneratePress_Elements_Helper::does_option_exist( 'sticky-mobile-header' ) ) {
-				add_action( 'generate_inside_mobile_header', array( $this, 'add_mobile_header_logo' ) );
-			} else {
-				add_filter( 'generate_mobile_header_logo', array( $this, 'replace_logo' ) );
-			}
+		if ( $options['mobile_logo'] && GeneratePress_Elements_Helper::does_option_exist( 'mobile-logo' ) && $options['site_header_merge'] ) {
+			add_action( 'generate_inside_mobile_header', array( $this, 'add_mobile_header_logo' ) );
 		}
 
 		if ( $options['navigation_location'] ) {
@@ -655,6 +691,10 @@ class GeneratePress_Hero {
 	 */
 	public static function add_mobile_header_logo() {
 		$options = self::get_options();
+
+		if ( 'title' === GeneratePress_Elements_Helper::does_option_exist( 'mobile-header-branding' ) ) {
+			return;
+		}
 
 		printf(
 			'<div class="site-logo mobile-header-logo page-hero-mobile-logo">

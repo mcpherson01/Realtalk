@@ -64,6 +64,10 @@ class GeneratePress_Elements_Helper {
 				generate_menu_plus_get_defaults()
 			);
 
+			if ( 'navigation-as-header' === $option ) {
+				return $menu_settings['navigation_as_header'];
+			}
+
 			if ( 'mobile-logo' === $option ) {
 				return $menu_settings['mobile_header_logo'];
 			}
@@ -74,6 +78,14 @@ class GeneratePress_Elements_Helper {
 
 			if ( 'sticky-navigation' === $option ) {
 				return 'false' !== $menu_settings['sticky_menu'] ? true : false;
+			}
+
+			if ( 'sticky-navigation-logo' === $option ) {
+				return $menu_settings['sticky_navigation_logo'];
+			}
+
+			if ( 'mobile-header-branding' === $option ) {
+				return $menu_settings['mobile_header_branding'];
 			}
 
 			if ( 'sticky-mobile-header' === $option ) {

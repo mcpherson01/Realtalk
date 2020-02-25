@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: GP Premium
+Plugin Name: GP Premium |  VestaThemes.com
 Plugin URI: https://generatepress.com
 Description: The entire collection of GeneratePress premium modules.
-Version: 1.7.8
+Version: 1.8.2
 Author: Tom Usborne
-Author URI: https://tomusborne.com
+Author URI: https://generatepress.com
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: gp-premium
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Set our version
-define( 'GP_PREMIUM_VERSION', '1.7.8' );
+define( 'GP_PREMIUM_VERSION', '1.8.2' );
 
 // Set our library directory
 define( 'GP_LIBRARY_DIRECTORY', plugin_dir_path( __FILE__ ) . 'library/' );
@@ -139,7 +139,7 @@ if ( is_admin() ) {
 	require_once plugin_dir_path( __FILE__ ) . 'inc/reset.php';
 	require_once plugin_dir_path( __FILE__ ) . 'import-export/generate-ie.php';
 
-	if ( version_compare( PHP_VERSION, '5.4', '>=' ) && ! defined( 'GENERATE_DISABLE_SITE_LIBRARY' ) ) {
+	if ( generatepress_is_module_active( 'generate_package_site_library', 'GENERATE_SITE_LIBRARY' ) && version_compare( PHP_VERSION, '5.4', '>=' ) && ! defined( 'GENERATE_DISABLE_SITE_LIBRARY' ) ) {
 		require_once plugin_dir_path( __FILE__ ) . 'sites/sites.php';
 	}
 
