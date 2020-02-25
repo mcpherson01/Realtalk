@@ -1,3 +1,157 @@
+######BEGIN SwiftSecurity######
+###SwSc/WPScanner###
+# No files in quarantine
+###END SwSc/WPScanner###
+
+###SwSc/Firewall###
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /wp/wordpress/
+RewriteCond %{THE_REQUEST} union([^a]*a)+ll([^s]*s)+elect [NC,OR]
+RewriteCond %{THE_REQUEST} union([^s]*s)+elect [NC,OR]
+RewriteCond %{THE_REQUEST} (;|<|>|'|"|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|drop|update|benchmark).* [NC]
+RewriteCond %{QUERY_STRING} !SwiftSecurity=firewall&sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteCond %{REQUEST_URI} !^/index.php$ [NC]
+RewriteRule ^wp/wordpress/?(.*) index.php?SwiftSecurity=firewall&attempt=SQLi&channel=GET&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+
+RewriteCond %{THE_REQUEST} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+RewriteCond %{THE_REQUEST} (<|%3C)([^e]*e)+mbed.*(>|%3E) [NC,OR]
+RewriteCond %{THE_REQUEST} (<|%3C)([^o]*o)+bject.*(>|%3E) [NC,OR]
+RewriteCond %{THE_REQUEST} (<|%3C)([^i]*i)+frame.*(>|%3E) [NC]
+RewriteCond %{QUERY_STRING} !SwiftSecurity=firewall [NC]
+RewriteCond %{REQUEST_URI} !^/index.php$ [NC]
+RewriteRule ^wp/wordpress/?(.*) index.php?SwiftSecurity=firewall&attempt=XSS&channel=GET&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+
+RewriteCond %{REQUEST_URI} !(.*)\.(css|eot|woff|svg|png|jpg|jpeg|gif)$ [NC]
+RewriteCond %{THE_REQUEST} (\.\.\/|\.\.\|%2e%2e%2f|%2e%2e\/|\.\.%2f|%2e%2e%5c) [NC]
+RewriteCond %{QUERY_STRING} !SwiftSecurity=firewall [NC]
+RewriteCond %{REQUEST_URI} !^/index.php$ [NC]
+RewriteRule ^wp/wordpress/?(.*) index.php?SwiftSecurity=firewall&attempt=Path&channel=GET&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+
+RewriteCond %{HTTP_COOKIE} union([^a]*a)+ll([^s]*s)+elect [NC,OR]
+RewriteCond %{HTTP_COOKIE} union([^s]*s)+elect [NC]
+RewriteCond %{REQUEST_URI} !^/index.php$ [NC]
+RewriteCond %{QUERY_STRING} !SwiftSecurity=firewall [NC]
+RewriteRule ^wp/wordpress/?(.*) index.php?SwiftSecurity=firewall&attempt=SQLi&channel=COOKIE&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+
+</IfModule>
+
+###END SwSc/Firewall###
+
+###SwSc/HideWP###
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /wp/wordpress/
+
+RewriteCond "C:\xampp\htdocs\wp\wordpress/robots.txt" -f
+RewriteRule ^robots.txt$ index.php?SwiftSecurity=robotstxt&sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+
+RewriteCond %{QUERY_STRING} !cached_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteCond %{QUERY_STRING} !proxy_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteCond %{QUERY_STRING} !admin_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteCond %{QUERY_STRING} !ms_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteRule ^(.*)\.(css|js)$ modules/teuscwirfyist/cache/localhost%{REQUEST_URI}?cached_sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+
+
+RewriteRule "^rest-api" "wp-json?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^js/embed.min.js" "wp-includes/js/wp-embed.min.js?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+
+RewriteRule "^cache/(.*)" "wp-content/cache/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^contents/style.css$" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^wp-content/themes/generatepress/style.css$" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^wp-comments-post.php$" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^wp-admin/admin-ajax.php$" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "wp-json$" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "wp-includes/js/wp-embed.min.js$" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+
+RewriteRule "^contents/bootstrap.min.css" "wp-content/themes/generatepress/style.css?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^administrator$" administrator/ [R=301,L]
+RewriteRule "^user.php" wp-login.php?sq_e21f3995158ff76dbeeb2d79a8349884 [L,QSA]
+RewriteRule "^comment.php" wp-comments-post.php?sq_e21f3995158ff76dbeeb2d79a8349884 [L,QSA]
+RewriteRule "^ajax.php" wp-admin/admin-ajax.php?sq_e21f3995158ff76dbeeb2d79a8349884 [L,QSA]
+
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^(modules/teuscwirfyist/cache/localhost/)?wp-content/uploads/(.*)?" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^(modules/teuscwirfyist/cache/localhost/)?wp-includes/(.*)?" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^(modules/teuscwirfyist/cache/localhost/)?wp-admin/(.*)?" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^(modules/teuscwirfyist/cache/localhost/)?wp-content/(.*)?" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884
+RewriteCond %{HTTP_COOKIE} !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "wp-content/cache" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+
+RewriteRule "^contents/(.*)" "wp-content/themes/generatepress/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^media/(.*)" "wp-content/uploads/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^assets/(.*)" "wp-includes/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^administrator/(.*)" "wp-admin/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/tdp--ndmemrriuaieoon-/(.*)" "wp-content/plugins/admin-menu-editor-pro/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/_ldaf_saabrsgtre/(.*)" "wp-content/plugins/asgard_alerts_fb/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/taaptgedrlaa_s_rs/(.*)" "wp-content/plugins/asgard_alerts_pat/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/urlo-eypnessaefm-igrmiime-d/(.*)" "wp-content/plugins/seo-friendly-images-premium/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/teuscwirfyist/(.*)" "wp-content/plugins/SwiftSecurity/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/ae-s-nsgirmerstupaaemm/(.*)" "wp-content/plugins/assets-manager-premium/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/rceyalf/(.*)" "wp-content/plugins/clearfy/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/yip-dwme-h/(.*)" "wp-content/plugins/hide-my-wp/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/aa-nmdmmutri-pgapueere/(.*)" "wp-content/plugins/update-manager-premium/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/bowp-rpto/(.*)" "wp-content/plugins/wpbot-pro/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteRule "^modules/uvdueiyorr-es-/(.*)" "wp-content/plugins/use-your-drive/$1?sq_e21f3995158ff76dbeeb2d79a8349884" [L,QSA]
+RewriteCond %{HTTP_COOKIE} sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteRule "^modules/(.*)?" "wp-content/plugins/$1" [L]
+
+RewriteRule "^readme.html" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteRule "^license.txt" index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+RewriteCond %{REMOTE_ADDR} ^%{SERVER_ADDR}$ [OR]
+RewriteRule ^wp-cron.php$ $0?authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+RewriteCond %{QUERY_STRING} !authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteRule ^wp-login.php$ $0?authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+RewriteCond %{QUERY_STRING} !authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteRule ^wp-comments-post.php$ $0?authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+RewriteCond %{QUERY_STRING} !authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteRule ^wp-admin/(.*)$ $0?authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+RewriteCond %{QUERY_STRING} !authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteRule "^wp-content/themes/generatepress/(.*)" $0?authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+RewriteCond %{QUERY_STRING} !authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteRule ^assets/js/tinymce/wp-tinymce.php$ $0?authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+RewriteCond %{QUERY_STRING} !authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteRule ^wp-includes/js/tinymce/wp-tinymce.php$ $0?authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+RewriteCond %{QUERY_STRING} !sq_e21f3995158ff76dbeeb2d79a8349884 [NC]
+RewriteCond %{QUERY_STRING} !authorized_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteCond %{HTTP_COOKIE}  !sq_e21f3995158ff76dbeeb2d79a8349884=([0-9abcdef]+) [NC]
+RewriteCond %{REQUEST_URI}  !/wp/wordpress/index.php$  [NC]
+RewriteRule ^(.*)\.php index.php?SwiftSecurity=404&sq_763f4218e5c668091d12d7e6e8c74598=1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond modules/teuscwirfyist/cache/localhost%{REQUEST_URI} !-f
+RewriteCond %{QUERY_STRING} !proxy_sq_763f4218e5c668091d12d7e6e8c74598=1
+RewriteCond %{QUERY_STRING} !admin_sq_763f4218e5c668091d12d7e6e8c74598=1
+RewriteCond %{QUERY_STRING} !ms_sq_763f4218e5c668091d12d7e6e8c74598=1 [NC]
+RewriteRule ^(.*)\.(css|js)$ index.php?SwiftSecurity=cdnproxy&sq_763f4218e5c668091d12d7e6e8c74598=1 [L,QSA]
+
+</IfModule>
+
+###END SwSc/HideWP###
+
+######END SwiftSecurity######
+
 # BEGIN WordPress
 # The directives (lines) between `BEGIN WordPress` and `END WordPress` are
 # dynamically generated, and should only be modified via WordPress filters.
